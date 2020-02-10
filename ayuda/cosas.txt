@@ -1,0 +1,35 @@
+clientes
+
+tipo;
+0 = normal
+1 = conyuge
+
+
+referencias
+0 = familiares
+1 = amistades
+2 = padre
+3 = madre
+
+
+General del cliente
+cliente
+num_placas
+estado_civil (casado,soltero,viudo,divorciado,union libre)
+casa (si,no)
+tiempo_casa
+gastos_mensuales,
+padre,
+madre,
+
+
+profesion
+empresa,
+dom_empresa,
+tel_empresa,
+puesto
+sueldo
+antiguedad
+
+
+

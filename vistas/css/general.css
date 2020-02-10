@@ -1,0 +1,88 @@
+.login-page #back
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(../img/plantilla/fondo.jpg);
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/*.input-group .input-group-addon {
+    border-radius: 0;
+    border-color: #d2d6de;
+    background-color: #fff;
+}
+
+.input-group-addon:first-child {
+    border-right: 0;
+}
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group-addon, .input-group-btn {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.input-group .form-control, .input-group-addon, .input-group-btn {
+    display: table-cell;
+}
+
+.input-group .input-group-addon {
+    border-radius: 0;
+    border-color: #d2d6de;
+    background-color: #fff;
+}*/
+
+button
+{
+    font-family: sans-serif;
+}
+
+.navbar-custom-menu
+{
+	float: right !important;
+}
+
+@media (min-width: 768px){}
+	.navbar-nav {
+	    float: left;
+	    margin: 0;
+	}
+}
+
+.navbar-nav {
+    margin: 7.5px -15px;
+}
+
+.nav {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+    list-style: none !important;
+}
+
+.generic
+{
+	margin-top: 0.5em;
+}
+
+.generic a
+{
+	color: black;
+    font-size: 18px;
+}
