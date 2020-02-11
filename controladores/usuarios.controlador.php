@@ -68,41 +68,13 @@ class ControladorUsuarios
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]))
 			{
 				$ruta = "vistas/img/usuarios/default/anonymous.png";
-				
-				//validar foto
-				if (isset($_FILES["nuevaFoto"]["tmp_name"])) 
+
+				if (isset($_FILES["nuevaFoto"])) 
 				{
-					list($ancho,$alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					//crear directorio para guardar la foto
-					$directorio = "vistas/img/usuarios/".$_POST["nuevoUsuario"];
-					mkdir($directorio,0755);
-					
-					//de acuerdo a la imagen hacemos lo siquguiente
-					if ($_FILES["nuevaFoto"]["type"] == "image/jpeg")
-					{
-						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/usuarios/".$_POST["nuevoUsuario"]."/".$aleatorio.".jpg";
-						$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-						imagejpeg($destino,$ruta);
-					}
-					if ($_FILES["nuevaFoto"]["type"] == "image/png")
-					{
-						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/usuarios/".$_POST["nuevoUsuario"]."/".$aleatorio.".png";
-						$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-						imagejpng($destino,$ruta);
-					}
+					$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["nuevoUsuario"],"usuarios",800,800);
+					var_dump($ruta);
 				}
-
-				$tabla = "usuarios";
-				
+				$tabla = "usuarios";	
 				$datos = array("nombre" => trim($_POST["nuevoNombre"]),
 					           "usuario" => trim($_POST["nuevoUsuario"]),
 					           "password" => trim($_POST["nuevoPassword"]),
@@ -242,7 +214,7 @@ class ControladorUsuarios
 			{
 				Helpers::eliminarImagen($_GET["usuario"],"usuarios",$_GET["fotoUsuario"]);
 			}
-			
+
 			$respuesta = modeloUsuarios::mdlBorrarUsuario($tabla,$datos);
 			if ($respuesta == "ok")
 			{

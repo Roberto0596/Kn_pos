@@ -37,7 +37,7 @@
 
                   </div>
 
-                  <input type="text" name="nombre" placeholder="Nombres y Apellido" class="form-control form-control-lg" required>
+                  <input type="text" name="nombre" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
                   <input type="hidden" name="tipo" value="0">
 
               </div>
@@ -60,7 +60,7 @@
 
                       </div>
 
-                      <input type="text" name="direccion" placeholder="Direccion" class="form-control form-control-lg" required>
+                      <input type="text" name="direccion" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
 
                   </div>
 
@@ -166,7 +166,7 @@
 
                       </div>
 
-                      <input type="text" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg" required>
+                      <input type="text" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
 
                   </div>
 

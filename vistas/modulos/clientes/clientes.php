@@ -96,7 +96,7 @@
 
                     </div>
 
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombres y Apellido" class="form-control form-control-lg" required>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
                     <input type="hidden" name="id_cliente" id="id_cliente">
 
                 </div>
@@ -119,7 +119,7 @@
 
                         </div>
 
-                        <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="form-control form-control-lg" required>
+                        <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
 
                     </div>
 
@@ -225,7 +225,7 @@
 
                         </div>
 
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg" required>
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
 
                     </div>
 

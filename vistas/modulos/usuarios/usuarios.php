@@ -68,7 +68,7 @@
 
       </div>
 
-      <form method="post" autocomplete="off">
+      <form method="post" autocomplete="off" enctype="multipart/form-data">
 
         <div class="modal-body">
 
@@ -80,7 +80,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
+              <input type="text" class="form-control form-control-lg capitalize" name="nuevoNombre" placeholder="Ingresar nombre" required>
 
           </div>
 
@@ -96,7 +96,7 @@
 
                   </div>
 
-                  <input type="text" class="form-control form-control-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
+                  <input type="text" class="form-control form-control-lg capitalize" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
 
               </div>
 
@@ -249,7 +249,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" id="editarNombre" name="editarNombre" value="" required>
+              <input type="text" class="form-control form-control-lg capitalize" id="editarNombre" name="editarNombre" value="" required>
 
           </div>
 

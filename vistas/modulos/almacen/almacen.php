@@ -89,7 +89,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" name="nuevoAlmacen" placeholder="Ingrese Nombre" required>
+              <input type="text" class="form-control form-control-lg capitalize" name="nuevoAlmacen" placeholder="Ingrese Nombre" required>
 
           </div>
 
@@ -103,7 +103,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" name="nuevaUbicacion" placeholder="Ubicacion" required>
+              <input type="text" class="form-control form-control-lg capitalize" name="nuevaUbicacion" placeholder="Ubicacion" required>
 
           </div>
           
@@ -159,7 +159,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" name="editarAlmacen" id="editarAlmacen" required>
+              <input type="text" class="form-control form-control-lg capitalize" name="editarAlmacen" id="editarAlmacen" required>
               <input type="hidden" name="id_almacen" id="id_almacen"> 
 
           </div>
@@ -174,7 +174,7 @@
 
               </div>
 
-              <input type="text" class="form-control form-control-lg" name="editarUbicacion" id="editarUbicacion" required>
+              <input type="text" class="form-control form-control-lg capitalize" name="editarUbicacion" id="editarUbicacion" required>
 
           </div>
           

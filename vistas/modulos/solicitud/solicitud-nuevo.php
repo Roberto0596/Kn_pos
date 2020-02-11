@@ -127,7 +127,7 @@
 
                     </div>
 
-                    <select class="form-control" name="estado_civil" required>
+                    <select class="form-control capitalize" name="estado_civil" required>
                   
                       <option value="">Selecionar estado civil</option>
 
@@ -163,7 +163,7 @@
 
                         </div>
 
-                        <select class="form-control" name="casa" required>
+                        <select class="form-control capitalize" name="casa" required>
                       
                           <option value="">Seleccione un item</option>
 
@@ -189,7 +189,7 @@
 
                       </div>
 
-                      <input type="text" name="tiempo_casa" placeholder="Tiempo en casa" class="form-control" required>
+                      <input type="text" name="tiempo_casa" placeholder="Tiempo en casa" class="form-control capitalize" required>
 
                   </div>
 
@@ -207,7 +207,7 @@
 
                       </div>
 
-                      <input type="number" min="0" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control" required>
+                      <input type="number" min="0" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control capitalize" required>
 
                   </div>
 
@@ -233,7 +233,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_papa" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_papa" placeholder="Nombre" class="form-control capitalize" required>
                             <input type="hidden" name="referencia_padre" value="2">
 
                           </div>
@@ -244,7 +244,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_papa" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_papa" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -254,7 +254,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_papa" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_papa" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -269,7 +269,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_mama" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_mama" placeholder="Nombre" class="form-control capitalize" required>
                             <input type="hidden" name="referencia_mama" value="3">
 
                           </div>
@@ -280,7 +280,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_mama" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_mama" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -290,7 +290,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_mama" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -324,7 +324,7 @@
 
                       </div>
 
-                      <input type="text" name="profesion" id="profesion" placeholder="Nombre de la empresa" class="form-control" required>
+                      <input type="text" name="profesion" id="profesion" placeholder="Nombre de la empresa" class="form-control capitalize" required>
 
                   </div>
 
@@ -342,7 +342,7 @@
 
                       </div>
 
-                      <input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre de la empresa" class="form-control" required>
+                      <input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre de la empresa" class="form-control capitalize" required>
 
                   </div>
 
@@ -360,7 +360,7 @@
 
                       </div>
 
-                      <input type="text" name="dom_empresa" id="dom_empresa" placeholder="Domicilio de la empresa" class="form-control" required>
+                      <input type="text" name="dom_empresa" id="dom_empresa" placeholder="Domicilio de la empresa" class="form-control capitalize" required>
 
                   </div>
 
@@ -378,7 +378,7 @@
 
                       </div>
 
-                      <input type="text" name="tel_empresa" id="tel_empresa" placeholder="Telefono de la empresa" class="form-control" required>
+                      <input type="text" name="tel_empresa" id="tel_empresa" placeholder="Telefono de la empresa" class="form-control capitalize" required>
 
                   </div>
 
@@ -400,7 +400,7 @@
 
                       </div>
 
-                      <input type="text" name="puesto" id="puesto" placeholder="Puesto que desempeña" class="form-control" required>
+                      <input type="text" name="puesto" id="puesto" placeholder="Puesto que desempeña" class="form-control capitalize" required>
 
                   </div>
 
@@ -418,7 +418,7 @@
 
                       </div>
 
-                      <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo" class="form-control" required>
+                      <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo" class="form-control capitalize" required>
 
                   </div>
 
@@ -436,7 +436,7 @@
 
                       </div>
 
-                      <select class="form-control" name="antiguedad" required>
+                      <select class="form-control capitalize" name="antiguedad" required>
                   
                       <option value="">Seleccionar un item</option>
 
@@ -484,7 +484,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -494,7 +494,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -504,7 +504,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -519,7 +519,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -529,7 +529,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -539,7 +539,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -554,7 +554,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -564,7 +564,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -574,7 +574,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -611,7 +611,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -621,7 +621,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -631,7 +631,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -646,7 +646,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -656,7 +656,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -666,7 +666,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 
@@ -681,7 +681,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control" required>
+                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -691,7 +691,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
 
                           </div>
 
@@ -701,7 +701,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
 
                           </div>
 

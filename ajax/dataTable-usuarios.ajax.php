@@ -30,7 +30,7 @@ class TablaUsuarios
 		  			<button class='btn btn-warning btnEditarUsuario' idUsuario='".$value["id"]."'  data-toggle='modal' data-target='#modalEditarUsuario'>
 		  				<i class='fas fa-pencil-alt'></i>
 		  			</button>
-		  			<button class='btn btn-danger  btnEliminarUsuario'  idUsuario='".$value["id"]."' usuario='".$value["usuario"]."'  fotoUsuario'".$value["foto"]."'>
+		  			<button class='btn btn-danger  btnEliminarUsuario'  idUsuario='".$value["id"]."' usuario='".$value["usuario"]."'  fotoUsuario='".$value["foto"]."'>
 		  			<i class='fas fa-trash'></i>
 		  			</button>
 	  			</div>"; 	
