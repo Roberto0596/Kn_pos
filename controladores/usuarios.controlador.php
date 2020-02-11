@@ -114,12 +114,12 @@ class ControladorUsuarios
 
 				if ($respuesta == "ok")
 				{
-					imprimirMensaje("success","El usuario a sido guardado correctamente","usuarios");
+					Helpers::imprimirMensaje("success","El usuario a sido guardado correctamente","usuarios");
 				}
 			}
 			else
 			{
-				imprimirMensaje("error","¡El usuario no puede ir vacío o llevar caracteres especiales!","usuarios");
+				Helpers::imprimirMensaje("error","¡El usuario no puede ir vacío o llevar caracteres especiales!","usuarios");
 			}
 		}
 	}
@@ -202,7 +202,7 @@ class ControladorUsuarios
 					}
 					else
 					{
-						imprimirMensaje("error","¡la contraseña no puede ir vacío o llevar caracteres especiales!","usuarios");
+						Helpers::imprimirMensaje("error","¡la contraseña no puede ir vacío o llevar caracteres especiales!","usuarios");
 					}
 				}
 				else
@@ -221,12 +221,12 @@ class ControladorUsuarios
 
 				if ($respuesta == "ok")
 				{
-					imprimirMensaje("success","El usuario a sido modificado correctamente","usuarios");
+					Helpers::imprimirMensaje("success","El usuario a sido modificado correctamente","usuarios");
 				}
 			}
 			else
 			{
-				imprimirMensaje("error","¡El nombre no puede ir vacio!","usuarios");
+				Helpers::imprimirMensaje("error","¡El nombre no puede ir vacio!","usuarios");
 			}
 		}
 	}
@@ -237,45 +237,23 @@ class ControladorUsuarios
 		{
 			$tabla = "usuarios";
 			$datos = $_GET["idUsuario"];
+
 			if ($_GET["fotoUsuario"] != "") 
 			{
-				unlink($_GET["fotoUsuario"]);
-				rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+				Helpers::eliminarImagen($_GET["usuario"],"usuarios",$_GET["fotoUsuario"]);
 			}
-
+			
 			$respuesta = modeloUsuarios::mdlBorrarUsuario($tabla,$datos);
-
-
-				if ($respuesta == "ok")
-				{
-					imprimirMensaje("success","El usuario a sido eliminado correctamente","usuarios");
-				}
-				else
-				{
-					imprimirMensaje("error","Ocurrio un problema, intente mas tarde","usuarios");
-				}
+			if ($respuesta == "ok")
+			{
+				Helpers::imprimirMensaje("success","El usuario a sido eliminado correctamente","usuarios");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","Ocurrio un problema, intente mas tarde","usuarios");
+			}
 		}
 	}
-
-	public function imprimirMensaje($validador,$mensaje,$destino)
- 	{
-		echo 
-		'<script>
-		swal.fire({
-			type: "'.$validador.'",
-			title: "'.$mensaje.'",
-			showConfirmButton: true,
-			confirmButtonText: "cerrar",
-			closeOnConfirm: false
-			}).then((result)=>
-		    {
-				if(result.value)
-				{
-					window.location = "'.$destino.'";
-				}
-		    })
-		</script>'; 	
- 	}
 }
 
 

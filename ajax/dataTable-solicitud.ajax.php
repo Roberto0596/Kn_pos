@@ -24,7 +24,7 @@ class TablaSolicitud
 				<button class='btn btn-warning btnEditarSolicitud' idSolicitud='".$value["id_solicitud"]."'>
 					<i class='fas fa-pencil-alt'></i>
 				</button>
-				<button class='btn btn-danger  btnEliminarSolicitud'  idSolicitud='".$value["id_solicitud"]."'>
+				<button class='btn btn-danger  btnEliminarSolicitud' foto='".$value["foto"]."' idSolicitud='".$value["id_solicitud"]."'>
 					<i class='fas fa-trash'></i>
 				</button>
 			</div>";

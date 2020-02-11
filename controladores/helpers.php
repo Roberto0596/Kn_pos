@@ -5,11 +5,8 @@ class Helpers
 	public function ctrCrearImagen($foto,$id,$folder,$nuevoAncho,$nuevoAlto)
 	{
 		$ruta;
-
 		list($ancho,$alto) = getimagesize($foto["tmp_name"]);
-
-		mkdir("vistas/img/".$folder."/".$id,0755);
-		
+		mkdir("vistas/img/".$folder."/".$id,0755);	
 		if ($foto["type"] == "image/jpeg")
 		{
 			$aleatorio = mt_rand(100,999);
@@ -29,6 +26,12 @@ class Helpers
 			imagejpng($destino,$ruta);
 		}
 		return $ruta;
+	}
+
+	public function eliminarImagen($value,$folder,$foto)
+	{
+		unlink($foto);
+		rmdir('vistas/img/'.$folder.'/'.$value);
 	}
 
 	public function imprimirMensaje($validador,$mensaje,$destino)

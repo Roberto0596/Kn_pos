@@ -35,6 +35,7 @@ var tablaSolicitudes = $(".tablaSolicitudes").DataTable({
 $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 {
 	var idSolicitud = $(this).attr("idSolicitud");
+	var fotoCliente = $(this).attr("foto");
 	swal.fire({
 			title: '¿esta seguro que decea borrar la solicitud?',
 			text: "¡si no lo esta puede cancelar!",
@@ -49,7 +50,7 @@ $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 		{
 			if (result.value)
 			{
-				window.location = "index.php?ruta=solicitud&idSolicitud="+idSolicitud;
+				window.location = "index.php?ruta=solicitud&idSolicitud="+idSolicitud+"&fotoCliente="+fotoCliente;
 			}
 		})
 })

@@ -14,6 +14,7 @@ Class ControladorSolicitud
 		if (isset($_GET["idSolicitud"]))
 		{
 			$tabla = "solicitud_credito";
+			Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
 			$respuesta = ModeloSolicitud::mdlEliminarSolicitud($tabla,"id_solicitud",$_GET["idSolicitud"]);
 			if ($respuesta=="ok")
 			{
