@@ -46,7 +46,6 @@
               <th>Teléfono</th>
               <th>Ejecutivo</th>
               <th>Correo</th>
-              <th>Estado</th>
               <th>Acciones</th>
             </tr>
 
@@ -229,8 +228,9 @@
         </div>
 
         <?php
-          $editarCliente = new ControladorClientes();
-          $editarCliente->ctrEditarCliente();
+
+        $editarProveedor = new ControladorProveedores();
+        $editarProveedor->ctrEditarProveedor();
         ?>
 
       </form>
@@ -242,6 +242,6 @@
 </div>
 
 <?php
-  $eliminarCliente = new ControladorClientes();
-  $eliminarCliente->ctrEliminarCliente();
+  $eliminarProveedor = new ControladorProveedores();
+  //$eliminarProveedor->ctrEliminarProveedor()();
 ?>

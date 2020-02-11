@@ -187,8 +187,9 @@
         </div>
 
         <?php
-          $crearCliente = new ControladorClientes();
-          $crearCliente->ctrCrearCliente();
+        include_once "controladores/proveedores.controlador.php";
+        $crearProveedor = new ControladorProveedores();
+        $crearProveedor->ctrCrearProveedor();
         ?>
 
       </form>
