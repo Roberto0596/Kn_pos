@@ -39,6 +39,7 @@ class ControladorClientes
 							'ciudad' => $_POST["ciudad"],
 							'edad' => $_POST["edad"],
 							'tipo' => $_POST["tipo"]);
+			
 			$respuesta = ModeloClientes::mdlCrearCliente($tabla,$datos);
 			if ($respuesta = "ok")
 			{

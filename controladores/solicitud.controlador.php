@@ -17,11 +17,11 @@ Class ControladorSolicitud
 			$respuesta = ModeloSolicitud::mdlEliminarSolicitud($tabla,"id_solicitud",$_GET["idSolicitud"]);
 			if ($respuesta=="ok")
 			{
-				ControladorClientes::imprimirMensaje("success","Se Elimino la solicitud","solicitud");
+				Helpers::imprimirMensaje("success","Se Elimino la solicitud","solicitud");
 			}
 			else
 			{
-				ControladorClientes::imprimirMensaje("error","No se puede borrar la solicitud","solicitud");
+				Helpers::imprimirMensaje("error","No se puede borrar la solicitud","solicitud");
 			}
 		}
 	}
@@ -36,35 +36,7 @@ Class ControladorSolicitud
 			$fecha = date('Y-m-d');
 			$hora = date('H:i:s');
 			$fechaNueva = $fecha.' '.$hora;
-			$ruta = "vistas/img/solicitudes/default/anonymous.png";
-
-			if (isset($_FILES["nuevaFoto"]["tmp_name"])) 
-			{
-				list($ancho,$alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
-				$nuevoAncho = 500;
-				$nuevoAlto = 500;
-				$directorio = "vistas/img/solicitudes/".$_POST["id_cliente"];
-				mkdir($directorio,0755);
-				
-				if ($_FILES["nuevaFoto"]["type"] == "image/jpeg")
-				{
-					$aleatorio = mt_rand(100,999);
-					$ruta = "vistas/img/solicitudes/".$_POST["id_cliente"]."/".$aleatorio.".jpg";
-					$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-					imagejpeg($destino,$ruta);
-				}
-				if ($_FILES["nuevaFoto"]["type"] == "image/png")
-				{
-					$aleatorio = mt_rand(100,999);
-					$ruta = "vistas/img/solicitudes/".$_POST["id_cliente"]."/".$aleatorio.".png";
-					$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-					imagejpng($destino,$ruta);
-				}
-			}
+			$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);	
 
 			$datosFaseUno = array('id_cliente' => $_POST["id_cliente"],
 							'num_placas'=> $_POST["num_placas"],
@@ -86,7 +58,6 @@ Class ControladorSolicitud
 
 			$respuestaFaseUno = ModeloSolicitud::mdlCrearSolicitud($tabla,$datosFaseUno);
 			$faseUno = ($respuestaFaseUno!="error")?true:false;
-			var_dump($faseUno);
 			if ($faseUno)
 			{
 				$tablaFaseDos = "referencias";
@@ -105,25 +76,25 @@ Class ControladorSolicitud
 				{
 					$familiarReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaFamiliar[$key],$arrayTelefonoReferenciaFamiliar[$key],$_POST["referencia_familiar"],$faseUno);
 				}
+
 				//referencias amistades del cliente
 				$arrayNombreReferenciaAmistad = $_POST["nombre_amistad"];
 				$arrayDireccionReferenciaAmistad = $_POST["direccion_amistad"];
 				$arrayTelefonoReferenciaAmistad = $_POST["telefono_amistad"];
-
 				foreach ($arrayNombreReferenciaAmistad as $key => $value)
 				{
 					$amistadReferencia = ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaAmistad[$key],$arrayTelefonoReferenciaAmistad[$key],$_POST["referencia_amistad"],$faseUno);
-
 				}
+
 				if ($padreReferencia == "ok" && $madreReferencia == "ok" && $familiarReferencia == "ok" && $amistadReferencia = "ok")
 				{
-					ControladorClientes::imprimirMensaje("success","Se completaron las primeras dos fases","solicitud");
+					Helpers::imprimirMensaje("success","Se completaron las primeras dos fases","solicitud");
 				}
 
 			}
 			else
 			{
-				ControladorClientes::imprimirMensaje("error","No se completo la primera fase","solicitud");
+				Helpers::imprimirMensaje("error","No se completo la primera fase","solicitud");
 			}
 		}
 	}
@@ -136,25 +107,5 @@ Class ControladorSolicitud
 					'tipo' => $tipo,
 					'id_solicitud' => $id);
 		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);	
- 	}
-
-	public function imprimirMensaje($validador,$mensaje,$destino)
- 	{
-		echo 
-		'<script>
-		swal.fire({
-			type: "'.$validador.'",
-			title: "'.$mensaje.'",
-			showConfirmButton: true,
-			confirmButtonText: "cerrar",
-			closeOnConfirm: false
-			}).then((result)=>
-		    {
-				if(result.value)
-				{
-					
-				}
-		    })
-		</script>'; 	
  	}
 }
