@@ -86,40 +86,25 @@ Class ControladorSolicitud
 
 			$respuestaFaseUno = ModeloSolicitud::mdlCrearSolicitud($tabla,$datosFaseUno);
 			$faseUno = ($respuestaFaseUno!="error")?true:false;
-
+			var_dump($faseUno);
 			if ($faseUno)
 			{
 				$tablaFaseDos = "referencias";
 
 				//primera referecia del nombre del padre
-				$datosReferenciaPadre = array('nombre' => $_POST["nombre_papa"],
-											'direccion' => $_POST["direccion_papa"],
-											'telefono' => $_POST["telefono_papa"],
-											'tipo' => $_POST["referencia_padre"]);
-				$respuestaReferenciaPadre = ModeloSolicitud::mdlCrearReferencia($tablaFaseDos,$datosReferenciaPadre);
+				$padreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$faseUno);
 
 				//primera referecia del nombre de la madre
-				$datosReferenciaMadre = array('nombre' => $_POST["nombre_mama"],
-											'direccion' => $_POST["direccion_mama"],
-											'telefono' => $_POST["telefono_mama"],
-											'tipo' => $_POST["referencia_mama"]);
-				$respuestaReferenciaMadre = ModeloSolicitud::mdlCrearReferencia($tablaFaseDos,$datosReferenciaMadre);
+				$madreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$faseUno);
 
 				//referencias familiares del cliente
 				$arrayNombreReferenciaFamiliar = $_POST["nombre_familiar"];
-				$arrayDireccionReferenciaAmistad = $_POST["direccion_familiar"];
+				$arrayDireccionReferenciaFamiliar = $_POST["direccion_familiar"];
 				$arrayTelefonoReferenciaFamiliar = $_POST["telefono_familiar"];
-
 				foreach ($arrayNombreReferenciaFamiliar as $key => $value)
 				{
-					$datosReferenciaFamiliar= array('nombre' => $value,
-											'direccion' => $arrayDireccionReferenciaFamiliar[$key],
-											'telefono' => $arrayTelefonoReferenciaFamiliar[$key],
-											'tipo' => $_POST["referencia_familiar"]);
-					$respuestaReferenciaFamiliar = ModeloSolicitud::mdlCrearReferencia($tablaFaseDos,$datosReferenciaFamiliar);
-
+					$familiarReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaFamiliar[$key],$arrayTelefonoReferenciaFamiliar[$key],$_POST["referencia_familiar"],$faseUno);
 				}
-
 				//referencias amistades del cliente
 				$arrayNombreReferenciaAmistad = $_POST["nombre_amistad"];
 				$arrayDireccionReferenciaAmistad = $_POST["direccion_amistad"];
@@ -127,15 +112,14 @@ Class ControladorSolicitud
 
 				foreach ($arrayNombreReferenciaAmistad as $key => $value)
 				{
-					$datosReferenciaFamiliar= array('nombre' => $value,
-											'direccion' => $arrayDireccionReferenciaAmistad[$key],
-											'telefono' => $arrayTelefonoReferenciaAmistad[$key],
-											'tipo' => $_POST["referencia_amistad"]);
-					$respuestaReferenciaFamiliar = ModeloSolicitud::mdlCrearReferencia($tablaFaseDos,$datosReferenciaFamiliar);
+					$amistadReferencia = ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaAmistad[$key],$arrayTelefonoReferenciaAmistad[$key],$_POST["referencia_amistad"],$faseUno);
 
 				}
+				if ($padreReferencia == "ok" && $madreReferencia == "ok" && $familiarReferencia == "ok" && $amistadReferencia = "ok")
+				{
+					ControladorClientes::imprimirMensaje("success","Se completaron las primeras dos fases","solicitud");
+				}
 
-				//ControladorClientes::imprimirMensaje("success","Se guardo la primera false","solicitud");
 			}
 			else
 			{
@@ -143,6 +127,16 @@ Class ControladorSolicitud
 			}
 		}
 	}
+
+	public function ctrCrearReferencia($tabla,$nombre,$direccion,$telefono,$tipo,$id)
+ 	{
+		$datos= array('nombre' => $nombre,
+					'direccion' => $direccion,
+					'telefono' => $telefono,
+					'tipo' => $tipo,
+					'id_solicitud' => $id);
+		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);	
+ 	}
 
 	public function imprimirMensaje($validador,$mensaje,$destino)
  	{

@@ -109,7 +109,7 @@
 
                       </div>
 
-                      <input type="text" name="num_placas" placeholder="Numero de placas" class="form-control" required>
+                      <input type="text" style="text-transform: uppercase;" name="num_placas" placeholder="Numero de placas" class="form-control" required>
 
                   </div>
                   
