@@ -63,10 +63,10 @@ Class ControladorSolicitud
 				$tablaFaseDos = "referencias";
 
 				//primera referecia del nombre del padre
-				$padreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$faseUno);
+				$padreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$respuestaFaseUno);
 
 				//primera referecia del nombre de la madre
-				$madreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$faseUno);
+				$madreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$respuestaFaseUno);
 
 				//referencias familiares del cliente
 				$arrayNombreReferenciaFamiliar = $_POST["nombre_familiar"];
@@ -74,7 +74,7 @@ Class ControladorSolicitud
 				$arrayTelefonoReferenciaFamiliar = $_POST["telefono_familiar"];
 				foreach ($arrayNombreReferenciaFamiliar as $key => $value)
 				{
-					$familiarReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaFamiliar[$key],$arrayTelefonoReferenciaFamiliar[$key],$_POST["referencia_familiar"],$faseUno);
+					$familiarReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaFamiliar[$key],$arrayTelefonoReferenciaFamiliar[$key],$_POST["referencia_familiar"],$respuestaFaseUno);
 				}
 
 				//referencias amistades del cliente
@@ -83,7 +83,7 @@ Class ControladorSolicitud
 				$arrayTelefonoReferenciaAmistad = $_POST["telefono_amistad"];
 				foreach ($arrayNombreReferenciaAmistad as $key => $value)
 				{
-					$amistadReferencia = ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaAmistad[$key],$arrayTelefonoReferenciaAmistad[$key],$_POST["referencia_amistad"],$faseUno);
+					$amistadReferencia = ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaAmistad[$key],$arrayTelefonoReferenciaAmistad[$key],$_POST["referencia_amistad"],$respuestaFaseUno);
 				}
 
 				if ($padreReferencia == "ok" && $madreReferencia == "ok" && $familiarReferencia == "ok" && $amistadReferencia = "ok")
