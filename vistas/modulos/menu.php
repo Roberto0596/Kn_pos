@@ -39,7 +39,7 @@
               <i class="nav-icon fas fa-clone"></i>
               <p>
                 Solicitudes
-                <span class="right badge badge-danger">New</span>
+                <span class="right badge badge-danger">Building</span>
               </p>
             </a>
           </li>
@@ -69,7 +69,7 @@
               <i class="nav-icon fas fa-truck"></i>
               <p>
                 Proveedores
-                <span class="right badge badge-danger">New</span>
+                <span class="right badge badge-danger">Building</span>
               </p>
             </a>
           </li>
