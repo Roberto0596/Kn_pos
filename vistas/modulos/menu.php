@@ -10,7 +10,7 @@
   </a>
 
     <div class="sidebar">
-      
+
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="<?php echo $_SESSION["foto"] ?>" class="img-circle elevation-2" alt="User Image">
@@ -59,6 +59,16 @@
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Almacenes
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="proveedores" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Proveedores
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>

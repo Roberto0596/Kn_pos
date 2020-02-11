@@ -72,40 +72,40 @@
 	<!-- sweetalert -->
   	<script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
   	<!-- Select2 -->
-	<script src="vistas/plugins/select2/js/select2.full.min.js"></script>	
+	<script src="vistas/plugins/select2/js/select2.full.min.js"></script>
 
 </head>
 
 <body id="body" class="sidebar-mini sidebar-collapse login-page" style="height: auto;">
-	<?php   
-	    if (isset($_SESSION["iniciarSesion"])== "ok") 
+	<?php
+	    if (isset($_SESSION["iniciarSesion"])== "ok")
 	    {
 	    	echo "<script>
 	    		$('#body').removeClass('login-page');
 	    	</script>";
 		    echo '<div class="wrapper">';
 		    include "modulos/cabezote.php";
-		    include "modulos/menu.php";     
+		    include "modulos/menu.php";
 		    if(isset($_GET["ruta"]))
 		    {
-		        if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "usuarios" || $_GET["ruta"] == "clientes" || $_GET["ruta"] == "solicitud" || $_GET["ruta"] == "almacen")
-		        {
-		          include "modulos/".$_GET["ruta"]."/".$_GET["ruta"].".php";
-		          echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
-		       	}
-		       	else
-		       	{
-		       		if (strpos($_GET["ruta"], "nuevo"))
-                    {
-                        $index = explode("-", $_GET["ruta"]);
-                        include "modulos/".$index[0]."/".$_GET["ruta"].".php";
-                        echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
-                    }
-                    else
-                    {
-                    	include "modulos/404.php";
-                    }
-		       	}
+				$url = rtrim($_GET["ruta"],'-');
+				$url = filter_var($url, FILTER_SANITIZE_URL);
+				$url = explode('-',$url);
+				if(file_exists('vistas/modulos/'.$url[0].'/'.$url[0].'.php')){
+					if(count($url) > 1){
+						if(file_exists('vistas/modulos/'.$url[0].'/'.$url[1].'.php')){
+							include "modulos/".$url[0]."/".$url[1].".php";
+                        	echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
+						}else{
+							include_once "modulos/404.php";
+						}
+					}else{
+						include_once "modulos/".$url[0]."/".$url[0].".php";
+		          		echo '<script src="vistas/js/'.$url[0].'.js"></script>';
+					}
+				}else{
+					include_once "modulos/404.php";
+				}
 		    }
 		    else
 		    {

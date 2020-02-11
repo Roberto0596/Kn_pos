@@ -4,53 +4,64 @@ class ControladorUsuarios
 
 	static public function ctrIngresoUsuario()
 	{
-		if (isset($_POST["usuario"])) 
+		if (isset($_POST["usuario"]))
 		{
-			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["usuario"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST["password"])) 
+			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["usuario"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST["password"]))
 			{
 				$respuesta = modeloUsuarios::mdlMostrarUsuarios("usuarios","usuario",$_POST["usuario"]);
-				$respuesta2 = ModeloAlmacen::mdlMostrarAlmacen("almacen","id_almacen",$respuesta["almacen"]);
 
-				if($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == $_POST["password"])
-				{
-					if ($respuesta["estado"] == 1 && $respuesta2["estado"] == 1) 
+				if(!empty($respuesta)){
+					$respuesta2 = ModeloAlmacen::mdlMostrarAlmacen("almacen","id_almacen",$respuesta["almacen"]);
+					if($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == $_POST["password"])
 					{
-						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["usuario"] = $respuesta["usuario"];
-						$_SESSION["almacen"]=$respuesta["almacen"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
-
-						// registrar fecha para saber ultimo loguin
-						date_default_timezone_set('America/Hermosillo');
-						$fecha = date('Y-m-d');
-						$hora = date('H:i:s');
-						$fechaActual = $fecha.' '.$hora;
-						$item1 = "ultimo_login";
-						$valor1 = $fechaActual;
-						$item2 = "id";
-						$valor2 = $respuesta["id"];							
-						$ultimoLogin = modeloUsuarios::mdlActualizarUsuario("usuarios",$item1,$valor1,$item2,$valor2);
-
-						if ($ultimoLogin == "ok")
+						if ($respuesta["estado"] == 1 && $respuesta2["estado"] == 1)
 						{
-							if ($respuesta["perfil"]!="Gerente General")
+							$_SESSION["iniciarSesion"] = "ok";
+							$_SESSION["id"] = $respuesta["id"];
+							$_SESSION["nombre"] = $respuesta["nombre"];
+							$_SESSION["usuario"] = $respuesta["usuario"];
+							$_SESSION["almacen"]=$respuesta["almacen"];
+							$_SESSION["foto"] = $respuesta["foto"];
+							$_SESSION["perfil"] = $respuesta["perfil"];
+
+							// registrar fecha para saber ultimo loguin
+							date_default_timezone_set('America/Hermosillo');
+							$fecha = date('Y-m-d');
+							$hora = date('H:i:s');
+							$fechaActual = $fecha.' '.$hora;
+							$item1 = "ultimo_login";
+							$valor1 = $fechaActual;
+							$item2 = "id";
+							$valor2 = $respuesta["id"];
+							$ultimoLogin = modeloUsuarios::mdlActualizarUsuario("usuarios",$item1,$valor1,$item2,$valor2);
+
+							if ($ultimoLogin == "ok")
 							{
-								echo '<script> window.location = "crear-venta"; </script>';
+								if ($respuesta["perfil"]!="Gerente General")
+								{
+									echo '<script> window.location = "crear-venta"; </script>';
+								}
+								else
+								{
+									echo '<script> window.location = "inicio"; </script>';
+								}
 							}
 							else
 							{
-								echo '<script> window.location = "inicio"; </script>';
-							}								
+								echo '<br><div class=" alert alert-danger">¡Problema de inconsistencia, contactar a soporte técnico!</div>';
+							}
+						}
+						else
+						{
+							echo '<br><div class=" alert alert-danger">¡El usuario o el almacen no estan activados!</div>';
 						}
 					}
 					else
 					{
-						echo '<br><div class=" alert alert-danger">¡El usuario o el almacen no estan activados!</div>';
+						echo '<br><div class=" alert alert-danger">La contraseña o el usuario no coinciden con nuestro registro</div>';
 					}
- 				}
+
+				}
 				else
 				{
 					echo '<br><div class=" alert alert-danger">La contraseña o el usuario no coinciden con nuestro registro</div>';
@@ -69,12 +80,12 @@ class ControladorUsuarios
 			{
 				$ruta = "vistas/img/usuarios/default/anonymous.png";
 
-				if (isset($_FILES["nuevaFoto"])) 
+				if (isset($_FILES["nuevaFoto"]))
 				{
 					$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["nuevoUsuario"],"usuarios",800,800);
 					var_dump($ruta);
 				}
-				$tabla = "usuarios";	
+				$tabla = "usuarios";
 				$datos = array("nombre" => trim($_POST["nuevoNombre"]),
 					           "usuario" => trim($_POST["nuevoUsuario"]),
 					           "password" => trim($_POST["nuevoPassword"]),
@@ -109,7 +120,7 @@ class ControladorUsuarios
 		$respuesta = modeloUsuarios::mdlMostrarUsuariosAlmacen($tabla,$item,$valor);
 		return $respuesta;
 	}
-	
+
 	public static function ctrMostrarUsuariosMenosUno($almacen)
 	{
 		$tabla = "usuarios";
@@ -168,7 +179,7 @@ class ControladorUsuarios
 
 				if ($_POST["editarPassword"] != "")
 				{
-					if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])) 
+					if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"]))
 					{
 						$contraseña = $_POST["editarPassword"];
 					}
@@ -210,7 +221,7 @@ class ControladorUsuarios
 			$tabla = "usuarios";
 			$datos = $_GET["idUsuario"];
 
-			if ($_GET["fotoUsuario"] != "") 
+			if ($_GET["fotoUsuario"] != "")
 			{
 				Helpers::eliminarImagen($_GET["usuario"],"usuarios",$_GET["fotoUsuario"]);
 			}
@@ -230,5 +241,5 @@ class ControladorUsuarios
 
 
 
-	
+
 

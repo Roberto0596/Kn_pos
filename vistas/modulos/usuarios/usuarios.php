@@ -96,7 +96,7 @@
 
                   </div>
 
-                  <input type="text" class="form-control form-control-lg capitalize" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
+                  <input type="text" class="form-control form-control-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
 
               </div>
 
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-md-6">
-              
+
             <?php
 
               $usuario = $_SESSION["perfil"];
@@ -127,10 +127,10 @@
               if ($usuario == "Gerente General")
               {
                  echo '<div class="form-group">
-                
+
                       <div class="input-group">
-                      
-                        <span class="input-group-text"><i class="fas fa-building"></i></span>'; 
+
+                        <span class="input-group-text"><i class="fas fa-building"></i></span>';
 
                           $item = null;
                           $valor = null;
@@ -170,7 +170,7 @@
                   </div>
 
                   <select class="form-control form-control-lg" name="nuevoPerfil">
-                      
+
                       <option value="">Selecionar perfil</option>
 
                       <option value="Administrador">Administrador</option>
@@ -188,7 +188,7 @@
           </div>
 
           <div class="form-group">
-              
+
               <div class="panel">SUBIR FOTO</div>
 
               <input type="file" class="nuevaFoto" name="nuevaFoto">
@@ -198,7 +198,7 @@
               <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
           </div>
-          
+
         </div>
 
         <div class="modal-footer justify-content-between">
@@ -290,21 +290,21 @@
             </div>
 
             <div class="col-md-6">
-              
+
             <?php
 
               $usuario = $_SESSION["perfil"];
 
               if ($usuario == "Gerente General")
               {
-                  echo ' 
+                  echo '
                   <!-- ENTRADA PARA EL ALMACEN -->
 
                  <div class="form-group">
-                  
+
                   <div class="input-group">
-                  
-                    <span class="input-group-text"><i class="fa fa-building"></i></span> 
+
+                    <span class="input-group-text"><i class="fa fa-building"></i></span>
 
                     <input type="text" class="form-control form-control-lg" id="editarAlmacen" name="editarAlmacen" value="" required="">
 
@@ -327,7 +327,7 @@
                   </div>
 
                   <select class="form-control form-control-lg" name="editarPerfil">
-                    
+
                     <option value="" id="editarPerfil"></option>
 
                     <option value="Administrador">Administrador</option>
@@ -345,7 +345,7 @@
           </div>
 
           <div class="form-group">
-              
+
               <div class="panel">SUBIR FOTO</div>
 
               <input type="file" class="nuevaFoto" name="editarFoto">
@@ -355,7 +355,7 @@
               <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
               <input type="hidden" name="fotoActual" id="fotoActual">
             </div>
-          
+
         </div>
 
         <div class="modal-footer justify-content-between">
