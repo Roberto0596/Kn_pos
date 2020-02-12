@@ -57,10 +57,11 @@ class ModeloSolicitud
 	public static function mdlCrearSolicitud($tabla,$datos)
 	{
 		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
-		$stmt = $link->prepare("INSERT INTO $tabla(id_cliente, num_placas, estado_civil, casa, profesion, empresa, dom_empresa, tel_empresa, tiempo_casa, puesto, sueldo, antiguedad, gastos_mensuales,fecha, id_almacen,foto) VALUES (:id_cliente, :num_placas, :estado_civil, :casa, :profesion, :empresa, :dom_empresa, :tel_empresa, :tiempo_casa, :puesto, :sueldo, :antiguedad, :gastos_mensuales,:fecha, :id_almacen,:foto)");
+		$stmt = $link->prepare("INSERT INTO $tabla(id_cliente, num_placas, estado_civil, casa, profesion, empresa, dom_empresa, tel_empresa, tiempo_casa, puesto, sueldo, antiguedad, gastos_mensuales,fecha, id_almacen,foto,tipo) VALUES (:id_cliente, :num_placas, :estado_civil, :casa, :profesion, :empresa, :dom_empresa, :tel_empresa, :tiempo_casa, :puesto, :sueldo, :antiguedad, :gastos_mensuales,:fecha, :id_almacen,:foto,:tipo)");
 
 		$stmt->bindParam(":id_cliente",$datos["id_cliente"],PDO::PARAM_STR);
 		$stmt->bindParam(":num_placas",$datos["num_placas"],PDO::PARAM_STR);
+		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
 		$stmt->bindParam(":estado_civil",$datos["estado_civil"],PDO::PARAM_STR);
 		$stmt->bindParam(":casa",$datos["casa"],PDO::PARAM_STR);
 		$stmt->bindParam(":tiempo_casa",$datos["tiempo_casa"],PDO::PARAM_STR);

@@ -41,7 +41,7 @@ class ControladorClientes
 							'tipo' => $_POST["tipo"]);
 			
 			$respuesta = ModeloClientes::mdlCrearCliente($tabla,$datos);
-			if ($respuesta = "ok")
+			if ($respuesta != "error")
 			{
 				ControladorClientes::imprimirMensaje("success","El cliente se creo correctamente","clientes");
 			}
