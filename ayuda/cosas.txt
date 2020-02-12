@@ -11,6 +11,10 @@ referencias
 2 = padre
 3 = madre
 
+solicitud
+0 = cliente
+1 = aval
+
 
 General del cliente
 cliente

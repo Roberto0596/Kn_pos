@@ -809,8 +809,8 @@
 
                               </div>
 
-                              <input type="text" name="nombre" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
-                              <input type="hidden" name="tipo" value="1">
+                              <input type="text" name="nombre_aval" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
+                              <input type="hidden" name="tipo_aval" value="1">
 
                           </div>
 
@@ -832,7 +832,7 @@
 
                                   </div>
 
-                                  <input type="text" name="direccion" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
+                                  <input type="text" name="direccion_aval" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
 
                               </div>
 
@@ -850,7 +850,7 @@
 
                                   </div>
 
-                                  <input type="text" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
+                                  <input type="text" name="edad_aval" placeholder="Edad" class="form-control form-control-lg" required>
 
                               </div>
 
@@ -876,7 +876,7 @@
 
                                   </div>
 
-                                  <input type="number" name="t_casa" placeholder="Telefono de casa" class="form-control form-control-lg" required>
+                                  <input type="number" name="t_casa_aval" placeholder="Telefono de casa" class="form-control form-control-lg" required>
 
                               </div>
 
@@ -894,7 +894,7 @@
 
                                   </div>
 
-                                  <input type="number" name="t_celular" placeholder="Telefono celular" class="form-control form-control-lg" required>
+                                  <input type="number" name="t_celular_aval" placeholder="Telefono celular" class="form-control form-control-lg" required>
 
                               </div>
 
@@ -920,7 +920,7 @@
 
                                   </div>
 
-                                  <input type="number" name="codigo_postal" placeholder="Codigo postal" class="form-control form-control-lg" required>
+                                  <input type="number" name="codigo_postal_aval" placeholder="Codigo postal" class="form-control form-control-lg" required>
 
                               </div>
 
@@ -938,7 +938,7 @@
 
                                   </div>
 
-                                  <input type="text" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
+                                  <input type="text" name="ciudad_aval" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
 
                               </div>
 
@@ -1255,7 +1255,7 @@
                                   <div class="input-group mb-3">
 
                                     <input type="text" name="nombre_papa_aval" placeholder="Nombre" class="form-control capitalize" required>
-                                    <input type="hidden" name="referencia_padre" value="2">
+                                    <input type="hidden" name="referencia_padre_aval" value="2">
 
                                   </div>
 
@@ -1290,7 +1290,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="nombre_mama" placeholder="Nombre" class="form-control capitalize" required>
+                                    <input type="text" name="nombre_mama_aval" placeholder="Nombre" class="form-control capitalize" required>
                                     <input type="hidden" name="referencia_mama_aval" value="3">
 
                                   </div>

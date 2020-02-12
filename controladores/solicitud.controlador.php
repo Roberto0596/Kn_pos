@@ -31,65 +31,52 @@ Class ControladorSolicitud
 	{
 		if (isset($_POST["id_cliente"])) 
 		{
-			$tabla = "solicitud_credito";
+			$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
 
-			date_default_timezone_set('America/Hermosillo');
-			$fecha = date('Y-m-d');
-			$hora = date('H:i:s');
-			$fechaNueva = $fecha.' '.$hora;
-			$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);	
+			$respuestaFaseUno = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 
-			$datosFaseUno = array('id_cliente' => $_POST["id_cliente"],
-							'num_placas'=> $_POST["num_placas"],
-							'estado_civil'=> $_POST["estado_civil"],
-							'casa'=> $_POST["casa"],
-							'tiempo_casa'=> $_POST["tiempo_casa"],
-							'gastos_mensuales'=> $_POST["gastos_mensuales"],
-							'nombre_empresa'=> $_POST["nombre_empresa"],
-							'dom_empresa'=> $_POST["dom_empresa"],
-							'tel_empresa'=> $_POST["tel_empresa"],
-							'puesto'=> $_POST["puesto"],
-							'num_placas'=> $_POST["num_placas"],
-							'sueldo'=> $_POST["sueldo"],
-							'antiguedad'=> $_POST["antiguedad"],
-							'profesion'=> $_POST["profesion"],
-							'fecha'=> $fechaNueva,
-							'foto'=> $ruta,
-							'id_almacen'=>$_SESSION["almacen"]);
-
-			$respuestaFaseUno = ModeloSolicitud::mdlCrearSolicitud($tabla,$datosFaseUno);
-			$faseUno = ($respuestaFaseUno!="error")?true:false;
-			if ($faseUno)
+			if ($respuestaFaseUno!="error")
 			{
-				$tablaFaseDos = "referencias";
+				$faseDos = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$_POST["nombre_familiar"],$_POST["direccion_familiar"],$_POST["telefono_familiar"],$_POST["nombre_amistad"],$_POST["direccion_amistad"],$_POST["telefono_amistad"],$respuestaFaseUno);
 
-				//primera referecia del nombre del padre
-				$padreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$respuestaFaseUno);
-
-				//primera referecia del nombre de la madre
-				$madreReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$respuestaFaseUno);
-
-				//referencias familiares del cliente
-				$arrayNombreReferenciaFamiliar = $_POST["nombre_familiar"];
-				$arrayDireccionReferenciaFamiliar = $_POST["direccion_familiar"];
-				$arrayTelefonoReferenciaFamiliar = $_POST["telefono_familiar"];
-				foreach ($arrayNombreReferenciaFamiliar as $key => $value)
+				if ($faseDos == "ok")
 				{
-					$familiarReferencia= ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaFamiliar[$key],$arrayTelefonoReferenciaFamiliar[$key],$_POST["referencia_familiar"],$respuestaFaseUno);
-				}
+					$datosAval = array('nombre' => $_POST["nombre_aval"],
+							'direccion' => $_POST["direccion_aval"], 
+							'codigo_postal' => $_POST["codigo_postal_aval"],
+							'telefono_casa' => $_POST["t_casa_aval"],
+							'telefono_celular' => $_POST["t_celular_aval"],
+							'ciudad' => $_POST["ciudad_aval"],
+							'edad' => $_POST["edad_aval"],
+							'tipo' => $_POST["tipo_aval"]);
 
-				//referencias amistades del cliente
-				$arrayNombreReferenciaAmistad = $_POST["nombre_amistad"];
-				$arrayDireccionReferenciaAmistad = $_POST["direccion_amistad"];
-				$arrayTelefonoReferenciaAmistad = $_POST["telefono_amistad"];
-				foreach ($arrayNombreReferenciaAmistad as $key => $value)
-				{
-					$amistadReferencia = ControladorSolicitud::ctrCrearReferencia($tablaFaseDos,$value,$arrayDireccionReferenciaAmistad[$key],$arrayTelefonoReferenciaAmistad[$key],$_POST["referencia_amistad"],$respuestaFaseUno);
-				}
+					$faseTres = ModeloClientes::mdlCrearCliente("cliente",$datosAval);
 
-				if ($padreReferencia == "ok" && $madreReferencia == "ok" && $familiarReferencia == "ok" && $amistadReferencia = "ok")
-				{
-					Helpers::imprimirMensaje("success","Se completaron las primeras dos fases","solicitud");
+					if ($faseTres != "error")
+					{
+						$respuestaFaseCuatro = ControladorSolicitud::ctrAgregarSolicitud($faseTres,$_POST["num_placas_aval"],$_POST["estado_civil_aval"],$_POST["casa_aval"],$_POST["tiempo_casa_aval"],$_POST["gastos_mensuales_aval"],$_POST["nombre_empresa_aval"],$_POST["dom_empresa_aval"],$_POST["tel_empresa_aval"],$_POST["puesto_aval"],$_POST["sueldo_aval"],$_POST["antiguedad_aval"],$_POST["profesion_aval"],$ruta,0);
+
+						if ($respuestaFaseCuatro != "error")
+						{
+							$faseCinco = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["referencia_padre_aval"],$_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["referencia_mama_aval"],$_POST["nombre_familiar_aval"],$_POST["direccion_familiar_aval"],$_POST["telefono_familiar_aval"],$_POST["nombre_amistad_aval"],$_POST["direccion_amistad_aval"],$_POST["telefono_amistad_aval"],$respuestaFaseCuatro);
+							if ($faseCinco == "ok")
+							{
+								Helpers::imprimirMensaje("success","Se completaron todas las fases satisfactoriamente","solicitud");
+							}
+							else
+							{
+								Helpers::imprimirMensaje("error","No se completo la fase cinto, agregacion de referencias del aval","solicitud");
+							}
+						}
+						else
+						{
+							Helpers::imprimirMensaje("error","No se completo la fase cuatro, agregacion de informacion extra del aval","solicitud");
+						}
+					}
+					else
+					{
+						Helpers::imprimirMensaje("error","No se completo la fase tres, agregacion del aval","solicitud");
+					}
 				}
 
 			}
@@ -100,8 +87,76 @@ Class ControladorSolicitud
 		}
 	}
 
-	public function ctrCrearReferencia($tabla,$nombre,$direccion,$telefono,$tipo,$id)
+	public function ctrAgregarSolicitud($id_cliente,$num_placas,$estado_civil,$casa,$tiempo_casa,$gastos_mensuales,$nombre_empresa,$dom_empresa,$tel_empresa,$puesto,$sueldo,$antiguedad,$profesion,$ruta,$tipo)
+	{
+		$tabla = "solicitud_credito";
+		date_default_timezone_set('America/Hermosillo');
+		$fecha = date('Y-m-d');
+		$hora = date('H:i:s');
+		$fechaNueva = $fecha.' '.$hora;
+
+		$datos = array('id_cliente' => $id_cliente,
+							'num_placas'=> $num_placas,
+							'estado_civil'=> $estado_civil,
+							'casa'=> $casa,
+							'tiempo_casa'=> $tiempo_casa,
+							'gastos_mensuales'=> $gastos_mensuales,
+							'nombre_empresa'=> $nombre_empresa,
+							'dom_empresa'=> $dom_empresa,
+							'tel_empresa'=> $tel_empresa,
+							'puesto'=> $puesto,
+							'sueldo'=> $sueldo,
+							'antiguedad'=> $antiguedad,
+							'profesion'=> $profesion,
+							'fecha'=> $fechaNueva,
+							'foto'=> $ruta,
+							'id_almacen'=>$_SESSION["almacen"],
+							'tipo'=>$tipo);
+
+			$respuesta = ModeloSolicitud::mdlCrearSolicitud($tabla,$datos);
+			if ($respuesta !="error")
+			{
+				return $respuesta;
+			}
+			else
+			{
+				return "error";
+			}
+	}
+
+	public function ctrCrearUnaReferencia($nombrePapa,$direccionPapa,$telefonoPapa,$tipoPapa,$nombreMama,$direccionMama,$telefonoMama,$tipoMama,$arrayNombreFamiliar,$arrayDireccionFamiliar,$arrayTelefonoFamiliar,$arrayNombreAmistad,$arrayDireccionAmistad,$arrayTelefonoAmistad,$idSolicitud)
+	{
+		//primera referecia del nombre del padre
+		$padreReferencia= ControladorSolicitud::ctrAgregarReferencia($nombrePapa,$direccionPapa,$telefonoPapa,$tipoPapa,$idSolicitud);
+
+		//primera referecia del nombre de la madre
+		$madreReferencia= ControladorSolicitud::ctrAgregarReferencia($nombreMama,$direccionMama,$telefonoMama,$tipoMama,$idSolicitud);
+
+		//referencias familiares del cliente
+		foreach ($arrayNombreFamiliar as $key => $value)
+		{
+			$familiarReferencia= ControladorSolicitud::ctrAgregarReferencia($value,$arrayDireccionFamiliar[$key],$arrayTelefonoFamiliar[$key],$_POST["referencia_familiar"],$idSolicitud);
+		}
+
+		//referencias amistades del cliente
+		foreach ($arrayNombreAmistad as $key => $value)
+		{
+			$amistadReferencia = ControladorSolicitud::ctrAgregarReferencia($value,$arrayDireccionAmistad[$key],$arrayTelefonoAmistad[$key],$_POST["referencia_amistad"],$idSolicitud);
+		}
+
+		if ($padreReferencia == "ok" && $madreReferencia == "ok" && $familiarReferencia == "ok" && $amistadReferencia == "ok")
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
+
+	public function ctrAgregarReferencia($nombre,$direccion,$telefono,$tipo,$id)
  	{
+ 		$tabla = "referencias";
 		$datos= array('nombre' => $nombre,
 					'direccion' => $direccion,
 					'telefono' => $telefono,

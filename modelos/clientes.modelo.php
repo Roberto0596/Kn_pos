@@ -66,7 +66,8 @@ class ModeloClientes
 
 	public static function mdlCrearCliente($tabla,$datos)
 	{
-		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo)");
+		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
+		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo)");
 		
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
@@ -79,7 +80,7 @@ class ModeloClientes
 
 		if ($stmt->execute())
 		{
-			return "ok";
+			return $link->lastInsertId();
 		}
 		else
 		{
