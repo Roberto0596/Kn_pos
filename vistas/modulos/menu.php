@@ -69,6 +69,16 @@
               <i class="nav-icon fas fa-truck"></i>
               <p>
                 Proveedores
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="productos" class="nav-link">
+              <i class="nav-icon fas fa-dolly"></i>
+              <p>
+                Productos
                 <span class="right badge badge-danger">Building</span>
               </p>
             </a>

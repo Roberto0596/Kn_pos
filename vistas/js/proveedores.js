@@ -79,3 +79,7 @@ $(".tablaProveedores tbody").on("click","button.btnEditarProveedor", function()
 		}
 	})
 })
+
+function getFocus(Elemento) {
+	document.getElementById(Elemento).focus();
+}

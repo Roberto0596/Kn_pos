@@ -85,13 +85,13 @@
 
               <div class="col-md-6">
 
-                <label class="label-style" for="">Nombre</label>
+                <label class="label-style" for="nombre">Nombre</label>
 
                 <div class="input-group mb-3">
 
                     <div class="input-group-prepend">
 
-                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      <span class="input-group-text" onclick="getFocus('nombre')"><i class="fas fa-truck"></i></span>
 
                     </div>
 
@@ -108,13 +108,15 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Direccion</label>
+                    <label class="label-style" for="direccion">Direccion</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('direccion')">
+                          <i class="fas fa-address-card"></i>
+                          </span>
 
                         </div>
 
@@ -126,13 +128,13 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">RFC</label>
+                    <label class="label-style" for="rfc">RFC</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('rfc')"><i class="fas fa-user"></i></span>
 
                         </div>
 
@@ -152,13 +154,13 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Teléfono</label>
+                    <label class="label-style" for="telefono">Teléfono</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('telefono')"><i class="fas fa-phone"></i></span>
 
                         </div>
 
@@ -170,13 +172,13 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Ejecutivo</label>
+                    <label class="label-style" for="ejecutivo">Ejecutivo</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('ejecutivo')"><i class="fas fa-user"></i></span>
 
                         </div>
 
@@ -196,13 +198,13 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Correo</label>
+                    <label class="label-style" for="correo">Correo</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('correo')"><i class="fas fa-at"></i></span>
 
                         </div>
 
