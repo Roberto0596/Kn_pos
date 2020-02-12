@@ -48,7 +48,7 @@ $(".tablaProveedores tbody").on("click","button.btnEliminarProveedor", function(
 	{
 		if (result.value)
 		{
-			window.location = "index.php?ruta=almacen&idAlmacen="+idAlmacen;
+			window.location = "index.php?ruta=proveedores&idProveedor="+idProveedor;
 		}
 	})
 })
@@ -70,7 +70,7 @@ $(".tablaProveedores tbody").on("click","button.btnEditarProveedor", function()
 		success:function(respuesta)
 		{
 			$("#nombre").val(respuesta["Nombre"]);
-			$("#id_proveedor").val(respuesta["id_proveedor"]);
+			$("#id_proveedor").val(respuesta["Id_proveedor"]);
 			$("#direccion").val(respuesta["Direccion"]);
 			$("#rfc").val(respuesta["RFC"]);
 			$("#telefono").val(respuesta["Telefono"]);

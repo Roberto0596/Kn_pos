@@ -25,7 +25,7 @@ class ModeloProveedores{
 	{
 		if ($item==null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla;");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE Estado=1;");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
@@ -61,7 +61,7 @@ class ModeloProveedores{
     }
     public static function mdlEditarProveedor($tabla,$proveedor)
 	{
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set Nombre = :Nombre, Direccion = :Direccion, RFC = :RFC, Telefono = :Telefono, Ejecutivo = :Ejecutivo, Correo = :Correo WHERE Id_proveedor = :Id_proveedor");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set Nombre = :Nombre, Direccion = :Direccion, RFC = :RFC, Telefono = :Telefono, Ejecutivo = :Ejecutivo, Correo = :Correo WHERE Id_proveedor = :Id_proveedor;");
 
         $stmt->bindParam(":Nombre", $proveedor->Nombre, PDO::PARAM_STR);
         $stmt->bindParam(":Direccion", $proveedor->Direccion, PDO::PARAM_STR);
@@ -69,7 +69,6 @@ class ModeloProveedores{
         $stmt->bindParam(":Telefono", $proveedor->Telefono, PDO::PARAM_STR);
         $stmt->bindParam(":Ejecutivo", $proveedor->Ejecutivo, PDO::PARAM_STR);
         $stmt->bindParam(":Correo", $proveedor->Correo, PDO::PARAM_STR);
-        $stmt->bindParam(":Estado", $proveedor->Estado, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_proveedor",$proveedor->Id,PDO::PARAM_STR);
 
 		if ($stmt->execute())
@@ -83,7 +82,7 @@ class ModeloProveedores{
     }
     public static function mdlEliminarProveedor($tabla,$item,$valor)
 	{
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set Estado = 0 WHERE $item = :$item;");
 		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 		if ($stmt->execute())
 		{

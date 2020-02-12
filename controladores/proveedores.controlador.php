@@ -31,15 +31,14 @@ class ControladorProveedores{
 
     public function ctrEditarProveedor()
 	{
-		if (isset($_POST["nombre"]))
+		if (isset($_POST["id_proveedor"]))
 		{
-
 			include_once "modelos/proveedores.modelo.php";
             include_once "controladores/helpers.php";
 			$tabla = "proveedores";
 
-            $ModeloProveedores = new ModeloProveedores($_POST["id"], $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], nu);
-			$respuesta = ModeloProveedores::mdlEditarProveedor($tabla,$datos);
+            $ModeloProveedores = new ModeloProveedores($_POST["id_proveedor"], $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], NULL);
+			$respuesta = ModeloProveedores::mdlEditarProveedor($tabla,$ModeloProveedores);
 			if ($respuesta = "ok")
 			{
 				Helpers::imprimirMensaje("success","El proveedor se editó correctamente.","proveedores");

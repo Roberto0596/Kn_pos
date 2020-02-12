@@ -96,7 +96,7 @@
                     </div>
 
                     <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control form-control-lg capitalize" required>
-                    <input type="hidden" name="id_proveedor" id="id_proveedor">
+                    <input type="hidden" name="id_proveedor" id="id_proveedor" value="">
 
                 </div>
 
@@ -243,5 +243,5 @@
 
 <?php
   $eliminarProveedor = new ControladorProveedores();
-  //$eliminarProveedor->ctrEliminarProveedor()();
+  $eliminarProveedor->ctrEliminarProveedor();
 ?>
