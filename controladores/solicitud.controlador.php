@@ -2,31 +2,6 @@
 
 Class ControladorSolicitud
 {
-	public function ctrMostrarSolicitudes($item,$valor)
-	{
-		$tabla = "solicitud_credito";
-		$respuesta = ModeloSolicitud::mdlMostrarSolicitudes($tabla,$item,$valor);
-		return $respuesta;
-	}
-
-	public function ctrEliminarSolicitud()
-	{
-		if (isset($_GET["idSolicitud"]))
-		{
-			$tabla = "solicitud_credito";
-			Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
-			$respuesta = ModeloSolicitud::mdlEliminarSolicitud($tabla,"id_solicitud",$_GET["idSolicitud"]);
-			if ($respuesta=="ok")
-			{
-				Helpers::imprimirMensaje("success","Se Elimino la solicitud","solicitud");
-			}
-			else
-			{
-				Helpers::imprimirMensaje("error","No se puede borrar la solicitud","solicitud");
-			}
-		}
-	}
-
 	public function ctrCrearSolicitud()
 	{
 		if (isset($_POST["id_cliente"])) 
@@ -164,4 +139,29 @@ Class ControladorSolicitud
 					'id_solicitud' => $id);
 		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);	
  	}
+
+ 	public function ctrMostrarSolicitudes($item,$valor)
+	{
+		$tabla = "solicitud_credito";
+		$respuesta = ModeloSolicitud::mdlMostrarSolicitudes($tabla,$item,$valor);
+		return $respuesta;
+	}
+
+	public function ctrEliminarSolicitud()
+	{
+		if (isset($_GET["idSolicitud"]))
+		{
+			$tabla = "solicitud_credito";
+			Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+			$respuesta = ModeloSolicitud::mdlEliminarSolicitud($tabla,"id_solicitud",$_GET["idSolicitud"]);
+			if ($respuesta=="ok")
+			{
+				Helpers::imprimirMensaje("success","Se Elimino la solicitud","solicitud");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","No se puede borrar la solicitud","solicitud");
+			}
+		}
+	}
 }
