@@ -154,8 +154,35 @@
 
                 </div>
 
+                <div class="col-md-6">
+                  <label class="label-style" for="cuenta_bancaria">Cuenta bancaria</label>
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" onclick="getFocus('cuenta_bancaria')">
+                          <i class="fas fa-money-check-alt"></i></span>
+                      </div>
+                      <input type="text" id="cuenta_bancaria" name="cuenta_bancaria" placeholder="Cuenta bancaria" class="form-control form-control-lg capitalize" required>
+                  </div>
               </div>
 
+              </div>
+
+            </div>
+              <div class="col-md-6">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label class="label-style" for="categoria">Categoría</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" onclick="getFocus('categoria')">
+                                <i class="fas fa-truck-loading"></i></span>
+                            </div>
+                            <input type="text" id="categoria" name="categoria" placeholder="Categoría" class="form-control form-control-lg" required>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
           </div>

@@ -31,6 +31,8 @@ class TablaProveedores
 					"'.$proveedores[$i]["Telefono"].'",
 					"'.$proveedores[$i]["Ejecutivo"].'",
 					"'.$proveedores[$i]["Correo"].'",
+					"'.$proveedores[$i]["Cuenta_bancaria"].'",
+					"'.$proveedores[$i]["Categoria"].'",
 					"'.$botones.'"
 				],';
 

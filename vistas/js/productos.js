@@ -1,8 +1,8 @@
-var tablaProveedores = $(".tablaProveedores").DataTable({
+var tablaProveedores = $(".tablaProductos").DataTable({
 		"deferRender": true,
 		"retrieve": true,
 		"processing": true,
-		"ajax":"ajax/dataTable-proveedores.ajax.php",
+		"ajax":"ajax/dataTable-productos.ajax.php",
     	"language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -32,11 +32,11 @@ var tablaProveedores = $(".tablaProveedores").DataTable({
 
 
 
-$(".tablaProveedores tbody").on("click","button.btnEliminarProveedor", function()
+$(".tablaProductos tbody").on("click","button.btnEliminarProducto", function()
 {
-	var idProveedor = $(this).attr("idProveedor");
+	var idProducto = $(this).attr("idProducto");
 		swal.fire({
-		title: '¿Esta seguro de eliminar el proveedor?',
+		title: '¿Esta seguro de eliminar el producto?',
 		text: "¡si no lo esta puede cancelar!",
 		type: 'warning',
 		showCancelButton: true,
@@ -48,19 +48,19 @@ $(".tablaProveedores tbody").on("click","button.btnEliminarProveedor", function(
 	{
 		if (result.value)
 		{
-			window.location = "index.php?ruta=proveedores&idProveedor="+idProveedor;
+			window.location = "index.php?ruta=productos&idProducto="+idProducto;
 		}
 	})
 })
 
-$(".tablaProveedores tbody").on("click","button.btnEditarProveedor", function()
+$(".tablaProductos tbody").on("click","button.btnEditarProducto", function()
 {
-	var idProveedor =$(this).attr("idProveedor");
+	var idProducto =$(this).attr("idProducto");
 	var data = new FormData();
-	data.append("idProveedor",idProveedor);
+	data.append("idProducto",idProducto);
 	$.ajax(
 	{
-		url: "ajax/proveedores.ajax.php",
+		url: "ajax/productos.ajax.php",
 		method: "POST",
       	data: data,
       	cache: false,
@@ -69,15 +69,12 @@ $(".tablaProveedores tbody").on("click","button.btnEditarProveedor", function()
      	dataType:"json",
 		success:function(respuesta)
 		{
+			$("#codigo").val(respuesta["Codigo"]);
+			$("#id_producto").val(respuesta["Id_producto"]);
 			$("#nombre").val(respuesta["Nombre"]);
-			$("#id_proveedor").val(respuesta["Id_proveedor"]);
-			$("#direccion").val(respuesta["Direccion"]);
-			$("#rfc").val(respuesta["RFC"]);
-			$("#telefono").val(respuesta["Telefono"]);
-			$("#ejecutivo").val(respuesta["Ejecutivo"]);
-			$("#correo").val(respuesta["Correo"]);
-			$("#cuenta_bancaria").val(respuesta["Cuenta_bancaria"]);
-			$("#categoria").val(respuesta["Categoria"]);
+			$("#precio_compra").val(respuesta["Precio_compra"]);
+			$("#precio_venta").val(respuesta["Precio_venta"]);
+			$("#idProveedor").val(respuesta["Id_proveedor"]);
 		}
 	})
 })

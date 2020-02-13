@@ -82,9 +82,9 @@
                                             <span class="input-group-text" onclick="getFocus('idProveedor')">
                                             <i class="fas fa-truck"></i></span>
                                         </div>
-                                        <select id="idProveedor" name="idProveedor" required>
-                                            <option value="value1">Value 1</option>
-                                        </select>
+                                        <?php
+                                        echo ControladorProductos::traerProveedores();
+                                        ?>
                                     </div>
                                 </div>
 
@@ -107,9 +107,9 @@
                     </div>
                 </div>
                 <?php
-                include_once "controladores/proveedores.controlador.php";
-                $crearProveedor = new ControladorProveedores();
-                $crearProveedor->ctrCrearProveedor();
+                include_once "controladores/productos.controlador.php";
+                $crearProducto = new ControladorProductos();
+                $crearProducto->ctrCrearProducto();
                 ?>
             </form>
         </div>

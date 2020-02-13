@@ -15,7 +15,7 @@ class ControladorProveedores{
             include_once "controladores/helpers.php";
 			$tabla = "proveedores";
 
-            $ModeloProveedores = new ModeloProveedores(NULL, $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], $_POST["estado"]);
+            $ModeloProveedores = new ModeloProveedores(NULL, $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], $_POST["cuenta_bancaria"], $_POST["categoria"], $_POST["estado"]);
 
 			$respuesta = ModeloProveedores::mdlCrearProveedor($tabla,$ModeloProveedores);
 			if ($respuesta = "ok")
@@ -37,7 +37,7 @@ class ControladorProveedores{
             include_once "controladores/helpers.php";
 			$tabla = "proveedores";
 
-            $ModeloProveedores = new ModeloProveedores($_POST["id_proveedor"], $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], NULL);
+            $ModeloProveedores = new ModeloProveedores($_POST["id_proveedor"], $_POST["nombre"], $_POST["direccion"], $_POST["rfc"], $_POST["telefono"], $_POST["ejecutivo"], $_POST["correo"], $_POST["cuenta_bancaria"], $_POST["categoria"],NULL);
 			$respuesta = ModeloProveedores::mdlEditarProveedor($tabla,$ModeloProveedores);
 			if ($respuesta = "ok")
 			{

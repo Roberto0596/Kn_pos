@@ -114,9 +114,9 @@
                                             <span class="input-group-text" onclick="getFocus('idProveedor')">
                                             <i class="fas fa-truck"></i></span>
                                         </div>
-                                        <select id="idProveedor" name="idProveedor" required>
-                                            <option value="value1">Value 1</option>
-                                        </select>
+                                        <?php
+                                        echo ControladorProductos::traerProveedores();
+                                        ?>
                                     </div>
                                 </div>
 
@@ -129,8 +129,8 @@
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                     <?php
-                    $editarProveedor = new ControladorProveedores();
-                    $editarProveedor->ctrEditarProveedor();
+                    $editarProducto = new ControladorProductos();
+                    $editarProducto->ctrEditarProducto();
                     ?>
                 </div>
             </form>
@@ -139,6 +139,6 @@
 </div>
 
 <?php
-  $eliminarProveedor = new ControladorProveedores();
-  $eliminarProveedor->ctrEliminarProveedor();
+  $eliminarProducto = new ControladorProductos();
+  $eliminarProducto->ctrEliminarProducto();
 ?>
