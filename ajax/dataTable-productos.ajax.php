@@ -19,7 +19,7 @@ class TablaProductos
 
 		for($i = 0; $i < count($productos); $i++)
 		{
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalEditarProducto'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto' idProveedor='".$productos[$i]["Id_producto"]."'><i class='fa fa-trash'></i></button></div>";
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalEditarProducto'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["Id_producto"]."'><i class='fa fa-trash'></i></button></div>";
 
 			$datosJson .='[
 					"'.($i+1).'",

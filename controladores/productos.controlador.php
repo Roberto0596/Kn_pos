@@ -83,13 +83,13 @@ class ControladorProductos{
 
     public function ctrEliminarProducto()
 	{
-		if (isset($_GET["id_producto"]))
+		if (isset($_GET["idProducto"]))
 		{
             include_once "modelos/productos.modelo.php";
             include_once "controladores/helpers.php";
             $tabla = "productos";
 
-			$respuesta = ModeloProductos::mdlEliminarProducto($tabla,"Id_producto",$_GET["Id_producto"]);
+			$respuesta = ModeloProductos::mdlEliminarProducto($tabla,"Id_producto",$_GET["idProducto"]);
 			if ($respuesta = "ok")
 			{
 				Helpers::imprimirMensaje("success","El producto se eliminó del sistema.","productos");
