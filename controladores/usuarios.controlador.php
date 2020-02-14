@@ -12,7 +12,7 @@ class ControladorUsuarios
 
 				if(!empty($respuesta)){
 					$respuesta2 = ModeloAlmacen::mdlMostrarAlmacen("almacen","id_almacen",$respuesta["almacen"]);
-					if($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == $_POST["password"])
+					if($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == sha1($_POST["password"]))
 					{
 						if ($respuesta["estado"] == 1 && $respuesta2["estado"] == 1)
 						{
@@ -88,7 +88,7 @@ class ControladorUsuarios
 				$tabla = "usuarios";
 				$datos = array("nombre" => trim($_POST["nuevoNombre"]),
 					           "usuario" => trim($_POST["nuevoUsuario"]),
-					           "password" => trim($_POST["nuevoPassword"]),
+					           "password" => sha1(trim($_POST["nuevoPassword"])),
 					           "perfil" => trim($_POST["nuevoPerfil"]),
 					           "foto"=> trim($ruta),
 					       	   "almacen"=>trim($_POST["nuevoAlmacen"]));
@@ -195,7 +195,7 @@ class ControladorUsuarios
 
 				$datos = array("nombre" => trim($_POST["editarNombre"]),
 					           "usuario" => trim($_POST["editarUsuario"]),
-					           "password" => trim($contraseña),
+					           "password" => sha1(trim($contraseña)),
 					           "perfil" => trim($_POST["editarPerfil"]),
 					           "foto"=> trim($ruta),
 					       	   "almacen"=>trim($_POST["editarAlmacen"]));
