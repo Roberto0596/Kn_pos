@@ -73,6 +73,10 @@
   	<script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
   	<!-- Select2 -->
 	<script src="vistas/plugins/select2/js/select2.full.min.js"></script>
+	  <!-- InputMask -->
+  	<script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+  	<script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  	<script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 </head>
 

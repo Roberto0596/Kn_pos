@@ -8,7 +8,37 @@
 
         <div class="col-sm-6">
 
-          <h1>Administrar Solicitudes</h1>
+          <div class="row">
+
+            <div class="col-md-6">
+
+              <h1>Administrar Solicitudes</h1>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="input-group">
+
+                <input type="hidden" id="id_almacen" value="<?php echo $_SESSION['almacen']?>">
+
+                <select id="solicitudes" class="form-control">
+
+                  <option value="0">Sin Asignar</option>
+
+                  <option value="1">En proceso</option>
+
+                  <option value="2">Aceptadas</option>
+
+                  <option value="3">Rechazadas</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
@@ -63,6 +93,64 @@
   </section>
     
 </div>
+
+<div class="modal fade" id="elegirEstado">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content bg-primary">
+
+      <div class="modal-header">
+
+        <h4 class="modal-title">Eliga el estado final de la solicitud</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          <span aria-hidden="true">&times;</span></button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <input type="hidden" id="idSolicitud">
+
+        <div class="row">
+
+           <div class="col-md-6">
+            
+              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left opciones" status="3" data-dismiss="modal">                  
+                <i class="fa fa-fw fa-frown"></i> Rechazar
+
+              </button>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <button type="submit" class="btn btn-block btn-success float-right opciones" status="2" data-dismiss="modal"> 
+
+                <i class="fa fa-fw fa-smile"></i> Aprobar
+
+              </button>
+
+            </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer justify-content-between">
+
+        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+
+      </div>
+
+    </div>
+    
+  </div>
+  
+</div>
+
 
 <?php 
   $eliminarSolicitud = new ControladorSolicitud();

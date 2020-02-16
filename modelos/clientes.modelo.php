@@ -2,11 +2,12 @@
 require_once "conexion.php";
 class ModeloClientes
 {
-	public static function mdlMostrarClientes($tabla,$item,$valor)
+	public static function mdlMostrarClientes($tabla,$item,$valor,$tipo)
 	{
-		if ($item==null)
+		if ($item==null && $tipo == null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo");
+			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);	
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

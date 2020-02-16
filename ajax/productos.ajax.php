@@ -21,14 +21,14 @@ class AjaxProductos
 	}
 }
 
-	if(isset($_POST["idProducto"]))
-	{
+if(isset($_POST["idProducto"]))
+{
 
-		$editar = new AjaxProductos();
-		$editar->idProducto = $_POST["idProducto"];
-		$editar->ajaxEditarProducto();
+	$editar = new AjaxProductos();
+	$editar->idProducto = $_POST["idProducto"];
+	$editar->ajaxEditarProducto();
 
-    }
+}
 
 
 

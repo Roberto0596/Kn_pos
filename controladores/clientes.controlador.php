@@ -2,10 +2,10 @@
 
 class ControladorClientes
 {
-	public function ctrMostrarClientes($item,$valor)
+	public function ctrMostrarClientes($item,$valor,$tipo)
 	{
 		$tabla = "cliente";
-		$respuesta = ModeloClientes::mdlMostrarClientes($tabla,$item,$valor);
+		$respuesta = ModeloClientes::mdlMostrarClientes($tabla,$item,$valor,$tipo);
 		return $respuesta;
 	}
 
@@ -31,12 +31,12 @@ class ControladorClientes
 		if (isset($_POST["nombre"]))
 		{
 			$tabla = "cliente";
-			$datos = array('nombre' => $_POST["nombre"],
-							'direccion' => $_POST["direccion"], 
+			$datos = array('nombre' => ucfirst($_POST["nombre"]),
+							'direccion' => ucfirst($_POST["direccion"]), 
 							'codigo_postal' => $_POST["codigo_postal"],
 							'telefono_casa' => $_POST["t_casa"],
 							'telefono_celular' => $_POST["t_celular"],
-							'ciudad' => $_POST["ciudad"],
+							'ciudad' => ucfirst($_POST["ciudad"]),
 							'edad' => $_POST["edad"],
 							'tipo' => $_POST["tipo"]);
 			
@@ -57,12 +57,12 @@ class ControladorClientes
 		if (isset($_POST["nombre"]))
 		{
 			$tabla = "cliente";
-			$datos = array('nombre' => $_POST["nombre"],
-							'direccion' => $_POST["direccion"], 
+			$datos = array('nombre' => ucfirst($_POST["nombre"]),
+							'direccion' => ucfirst($_POST["direccion"]), 
 							'codigo_postal' => $_POST["codigo_postal"],
 							'telefono_casa' => $_POST["t_casa"],
 							'telefono_celular' => $_POST["t_celular"],
-							'ciudad' => $_POST["ciudad"],
+							'ciudad' => ucfirst($_POST["ciudad"]),
 							'edad' => $_POST["edad"],
 							'id_cliente' => $_POST["id_cliente"]);
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);

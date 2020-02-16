@@ -1,7 +1,6 @@
 <?php
 class ControladorUsuarios
 {
-
 	static public function ctrIngresoUsuario()
 	{
 		if (isset($_POST["usuario"]))
@@ -10,7 +9,8 @@ class ControladorUsuarios
 			{
 				$respuesta = modeloUsuarios::mdlMostrarUsuarios("usuarios","usuario",$_POST["usuario"]);
 
-				if(!empty($respuesta)){
+				if(!empty($respuesta))
+				{
 					$respuesta2 = ModeloAlmacen::mdlMostrarAlmacen("almacen","id_almacen",$respuesta["almacen"]);
 					if($respuesta["usuario"] == $_POST["usuario"] && $respuesta["password"] == sha1($_POST["password"]))
 					{
@@ -83,7 +83,6 @@ class ControladorUsuarios
 				if (isset($_FILES["nuevaFoto"]))
 				{
 					$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["nuevoUsuario"],"usuarios",800,800);
-					var_dump($ruta);
 				}
 				$tabla = "usuarios";
 				$datos = array("nombre" => trim($_POST["nuevoNombre"]),

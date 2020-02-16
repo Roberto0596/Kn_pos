@@ -36,4 +36,12 @@ sueldo
 antiguedad
 
 
+tipos de estado de solicitud
+
+0 = sin asignar
+1 = procesando
+2 = aceptada
+3 = rechazada
+
+
 

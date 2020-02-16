@@ -186,9 +186,9 @@
 
             <div class="col-md-6">
             
-              <a href="clientes" class="btn btn-block btn-danger float-left">                  
+              <button type="button" destino="clientes" class="btn btn-block btn-danger float-left cancelar">                  
                 <i class="fa fa-fw fa-plus"></i> Cancelar
-              </a>
+              </button>
 
             </div>
 

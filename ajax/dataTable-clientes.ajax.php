@@ -7,7 +7,7 @@ class TablaClientes
 {
 	public function MostrarTabla()
 	{
-		$respuesta = ControladorClientes::ctrMostrarClientes(null,null);
+		$respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 		$res = [ "data" => []];
 		foreach ($respuesta as $key => $value)
 		{

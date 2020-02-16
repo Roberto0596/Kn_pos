@@ -1,18 +1,33 @@
 <div class="content-wrapper">
+
   <section class="content-header">
+
     <div class="container-fluid">
+
       <div class="row mb-2">
+
         <div class="col-sm-6">
+
           <h1>Nueva Solicitud de Credito</h1>
+
         </div>
+
         <div class="col-sm-6">
+
           <ol class="breadcrumb float-sm-right">
+
             <li class="breadcrumb-item"><a href="solicitud">Solicitudes</a></li>
+
             <li class="breadcrumb-item active">Solicitud de credito</li>
+
           </ol>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
 
   <section class="content">
@@ -90,7 +105,7 @@
                         <option value="">Selecionar Cliente</option>
 
                         <?php 
-                          $respuesta = ControladorClientes::ctrMostrarClientes(null,null);
+                          $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                           foreach ($respuesta as $key => $value)
                           {
                               echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
@@ -264,7 +279,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_papa" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_papa" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -300,7 +315,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -335,7 +350,7 @@
 
                       </div>
 
-                      <input type="text" name="profesion" id="profesion" placeholder="Nombre de la empresa" class="form-control capitalize" required>
+                      <input type="text" name="profesion" id="profesion" placeholder="Profesion" class="form-control capitalize" required>
 
                   </div>
 
@@ -383,7 +398,7 @@
 
                 <div class="col-md-4">
                   
-                  <label class="label-style" for="">Telefono de casa</label>
+                  <label class="label-style" for="">Telefono de la empresa</label>
 
                   <div class="input-group mb-3">
 
@@ -393,7 +408,7 @@
 
                       </div>
 
-                      <input type="text" name="tel_empresa" id="tel_empresa" placeholder="Telefono de la empresa" class="form-control capitalize" required>
+                      <input type="text" class="form-control" id="tel_empresa" name="tel_empresa" placeholder="Telefono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                   </div>
 
@@ -515,7 +530,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -550,7 +565,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -585,7 +600,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -642,7 +657,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -677,7 +692,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -712,7 +727,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -876,7 +891,7 @@
 
                                   </div>
 
-                                  <input type="number" name="t_casa_aval" placeholder="Telefono de casa" class="form-control form-control-lg" required>
+                                  <input type="text" name="t_casa_aval" placeholder="Telefono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                               </div>
 
@@ -894,7 +909,7 @@
 
                                   </div>
 
-                                  <input type="number" name="t_celular_aval" placeholder="Telefono celular" class="form-control form-control-lg" required>
+                                  <input type="text" name="t_celular_aval" placeholder="Telefono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                               </div>
 
@@ -1092,7 +1107,7 @@
 
                               </div>
 
-                              <input type="text" name="profesion_aval" id="profesion_aval" placeholder="Nombre de la empresa" class="form-control capitalize" required>
+                              <input type="text" name="profesion_aval" id="profesion_aval" placeholder="Profesion" class="form-control capitalize" required>
 
                           </div>
 
@@ -1150,7 +1165,7 @@
 
                               </div>
 
-                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Telefono de la empresa" class="form-control capitalize" required>
+                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Telefono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask  class="form-control capitalize" required>
 
                           </div>
 
@@ -1275,7 +1290,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="telefono_papa_aval" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_papa_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                                   </div>
 
@@ -1311,7 +1326,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="telefono_mama_aval" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_mama_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                                   </div>
 
@@ -1364,7 +1379,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1382,7 +1397,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1400,7 +1415,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1447,7 +1462,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1465,7 +1480,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1483,7 +1498,7 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1516,9 +1531,9 @@
 
             <div class="col-md-6">
             
-              <a href="clientes" class="btn btn-block btn-danger float-left">                  
+              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left cancelar">                  
                 <i class="fa fa-fw fa-plus"></i> Cancelar
-              </a>
+              </button>
 
             </div>
 

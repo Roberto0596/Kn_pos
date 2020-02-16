@@ -1,12 +1,14 @@
 <?php 
 require_once "conexion.php";
+
 class ModeloSolicitud
 {
-	public static function mdlMostrarSolicitudes($tabla,$item,$valor)
+	public static function mdlMostrarSolicitudes($tabla,$item,$valor,$tipo)
 	{
-		if ($item==null)
+		if ($item==null && $tipo == null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo");
+			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);	
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
@@ -17,6 +19,17 @@ class ModeloSolicitud
 			$stmt->execute();
 			return $stmt->fetch();
 		}
+		$stmt->close();
+	}
+
+	public static function mdlMostrarTablaSolicitudes($tabla,$status,$almacen,$tipo)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE status = :status and id_almacen = :id_almacen and tipo = :tipo");
+		$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);	
+		$stmt->bindParam(":status",$status,PDO::PARAM_STR);
+		$stmt->bindParam(":id_almacen",$almacen,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
 		$stmt->close();
 	}
 
@@ -44,6 +57,21 @@ class ModeloSolicitud
 		$stmt->bindParam(":telefono",$datos["telefono"],PDO::PARAM_STR);
 		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
 		$stmt->bindParam(":id_solicitud",$datos["id_solicitud"],PDO::PARAM_STR);
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
+
+	public static function mdlCrearRelacion($idSolicitudCliente,$idSolicitudConyuge)
+	{
+		$stmt = Conexion::conectar()->prepare("INSERT INTO cliente_conyuge(id_solicitud_cliente,id_solicitud_conyuge) VALUES (:id_solicitud_cliente,:id_solicitud_conyuge)");
+		$stmt->bindParam(":id_solicitud_cliente",$idSolicitudCliente,PDO::PARAM_STR);
+		$stmt->bindParam(":id_solicitud_conyuge",$idSolicitudConyuge,PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return "ok";
@@ -85,5 +113,22 @@ class ModeloSolicitud
 		{
 			return "error";
 		}
+	}
+
+	static public function mdlActualizarSolicitud($tabla,$item1,$valor1,$item2,$valor2)
+	{
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
+		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+		if($stmt -> execute())
+		{
+			return "ok";	
+		}
+		else
+		{
+			return "error";	
+		}
+		$stmt -> close();
+		$stmt = null;
 	}
 }
