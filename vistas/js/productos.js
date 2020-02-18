@@ -79,6 +79,4 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto", function()
 	})
 })
 
-function getFocus(Elemento) {
-	document.getElementById(Elemento).focus();
-}
+

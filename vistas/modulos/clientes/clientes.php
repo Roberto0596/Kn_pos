@@ -33,7 +33,7 @@
     <div class="card">
 
       <div class="card-body">
-          
+
         <table class="table table-bordered table-hover tablaClientes">
 
           <thead>
@@ -41,8 +41,8 @@
             <tr>
               <th style="width: 10px">#</th>
               <th>Nombre</th>
-              <th>Direccion</th>
-              <th>Codigo postal</th>
+              <th>Dirección</th>
+              <th>Código postal</th>
               <th>T. Casa</th>
               <th>T. Celular</th>
               <th>Ciudad</th>
@@ -55,11 +55,11 @@
         </table>
 
       </div>
-      
+
     </div>
-    
+
   </section>
-    
+
 </div>
 
 <div class="modal fade" id="modalEditarCliente">
@@ -86,13 +86,13 @@
 
               <div class="col-md-6">
 
-                <label class="label-style" for="">Nombre completo</label>
+                <label class="label-style" for="nombre">Nombre completo</label>
 
                 <div class="input-group mb-3">
 
                     <div class="input-group-prepend">
 
-                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      <span class="input-group-text" onclick="getFocus('nombre')"><i class="fas fa-user"></i></span>
 
                     </div>
 
@@ -109,17 +109,17 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Direccion</label>
+                    <label class="label-style" for="direccion">Dirección</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('direccion')"><i class="fas fa-user"></i></span>
 
                         </div>
 
-                        <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-lg capitalize" required>
 
                     </div>
 
@@ -127,61 +127,17 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Edad</label>
+                    <label class="label-style" for="edad">Edad</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('edad')"><i class="fas fa-user"></i></span>
 
                         </div>
 
-                        <input type="number" maxlength="2" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
-
-                    </div>
-
-                  </div>
-
-                </div>
-          
-              </div>
-
-              <div class="col-md-6">
-
-                <div class="row">
-
-                  <div class="col-md-6">
-
-                    <label class="label-style" for="">Telefono de casa</label>
-
-                    <div class="input-group mb-3">
-
-                        <div class="input-group-prepend">
-
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
-
-                        </div>
-
-                        <input type="number" id="t_casa" name="t_casa" placeholder="Telefono de casa" class="form-control form-control-lg" required>
-
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-6">
-
-                    <label class="label-style" for="">Telefono celular</label>
-
-                    <div class="input-group mb-3">
-
-                        <div class="input-group-prepend">
-
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
-
-                        </div>
-
-                        <input type="number" id="t_celular" name="t_celular" placeholder="Telefono celular" class="form-control form-control-lg" required>
+                        <input type="number" min="18" max="99" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
 
                     </div>
 
@@ -197,17 +153,17 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Codigo postal</label>
+                    <label class="label-style" for="t_casa">Teléfono de casa</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('t_casa')"><i class="fas fa-user"></i></span>
 
                         </div>
 
-                        <input type="number" id="codigo_postal" name="codigo_postal" placeholder="Codigo postal" class="form-control form-control-lg" required>
+                        <input type="tel" id="t_casa" name="t_casa" placeholder="Teléfono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                     </div>
 
@@ -215,13 +171,57 @@
 
                   <div class="col-md-6">
 
-                    <label class="label-style" for="">Ciudad</label>
+                    <label class="label-style" for="t_celular">Teléfono celular</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('t_celular')"><i class="fas fa-user"></i></span>
+
+                        </div>
+
+                        <input type="tel" id="t_celular" name="t_celular" placeholder="Teléfono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+
+                <div class="row">
+
+                  <div class="col-md-6">
+
+                    <label class="label-style" for="codigo_postal">Código postal</label>
+
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+
+                          <span class="input-group-text" onclick="getFocus('codigo_postal')"><i class="fas fa-user"></i></span>
+
+                        </div>
+
+                        <input type="number" id="codigo_postal" name="codigo_postal" placeholder="Código postal" class="form-control form-control-lg" maxlength="5" required>
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+
+                    <label class="label-style" for="ciudad">Ciudad</label>
+
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+
+                          <span class="input-group-text" onclick="getFocus('ciudad')"><i class="fas fa-user"></i></span>
 
                         </div>
 
@@ -232,7 +232,7 @@
                   </div>
 
                 </div>
-                
+
               </div>
 
             </div>
@@ -248,7 +248,7 @@
 
         <?php
           $editarCliente = new ControladorClientes();
-          $editarCliente->ctrEditarCliente(); 
+          $editarCliente->ctrEditarCliente();
         ?>
 
       </form>
@@ -259,7 +259,7 @@
 
 </div>
 
-<?php 
+<?php
   $eliminarCliente = new ControladorClientes();
   $eliminarCliente->ctrEliminarCliente();
 ?>

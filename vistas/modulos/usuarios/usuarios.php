@@ -41,7 +41,7 @@
                 ?>
               </th>
               <th>Estado</th>
-              <th>Ultimo login</th>
+              <th>Último login</th>
               <th>Acciones</th>
             </tr>
             </thead>
@@ -76,11 +76,11 @@
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('nuevoNombre')"><i class="fas fa-user"></i></span>
 
               </div>
 
-              <input type="text" class="form-control form-control-lg capitalize" name="nuevoNombre" placeholder="Ingresar nombre" required>
+              <input type="text" class="form-control form-control-lg capitalize" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" required>
 
           </div>
 
@@ -92,11 +92,11 @@
 
                   <div class="input-group-prepend">
 
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    <span class="input-group-text" onclick="getFocus('nuevoUsuario')"><i class="fas fa-key"></i></span>
 
                   </div>
 
-                  <input type="text" class="form-control form-control-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
+                  <input type="text" class="form-control form-control-lg" id="nuevoUsuario" name="nuevoUsuario" placeholder="Ingresar usuario" id="usuarioNew" required>
 
               </div>
 
@@ -108,11 +108,11 @@
 
                   <div class="input-group-prepend">
 
-                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <span class="input-group-text" onclick="getFocus('nuevoPassword')"><i class="fas fa-lock"></i></span>
 
                   </div>
 
-                  <input type="password" class="form-control form-control-lg" name="nuevoPassword" placeholder="Ingresar contraseña" autocomplete="off" required>
+                  <input type="password" class="form-control form-control-lg" id="nuevoPassword" name="nuevoPassword" placeholder="Ingresar contraseña" autocomplete="off" required>
 
               </div>
 
@@ -245,7 +245,7 @@
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('editarNombre')"><i class="fas fa-user"></i></span>
 
               </div>
 
@@ -261,7 +261,7 @@
 
                   <div class="input-group-prepend">
 
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    <span class="input-group-text" onclick="getFocus('editarUsuario')"><i class="fas fa-key"></i></span>
 
                   </div>
 
@@ -277,11 +277,11 @@
 
                   <div class="input-group-prepend">
 
-                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <span class="input-group-text" onclick="getFocus('editarPassword')"><i class="fas fa-lock"></i></span>
 
                   </div>
 
-                  <input type="password" class="form-control form-control-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
+                  <input type="password" class="form-control form-control-lg" id="editarPassword" name="editarPassword" placeholder="Escriba la nueva contraseña">
 
                   <input type="hidden" id="passwordActual" name="passwordActual">
 

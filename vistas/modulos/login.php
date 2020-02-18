@@ -13,17 +13,17 @@
 
     <div class="card-body login-card-body">
 
-      <p class="login-box-msg">Iniciar sesion</p>
+      <p class="login-box-msg">Iniciar sesión</p>
 
       <form action="" method="post">
 
         <div class="input-group mb-3">
 
-          <input type="text" class="form-control" placeholder="Username" name="usuario">
+          <input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario" required>
 
           <div class="input-group-append">
 
-            <div class="input-group-text">
+            <div class="input-group-text" onclick="getFocus('usuario')">
 
               <span class="fas fa-envelope"></span>
 
@@ -35,11 +35,11 @@
 
         <div class="input-group mb-3">
 
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password" required>
 
           <div class="input-group-append">
 
-            <div class="input-group-text">
+            <div class="input-group-text" onclick="getFocus('password')">
 
               <span class="fas fa-lock"></span>
 
@@ -54,7 +54,7 @@
             <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
           </div>
         </div>
-        <?php 
+        <?php
           $login = new ControladorUsuarios();
           $login -> ctrIngresoUsuario();
         ?>

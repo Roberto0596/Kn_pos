@@ -33,8 +33,8 @@
     <div class="card">
 
       <div class="card-body">
-          
-        <table class="table table-bordered table-striped dt-responsive tablaAlmacen"> 
+
+        <table class="table table-bordered table-striped dt-responsive tablaAlmacen">
 
           <thead>
 
@@ -47,16 +47,16 @@
             </tr>
 
           </thead>
-             
+
 
         </table>
 
       </div>
-      
+
     </div>
-    
+
   </section>
-    
+
 </div>
 
 <div class="modal fade" id="modalAgregarAlmacen">
@@ -79,34 +79,34 @@
 
         <div class="modal-body">
 
-          <label class="label-style" for="">Nombre de almacen</label>
+          <label class="label-style" for="nuevoAlmacen">Nombre de almacen</label>
 
           <div class="input-group mb-3">
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('nuevoAlmacen')"><i class="fas fa-user"></i></span>
 
               </div>
 
-              <input type="text" class="form-control form-control-lg capitalize" name="nuevoAlmacen" placeholder="Ingrese Nombre" required>
+              <input type="text" class="form-control form-control-lg capitalize" id="nuevoAlmacen" name="nuevoAlmacen" placeholder="Ingrese Nombre" required>
 
           </div>
 
-          <label class="label-style" for="">Ubicacion</label>
+          <label class="label-style" for="nuevaUbicacion">Ubicacion</label>
 
           <div class="input-group mb-3">
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('nuevaUbicacion')"><i class="fas fa-user"></i></span>
 
               </div>
 
-              <input type="text" class="form-control form-control-lg capitalize" name="nuevaUbicacion" placeholder="Ubicacion" required>
+              <input type="text" class="form-control form-control-lg capitalize" id="nuevaUbicacion" name="nuevaUbicacion" placeholder="Ubicacion" required>
 
           </div>
-          
+
         </div>
 
         <div class="modal-footer justify-content-between">
@@ -149,35 +149,35 @@
 
         <div class="modal-body">
 
-          <label class="label-style" for="">Nombre de almacen</label>
+          <label class="label-style" for="editarAlmacen">Nombre de almacen</label>
 
           <div class="input-group mb-3">
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('editarAlmacen')"><i class="fas fa-user"></i></span>
 
               </div>
 
               <input type="text" class="form-control form-control-lg capitalize" name="editarAlmacen" id="editarAlmacen" required>
-              <input type="hidden" name="id_almacen" id="id_almacen"> 
+              <input type="hidden" name="id_almacen" id="id_almacen">
 
           </div>
 
-          <label class="label-style" for="">Ubicacion</label>
+          <label class="label-style" for="editarUbicacion">Ubicacion</label>
 
           <div class="input-group mb-3">
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text" onclick="getFocus('editarUbicacion')"><i class="fas fa-user"></i></span>
 
               </div>
 
               <input type="text" class="form-control form-control-lg capitalize" name="editarUbicacion" id="editarUbicacion" required>
 
           </div>
-          
+
         </div>
 
         <div class="modal-footer justify-content-between">

@@ -56,7 +56,7 @@ $(".tablaClientes tbody").on("click","button.btnEliminarCliente",function(){
 $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 	var idCliente = $(this).attr("idCliente");
 	var datos = new FormData();
-	datos.append("idCliente", idCliente);	
+	datos.append("idCliente", idCliente);
 	$.ajax({
 		url:"ajax/clientes.ajax.php",
 		method: "POST",
@@ -77,3 +77,4 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 			$("#ciudad").val(respuesta["ciudad"]);
 	}});
 })
+

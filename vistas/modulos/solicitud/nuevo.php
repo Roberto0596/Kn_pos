@@ -8,7 +8,7 @@
 
         <div class="col-sm-6">
 
-          <h1>Nueva Solicitud de Credito</h1>
+          <h1>Nueva Solicitud de Crédito</h1>
 
         </div>
 
@@ -18,7 +18,7 @@
 
             <li class="breadcrumb-item"><a href="solicitud">Solicitudes</a></li>
 
-            <li class="breadcrumb-item active">Solicitud de credito</li>
+            <li class="breadcrumb-item active">Solicitud de crédito</li>
 
           </ol>
 
@@ -46,13 +46,13 @@
 
           <li class="nav-item">
 
-            <a class="nav-link" id="informacion_laboral" data-toggle="tab" href="#laboral_informacion" role="tab" aria-controls="laboral_informacion" aria-selected="false">Informacion laboral</a>
+            <a class="nav-link" id="informacion_laboral" data-toggle="tab" href="#laboral_informacion" role="tab" aria-controls="laboral_informacion" aria-selected="false">Información laboral</a>
 
           </li>
 
           <li class="nav-item">
 
-            <a class="nav-link" id="info-familiar-tab" data-toggle="tab" href="#informacion_familiar" role="tab" aria-controls="informacion_familiar" aria-selected="true">Informacion familiar</a>
+            <a class="nav-link" id="info-familiar-tab" data-toggle="tab" href="#informacion_familiar" role="tab" aria-controls="informacion_familiar" aria-selected="true">Información familiar</a>
 
           </li>
 
@@ -85,26 +85,26 @@
       </div>
 
       <form method="post" enctype="multipart/form-data">
-        
+
         <div class="card-body">
 
           <div class="tab-content" id="myTabContent">
 
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                
+
               <div class="row">
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Seleccione un cliente</label>
+                  <label class="label-style" for="id_cliente">Seleccione un cliente</label>
 
                   <div class="input-group mb-3">
 
-                    <select class="form-control select2" name="id_cliente" required>
-                        
+                    <select class="form-control select2" id="id_cliente" name="id_cliente" required>
+
                         <option value="">Selecionar Cliente</option>
 
-                        <?php 
+                        <?php
                           $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                           foreach ($respuesta as $key => $value)
                           {
@@ -120,36 +120,36 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Numero de placas</label>
+                  <label class="label-style" for="num_placas">Número de placas</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('num_placas')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <input type="text" style="text-transform: uppercase;" name="num_placas" placeholder="Numero de placas" class="form-control" required>
+                      <input type="text" style="text-transform: uppercase;" id="num_placas" name="num_placas" placeholder="Número de placas" class="form-control" required>
 
                   </div>
-                  
+
                 </div>
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Estado Civil</label>
+                  <label class="label-style" for="estado_civil">Estado Civil</label>
 
                   <div class="input-group mb-3">
 
                     <div class="input-group-prepend">
 
-                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      <span class="input-group-text" onclick="getFocus('estado_civil')"><i class="fas fa-user"></i></span>
 
                     </div>
 
-                    <select class="form-control capitalize" name="estado_civil" required>
-                  
+                    <select class="form-control capitalize" id="estado_civil" name="estado_civil" required>
+
                       <option value="">Selecionar estado civil</option>
 
                       <option value="Casado">Casado</option>
@@ -174,18 +174,18 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Casa</label>
+                  <label class="label-style" for="casa">Casa</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('casa')"><i class="fas fa-user"></i></span>
 
                         </div>
 
-                        <select class="form-control capitalize" name="casa" required>
-                      
+                        <select class="form-control capitalize" id="casa" name="casa" required>
+
                           <option value="">Seleccione un item</option>
 
                           <option value="Si">Si</option>
@@ -200,17 +200,17 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Tiempo en casa</label>
+                  <label class="label-style" for="tiempo_casa">Tiempo en casa</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('tiempo_casa')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <input type="text" name="tiempo_casa" placeholder="Tiempo en casa" class="form-control capitalize" required>
+                      <input type="text" id="tiempo_casa" name="tiempo_casa" placeholder="Tiempo en casa" class="form-control capitalize" required>
 
                   </div>
 
@@ -218,17 +218,17 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Gastos mensuales</label>
+                  <label class="label-style" for="gastos_mensuales">Gastos mensuales</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('gastos_mensuales')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <input type="number" min="0" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control capitalize" required>
+                      <input type="number" min="0" id="gastos_mensuales" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control capitalize" required>
 
                   </div>
 
@@ -237,12 +237,12 @@
               </div>
 
             </div>
-            
+
             <div class="tab-pane fade show" id="informacion_familiar" role="tabpanel" aria-labelledby="info-familiar-tab">
               <div class="row">
 
                 <div class="col-md-12">
-                  <label class="label-style" for="">Informacion familiar</label>
+                  <label class="label-style" for="">Información familiar</label>
                   <table class="table">
                     <thead>
                       <th>#</th>
@@ -253,7 +253,7 @@
                     <tbody>
                       <tr>
 
-                        <th>Papa</th>
+                        <th>Papá</th>
                         <td>
 
                           <div class="input-group mb-3">
@@ -269,7 +269,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_papa" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_papa" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -279,7 +279,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_papa" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="tel" name="telefono_papa" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -288,8 +288,8 @@
                       </tr>
 
                       <tr>
-                        
-                        <th>Mama</th>
+
+                        <th>Mamá</th>
                         <td>
 
                           <div class="input-group mb-3">
@@ -305,7 +305,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_mama" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_mama" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -315,7 +315,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="tel" name="telefono_mama" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -340,17 +340,17 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Profesion</label>
+                  <label class="label-style" for="profesion">Profesión</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('profesion')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <input type="text" name="profesion" id="profesion" placeholder="Profesion" class="form-control capitalize" required>
+                      <input type="text" name="profesion" id="profesion" placeholder="Profesión" class="form-control capitalize" required>
 
                   </div>
 
@@ -358,13 +358,13 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Nombre de la empresa</label>
+                  <label class="label-style" for="nombre_empresa">Nombre de la empresa</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('nombre_empresa')"><i class="fas fa-user"></i></span>
 
                       </div>
 
@@ -375,14 +375,14 @@
                 </div>
 
                 <div class="col-md-4">
-                  
-                  <label class="label-style" for="">Domicilio de la empresa</label>
+
+                  <label class="label-style" for="dom_empresa">Domicilio de la empresa</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('dom_empresa')"><i class="fas fa-user"></i></span>
 
                       </div>
 
@@ -397,18 +397,18 @@
               <div class="row">
 
                 <div class="col-md-4">
-                  
-                  <label class="label-style" for="">Telefono de la empresa</label>
+
+                  <label class="label-style" for="tel_empresa">Teléfono de la empresa</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('tel_empresa')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <input type="text" class="form-control" id="tel_empresa" name="tel_empresa" placeholder="Telefono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                      <input type="text" class="form-control" id="tel_empresa" name="tel_empresa" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                   </div>
 
@@ -416,13 +416,13 @@
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="">Puesto</label>
+                  <label class="label-style" for="puesto">Puesto</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('puesto')"><i class="fas fa-user"></i></span>
 
                       </div>
 
@@ -433,14 +433,14 @@
                 </div>
 
                 <div class="col-md-4">
-                  
-                  <label class="label-style" for="">Sueldo</label>
+
+                  <label class="label-style" for="sueldo">Sueldo</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('sueldo')"><i class="fas fa-user"></i></span>
 
                       </div>
 
@@ -451,19 +451,19 @@
                 </div>
 
                 <div class="col-md-4">
-                  
-                  <label class="label-style" for="">Antiguedad</label>
+
+                  <label class="label-style" for="antiguedad">Antiguedad</label>
 
                   <div class="input-group mb-3">
 
                       <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text" onclick="getFocus('antiguedad')"><i class="fas fa-user"></i></span>
 
                       </div>
 
-                      <select class="form-control capitalize" name="antiguedad" required>
-                  
+                      <select class="form-control capitalize" id="antiguedad" name="antiguedad" required>
+
                       <option value="">Seleccionar un item</option>
 
                       <option value="Menos de un año">Menos de un año</option>
@@ -478,7 +478,7 @@
 
                       <option value="5 años">5 años</option>
 
-                      <option value="Mas de 5 años">Mas de 5 años</option>
+                      <option value="Más de 5 años">Mas de 5 años</option>
 
                     </select>
 
@@ -499,8 +499,8 @@
                     <thead>
                       <th>#</th>
                       <th>Nombre</th>
-                      <th>Direccion</th>
-                      <th>Telefono</th>
+                      <th>Dirección</th>
+                      <th>Teléfono</th>
                     </thead>
                     <tbody>
                       <tr>
@@ -520,7 +520,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -530,7 +530,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -539,7 +539,7 @@
                       </tr>
 
                       <tr>
-                        
+
                         <th>2</th>
                         <td>
 
@@ -555,7 +555,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -565,7 +565,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -574,7 +574,7 @@
                       </tr>
 
                       <tr>
-                        
+
                         <th>3</th>
                         <td>
 
@@ -590,7 +590,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -600,7 +600,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -626,8 +626,8 @@
                     <thead>
                       <th>#</th>
                       <th>Nombre</th>
-                      <th>Direccion</th>
-                      <th>Telefono</th>
+                      <th>Dirección</th>
+                      <th>Teléfono</th>
                     </thead>
                     <tbody>
                       <tr>
@@ -647,7 +647,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -657,7 +657,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -666,7 +666,7 @@
                       </tr>
 
                       <tr>
-                        
+
                         <th>2</th>
                         <td>
 
@@ -682,7 +682,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -692,7 +692,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -701,7 +701,7 @@
                       </tr>
 
                       <tr>
-                        
+
                         <th>3</th>
                         <td>
 
@@ -717,7 +717,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -727,7 +727,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -752,7 +752,7 @@
 
                   <label class="label-style" for="">Foto</label>
 
-                  <div class="form-group">  
+                  <div class="form-group">
 
                       <div class="panel">SUBIR FOTO</div>
 
@@ -814,17 +814,17 @@
 
                         <div class="col-md-6">
 
-                          <label class="label-style" for="">Nombre completo</label>
+                          <label class="label-style" for="nombre_aval">Nombre completo</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('nombre_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="text" name="nombre_aval" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
+                              <input type="text" id="nombre_aval" name="nombre_aval" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize" required>
                               <input type="hidden" name="tipo_aval" value="1">
 
                           </div>
@@ -837,17 +837,17 @@
 
                             <div class="col-md-6">
 
-                              <label class="label-style" for="">Direccion</label>
+                              <label class="label-style" for="direccion_aval">Dirección</label>
 
                               <div class="input-group mb-3">
 
                                   <div class="input-group-prepend">
 
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text" onclick="getFocus('direccion_aval')"><i class="fas fa-user"></i></span>
 
                                   </div>
 
-                                  <input type="text" name="direccion_aval" placeholder="Direccion" class="form-control form-control-lg capitalize" required>
+                                  <input type="text" name="direccion_aval" placeholder="Dirección" class="form-control form-control-lg capitalize" required>
 
                               </div>
 
@@ -855,61 +855,17 @@
 
                             <div class="col-md-6">
 
-                              <label class="label-style" for="">Edad</label>
+                              <label class="label-style" for="edad_aval">Edad</label>
 
                               <div class="input-group mb-3">
 
                                   <div class="input-group-prepend">
 
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text" onclick="getFocus('edad_aval')"><i class="fas fa-user"></i></span>
 
                                   </div>
 
-                                  <input type="text" name="edad_aval" placeholder="Edad" class="form-control form-control-lg" required>
-
-                              </div>
-
-                            </div>
-
-                          </div>
-                    
-                        </div>
-
-                        <div class="col-md-6">
-
-                          <div class="row">
-
-                            <div class="col-md-6">
-
-                              <label class="label-style" for="">Telefono de casa</label>
-
-                              <div class="input-group mb-3">
-
-                                  <div class="input-group-prepend">
-
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-
-                                  </div>
-
-                                  <input type="text" name="t_casa_aval" placeholder="Telefono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
-
-                              </div>
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                              <label class="label-style" for="">Telefono celular</label>
-
-                              <div class="input-group mb-3">
-
-                                  <div class="input-group-prepend">
-
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-
-                                  </div>
-
-                                  <input type="text" name="t_celular_aval" placeholder="Telefono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                  <input type="text" id="edad_aval" name="edad_aval" placeholder="Edad" class="form-control form-control-lg" required>
 
                               </div>
 
@@ -925,17 +881,17 @@
 
                             <div class="col-md-6">
 
-                              <label class="label-style" for="">Codigo postal</label>
+                              <label class="label-style" for="t_casa_aval">Teléfono de casa</label>
 
                               <div class="input-group mb-3">
 
                                   <div class="input-group-prepend">
 
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text" onclick="getFocus('t_casa_aval')"><i class="fas fa-user"></i></span>
 
                                   </div>
 
-                                  <input type="number" name="codigo_postal_aval" placeholder="Codigo postal" class="form-control form-control-lg" required>
+                                  <input type="tel" id="t_casa_aval" name="t_casa_aval" placeholder="Teléfono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                               </div>
 
@@ -943,24 +899,68 @@
 
                             <div class="col-md-6">
 
-                              <label class="label-style" for="">Ciudad</label>
+                              <label class="label-style" for="t_celular_aval">Teléfono celular</label>
 
                               <div class="input-group mb-3">
 
                                   <div class="input-group-prepend">
 
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text" onclick="getFocus('t_celular_aval')"><i class="fas fa-user"></i></span>
 
                                   </div>
 
-                                  <input type="text" name="ciudad_aval" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
+                                  <input type="text" id="t_celular_aval" name="t_celular_aval" placeholder="Teléfono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                               </div>
 
                             </div>
 
                           </div>
-                          
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                          <div class="row">
+
+                            <div class="col-md-6">
+
+                              <label class="label-style" for="codigo_postal_aval">Código postal</label>
+
+                              <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <span class="input-group-text" onclick="getFocus('codigo_postal_aval')"><i class="fas fa-user"></i></span>
+
+                                  </div>
+
+                                  <input type="number" id="codigo_postal_aval" name="codigo_postal_aval" placeholder="Código postal" class="form-control form-control-lg" required>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                              <label class="label-style" for="ciudad_aval">Ciudad</label>
+
+                              <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <span class="input-group-text" onclick="getFocus('ciudad_aval')"><i class="fas fa-user"></i></span>
+
+                                  </div>
+
+                                  <input type="text" id="ciudad_aval" name="ciudad_aval" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
                         </div>
 
                       </div>
@@ -968,41 +968,41 @@
                     </div>
 
                     <div class="tab-pane fade show" id="info_general" role="tabpanel" aria-labelledby="general">
-                      
+
                       <div class="row">
 
                         <div class="col-md-6">
 
-                          <label class="label-style" for="">Numero de placas</label>
+                          <label class="label-style" for="num_placas_aval">Número de placas</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('num_placas_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="text" style="text-transform: uppercase;" name="num_placas_aval" placeholder="Numero de placas" class="form-control" required>
+                              <input type="text" style="text-transform: uppercase;" id="num_placas_aval" name="num_placas_aval" placeholder="Número de placas" class="form-control" required>
 
                           </div>
-                          
+
                         </div>
 
                         <div class="col-md-6">
 
-                          <label class="label-style" for="">Estado Civil</label>
+                          <label class="label-style" for="estado_civil_aval">Estado Civil</label>
 
                           <div class="input-group mb-3">
 
                             <div class="input-group-prepend">
 
-                              <span class="input-group-text"><i class="fas fa-user"></i></span>
+                              <span class="input-group-text" onclick="getFocus('estado_civil_aval')"><i class="fas fa-user"></i></span>
 
                             </div>
 
-                            <select class="form-control capitalize" name="estado_civil_aval" required>
-                          
+                            <select class="form-control capitalize" id="estado_civil_aval" name="estado_civil_aval" required>
+
                               <option value="">Selecionar estado civil</option>
 
                               <option value="Casado">Casado</option>
@@ -1027,18 +1027,18 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Casa</label>
+                          <label class="label-style" for="casa_aval">Casa</label>
 
                             <div class="input-group mb-3">
 
                                 <div class="input-group-prepend">
 
-                                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                  <span class="input-group-text" onclick="getFocus('casa_aval')"><i class="fas fa-user"></i></span>
 
                                 </div>
 
-                                <select class="form-control capitalize" name="casa_aval" required>
-                              
+                                <select class="form-control capitalize" id="casa_aval" name="casa_aval" required>
+
                                   <option value="">Seleccione un item</option>
 
                                   <option value="Si">Si</option>
@@ -1053,17 +1053,17 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Tiempo en casa</label>
+                          <label class="label-style" for="tiempo_casa_aval">Tiempo en casa</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('tiempo_casa_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="text" name="tiempo_casa_aval" placeholder="Tiempo en casa" class="form-control capitalize" required>
+                              <input type="text" id="tiempo_casa_aval" name="tiempo_casa_aval" placeholder="Tiempo en casa" class="form-control capitalize" required>
 
                           </div>
 
@@ -1071,17 +1071,17 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Gastos mensuales</label>
+                          <label class="label-style" for="gastos_mensuales_aval">Gastos mensuales</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('gastos_mensuales_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="number" min="0" name="gastos_mensuales_aval" placeholder="Gastos mensuales" class="form-control capitalize" required>
+                              <input type="number" min="0" id="gastos_mensuales_aval" name="gastos_mensuales_aval" placeholder="Gastos mensuales" class="form-control capitalize" required>
 
                           </div>
 
@@ -1097,17 +1097,17 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Profesion</label>
+                          <label class="label-style" for="profesion_aval">Profesión</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('profesion_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="text" name="profesion_aval" id="profesion_aval" placeholder="Profesion" class="form-control capitalize" required>
+                              <input type="text" name="profesion_aval" id="profesion_aval" placeholder="Profesión" class="form-control capitalize" required>
 
                           </div>
 
@@ -1115,13 +1115,13 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Nombre de la empresa</label>
+                          <label class="label-style" for="nombre_empresa_aval">Nombre de la empresa</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('nombre_empresa_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
@@ -1132,14 +1132,14 @@
                         </div>
 
                         <div class="col-md-4">
-                          
-                          <label class="label-style" for="">Domicilio de la empresa</label>
+
+                          <label class="label-style" for="dom_empresa_aval">Domicilio de la empresa</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('dom_empresa_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
@@ -1154,18 +1154,18 @@
                       <div class="row">
 
                         <div class="col-md-4">
-                          
-                          <label class="label-style" for="">Telefono de la empresa</label>
+
+                          <label class="label-style" for="tel_empresa_aval">Teléfono de la empresa</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('tel_empresa_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Telefono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask  class="form-control capitalize" required>
+                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask  class="form-control capitalize" required>
 
                           </div>
 
@@ -1173,13 +1173,13 @@
 
                         <div class="col-md-4">
 
-                          <label class="label-style" for="">Puesto</label>
+                          <label class="label-style" for="puesto_aval">Puesto</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('puesto_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
@@ -1190,14 +1190,14 @@
                         </div>
 
                         <div class="col-md-4">
-                          
-                          <label class="label-style" for="">Sueldo</label>
+
+                          <label class="label-style" for="sueldo_aval">Sueldo</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('sueldo_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
@@ -1208,19 +1208,19 @@
                         </div>
 
                         <div class="col-md-4">
-                          
-                          <label class="label-style" for="">Antiguedad</label>
+
+                          <label class="label-style" for="antiguedad_aval">Antiguedad</label>
 
                           <div class="input-group mb-3">
 
                               <div class="input-group-prepend">
 
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" onclick="getFocus('antiguedad_aval')"><i class="fas fa-user"></i></span>
 
                               </div>
 
-                              <select class="form-control capitalize" name="antiguedad_aval" required>
-                          
+                              <select class="form-control capitalize" id="antiguedad_aval" name="antiguedad_aval" required>
+
                               <option value="">Seleccionar un item</option>
 
                               <option value="Menos de un año">Menos de un año</option>
@@ -1254,17 +1254,17 @@
                         <div class="col-md-12">
 
                           <table class="table">
-                            
+
                             <thead>
                               <th>#</th>
                               <th>Nombre</th>
-                              <th>Direccion</th>
-                              <th>Telefono</th>
+                              <th>Dirección</th>
+                              <th>Teléfono</th>
                             </thead>
                             <tbody>
                               <tr>
 
-                                <th>Papa</th>
+                                <th>Papá</th>
                                 <td>
 
                                   <div class="input-group mb-3">
@@ -1280,7 +1280,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="direccion_papa_aval" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_papa_aval" placeholder="Dirección" class="form-control capitalize" required>
 
                                   </div>
 
@@ -1290,7 +1290,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="telefono_papa_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_papa_aval" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                                   </div>
 
@@ -1299,8 +1299,8 @@
                               </tr>
 
                               <tr>
-                                
-                                <th>Mama</th>
+
+                                <th>Mamá</th>
                                 <td>
 
                                   <div class="input-group mb-3">
@@ -1316,7 +1316,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="direccion_mama_aval" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_mama_aval" placeholder="Dirección" class="form-control capitalize" required>
 
                                   </div>
 
@@ -1326,7 +1326,7 @@
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="telefono_mama_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_mama_aval" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                                   </div>
 
@@ -1358,8 +1358,8 @@
 
                               <th>#</th>
                               <th>Nombre</th>
-                              <th>Direccion</th>
-                              <th>Telefono</th>
+                              <th>Dirección</th>
+                              <th>Teléfono</th>
 
                             </thead>
 
@@ -1374,12 +1374,12 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1392,12 +1392,12 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1410,12 +1410,12 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_familiar_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_familiar_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1443,8 +1443,8 @@
                             <thead>
                               <th>#</th>
                               <th>Nombre</th>
-                              <th>Direccion</th>
-                              <th>Telefono</th>
+                              <th>Dirección</th>
+                              <th>Teléfono</th>
                             </thead>
 
                             <tbody>
@@ -1457,16 +1457,16 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
-                              <tr>                               
+                              <tr>
                                 <th>2</th>
                                 <td>
                                   <div class="input-group mb-3">
@@ -1475,16 +1475,16 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
-                              <tr>                     
+                              <tr>
                                 <th>3</th>
                                 <td>
                                   <div class="input-group mb-3">
@@ -1493,12 +1493,12 @@
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Direccion" class="form-control capitalize" required>
+                                    <input type="text" name="direccion_amistad_aval[]" placeholder="Dirección" class="form-control capitalize" required>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="input-group mb-3">
-                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                                    <input type="text" name="telefono_amistad_aval[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
                                   </div>
                                 </td>
                               </tr>
@@ -1518,11 +1518,11 @@
                 </div>
 
               </div>
-              
+
             </div>
 
           </div>
-          
+
         </div>
 
         <div class="card-footer">
@@ -1530,8 +1530,8 @@
           <div class="row">
 
             <div class="col-md-6">
-            
-              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left cancelar">                  
+
+              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left cancelar">
                 <i class="fa fa-fw fa-plus"></i> Cancelar
               </button>
 
@@ -1539,7 +1539,7 @@
 
             <div class="col-md-6">
 
-              <button type="submit" class="btn btn-block btn-success float-right">                  
+              <button type="submit" class="btn btn-block btn-success float-right">
                 <i class="fa fa-fw fa-plus"></i> Guardar
               </button>
 
@@ -1550,7 +1550,7 @@
 
         <?php
           $crearSolicitud = new ControladorSolicitud();
-          $crearSolicitud->ctrCrearSolicitud(); 
+          $crearSolicitud->ctrCrearSolicitud();
         ?>
 
       </form>

@@ -63,7 +63,7 @@
     <div class="card">
 
       <div class="card-body">
-          
+
         <table class="table table-bordered table-hover tablaSolicitudes">
 
           <thead>
@@ -74,7 +74,7 @@
               <th>Foto</th>
               <th>N. Placas</th>
               <th>Estado civil</th>
-              <th>Profesion</th>
+              <th>Profesión</th>
               <th>Empresa</th>
               <th>Gastos M</th>
               <th>Status</th>
@@ -87,11 +87,11 @@
         </table>
 
       </div>
-      
+
     </div>
-    
+
   </section>
-    
+
 </div>
 
 <div class="modal fade" id="elegirEstado">
@@ -117,8 +117,8 @@
         <div class="row">
 
            <div class="col-md-6">
-            
-              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left opciones" status="3" data-dismiss="modal">                  
+
+              <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left opciones" status="3" data-dismiss="modal">
                 <i class="fa fa-fw fa-frown"></i> Rechazar
 
               </button>
@@ -127,7 +127,7 @@
 
             <div class="col-md-6">
 
-              <button type="submit" class="btn btn-block btn-success float-right opciones" status="2" data-dismiss="modal"> 
+              <button type="submit" class="btn btn-block btn-success float-right opciones" status="2" data-dismiss="modal">
 
                 <i class="fa fa-fw fa-smile"></i> Aprobar
 
@@ -146,13 +146,13 @@
       </div>
 
     </div>
-    
+
   </div>
-  
+
 </div>
 
 
-<?php 
+<?php
   $eliminarSolicitud = new ControladorSolicitud();
   $eliminarSolicitud->ctrEliminarSolicitud();
 ?>

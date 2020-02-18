@@ -33,3 +33,7 @@ $(".cancelar").click(function()
 		}
 	})
 })
+
+function getFocus(Elemento) {
+	document.getElementById(Elemento).focus();
+}
