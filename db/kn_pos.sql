@@ -166,8 +166,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `almacen`, `estado`, `ultimo_login`, `fecha`) VALUES
-(25, 'Roberto Manuel Cordero Balderas', 'robert', 'admin123', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-02-12 10:05:03', '2020-02-12 17:05:03'),
-(35, 'federico daniel villa leyva', 'dani', 'admin123', 'Administrador', 'vistas/img/usuarios//701.jpg', 3, 0, '0000-00-00 00:00:00', '2020-02-11 07:35:34');
+(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-02-12 10:05:03', '2020-02-12 17:05:03'),
+(35, 'federico daniel villa leyva', 'dani', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Administrador', 'vistas/img/usuarios//701.jpg', 3, 0, '0000-00-00 00:00:00', '2020-02-11 07:35:34');
 
 --
 -- Índices para tablas volcadas

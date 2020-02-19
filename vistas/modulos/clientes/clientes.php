@@ -207,7 +207,7 @@
 
                         </div>
 
-                        <input type="number" id="codigo_postal" name="codigo_postal" placeholder="Código postal" class="form-control form-control-lg" maxlength="5" required>
+                        <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Código postal" class="form-control form-control-lg" maxlength="5" data-inputmask="'mask':'99999'" data-mask required>
 
                     </div>
 
