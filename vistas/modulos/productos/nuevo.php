@@ -90,6 +90,24 @@
 
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label class="label-style" for="stock">Stock</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" onclick="getFocus('stock')">
+                                            <i class="fas fa-hashtag"></i></span>
+                                        </div>
+                                        <input type="number" id="stock" name="stock" placeholder="Cantidad" class="form-control form-control-lg" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="card-footer">

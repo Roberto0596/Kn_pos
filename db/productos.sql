@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2020 a las 08:01:29
+-- Tiempo de generación: 20-02-2020 a las 10:00:24
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -35,6 +35,8 @@ CREATE TABLE `productos` (
   `Precio_compra` varchar(50) NOT NULL,
   `Precio_venta` varchar(50) NOT NULL,
   `Id_proveedor` int(11) NOT NULL,
+  `Stock` int(11) NOT NULL,
+  `Ventas` int(11) NOT NULL,
   `Estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,8 +44,8 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`Id_producto`, `Codigo`, `Nombre`, `Precio_compra`, `Precio_venta`, `Id_proveedor`, `Estado`) VALUES
-(4, '34535789867', 'Camastro', '799', '899', 5, 1);
+INSERT INTO `productos` (`Id_producto`, `Codigo`, `Nombre`, `Precio_compra`, `Precio_venta`, `Id_proveedor`, `Stock`, `Ventas`, `Estado`) VALUES
+(4, '345357898678', 'Camastros', '799', '899', 5, 6, 0, 1);
 
 --
 -- Índices para tablas volcadas

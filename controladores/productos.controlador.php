@@ -46,7 +46,7 @@ class ControladorProductos{
             include_once "controladores/helpers.php";
 			$tabla = "productos";
 
-            $ModeloProductos = new ModeloProductos(NULL, $_POST["codigo"], $_POST["nombre"], $_POST["precio_compra"], $_POST["precio_venta"], $_POST["idProveedor"], $_POST["estado"]);
+            $ModeloProductos = new ModeloProductos(NULL, $_POST["codigo"], $_POST["nombre"], $_POST["precio_compra"], $_POST["precio_venta"], $_POST["idProveedor"], $_POST["stock"], 0, $_POST["estado"]);
 
 			$respuesta = ModeloProductos::mdlCrearProducto($tabla,$ModeloProductos);
 			if ($respuesta = "ok")
@@ -62,13 +62,13 @@ class ControladorProductos{
 
     public function ctrEditarProducto()
 	{
-		if (isset($_POST["id_producto"]))
+		if (isset($_POST["id_producto"]) & isset($_POST["codigo"]))
 		{
 			include_once "modelos/productos.modelo.php";
             include_once "controladores/helpers.php";
 			$tabla = "productos";
 
-            $ModeloProductos = new ModeloProductos($_POST["id_producto"], $_POST["codigo"], $_POST["nombre"], $_POST["precio_compra"], $_POST["precio_venta"], $_POST["idProveedor"], NULL);
+            $ModeloProductos = new ModeloProductos($_POST["id_producto"], $_POST["codigo"], $_POST["nombre"], $_POST["precio_compra"], $_POST["precio_venta"], $_POST["idProveedor"], NULL, NULL, NULL);
 			$respuesta = ModeloProductos::mdlEditarProducto($tabla,$ModeloProductos);
 			if ($respuesta = "ok")
 			{
@@ -97,6 +97,26 @@ class ControladorProductos{
 			else
 			{
 				Helpers::imprimirMensaje("error","No fue posible eliminar este producto.","productos");
+			}
+		}
+	}
+
+	public function ctrModificarStock()
+	{
+		if (isset($_POST["id_productos"]) & isset($_POST["stock"]))
+		{
+            include_once "modelos/productos.modelo.php";
+            include_once "controladores/helpers.php";
+            $tabla = "productos";
+
+			$respuesta = ModeloProductos::mdlModificarStock($tabla,"Id_producto",$_POST["id_productos"], $_POST["stock"]);
+			if ($respuesta = "ok")
+			{
+				Helpers::imprimirMensaje("success","El stock se ha modificado.","productos");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","No fue posible modificar el stock de este producto.","productos");
 			}
 		}
 	}

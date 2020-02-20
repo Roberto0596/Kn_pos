@@ -29,6 +29,8 @@
                             <th>Precio de compra</th>
                             <th>Precio de venta</th>
                             <th>Proveedor</th>
+                            <th>Stock</th>
+                            <th>Ventas</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -131,6 +133,66 @@
                     <?php
                     $editarProducto = new ControladorProductos();
                     $editarProducto->ctrEditarProducto();
+                    ?>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalModificarStock">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Stock</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label class="label-style" for="nombreS">Nombre</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" onclick="getFocus('nombreS')">
+                                    <i class="fas fa-dolly"></i></span>
+                                </div>
+                                <input type="text" id="nombreS" name="nombreS" placeholder="Nombre" class="form-control form-control-lg capitalize" readonly required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+
+                            <div class="col-md-6">
+                                <label class="label-style" for="stock">Stock</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" onclick="getFocus('stock')">
+                                        <i class="fas fa-hashtag"></i></span>
+                                    </div>
+                                    <input type="number" id="stock" name="stock" placeholder="Cantidad" class="form-control form-control-lg" required>
+                                    <input type="hidden" name="id_productos" id="id_productos" value="">
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                    <?php
+                    $editarStock = new ControladorProductos();
+                    $editarStock->ctrModificarStock();
                     ?>
                 </div>
             </form>
