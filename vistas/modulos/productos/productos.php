@@ -140,12 +140,12 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalModificarStock">
+<div class="modal fade" id="modalAumentarStock">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Modificar Stock</h4>
+                <h4 class="modal-title">Aumentar Stock</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -156,13 +156,13 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <label class="label-style" for="nombreS">Nombre</label>
+                            <label class="label-style" for="nombreA">Nombre</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" onclick="getFocus('nombreS')">
+                                    <span class="input-group-text" onclick="getFocus('nombreA')">
                                     <i class="fas fa-dolly"></i></span>
                                 </div>
-                                <input type="text" id="nombreS" name="nombreS" placeholder="Nombre" class="form-control form-control-lg capitalize" readonly required>
+                                <input type="text" id="nombreA" name="nombreA" placeholder="Nombre" class="form-control form-control-lg capitalize" readonly required>
                             </div>
                         </div>
 
@@ -170,14 +170,15 @@
                             <div class="row">
 
                             <div class="col-md-6">
-                                <label class="label-style" for="stock">Stock</label>
+                                <label class="label-style" for="stockA">Stock</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" onclick="getFocus('stock')">
+                                        <span class="input-group-text" onclick="getFocus('stockA')">
                                         <i class="fas fa-hashtag"></i></span>
                                     </div>
-                                    <input type="number" id="stock" name="stock" placeholder="Cantidad" class="form-control form-control-lg" required>
-                                    <input type="hidden" name="id_productos" id="id_productos" value="">
+                                    <input type="number" id="stockA" name="stockA" placeholder="Cantidad" class="form-control form-control-lg" required>
+                                    <input type="hidden" id="stockOA" name="stockOA" value="">
+                                    <input type="hidden" name="id_productoA" id="id_productoA" value="">
                                 </div>
                             </div>
 
@@ -191,8 +192,69 @@
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                     <?php
-                    $editarStock = new ControladorProductos();
-                    $editarStock->ctrModificarStock();
+                    $AumentarStock = new ControladorProductos();
+                    $AumentarStock->ctrModificarStock();
+                    ?>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDisminuirStock">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Disminuir Stock</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label class="label-style" for="nombreD">Nombre</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" onclick="getFocus('nombreD')">
+                                    <i class="fas fa-dolly"></i></span>
+                                </div>
+                                <input type="text" id="nombreD" name="nombreD" placeholder="Nombre" class="form-control form-control-lg capitalize" readonly required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row">
+
+                            <div class="col-md-6">
+                                <label class="label-style" for="stockD">Stock</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" onclick="getFocus('stockD')">
+                                        <i class="fas fa-hashtag"></i></span>
+                                    </div>
+                                    <input type="number" id="stockD" name="stockD" placeholder="Cantidad" class="form-control form-control-lg" required>
+                                    <input type="hidden" id="stockOD" name="stockOD" value="">
+                                    <input type="hidden" name="id_productoD" id="id_productoD" value="">
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                    <?php
+                    $DisminuirStock = new ControladorProductos();
+                    $DisminuirStock->ctrModificarStock();
                     ?>
                 </div>
             </form>

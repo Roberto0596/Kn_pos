@@ -79,7 +79,7 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto", function()
 	})
 })
 
-$(".tablaProductos tbody").on("click","button.btnModificarStock", function()
+$(".tablaProductos tbody").on("click","button.btnAumentarStock", function()
 {
 	var idProducto =$(this).attr("idProducto");
 	var data = new FormData();
@@ -95,11 +95,33 @@ $(".tablaProductos tbody").on("click","button.btnModificarStock", function()
      	dataType:"json",
 		success:function(respuesta)
 		{
-			$("#nombreS").val(respuesta["Nombre"]);
-			$("#id_productos").val(respuesta["Id_producto"]);
-			$("#stock").val(respuesta["Stock"]);
+			$("#nombreA").val(respuesta["Nombre"]);
+			$("#id_productoA").val(respuesta["Id_producto"]);
+			$("#stockOA").val(respuesta["Stock"]);
 		}
 	})
 })
 
+$(".tablaProductos tbody").on("click","button.btnDisminuirStock", function()
+{
+	var idProducto =$(this).attr("idProducto");
+	var data = new FormData();
+	data.append("idProducto",idProducto);
+	$.ajax(
+	{
+		url: "ajax/productos.ajax.php",
+		method: "POST",
+      	data: data,
+      	cache: false,
+     	contentType: false,
+     	processData: false,
+     	dataType:"json",
+		success:function(respuesta)
+		{
+			$("#nombreD").val(respuesta["Nombre"]);
+			$("#id_productoD").val(respuesta["Id_producto"]);
+			$("#stockOD").val(respuesta["Stock"]);
+		}
+	})
+})
 

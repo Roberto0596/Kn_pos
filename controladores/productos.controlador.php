@@ -103,13 +103,29 @@ class ControladorProductos{
 
 	public function ctrModificarStock()
 	{
-		if (isset($_POST["id_productos"]) & isset($_POST["stock"]))
+		if (isset($_POST["id_productoA"]))
 		{
             include_once "modelos/productos.modelo.php";
             include_once "controladores/helpers.php";
-            $tabla = "productos";
+			$tabla = "productos";
+			$stock = $_POST["stockOA"] + $_POST["stockA"];
 
-			$respuesta = ModeloProductos::mdlModificarStock($tabla,"Id_producto",$_POST["id_productos"], $_POST["stock"]);
+			$respuesta = ModeloProductos::mdlModificarStock($tabla,"Id_producto",$_POST["id_productoA"], $stock);
+			if ($respuesta = "ok")
+			{
+				Helpers::imprimirMensaje("success","El stock se ha modificado.","productos");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","No fue posible modificar el stock de este producto.","productos");
+			}
+		}elseif(isset($_POST["id_productoD"])){
+			include_once "modelos/productos.modelo.php";
+            include_once "controladores/helpers.php";
+			$tabla = "productos";
+			$stock = $_POST["stockOD"] - $_POST["stockD"];
+			if($stock < 0) $stock = 0;
+			$respuesta = ModeloProductos::mdlModificarStock($tabla,"Id_producto",$_POST["id_productoD"], $stock);
 			if ($respuesta = "ok")
 			{
 				Helpers::imprimirMensaje("success","El stock se ha modificado.","productos");
