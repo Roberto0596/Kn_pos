@@ -125,3 +125,10 @@ $(".tablaProductos tbody").on("click","button.btnDisminuirStock", function()
 	})
 })
 
+$('#modalAumentarStock').on('shown.bs.modal', function () {
+	$('#stockA').trigger('focus')
+  })
+
+  $('#modalDisminuirStock').on('shown.bs.modal', function () {
+	$('#stockD').trigger('focus')
+  })
