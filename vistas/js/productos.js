@@ -132,3 +132,7 @@ $('#modalAumentarStock').on('shown.bs.modal', function () {
   $('#modalDisminuirStock').on('shown.bs.modal', function () {
 	$('#stockD').trigger('focus')
   })
+
+  $('#modalEditarProducto').on('shown.bs.modal', function () {
+	$('#codigo').trigger('focus')
+  })
