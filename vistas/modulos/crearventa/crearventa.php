@@ -216,7 +216,6 @@
 
                  <tr>
                   <th style="width: 10px">#</th>
-                  <th>Imagen</th>
                   <th>Codigo</th>
                   <th>Producto</th>
                   <th>Precio</th>
@@ -245,5 +244,11 @@
 .dataTables_filter {
   display: none !important;
 }
+
+.dataTables_length
+{
+  display: none !important;
+}
+
 </style>
 

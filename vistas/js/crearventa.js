@@ -1,17 +1,4 @@
-$("#anticipo").focus(function()
-{
-	$(this).val("");
-})
-
-$("#anticipo").blur(function()
-{
-	if($(this).val() == "")
-	{
-		$(this).val("0");
-	}
-})
-
-function mostrarTablaVenta(almacenVenta)
+function mostrarTablaVenta()
 {
 	var tablaVenta = $('.tablaVentas').DataTable(
 	{
@@ -22,12 +9,7 @@ function mostrarTablaVenta(almacenVenta)
 		"bFilter": true,
 		"bLengthChange" : true,
 		"lengthMenu":[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
-		"ajax":
-		{
-			url: "ajax/dataTable-ventas.ajax.php",
-			type: "POST",
-			data: {almacenVenta:almacenVenta}
-	    },
+		"ajax":"ajax/dataTable-ventas.ajax.php",
 		"language": {
 
 			"sProcessing":     "Procesando...",
@@ -59,12 +41,10 @@ function mostrarTablaVenta(almacenVenta)
 	$(".tablaVentas tbody").on("click","button.agregarProducto", function()
 	{
 		var idProductoVenta = $(this).attr("idProducto");
-		var almacenVenta = $('#almacenVenta').val();
 		$(this).removeClass("btn-primary agregarProducto");
 		$(this).addClass("btn-default");
 		var datos = new FormData();
    		datos.append("idProductoVenta", idProductoVenta);
-   		datos.append("almacenVenta", almacenVenta);
      	$.ajax({
      		url:"ajax/productos.ajax.php",
 	      	method: "POST",
@@ -75,11 +55,10 @@ function mostrarTablaVenta(almacenVenta)
 	      	dataType:"json",
 	      	success:function(respuesta)
 	      	{
-	      		var nombre = respuesta[0]["nombre"];
-	          	var existencia = respuesta[0]["existencia"];
-	          	var precio = respuesta[0]["precio_venta"];
-	          	var idDproducto = respuesta[0]["id_producto"];
-
+	      		var nombre = respuesta["Nombre"];
+	          	var existencia = respuesta["Stock"];
+	          	var precio = respuesta["Precio_venta"];
+	          	var idDproducto = respuesta["Id_producto"];
 	          	if(existencia == 0)
 	          	{
 	      			swal({
@@ -87,9 +66,7 @@ function mostrarTablaVenta(almacenVenta)
 				      type: "error",
 				      confirmButtonText: "¡Cerrar!"
 				    });
-
 				    $("#button"+idProductoVenta).addClass("btn-primary agregarProducto");
-
 				    return;
 	          	}
 
@@ -142,15 +119,8 @@ function mostrarTablaVenta(almacenVenta)
 		          '</div>'+
 
 		        '</div>') 
-
-		        // SUMAR TOTAL DE PRECIOS
 		        sumarTotalPrecios()
-		        // AGREGAR IMPUESTO
-		        agregarImpuesto()
-		        // AGRUPAR PRODUCTOS EN FORMATO JSON
 		        listarProductos()
-		        // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-		        $(".nuevoPrecioProducto").number(true, 2);
 	      	}
 	    })
 
@@ -168,8 +138,6 @@ function mostrarTablaVenta(almacenVenta)
 			}
 		}
 	})
-
-	//localStorage.removeItem("quitarProducto");
 
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
@@ -211,14 +179,9 @@ function mostrarTablaVenta(almacenVenta)
 		else
 		{
 	     	sumarTotalPrecios();
-	     	agregarImpuesto();
 	     	listarProductos();
 		}
 	})
-
-	/*=============================================
-	MODIFICAR LA CANTIDAD
-	=============================================*/
 
 	$(".formularioVenta").on("change", "input.nuevaCantidadProducto", function()
 	{
@@ -243,13 +206,8 @@ function mostrarTablaVenta(almacenVenta)
 			});
 		}
 		sumarTotalPrecios();
-		agregarImpuesto();
 		listarProductos();
 	})
-
-	/*=============================================
-	MODIFICAR LA CANTIDAD
-	=============================================*/
 
 	function sumarTotalPrecios()
 	{
@@ -271,22 +229,6 @@ function mostrarTablaVenta(almacenVenta)
 		$("#nuevoTotalVenta").attr("total",sumaTotalPrecios);
 	}
 
-	/*=============================================
-	Agregar impuesto
-	=============================================*/
-
-	function agregarImpuesto()
-	{
-		var precioTotal = $("#nuevoTotalVenta").attr("total");
-		$("#nuevoTotalVenta").val(precioTotal);
-		$("#totalVenta").val(precioTotal);
-	}
-
-	$("#nuevoImpuestoVenta").change(function(){
-		agregarImpuesto();
-	})
-	 // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-	$("#nuevoTotalVenta").number(true, 2);
 
 	$(".formularioVenta").on("change", "input#nuevoValorEfectivo", function()
 	{
@@ -365,13 +307,11 @@ function mostrarTablaVenta(almacenVenta)
 						{
 							$("#button"+idProductoVenta).removeClass("btn-primary agregarProducto");
 							$("#button"+idProductoVenta).addClass("btn-default");
-							var nombre = respuesta[0]["nombre"];
-							var existencia = respuesta[0]["existencia"];
-							var precio = respuesta[0]["precio_venta"];
-							var idDproducto = respuesta[0]["id_producto"];
-							/*=============================================
-							EVITAR AGREGAR PRODUTO CUANDO EL existencia ESTÁ EN CERO
-							=============================================*/
+							var nombre = respuesta["Nombre"];
+							var existencia = respuesta["Stock"];
+							var precio = respuesta["Precio_venta"];
+							var idDproducto = respuesta["Id_producto"];
+
 							if(existencia == 0)
 							{
 								swal({
@@ -440,14 +380,8 @@ function mostrarTablaVenta(almacenVenta)
 							}
 							codigoProductos.push({"codigo":idProductoVenta});
 							localStorage.setItem("listaDProductos", JSON.stringify(codigoProductos));
-							// SUMAR TOTAL DE PRECIOS
 							sumarTotalPrecios()
-							// AGREGAR IMPUESTO
-							agregarImpuesto()
-							// AGRUPAR PRODUCTOS EN FORMATO JSON
 							listarProductos()
-							// PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-							$(".nuevoPrecioProducto").number(true, 2);
 							$("#codigoDVenta").val("");
 							tablaVenta.search("").draw();
 						}
@@ -477,7 +411,6 @@ function mostrarTablaVenta(almacenVenta)
 								});
 							}
 							sumarTotalPrecios();
-							agregarImpuesto();
 							listarProductos();
 							// PONER FORMATO AL PRECIO DE LOS PRODUCTOS
 							$(".nuevoPrecioProducto").number(true, 2);
@@ -511,16 +444,13 @@ function nuevaCantidadProducto()
 		});
 	}
 	sumarTotalPrecios();
-	agregarImpuesto();
 	listarProductos();
 }
 
 window.onload = function()
 {
-   var almacenVenta = $('#almacenVenta').val();
    listarProductos();
-   listarMetodos();
-   mostrarTablaVenta(almacenVenta);
+   mostrarTablaVenta();
 };
 
 function listarProductos()
@@ -539,7 +469,6 @@ function listarProductos()
 							  "precio" : $(precio[i]).attr("precioReal"),
 							  "total" : $(precio[i]).val()});
 	}
-
 	$("#listaProductos").val(JSON.stringify(listaProductos));  
 }
 
