@@ -45,6 +45,16 @@
           </li>
 
           <li class="nav-item">
+            <a href="crearventa" class="nav-link">
+              <i class="nav-icon fas fa-barcode"></i>
+              <p>
+                Crear venta
+                <span class="right badge badge-danger">Building</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="usuarios" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>

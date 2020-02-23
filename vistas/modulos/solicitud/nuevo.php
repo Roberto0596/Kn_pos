@@ -1,3 +1,9 @@
+<?php 
+$respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
+?>
+
+<input type="hidden" name="idSolicitud" id="idSolicitud" value="<?php echo (isset($_GET['idSolicitud']))?$_GET['idSolicitud']:0?>">
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -96,6 +102,33 @@
 
                 <div class="col-md-4">
 
+<<<<<<< HEAD
+                  <label class="label-style" for=""><?php echo (isset($_GET['idSolicitud']))?"Nombre":"Seleccione un cliente" ?></label>
+
+                  <div class="input-group mb-3">
+
+                    <?php if(isset($_GET["idSolicitud"])): ?>
+
+                        <div class="input-group-prepend">
+
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+                        </div>
+                        <input type="text" class="form-control" id="nombreCliente" readonly>
+                        <input type="hidden" id="idCliente" name="idCliente">
+                        
+                    <?php else: ?>
+
+                    <select class="form-control select2" name="id_cliente" required>
+                        
+                        <option value="">Selecionar Cliente</option>
+
+                        <?php  foreach($respuesta as $value): ?>
+                          
+                              <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>        
+
+                        <?php endforeach; ?>
+=======
                   <label class="label-style" for="id_cliente">Seleccione un cliente</label>
 
                   <div class="input-group mb-3">
@@ -111,8 +144,11 @@
                               echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
                           }
                         ?>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                     </select>
+
+                    <?php endif; ?>
 
                   </div>
 
@@ -130,7 +166,11 @@
 
                       </div>
 
+<<<<<<< HEAD
+                      <input type="text" style="text-transform: uppercase;" id="num_placas" name="num_placas" placeholder="Numero de placas" class="form-control" required>
+=======
                       <input type="text" style="text-transform: uppercase;" id="num_placas" name="num_placas" placeholder="Número de placas" class="form-control" required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                   </div>
 
@@ -149,7 +189,11 @@
                     </div>
 
                     <select class="form-control capitalize" id="estado_civil" name="estado_civil" required>
+<<<<<<< HEAD
+                  
+=======
 
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
                       <option value="">Selecionar estado civil</option>
 
                       <option value="Casado">Casado</option>
@@ -185,7 +229,11 @@
                         </div>
 
                         <select class="form-control capitalize" id="casa" name="casa" required>
+<<<<<<< HEAD
+                      
+=======
 
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
                           <option value="">Seleccione un item</option>
 
                           <option value="Si">Si</option>
@@ -210,7 +258,11 @@
 
                       </div>
 
+<<<<<<< HEAD
+                      <input type="text" name="tiempo_casa" id="tiempo_casa" placeholder="Tiempo en casa" class="form-control capitalize" required>
+=======
                       <input type="text" id="tiempo_casa" name="tiempo_casa" placeholder="Tiempo en casa" class="form-control capitalize" required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                   </div>
 
@@ -258,7 +310,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_papa" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_papa" id="nombre_papa" placeholder="Nombre" class="form-control capitalize" required>
                             <input type="hidden" name="referencia_padre" value="2">
 
                           </div>
@@ -269,7 +321,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" name="direccion_papa" id="direccion_papa" placeholder="Direccion" class="form-control capitalize" required>
+=======
                             <input type="text" name="direccion_papa" placeholder="Dirección" class="form-control capitalize" required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 
@@ -279,7 +335,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" name="telefono_papa" id="telefono_papa" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+=======
                             <input type="tel" name="telefono_papa" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 
@@ -294,7 +354,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_mama" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" id="nombre_mama" name="nombre_mama" placeholder="Nombre" class="form-control capitalize" required>
                             <input type="hidden" name="referencia_mama" value="3">
 
                           </div>
@@ -305,7 +365,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" id="direccion_mama" name="direccion_mama" placeholder="Direccion" class="form-control capitalize" required>
+=======
                             <input type="text" name="direccion_mama" placeholder="Dirección" class="form-control capitalize" required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 
@@ -315,7 +379,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" id="telefono_mama" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+=======
                             <input type="tel" name="telefono_mama" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 
@@ -463,7 +531,11 @@
                       </div>
 
                       <select class="form-control capitalize" id="antiguedad" name="antiguedad" required>
+<<<<<<< HEAD
+                  
+=======
 
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
                       <option value="">Seleccionar un item</option>
 
                       <option value="Menos de un año">Menos de un año</option>
@@ -510,7 +582,7 @@
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize " required>
 
                           </div>
 
@@ -520,7 +592,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize " required>
+=======
                             <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 
@@ -530,7 +606,11 @@
 
                           <div class="input-group mb-3">
 
+<<<<<<< HEAD
+                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize " data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+=======
                             <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+>>>>>>> 66881f455f5534d1946212630b4aaa05e8696d34
 
                           </div>
 

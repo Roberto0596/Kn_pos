@@ -8,6 +8,7 @@ class TablaProductos
 	public function mostrarTablaProductos()
 	{
 	    $productos = ControladorProductos::ctrMostrarProductosT();
+	    
 		if(count($productos) == 0)
 		{
 			echo '{"data": []}';
@@ -19,8 +20,8 @@ class TablaProductos
 
 		for($i = 0; $i < count($productos); $i++)
 		{
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalEditarProducto' title='Editar'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["Id_producto"]."' title='Eliminar'><i class='fa fa-trash'></i></button>";
-			$stock =  "<button class='btn btn-info btnAumentarStock' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalAumentarStock' title='Aumentar stock'><i class='fa fa-plus'></i></button><button class='btn btn-secondary btnDisminuirStock' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalDisminuirStock' title='Disminuir stock'><i class='fa fa-minus'></i></button></div>";
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalEditarProducto'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["Id_producto"]."'><i class='fa fa-trash'></i></button></div>";
+			$stock =  "<div class='btn-group'><button class='btn btn-light btnModificarStock' idProducto='".$productos[$i]["Id_producto"]."' data-toggle = 'modal' data-target = '#modalModificarStock'>".$productos[$i]["Stock"]."</button></div>";
 
 			$datosJson .='[
 					"'.($i+1).'",
@@ -29,9 +30,9 @@ class TablaProductos
 					"'.$productos[$i]["Precio_compra"].'",
 					"'.$productos[$i]["Precio_venta"].'",
 					"'.$productos[$i]["NombreProv"].'",
-					"'.$productos[$i]["Stock"].'",
+					"'.$stock.'",
 					"'.$productos[$i]["Ventas"].'",
-					"'.$botones.$stock.'"
+					"'.$botones.'"
 				],';
 
 		}
