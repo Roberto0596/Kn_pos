@@ -126,13 +126,13 @@ $(".tablaProductos tbody").on("click","button.btnDisminuirStock", function()
 })
 
 $('#modalAumentarStock').on('shown.bs.modal', function () {
-	$('#stockA').trigger('focus')
-  })
+	$('#stockA').trigger('focus');
+  });
 
   $('#modalDisminuirStock').on('shown.bs.modal', function () {
-	$('#stockD').trigger('focus')
-  })
+	$('#stockD').trigger('focus');
+  });
 
   $('#modalEditarProducto').on('shown.bs.modal', function () {
-	$('#codigo').trigger('focus')
-  })
+	$('#codigo').trigger('focus');
+  });

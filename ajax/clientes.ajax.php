@@ -14,7 +14,7 @@ class AjaxClientes
 		echo json_encode($respuesta);
 	}
 
-	public  $validarUsuario;	
+	public  $validarUsuario;
 	public function ajaxValidarUsuario()
 	{
 		$item = "usuario";

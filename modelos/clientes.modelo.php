@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "conexion.php";
 class ModeloClientes
 {
@@ -7,7 +7,7 @@ class ModeloClientes
 		if ($item==null && $tipo == null)
 		{
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo");
-			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);	
+			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
@@ -23,7 +23,7 @@ class ModeloClientes
 
 	public static function mdlEditarCliente($tabla,$datos)
 	{
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set 
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set
 		nombre = :nombre,
 		direccion = :direccion,
 		edad = :edad,
@@ -69,7 +69,7 @@ class ModeloClientes
 	{
 		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
 		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo)");
-		
+
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
 		$stmt->bindParam(":codigo_postal",$datos["codigo_postal"],PDO::PARAM_STR);

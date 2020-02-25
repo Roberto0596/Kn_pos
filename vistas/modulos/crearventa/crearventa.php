@@ -24,16 +24,16 @@
     </div>
 
   </section>
-  
+
   <section class="content">
 
     <div class="row">
 
       <div class="col-lg-5 col-xs-12">
-          
+
         <div class="card">
-            
-          <form role="form" method="post" class="formularioVenta">
+
+          <form role="form" method="post" id="frmCobro" class="formularioVenta">
 
             <div class="card-header with-border margin-sale">
 
@@ -41,21 +41,24 @@
 
                 <h5 class="name-user"><?php echo $_SESSION["nombre"];?></h5>
 
-                <h5 class="code-sale">  
+                <h5 class="code-sale">
+                <?php
 
-                  <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="10001" >
-                  10001
-                 
+                  $nuevoFolio = ControladorVentas::NuevoFolio();
+                  echo $nuevoFolio;
+                ?>
+                  <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
+
                 </h5>
 
               </div>
-               
+
             </div>
 
             <input type="hidden" name="id_usuario" value="<?php echo $_SESSION["id"]; ?>">
 
             <input type="hidden" id="almacenVenta" name="id_almacen" value="<?php echo $_SESSION["almacen"]?>">
-            
+
             <div class="card-body">
 
               <div class="input-group">
@@ -65,9 +68,9 @@
                   <span class="input-group-text"><i class="fa fa-users"></i></span>
 
                 </div>
-                  
+
                 <select class="form-control traerProducto" id="seleccionarCliente" name="id_cliente" required>
-      
+
                   <?php
                     $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
                     foreach ($clientes as $key => $value)
@@ -80,16 +83,16 @@
 
                 <span class="input-group-addon">
 
-                  <a href="clientes" class="btn btn-default">agregar cliente</a>
-                    
+                  <a href="clientes-nuevo" class="btn btn-default">Agregar cliente</a>
+
                 </span>
-                  
+
               </div>
 
               <div class="form-group row nuevoProducto"></div>
 
               <input type="hidden" id="listaProductos" name="listaProductos">
-                   
+
               <hr>
 
               <div class="row">
@@ -97,7 +100,7 @@
                 <div class="col-xs-6 pull-right alto">
 
                   <table class="table table-p">
-                          
+
                     <tbody>
 
                       <tr>
@@ -113,9 +116,9 @@
                         </td>
 
                         <td class="size-td-two">
-                                
+
                           <div class="input-group">
-                                  
+
                             <h4>
 
                               $<label class="letter-type-two" value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total=""></label>
@@ -127,20 +130,20 @@
                           </div>
 
                         </td>
-                      
+
                       </tr>
-                            
+
                     </tbody>
 
                   </table>
-                        
+
                 </div>
 
               </div>
 
               <div class="row">
-                      
-                <div class="col-md-6"> 
+
+                <div class="col-md-6">
 
                   <div class="input-group">
 
@@ -150,7 +153,7 @@
 
                     </div>
 
-                    <input type="text" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Efectivo" required>
+                    <input type="number" min="1" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Efectivo" required autocomplete="off">
 
                   </div>
 
@@ -171,25 +174,25 @@
                   </div>
 
                 </div>
-                         
+
               </div>
-                           
+
             </div>
 
             <div class="card-footer">
 
               <button type="submit" class="btn btn-primary pull-right">Cobrar</button>
-                
+
             </div>
 
           </form>
 
         </div>
-        
+
       </div>
 
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
-      
+
         <div class="card">
 
           <div class="card-header with-border">
@@ -200,18 +203,18 @@
 
                 <span class="input-group-text"><i class="fa fa-barcode"></i></span>
 
-              </div> 
+              </div>
 
                 <input type="text" class="form-control codigoBarra" id="codigoDVenta" name="codigoDVenta" placeholder="Codigo" autofocus>
 
-            </div> 
-                
+            </div>
+
           </div>
 
           <div class="card-body">
-            
+
             <table class="table table-bordered table-striped dt-responsive tablaVentas">
-              
+
                <thead>
 
                  <tr>
@@ -223,7 +226,7 @@
                   <th>Acciones</th>
                 </tr>
 
-              </thead>       
+              </thead>
 
             </table>
 
@@ -234,7 +237,7 @@
       </div>
 
     </div>
- 
+
   </section>
 
 </div>
@@ -252,3 +255,7 @@
 
 </style>
 
+<?php
+$CrearVenta = new ControladorVentas();
+$CrearVenta->ctrCrearVenta();
+?>

@@ -136,5 +136,17 @@ class ControladorProductos{
 			}
 		}
 	}
+
+
+	public function ctrVenta($nuevoStock, $idProducto)
+	{
+		include_once "modelos/productos.modelo.php";
+		include_once "controladores/helpers.php";
+		$tabla = "productos";
+		$stock = $nuevoStock;
+		if($stock < 0) $stock = 0;
+
+		return ModeloProductos::mdlModificarStock($tabla,"Id_producto",$idProducto, $stock);
+	}
 }
 ?>

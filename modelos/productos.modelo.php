@@ -121,7 +121,5 @@ class ModeloProductos{
 			return "error";
 		}
 	}
-
-	//UPDATE `productos` SET `Stock` = '3' WHERE `productos`.`Id_producto` = 4;
 }
 ?>
