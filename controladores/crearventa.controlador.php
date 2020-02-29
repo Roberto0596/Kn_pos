@@ -1,12 +1,7 @@
 <?php
 
-class ControladorVentas{
-    public function NuevoFolio()
-    {
-        $respuesta = ModeloVentas::mdlNuevoFolio();
-		return $respuesta;
-    }
-
+class ControladorVentas
+{
     public function ctrCrearVenta()
 	{
 		if (isset($_POST["nuevaVenta"]))

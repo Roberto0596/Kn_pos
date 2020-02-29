@@ -23,6 +23,16 @@
       <nav class="mt-2">
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <li class="nav-item">
+            <a href="crearventa" class="nav-link">
+              <i class="nav-icon fas fa-barcode"></i>
+              <p>
+                Crear venta
+                <span class="right badge badge-danger">Building</span>
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="clientes" class="nav-link">
@@ -45,10 +55,20 @@
           </li>
 
           <li class="nav-item">
-            <a href="crearventa" class="nav-link">
-              <i class="nav-icon fas fa-barcode"></i>
+            <a href="proveedores" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
               <p>
-                Crear venta
+                Proveedores
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="productos" class="nav-link">
+              <i class="nav-icon fas fa-dolly"></i>
+              <p>
+                Productos
                 <span class="right badge badge-danger">Building</span>
               </p>
             </a>
@@ -70,26 +90,6 @@
               <p>
                 Almacenes
                 <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="proveedores" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>
-                Proveedores
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="productos" class="nav-link">
-              <i class="nav-icon fas fa-dolly"></i>
-              <p>
-                Productos
-                <span class="right badge badge-danger">Building</span>
               </p>
             </a>
           </li>

@@ -11,32 +11,6 @@ class ControladorProductos{
 		$respuesta = ModeloProductos::mdlMostrarProductosT();
 		return $respuesta;
     }
-    public function traerProveedores()
-    {
-        require_once "proveedores.controlador.php";
-        $resultado = "";
-        $item = null;
-		$valor = null;
-        $proveedores = ControladorProveedores::ctrMostrarProveedores($item,$valor);
-        if(count($proveedores) == 0)
-		{
-			$resultado = "<select id=\"idProveedor\" name=\"idProveedor\" required>\n";
-            $resultado .="\t<option>No hay proveedores activos</option>\n";
-            $resultado .="</select>\n";
-			return $resultado;
-	  	}else{
-            $resultado = "<select id=\"idProveedor\" name=\"idProveedor\" required>\n";
-
-            for($i = 0; $i < count($proveedores); $i++)
-            {
-                $resultado .="\t<option value=\"".$proveedores[$i]["Id_proveedor"]."\">".$proveedores[$i]["Nombre"]."</option>\n";
-            }
-            $resultado .="</select>\n";
-			return $resultado;
-          }
-    }
-
-
 
     public function ctrCrearProducto()
 	{

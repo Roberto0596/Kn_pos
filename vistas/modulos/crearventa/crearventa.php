@@ -1,3 +1,7 @@
+<?php
+  $nuevoFolio = Helpers::NuevoFolio();
+?>
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -42,11 +46,7 @@
                 <h5 class="name-user"><?php echo $_SESSION["nombre"];?></h5>
 
                 <h5 class="code-sale">
-                <?php
-
-                  $nuevoFolio = ControladorVentas::NuevoFolio();
-                  echo $nuevoFolio;
-                ?>
+                  <?= $nuevoFolio ?>
                   <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
 
                 </h5>
