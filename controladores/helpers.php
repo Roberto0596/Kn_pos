@@ -59,28 +59,4 @@ class Helpers
         $respuesta = ModeloVentas::mdlNuevoFolio();
 		return $respuesta;
     }
-
-    public function traerProveedores()
-    {
-        $resultado = "";
-        $item = null;
-		$valor = null;
-        $proveedores = ControladorProveedores::ctrMostrarProveedores($item,$valor);
-        if(count($proveedores) == 0)
-		{
-			$resultado = "<select id=\"idProveedor\" class=\"form-control\" name=\"idProveedor\" required>\n";
-            $resultado .="\t<option>No hay proveedores activos</option>\n";
-            $resultado .="</select>\n";
-			return $resultado;
-	  	}else{
-            $resultado = "<select id=\"idProveedor\" class=\"form-control-lg\" name=\"idProveedor\" required>\n";
-
-            for($i = 0; $i < count($proveedores); $i++)
-            {
-                $resultado .="\t<option value=\"".$proveedores[$i]["Id_proveedor"]."\">".$proveedores[$i]["Nombre"]."</option>\n";
-            }
-            $resultado .="</select>\n";
-			return $resultado;
-          }
-    }
 }

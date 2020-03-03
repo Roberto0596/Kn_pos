@@ -1,5 +1,6 @@
 <?php
-class ControladorProveedores{
+class ControladorProveedores
+{
     public function ctrMostrarProveedores($item,$valor)
 	{
 		$tabla = "proveedores";
