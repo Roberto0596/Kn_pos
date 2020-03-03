@@ -116,7 +116,7 @@
                                             <i class="fas fa-truck"></i></span>
                                         </div>
                                         <?php
-                                            echo Helpers::traerProveedores();
+                                            echo ControladorProductos::traerProveedores();
                                         ?>
                                     </div>
                                 </div>
