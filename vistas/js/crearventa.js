@@ -39,11 +39,20 @@ function mostrarTablaVenta()
 		}
 	});
 
+	$(".tablaVentas tbody").on("click","button.DeUno", function()
+	{
+		var idProductoVenta = $(this).attr("idProducto");
+		var cantidad = $(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val();
+		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val(parseInt(cantidad)+1);
+		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").trigger('change');
+		$('#nuevoValorEfectivo').trigger('focus');
+	});
+
 	$(".tablaVentas tbody").on("click","button.agregarProducto", function()
 	{
 		var idProductoVenta = $(this).attr("idProducto");
 		$(this).removeClass("btn-primary agregarProducto");
-		$(this).addClass("btn-default");
+		$(this).addClass("btn-default DeUno");
 		var datos = new FormData();
    		datos.append("idProductoVenta", idProductoVenta);
      	$.ajax({
@@ -72,57 +81,24 @@ function mostrarTablaVenta()
 				    return;
 	          	}
 
-	          	$(".nuevoProducto").append(
-
-	          	'<div class="row" style="padding:5px 15px">'+
-
-				  '<!-- Descripción del producto -->'+
-
-		          '<div class="col-xs-5" style="padding-right:0px">'+
-
-		            '<div class="input-group">'+
-
-		              '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProductoVenta+'"><i class="fa fa-times"></i></button></span>'+
-
-		              '<input type="text" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregarProducto" value="'+nombre+'" readonly required>'+
-
-		            '</div>'+
-
-		          '</div>'+
-
-		          '<!-- Cantidad del producto -->'+
-
-		          '<div class="col-xs-1">'+
-
-		             '<h5>'+precio+'</h5>'+
-
-		          '</div>' +
-
-		          '<!-- Cantidad del producto -->'+
-
-		          '<div class="col-xs-3">'+
-
-		             '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required>'+
-
-		          '</div>' +
-
-		          '<!-- Precio del producto -->'+
-
-		          '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
-
-		            '<div class="input-group">'+
-
-		              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-
-		              '<input type="text" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
-
-		            '</div>'+
-
-		          '</div>'+
-
-		        '</div>')
-		        sumarTotalPrecios()
-		        listarProductos()
+				  $(".nuevoProducto").append(
+				'<tr role="row" class="odd Producto'+idDproducto+'">'+
+					'<td>'+
+						'<span class="input-group-addon">'+
+						'<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProductoVenta+'">'+
+							'<i class="fa fa-times"></i>'+
+						'</button>'+
+						'</span>'+
+						'<input type="hidden" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregarProducto" value="'+nombre+'" readonly required>'+
+					'</td>'+
+    				'<td>'+nombre+'</td>'+
+    				'<td>$'+precio+'</td>'+
+    				'<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required></td>'+
+    				'<td  class="ingresoPrecio"><input type="text" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required></td>'+
+  				'</tr>'
+				  );
+		        sumarTotalPrecios();
+		        listarProductos();
 	      	}
 		});
 		$('#nuevoValorEfectivo').trigger('focus');
@@ -136,7 +112,7 @@ function mostrarTablaVenta()
 			var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
 			for(var i = 0; i < listaIdProductos.length; i++)
 			{
-				$("#button"+listaIdProductos[i]["idProducto"]).removeClass('btn-default');
+				$("#button"+listaIdProductos[i]["idProducto"]).removeClass('btn-default DeUno');
 				$("#button"+listaIdProductos[i]["idProducto"]).addClass('btn-primary agregarProducto');
 			}
 		}
@@ -144,7 +120,7 @@ function mostrarTablaVenta()
 
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
-		$(this).parent().parent().parent().parent().remove();
+		$(this).parent().parent().parent().remove();
 		var idProducto = $(this).attr("idProducto");
 		if (localStorage.getItem("listaDProductos")!=null)
 		{
@@ -167,7 +143,7 @@ function mostrarTablaVenta()
   			}
  		}
 
-		$("#button"+idProducto).removeClass("btn-default");
+		$("#button"+idProducto).removeClass("btn-default DeUno");
 		$("#button"+idProducto).addClass("btn-primary agregarProducto");
 
 		if($(".nuevoProducto").children().length == 0)
@@ -185,6 +161,7 @@ function mostrarTablaVenta()
 	     	listarProductos();
 		}
 	});
+
 
 	$(".formularioVenta").on("keyup", "input.nuevaCantidadProducto", function()
 	{
@@ -218,7 +195,7 @@ function mostrarTablaVenta()
 
 	$(".formularioVenta").on("change", "input.nuevaCantidadProducto", function()
 	{
-		var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
+		var precio = $(this).parent().parent().children(".ingresoPrecio").children(".nuevoPrecioProducto");
 
 		var precioFinal = $(this).val() * precio.attr("precioReal");
 
@@ -260,7 +237,13 @@ function mostrarTablaVenta()
 		{
 			return total + numero;
 		}
-		var sumaTotalPrecios = arraySumaPrecio.reduce(sumaArrayPrecios);
+
+		if(arraySumaPrecio != ""){
+			var sumaTotalPrecios = arraySumaPrecio.reduce(sumaArrayPrecios);
+		}else{
+			var sumaTotalPrecios = 0;
+		}
+
 		$("#nuevoTotalVenta").html(sumaTotalPrecios);
 		$("#totalVenta").val(sumaTotalPrecios);
 		$("#nuevoTotalVenta").attr("total",sumaTotalPrecios);
@@ -364,7 +347,7 @@ function mostrarTablaVenta()
 						if (bandera == 0)
 						{
 							$("#button"+idProductoVenta).removeClass("btn-primary agregarProducto");
-							$("#button"+idProductoVenta).addClass("btn-default");
+							$("#button"+idProductoVenta).addClass("btn-default DeUno");
 							var nombre = respuesta["Nombre"];
 							var existencia = respuesta["Stock"];
 							var precio = respuesta["Precio_venta"];

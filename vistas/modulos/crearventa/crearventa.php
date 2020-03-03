@@ -88,12 +88,25 @@
                 </span>
 
               </div>
+              <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 480px;">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting" colspan="1" style="width: 10px;">E</th>
+                    <th class="sorting" colspan="1" style="width: 130px;">Producto</th>
+                    <th class="sorting" colspan="1" style="width: 30px;">P.U.</th>
+                    <th class="sorting" colspan="1" style="width: 30px;">Cantidad</th>
+                    <th class="sorting" colspan="1" style="width: 30px;">Importe</th>
+                  </tr>
+                </thead>
 
-              <div class="form-group row nuevoProducto"></div>
+              <tbody>
+
+              </tbody>
+              </table>
 
               <input type="hidden" id="listaProductos" name="listaProductos">
 
-              <hr>
+
 
               <div class="row">
 
@@ -121,8 +134,7 @@
 
                             <h4>
 
-                              $<label class="letter-type-two" value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total=""></label>
-
+                              $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
                             </h4>
 
                             <input type="hidden" name="totalVenta" id="totalVenta" value="0">
@@ -201,11 +213,11 @@
 
               <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fa fa-barcode"></i></span>
+                <span class="input-group-text"><i class="fa fa-dolly"></i></span>
 
               </div>
 
-                <input type="text" class="form-control codigoBarra" id="codigoDVenta" name="codigoDVenta" placeholder="Codigo" autofocus>
+                <input type="text" class="form-control codigoBarra" id="codigoDVenta" name="codigoDVenta" placeholder="Producto" autofocus>
 
             </div>
 

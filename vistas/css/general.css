@@ -61,15 +61,15 @@ button
 
 .margin-dis
 {
-    margin-left: auto; 
+    margin-left: auto;
     display: -webkit-box;
 }
 
 .name-user
 {
     margin-top: auto;
-    margin-bottom: auto; 
-    font-size: medium; 
+    margin-bottom: auto;
+    font-size: medium;
     width: 50%;
 }
 
@@ -110,6 +110,15 @@ button
 
 .letter-type-two
 {
-    font-family: monospace; 
+    font-family: monospace;
     font: inherit
+}
+
+hr.miLinea{
+    height: 10px;
+  margin-left: 0%;
+  margin-right: 50%;
+  background-color: red;
+  border: 03px;
+
 }
