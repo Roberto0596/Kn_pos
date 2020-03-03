@@ -377,3 +377,8 @@
   </div>
 
 </div>
+
+<?php
+  $eliminarUsuario = new ControladorUsuarios();
+  $eliminarUsuario->ctrBorrarUsuario();
+?>
