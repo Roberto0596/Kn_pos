@@ -129,6 +129,7 @@ function mostrarTablaVenta()
 
 		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
 		$('#seleccionarCliente').attr('disabled',true);
+		$('#seleccionarClienteH').attr('disabled',false);
 	});
 
 	$(".formularioVenta").on("click", "button.btn-secondary", function()
@@ -138,6 +139,7 @@ function mostrarTablaVenta()
 		$(".formularioVenta .tipoCompra").text("Crédito");
 		$("#seleccionarCliente").find("option[value='1']").remove();
 		$('#seleccionarCliente').attr('disabled',false);
+		$('#seleccionarClienteH').attr('disabled',true);
 	});
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{

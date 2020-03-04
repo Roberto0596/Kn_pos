@@ -68,7 +68,7 @@
                   <span class="input-group-text"><i class="fa fa-users"></i></span>
 
                 </div>
-
+                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disable="true" required>
                 <select class="form-control traerProducto" id="seleccionarCliente" name="id_cliente" required>
                   <option></option>
                   <?php
