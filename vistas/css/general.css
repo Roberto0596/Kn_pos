@@ -114,11 +114,6 @@ button
     font: inherit
 }
 
-hr.miLinea{
-    height: 10px;
-  margin-left: 0%;
-  margin-right: 50%;
-  background-color: red;
-  border: 03px;
-
+.seleccionarCliente{
+    height: 100px;
 }

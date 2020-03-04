@@ -94,7 +94,10 @@ function mostrarTablaVenta()
     				'<td>'+nombre+'</td>'+
     				'<td>$'+precio+'</td>'+
     				'<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required></td>'+
-    				'<td  class="ingresoPrecio"><input type="text" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required></td>'+
+					'<td  class="ingresoPrecio">'+
+					'<input type="hidden" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+					'<label id="nuevoPrecioLabel">$'+precio+'</label>'+
+					'</td>'+
   				'</tr>'
 				  );
 		        sumarTotalPrecios();
@@ -118,6 +121,24 @@ function mostrarTablaVenta()
 		}
 	});
 
+	$(".formularioVenta").on("click", "button.btn-info", function()
+	{
+		$(".formularioVenta .tipoCompra").removeClass('btn-info');
+		$(".formularioVenta .tipoCompra").addClass('btn-secondary');
+		$(".formularioVenta .tipoCompra").text("Contado");
+
+		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
+		$('#seleccionarCliente').attr('disabled',true);
+	});
+
+	$(".formularioVenta").on("click", "button.btn-secondary", function()
+	{
+		$(".formularioVenta .tipoCompra").removeClass('btn-secondary');
+		$(".formularioVenta .tipoCompra").addClass('btn-info');
+		$(".formularioVenta .tipoCompra").text("Crédito");
+		$("#seleccionarCliente").find("option[value='1']").remove();
+		$('#seleccionarCliente').attr('disabled',false);
+	});
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
 		$(this).parent().parent().parent().remove();
@@ -166,10 +187,17 @@ function mostrarTablaVenta()
 	$(".formularioVenta").on("keyup", "input.nuevaCantidadProducto", function()
 	{
 		var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
-
+		var precioLabel = $(this).parent().parent().children(".ingresoPrecio").children("#nuevoPrecioLabel");
 		var precioFinal = $(this).val() * precio.attr("precioReal");
 
-		precio.val(precioFinal);
+		if(precioFinal != ""){
+			precio.val(precioFinal);
+			precioLabel.text("$"+precioFinal);
+		}else{
+			precio.val(0);
+			precioLabel.text("$0");
+		}
+
 
 		var nuevaExistencia = Number($(this).attr("existencia")) - $(this).val();
 
@@ -196,10 +224,16 @@ function mostrarTablaVenta()
 	$(".formularioVenta").on("change", "input.nuevaCantidadProducto", function()
 	{
 		var precio = $(this).parent().parent().children(".ingresoPrecio").children(".nuevoPrecioProducto");
-
+		var precioLabel = $(this).parent().parent().children(".ingresoPrecio").children("#nuevoPrecioLabel");
 		var precioFinal = $(this).val() * precio.attr("precioReal");
 
-		precio.val(precioFinal);
+		if(precioFinal != ""){
+			precio.val(precioFinal);
+			precioLabel.text("$"+precioFinal);
+		}else{
+			precio.val(0);
+			precioLabel.text("$0");
+		}
 
 		var nuevaExistencia = Number($(this).attr("existencia")) - $(this).val();
 
@@ -468,29 +502,6 @@ function mostrarTablaVenta()
 	});
 }
 
-
-function nuevaCantidadProducto()
-{
-	var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
-	var precioFinal = $(this).val() * precio.attr("precioReal");
-	precio.val(precioFinal);
-	var nuevaExistencia = Number($(this).attr("existencia")) - $(this).val();
-	$(this).attr("nuevaExistencia", nuevaExistencia);
-	if (Number($(this).val()) > Number($(this).attr("existencia")))
-	{
-		$(this).val(1);
-		swal.fire({
-			title: "La cantidad supera la existencia",
-			text: "¡Solo hay "+$(this).attr("existencia")+" pares!",
-			type: "error",
-			confirmButtonText: "¡Cerrar!"
-		});
-
-	}
-	sumarTotalPrecios();
-	listarProductos();
-}
-
 window.onload = function()
 {
    listarProductos();
@@ -516,13 +527,13 @@ function listarProductos()
 	$("#listaProductos").val(JSON.stringify(listaProductos));
 }
 
-jQuery(document).ready(function($){
-    $(document).ready(function() {
-		$('#seleccionarCliente').select2({
-			height:'290%'
-		  });
-    });
+$(document).ready(function() {
+	$("#seleccionarCliente").select2({
+		placeholder: "Nombre del cliente",
+		allowClear: true
+	});
 });
+
 
 $( "#frmCobro" ).submit(function( event ) {
 	if($("#totalVenta").val() > $("#nuevoValorEfectivo").val() && $("#nuevoCambioEfectivo").val() == 0){

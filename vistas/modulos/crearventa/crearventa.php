@@ -70,21 +70,20 @@
                 </div>
 
                 <select class="form-control traerProducto" id="seleccionarCliente" name="id_cliente" required>
-
+                  <option></option>
                   <?php
                     $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
                     foreach ($clientes as $key => $value)
                     {
-                      echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
+                      if($value["id_cliente"] > 1)
+                        echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
                     }
                   ?>
 
                 </select>
 
                 <span class="input-group-addon">
-
-                  <a href="clientes-nuevo" class="btn btn-default">Agregar cliente</a>
-
+                  <button type="button" class="btn btn-info tipoCompra">Crédito</button>
                 </span>
 
               </div>
