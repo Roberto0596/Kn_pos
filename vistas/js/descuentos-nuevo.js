@@ -1,7 +1,7 @@
 
 function mostrarTablaVenta()
 {
-	var tablaVenta = $('.tablaVentas').DataTable(
+	var tablaVenta = $('.tablaProductos').DataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
@@ -39,16 +39,7 @@ function mostrarTablaVenta()
 		}
 	});
 
-	$(".tablaVentas tbody").on("click","button.DeUno", function()
-	{
-		var idProductoVenta = $(this).attr("idProducto");
-		var cantidad = $(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val();
-		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val(parseInt(cantidad)+1);
-		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").trigger('change');
-		$('#nuevoValorEfectivo').trigger('focus');
-	});
-
-	$(".tablaVentas tbody").on("click","button.agregarProducto", function()
+	$(".tablaProductos tbody").on("click","button.agregarProducto", function()
 	{
 		var idProductoVenta = $(this).attr("idProducto");
 		$(this).removeClass("btn-primary agregarProducto");
@@ -93,10 +84,8 @@ function mostrarTablaVenta()
 					'</td>'+
     				'<td>'+nombre+'</td>'+
     				'<td>$'+precio+'</td>'+
-    				'<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required></td>'+
 					'<td  class="ingresoPrecio">'+
-					'<input type="hidden" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
-					'<label id="nuevoPrecioLabel">$'+precio+'</label>'+
+					'<label id="nuevoPrecioLabel">'+existencia+'</label>'+
 					'</td>'+
   				'</tr>'
 				  );
@@ -104,11 +93,11 @@ function mostrarTablaVenta()
 		        listarProductos();
 	      	}
 		});
-		$('#nuevoValorEfectivo').trigger('focus');
+		$('#porcentaje').trigger('focus');
 
 	});
 
-	$(".tablaVentas").on("draw.dt", function()
+	$(".tablaProductos").on("draw.dt", function()
 	{
 		if(localStorage.getItem("quitarProducto") != null)
 		{
@@ -141,7 +130,7 @@ function mostrarTablaVenta()
 		$('#seleccionarCliente').attr('disabled',false);
 		$('#seleccionarClienteH').attr('disabled',true);
 	});
-	$(".formularioVenta").on("click", "button.quitarProducto", function()
+	$(".formularioDescuentos").on("click", "button.quitarProducto", function()
 	{
 		$(this).parent().parent().parent().remove();
 		var idProducto = $(this).attr("idProducto");

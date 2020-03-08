@@ -117,3 +117,9 @@ button
 .seleccionarCliente{
     height: 100px;
 }
+#tableScroll {
+    overflow:auto;
+    overflow-x: hidden;
+    height: 200px;
+    width:498px;
+}

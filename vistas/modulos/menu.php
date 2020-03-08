@@ -23,7 +23,7 @@
       <nav class="mt-2">
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
+
           <li class="nav-item">
             <a href="crearventa" class="nav-link">
               <i class="nav-icon fas fa-barcode"></i>
@@ -69,6 +69,16 @@
               <i class="nav-icon fas fa-dolly"></i>
               <p>
                 Productos
+                <span class="right badge badge-danger">Building</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="descuentos" class="nav-link">
+              <i class="nav-icon fas fa-percent"></i>
+              <p>
+                Descuentos
                 <span class="right badge badge-danger">Building</span>
               </p>
             </a>

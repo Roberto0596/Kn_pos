@@ -41,14 +41,12 @@
 
             <div class="card-header with-border margin-sale">
 
+
               <div class="margin-dis">
-
-                <h5 class="name-user"><?php echo $_SESSION["nombre"];?></h5>
-
+              <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
+                <h5 class="name-user">Folio de venta: </h5>
                 <h5 class="code-sale">
                   <?= $nuevoFolio ?>
-                  <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
-
                 </h5>
 
               </div>
@@ -85,8 +83,8 @@
                 <span class="input-group-addon">
                   <button type="button" class="btn btn-info tipoCompra">Crédito</button>
                 </span>
-
               </div>
+            <div id="tableScroll">
               <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 480px;">
                 <thead>
                   <tr role="row">
@@ -97,59 +95,34 @@
                     <th class="sorting" colspan="1" style="width: 30px;">Importe</th>
                   </tr>
                 </thead>
-
-              <tbody>
-
-              </tbody>
+                <tbody>
+                </tbody>
               </table>
-
+            </div>
               <input type="hidden" id="listaProductos" name="listaProductos">
 
-
+              <div class="row">
+                <div class="col-xs-6 pull-right">
+                  <div class="input-group ">
+                    <!-- <select name="tipoTiempo" id="tipoTiempo" required>
+                      <option disabled selected>Selecciona una opción</option>
+                      <option value="Semanal">Semanal</option>
+                      <option value="Quincenal">Quincenal</option>
+                      <option value="Mensual">Mensual</option>
+                    </select> -->
+                  </div>
+                </div>
+              </div>
 
               <div class="row">
-
                 <div class="col-xs-6 pull-right alto">
-
-                  <table class="table table-p">
-
-                    <tbody>
-
-                      <tr>
-
-                        <td class="size-td">
-
-                            <h4 class="letter-type">
-
-                              <label for="total">Total</label>
-
-                            </h4>
-
-                        </td>
-
-                        <td class="size-td-two">
-
-                          <div class="input-group">
-
-                            <h4>
-
-                              $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
-                            </h4>
-
-                            <input type="hidden" name="totalVenta" id="totalVenta" value="0">
-
-                          </div>
-
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
+                  <div class="input-group ">
+                    <h4>
+                      Total $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
+                    </h4>
+                    <input type="hidden" name="totalVenta" id="totalVenta" value="0">
+                  </div>
                 </div>
-
               </div>
 
               <div class="row">
