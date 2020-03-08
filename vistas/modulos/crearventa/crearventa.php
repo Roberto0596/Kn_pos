@@ -58,15 +58,11 @@
             <input type="hidden" id="almacenVenta" name="id_almacen" value="<?php echo $_SESSION["almacen"]?>">
 
             <div class="card-body">
-
               <div class="input-group">
 
                 <div class="input-group-prepend">
-
                   <span class="input-group-text"><i class="fa fa-users"></i></span>
-
                 </div>
-                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disable="true" required>
                 <select class="form-control traerProducto" id="seleccionarCliente" name="id_cliente" required>
                   <option></option>
                   <?php
@@ -79,10 +75,12 @@
                   ?>
 
                 </select>
-
-                <span class="input-group-addon">
-                  <button type="button" class="btn btn-info tipoCompra">Crédito</button>
-                </span>
+                <div class="input-group-prepend">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-info tipoCompra">Crédito</button>
+                  </span>
+                </div>
+                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disable="true" required>
               </div>
             <div id="tableScroll">
               <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 480px;">
@@ -101,15 +99,50 @@
             </div>
               <input type="hidden" id="listaProductos" name="listaProductos">
 
-              <div class="row">
+              <div class="form-group row">
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
-                    <!-- <select name="tipoTiempo" id="tipoTiempo" required>
-                      <option disabled selected>Selecciona una opción</option>
+                  <label for="primerAbono" class="col-sm-4 col-form-label">Tipo de abonos:</label>
+                    <select name="tipoTiempo" id="tipoTiempo" required>
+                      <option disabled selected>Tipo de abonos</option>
                       <option value="Semanal">Semanal</option>
                       <option value="Quincenal">Quincenal</option>
                       <option value="Mensual">Mensual</option>
-                    </select> -->
+                    </select>
+                    <input type="number" min="1" step="any" class="form-control" id="cantidadTiempo" name="cantidadTiempo" placeholder="Cantidad" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-xs-6 pull-right">
+                  <div class="input-group ">
+                    <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
+                    <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-xs-6 pull-right">
+                  <div class="input-group ">
+                    <label for="descuentoM" class="col-sm-6 col-form-label">Descuento:</label>
+                    <input type="number" id="descuentoM" name="descuentoM" class="form-control" placeholder="Descuento">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-xs-6 pull-right">
+                  <div class="input-group ">
+                    <label for="enganche" class="col-sm-6 col-form-label">Enganche:</label>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
+                    </div>
+                    <input type="number" step="any" id="enganche" name="enganche" class="form-control" placeholder="Enganche">
                   </div>
                 </div>
               </div>

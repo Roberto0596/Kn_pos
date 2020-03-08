@@ -45,66 +45,78 @@ function mostrarTablaVenta()
 		var cantidad = $(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val();
 		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val(parseInt(cantidad)+1);
 		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").trigger('change');
-		$('#nuevoValorEfectivo').trigger('focus');
+		$('#tipoTiempo').trigger('focus');
 	});
 
 	$(".tablaVentas tbody").on("click","button.agregarProducto", function()
 	{
-		var idProductoVenta = $(this).attr("idProducto");
-		$(this).removeClass("btn-primary agregarProducto");
-		$(this).addClass("btn-default DeUno");
-		var datos = new FormData();
-   		datos.append("idProductoVenta", idProductoVenta);
-     	$.ajax({
-     		url:"ajax/productos.ajax.php",
-	      	method: "POST",
-	      	data: datos,
-	      	cache: false,
-	      	contentType: false,
-	      	processData: false,
-	      	dataType:"json",
-	      	success:function(respuesta)
-	      	{
-	      		var nombre = respuesta["Nombre"];
-	          	var existencia = respuesta["Stock"];
-	          	var precio = respuesta["Precio_venta"];
-	          	var idDproducto = respuesta["Id_producto"];
-	          	if(existencia == 0)
-	          	{
-	      			swal.fire({
-				      title: "No hay existencia disponible",
-				      type: "error",
-				      confirmButtonText: "¡Cerrar!"
-				    });
-					$("#button"+idProductoVenta).addClass("btn-primary agregarProducto");
+		var opcion = $('#seleccionarCliente').val();
+		if(opcion != ""){
+			var idProductoVenta = $(this).attr("idProducto");
+			$(this).removeClass("btn-primary agregarProducto");
+			$(this).addClass("btn-default DeUno");
+			var datos = new FormData();
+			datos.append("idProductoVenta", idProductoVenta);
+			$.ajax({
+				url:"ajax/productos.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+				success:function(respuesta)
+				{
+					var nombre = respuesta["Nombre"];
+					var existencia = respuesta["Stock"];
+					var precio = respuesta["Precio_venta"];
+					var idDproducto = respuesta["Id_producto"];
+					if(existencia == 0)
+					{
+						swal.fire({
+						title: "No hay existencia disponible",
+						type: "error",
+						confirmButtonText: "¡Cerrar!"
+						});
+						$("#button"+idProductoVenta).addClass("btn-primary agregarProducto");
 
-				    return;
-	          	}
+						return;
+					}
 
-				  $(".nuevoProducto").append(
-				'<tr role="row" class="odd Producto'+idDproducto+'">'+
-					'<td>'+
-						'<span class="input-group-addon">'+
-						'<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProductoVenta+'">'+
-							'<i class="fa fa-times"></i>'+
-						'</button>'+
-						'</span>'+
-						'<input type="hidden" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregarProducto" value="'+nombre+'" readonly required>'+
-					'</td>'+
-    				'<td>'+nombre+'</td>'+
-    				'<td>$'+precio+'</td>'+
-    				'<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required></td>'+
-					'<td  class="ingresoPrecio">'+
-					'<input type="hidden" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
-					'<label id="nuevoPrecioLabel">$'+precio+'</label>'+
-					'</td>'+
-  				'</tr>'
-				  );
-		        sumarTotalPrecios();
-		        listarProductos();
-	      	}
-		});
-		$('#nuevoValorEfectivo').trigger('focus');
+					$(".nuevoProducto").append(
+					'<tr role="row" class="odd Producto'+idDproducto+'">'+
+						'<td>'+
+							'<span class="input-group-addon">'+
+							'<button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProductoVenta+'">'+
+								'<i class="fa fa-times"></i>'+
+							'</button>'+
+							'</span>'+
+							'<input type="hidden" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregarProducto" value="'+nombre+'" readonly required>'+
+						'</td>'+
+						'<td>'+nombre+'</td>'+
+						'<td>$'+precio+'</td>'+
+						'<td><input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" existencia="'+existencia+'" nuevaExistencia="'+Number(existencia-1)+'" required></td>'+
+						'<td  class="ingresoPrecio">'+
+						'<input type="hidden" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+						'<label id="nuevoPrecioLabel">$'+precio+'</label>'+
+						'</td>'+
+					'</tr>'
+					);
+					sumarTotalPrecios();
+					listarProductos();
+				}
+			});
+			$('#tipoTiempo').trigger('focus');
+
+		}else{
+			swal.fire({
+				title: "Primero seleccione el cliente",
+				type: "error",
+				confirmButtonText: "¡Cerrar!"
+			}).then((result) => {
+				$('#seleccionarCliente').trigger('focus');
+			  });
+		}
 
 	});
 
@@ -554,4 +566,22 @@ $( "#frmCobro" ).submit(function( event ) {
 		$("#nuevoCambioEfectivo").val(0);
 	}
 
+  });
+
+  $('#tipoTiempo').on('change', function() {
+	var opcion = $(this).val();
+	if(opcion=="Semanal") $('#cantidadTiempo').val(50);
+	if(opcion=="Quincenal") $('#cantidadTiempo').val(25);
+	if(opcion=="Mensual") $('#cantidadTiempo').val(12);
+	$('#primerAbono').trigger('focus');
+  });
+
+  $('#primerAbono').on('change', function() {
+	$('#descuentoM').trigger('focus');
+  });
+  $('#descuentoM').on('change', function() {
+	$('#enganche').trigger('focus');
+  });
+  $('#enganche').on('change', function() {
+	$('#nuevoValorEfectivo').trigger('focus');
   });

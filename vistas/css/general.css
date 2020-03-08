@@ -115,7 +115,7 @@ button
 }
 
 .seleccionarCliente{
-    height: 100px;
+    height: 60px;
 }
 #tableScroll {
     overflow:auto;
