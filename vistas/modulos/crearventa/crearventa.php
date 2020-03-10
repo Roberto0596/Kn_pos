@@ -59,11 +59,8 @@
 
             <div class="card-body">
               <div class="input-group">
-
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-users"></i></span>
-                </div>
-                <select class="form-control traerProducto" id="seleccionarCliente" name="id_cliente" required>
+                <span class="input-group-text"><i class="fa fa-users"></i></span>
+                <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
                   <option></option>
                   <?php
                     $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
@@ -73,13 +70,10 @@
                         echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
                     }
                   ?>
-
                 </select>
-                <div class="input-group-prepend">
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-info tipoCompra">Crédito</button>
-                  </span>
-                </div>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-info tipoCompra">Crédito</button>
+                </span>
                 <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disable="true" required>
               </div>
             <div id="tableScroll">
@@ -127,22 +121,11 @@
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
                     <label for="descuentoM" class="col-sm-6 col-form-label">Descuento:</label>
-                    <input type="number" id="descuentoM" name="descuentoM" class="form-control" placeholder="Descuento">
+                    <input type="number" max="99" id="descuentoM" name="descuentoM" class="form-control" placeholder="Descuento">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-percent"></i></span>
                     </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="form-group row">
-                <div class="col-xs-6 pull-right">
-                  <div class="input-group ">
-                    <label for="enganche" class="col-sm-6 col-form-label">Enganche:</label>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
-                    </div>
-                    <input type="number" step="any" id="enganche" name="enganche" class="form-control" placeholder="Enganche">
                   </div>
                 </div>
               </div>
@@ -150,9 +133,17 @@
               <div class="row">
                 <div class="col-xs-6 pull-right alto">
                   <div class="input-group ">
-                    <h4>
+                    <h5>
+                      Descuento $<label value="0" id="descuentoT" name="descuentoT" total="">0</label>
+                    </h5>
+                    <input type="hidden" name="descuentoTH" id="descuentoTH" value="0">
+                  </div>
+                </div>
+                <div class="col-xs-6 pull-right alto">
+                  <div class="input-group ">
+                    <h5>
                       Total $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
-                    </h4>
+                    </h5>
                     <input type="hidden" name="totalVenta" id="totalVenta" value="0">
                   </div>
                 </div>

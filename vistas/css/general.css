@@ -114,9 +114,6 @@ button
     font: inherit
 }
 
-.seleccionarCliente{
-    height: 60px;
-}
 #tableScroll {
     overflow:auto;
     overflow-x: hidden;

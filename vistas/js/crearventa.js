@@ -229,7 +229,6 @@ function mostrarTablaVenta()
 				type: "error",
 				confirmButtonText: "¡Cerrar!"
 			});
-
 		}
 		sumarTotalPrecios();
 		listarProductos();
@@ -547,7 +546,9 @@ $(document).ready(function() {
 		allowClear: true
 	});
 });
-
+function activarControles() {
+	$("#totalVenta").val();
+}
 
 $( "#frmCobro" ).submit(function( event ) {
 	if($("#totalVenta").val() > $("#nuevoValorEfectivo").val() && $("#nuevoCambioEfectivo").val() == 0){
@@ -580,8 +581,5 @@ $( "#frmCobro" ).submit(function( event ) {
 	$('#descuentoM').trigger('focus');
   });
   $('#descuentoM').on('change', function() {
-	$('#enganche').trigger('focus');
-  });
-  $('#enganche').on('change', function() {
 	$('#nuevoValorEfectivo').trigger('focus');
   });
