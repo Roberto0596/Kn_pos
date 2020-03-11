@@ -74,7 +74,7 @@
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-info tipoCompra">Crédito</button>
                 </span>
-                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disable="true" required>
+                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disabled="true">
               </div>
             <div id="tableScroll">
               <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 480px;">
@@ -96,6 +96,18 @@
               <div class="form-group row">
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
+                    <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
+                    <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-xs-6 pull-right">
+                  <div class="input-group ">
                   <label for="primerAbono" class="col-sm-4 col-form-label">Tipo de abonos:</label>
                     <select name="tipoTiempo" id="tipoTiempo" required>
                       <option disabled selected>Tipo de abonos</option>
@@ -113,22 +125,12 @@
                   <div class="input-group ">
                     <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
                     <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
+                    <input type="hidden" id="abonoBase" name="abonoBase">
                   </div>
                 </div>
               </div>
 
-              <div class="form-group row">
-                <div class="col-xs-6 pull-right">
-                  <div class="input-group ">
-                    <label for="descuentoM" class="col-sm-6 col-form-label">Descuento:</label>
-                    <input type="number" max="99" id="descuentoM" name="descuentoM" class="form-control" placeholder="Descuento">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
-                    </div>
 
-                  </div>
-                </div>
-              </div>
 
               <div class="row">
                 <div class="col-xs-6 pull-right alto">
@@ -161,7 +163,7 @@
 
                     </div>
 
-                    <input type="number" min="1" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Efectivo" required autocomplete="off">
+                    <input type="number" min="1" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Enganche" required autocomplete="off">
 
                   </div>
 

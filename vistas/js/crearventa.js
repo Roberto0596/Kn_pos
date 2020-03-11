@@ -569,17 +569,74 @@ $( "#frmCobro" ).submit(function( event ) {
 
   });
 
+  function redondear(numero, digitos){
+    let base = Math.pow(10, digitos);
+    let entero = Math.round(numero * base);
+    return entero / base;
+}
+
+function sumarTotalPreciosD()
+	{
+		var precioItem = $(".nuevoPrecioProducto");
+		var arraySumaPrecio = [];
+
+		for (var i = 0; i < precioItem.length; i++)
+		{
+			arraySumaPrecio.push(Number($(precioItem[i]).val()));
+		}
+
+		function sumaArrayPrecios(total,numero)
+		{
+			return total + numero;
+		}
+
+		if(arraySumaPrecio != ""){
+			var sumaTotalPrecios = arraySumaPrecio.reduce(sumaArrayPrecios);
+		}else{
+			var sumaTotalPrecios = 0;
+		}
+
+		$("#nuevoTotalVenta").html(sumaTotalPrecios);
+		$("#totalVenta").val(sumaTotalPrecios);
+		$("#nuevoTotalVenta").attr("total",sumaTotalPrecios);
+
+	}
+
+  $('#descuentoP').on('change', function() {
+	sumarTotalPreciosD();
+	var totalVent = $('#totalVenta').val();
+	var porcentaje = $(this).val();
+	var descuento = (porcentaje/100) * totalVent;
+	descuento = redondear(descuento,2);
+	totalVent = totalVent - descuento;
+	totalVent = redondear(totalVent,2);
+	$('#descuentoTH').val(descuento);
+	$('#descuentoT').html(descuento);
+	$('#totalVenta').val(totalVent);
+	$('#nuevoTotalVenta').html(totalVent);
+	$('#primerAbono').val(0);
+	$('#tipoTiempo').trigger('focus');
+  });
+
   $('#tipoTiempo').on('change', function() {
 	var opcion = $(this).val();
 	if(opcion=="Semanal") $('#cantidadTiempo').val(50);
 	if(opcion=="Quincenal") $('#cantidadTiempo').val(25);
 	if(opcion=="Mensual") $('#cantidadTiempo').val(12);
+	$('#primerAbono').val(0);
 	$('#primerAbono').trigger('focus');
   });
 
+
   $('#primerAbono').on('change', function() {
-	$('#descuentoM').trigger('focus');
-  });
-  $('#descuentoM').on('change', function() {
+	var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+	var fecha = new Date($(this).val());
+	fecha.setMonth(fecha.getMonth()+1); //rectificando la mes
+	fecha.setDate(fecha.getDate()+1); //rectificando la dia
+	var totalAbonos = $('#cantidadTiempo').val();
+	var abonoBase = $('#totalVenta').val() / totalAbonos;
+	abonoBase = redondear(abonoBase,2);
+	$('#abonoBase').val(abonoBase);
 	$('#nuevoValorEfectivo').trigger('focus');
   });
+

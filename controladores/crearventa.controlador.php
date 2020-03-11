@@ -23,10 +23,11 @@ class ControladorVentas
                 }
             }
 
-            $respuesta = ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
+            $respuesta = "ok";//ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
 
 			if ($respuesta = "ok")
 			{
+                print_r($_POST);
 				Helpers::imprimirMensaje("success","La venta se registró correctamente.","crearventa");
 			}
 			else
