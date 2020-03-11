@@ -631,8 +631,49 @@ function sumarTotalPreciosD()
   $('#primerAbono').on('change', function() {
 	var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 	var fecha = new Date($(this).val());
-	fecha.setMonth(fecha.getMonth()+1); //rectificando la mes
 	fecha.setDate(fecha.getDate()+1); //rectificando la dia
+	switch($("#tipoTiempo").val()) {
+		case "Semanal":
+		  if(fecha.getDay()!=5){
+			swal.fire({
+				title: "Abonos semanales",
+				text: "Los abonos semanales solo son los dias viernes",
+				type: "error",
+				confirmButtonText: "¡Cerrar!"
+			}).then((result) => {
+				$(this).val(0);
+				return;
+			  });
+		  }
+		  break;
+		case "Quincenal":
+			if(fecha.getDate()!=15 && fecha.getDate()!=30 && !(fecha.getDate()==28 && fecha.getMonth() != 2)){//||
+				swal.fire({
+					title: "Abonos quincenal",
+					text: "Los abonos quincelanes tienen que ser los dias 15 y 30.",
+					type: "error",
+					confirmButtonText: "¡Cerrar!"
+				}).then((result) => {
+					$(this).val(0);
+					return;
+				  });
+			  }
+		  break;
+		case "Mensual":
+		  // No hay nada que validar
+		  break;
+		  default:
+			swal.fire({
+				title: "Abonos",
+				text: "Primero debe seleccionar tipo de abono.",
+				type: "error",
+				confirmButtonText: "¡Cerrar!"
+			}).then((result) => {
+				$(this).val(0);
+				$('#tipoTiempo').trigger('focus');
+				return;
+			  });
+	  }
 	var totalAbonos = $('#cantidadTiempo').val();
 	var abonoBase = $('#totalVenta').val() / totalAbonos;
 	abonoBase = redondear(abonoBase,2);
