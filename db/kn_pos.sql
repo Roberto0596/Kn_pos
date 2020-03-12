@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2020 a las 07:37:34
+-- Tiempo de generación: 12-03-2020 a las 07:08:28
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -94,9 +94,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Id_producto`, `Codigo`, `Nombre`, `Precio_compra`, `Precio_venta`, `Id_proveedor`, `Stock`, `Ventas`, `Estado`) VALUES
-(4, '345357898678', 'Cama matrimonial', '799', '899', 5, 7, 0, 1),
-(5, '345357893453', 'Sala', '455', '599', 5, 45, 0, 1),
-(6, '343534545443', 'Ropero', '755', '899', 6, 11, 0, 1);
+(4, '345357898678', 'Cama matrimonial', '4799', '5899', 5, 27, 0, 1),
+(5, '345357893453', 'Sala', '9455', '10599', 5, 35, 0, 1),
+(6, '343534545443', 'Ropero', '4755', '6899', 6, 30, 0, 1),
+(7, '343534545129', 'Ropero grande', '5399', '6499', 4, 34, 0, 1),
+(8, '343534545123', 'Sala gris', '7499', '8999', 4, 37, 0, 1),
+(9, '343534545312', 'Ropero chico', '3000', '3599', 6, 33, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,7 @@ INSERT INTO `proveedores` (`Id_proveedor`, `Nombre`, `Direccion`, `RFC`, `Telefo
 (2, 'Zone Providers', 'Calle 22, agua prieta', 'RFASLDO231234', '44444433', 'Marcos Morales', 'marcos@mora.com', 5555, 'Roperos', 1),
 (3, 'MagaMuebles', 'Calle 43, agua prieta', 'RFASLDO231232', '433455', 'Jorge Luis', 'luis@jo.com', 3434, 'Blancos', 0),
 (4, 'Kabum kasa', 'Calle 24, agua prieta', 'RFASLDO233133', '64665665', 'Miguel De la Madrid', 'miguel@m.com', 43443, 'Linea blanca', 1),
-(5, 'Casa WOW!', 'Calle 14 avenida 1, agua prieta', 'RFASLDO231276', '455666777', 'Adilene Valencia', 'adi@a.com', 4545, 'Roperos', 1),
+(5, 'Casa WOW!', 'Calle 14 avenida 1, agua prieta', 'RFASLDO231276', '455666777', 'Adilene Valencias', 'adi@a.com', 4545, 'Roperos', 1),
 (6, 'ZoneProviders 2', 'Calle 45', 'RFASLDO231244', '445556', 'Miguel Mal', 'miguel@m.com', 3445356, 'Ropero', 1);
 
 -- --------------------------------------------------------
@@ -226,7 +229,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `almacen`, `estado`, `ultimo_login`, `fecha`) VALUES
-(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-02-12 10:05:03', '2020-02-12 17:05:03'),
+(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-03-11 17:43:38', '2020-03-12 00:43:38'),
 (35, 'federico daniel villa leyva', 'dani', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Administrador', 'vistas/img/usuarios//701.jpg', 3, 0, '0000-00-00 00:00:00', '2020-02-11 07:35:34');
 
 -- --------------------------------------------------------
@@ -244,18 +247,21 @@ CREATE TABLE `ventas` (
   `Fecha` date NOT NULL,
   `Hora` time NOT NULL,
   `ListaProductos` text NOT NULL,
+  `Descuento` varchar(20) NOT NULL,
   `TotalVenta` varchar(30) NOT NULL,
-  `TotalPago` varchar(30) NOT NULL
+  `TotalPago` varchar(30) NOT NULL,
+  `Pendiente` varchar(20) NOT NULL,
+  `CalendarioAbonos` text NOT NULL,
+  `TipoAbono` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`Id_venta`, `Folio`, `Id_usuario`, `Id_cliente`, `Id_almacen`, `Fecha`, `Hora`, `ListaProductos`, `TotalVenta`, `TotalPago`) VALUES
-(1, 100001, 25, 1, 3, '2020-02-23', '13:06:00', '[{\"id\":\"4\",\"descripcion\":\"Camastros\",\"cantidad\":\"1\",\"existencia\":\"5\",\"precio\":\"899\",\"total\":\"899\"},{\"id\":\"5\",\"descripcion\":\"Sillon\",\"cantidad\":\"1\",\"existencia\":\"49\",\"precio\":\"599\",\"total\":\"599\"}]', '1498', '1499'),
-(2, 100002, 25, 1, 3, '2020-02-24', '19:52:51', '[{\"id\":\"4\",\"descripcion\":\"Camastros\",\"cantidad\":\"1\",\"existencia\":\"7\",\"precio\":\"899\",\"total\":\"899\"}]', '899', '1000'),
-(4, 100004, 25, 1, 3, '2020-02-24', '23:34:48', '[{\"id\":\"6\",\"descripcion\":\"Sofa\",\"cantidad\":\"1\",\"existencia\":\"11\",\"precio\":\"899\",\"total\":\"899\"},{\"id\":\"5\",\"descripcion\":\"Sillon\",\"cantidad\":\"2\",\"existencia\":\"45\",\"precio\":\"599\",\"total\":\"1198\"}]', '2097', '2300');
+INSERT INTO `ventas` (`Id_venta`, `Folio`, `Id_usuario`, `Id_cliente`, `Id_almacen`, `Fecha`, `Hora`, `ListaProductos`, `Descuento`, `TotalVenta`, `TotalPago`, `Pendiente`, `CalendarioAbonos`, `TipoAbono`) VALUES
+(13, 100013, 25, 1, 3, '2020-03-11', '22:40:34', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonials\",\"cantidad\":\"1\",\"existencia\":\"16\",\"precio\":\"899\",\"total\":\"899\"}]', '0', '899', '900', '0', 'N', 'N'),
+(20, 100017, 25, 6, 3, '2020-03-11', '23:07:19', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonials\",\"cantidad\":\"1\",\"existencia\":\"12\",\"precio\":\"899\",\"total\":\"899\"}]', '44.95', '854.05', '60', '794.05', '[{\"Fecha\":\"2020-03-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-04-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-04-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-05-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-06-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-06-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-07-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-07-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-08-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-08-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-09-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-09-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-10-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-11-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-11-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-12-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-12-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-01-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-02-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-02-28\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-03-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-03-30\",\"Abono\":31.76,\"Estado\":0}]', 'Quincenal');
 
 --
 -- Índices para tablas volcadas
@@ -331,7 +337,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `Id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
@@ -361,7 +367,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `Id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas

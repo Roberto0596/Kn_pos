@@ -143,7 +143,6 @@ function mostrarTablaVenta()
 		$('#seleccionarCliente').attr('disabled',true);
 		$('#seleccionarClienteH').attr('disabled',false);
 
-		$('#descuentoP').attr('disabled',true);
 		$('#tipoTiempo').attr('disabled',true);
 		$('#cantidadTiempo').attr('disabled',true);
 		$('#primerAbono').attr('disabled',true);
@@ -158,7 +157,6 @@ function mostrarTablaVenta()
 		$('#seleccionarCliente').attr('disabled',false);
 		$('#seleccionarClienteH').attr('disabled',true);
 
-		$('#descuentoP').attr('disabled',false);
 		$('#tipoTiempo').attr('disabled',false);
 		$('#cantidadTiempo').attr('disabled',false);
 		$('#primerAbono').attr('disabled',false);
@@ -346,6 +344,7 @@ function mostrarTablaVenta()
 			var cambio =  Number(efectivo) - Number($('#totalVenta').val());
 			var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
 			nuevoCambioEfectivo.val(redondear(cambio,2));
+
 		}
 	});
 
@@ -577,6 +576,7 @@ $( "#frmCobro" ).submit(function( event ) {
 
   });
 
+
   function redondear(numero, digitos){
     let base = Math.pow(10, digitos);
     let entero = Math.round(numero * base);
@@ -692,10 +692,6 @@ function sumarTotalPreciosD()
 				return;
 			  });
 	  }
-	var totalAbonos = $('#cantidadTiempo').val();
-	var abonoBase = $('#totalVenta').val() / totalAbonos;
-	abonoBase = redondear(abonoBase,2);
-	$('#abonoBase').val(abonoBase);
 	$('#nuevoValorEfectivo').trigger('focus');
   });
 

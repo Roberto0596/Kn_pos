@@ -125,7 +125,6 @@
                   <div class="input-group ">
                     <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
                     <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
-                    <input type="hidden" id="abonoBase" name="abonoBase">
                   </div>
                 </div>
               </div>
