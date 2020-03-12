@@ -142,6 +142,11 @@ function mostrarTablaVenta()
 		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
 		$('#seleccionarCliente').attr('disabled',true);
 		$('#seleccionarClienteH').attr('disabled',false);
+
+		$('#descuentoP').attr('disabled',true);
+		$('#tipoTiempo').attr('disabled',true);
+		$('#cantidadTiempo').attr('disabled',true);
+		$('#primerAbono').attr('disabled',true);
 	});
 
 	$(".formularioVenta").on("click", "button.btn-secondary", function()
@@ -152,6 +157,11 @@ function mostrarTablaVenta()
 		$("#seleccionarCliente").find("option[value='1']").remove();
 		$('#seleccionarCliente').attr('disabled',false);
 		$('#seleccionarClienteH').attr('disabled',true);
+
+		$('#descuentoP').attr('disabled',false);
+		$('#tipoTiempo').attr('disabled',false);
+		$('#cantidadTiempo').attr('disabled',false);
+		$('#primerAbono').attr('disabled',false);
 	});
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
@@ -315,10 +325,9 @@ function mostrarTablaVenta()
 	$(".formularioVenta").on("change", "input#nuevoValorEfectivo", function()
 	{
 		var efectivo = $(this).val();
-		if (Number(efectivo) < Number($('#totalVenta').val()))
+		if (Number(efectivo) < Number($('#totalVenta').val()) && $(".formularioVenta .tipoCompra").text()=="Contado")
 		{
 			swal.fire({
-
 				title: "El efectivo es menor al total",
 				text: "¡Favor de capturar bien el efectivo!",
 				type: "error",
@@ -336,8 +345,7 @@ function mostrarTablaVenta()
 		{
 			var cambio =  Number(efectivo) - Number($('#totalVenta').val());
 			var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
-			nuevoCambioEfectivo.val(cambio);
-		    nuevoCambioEfectivo.number(true, 2);
+			nuevoCambioEfectivo.val(redondear(cambio,2));
 		}
 	});
 
@@ -551,7 +559,7 @@ function activarControles() {
 }
 
 $( "#frmCobro" ).submit(function( event ) {
-	if($("#totalVenta").val() > $("#nuevoValorEfectivo").val() && $("#nuevoCambioEfectivo").val() == 0){
+	if($("#totalVenta").val() > $("#nuevoValorEfectivo").val() && $("#nuevoCambioEfectivo").val() == 0 && $(".formularioVenta .tipoCompra").text()=="Contado"){
 		event.preventDefault();
 		swal.fire({
 			title: "El efectivo es menor al total",
@@ -647,7 +655,7 @@ function sumarTotalPreciosD()
 		  }
 		  break;
 		case "Quincenal":
-			if(fecha.getDate()!=15 && fecha.getDate()!=30 && !(fecha.getDate()==28 && fecha.getMonth() != 2)){//||
+			if(fecha.getDate()!=15 && fecha.getDate()!=30 && !(fecha.getDate()==28 && fecha.getMonth() != 2)){
 				swal.fire({
 					title: "Abonos quincenal",
 					text: "Los abonos quincelanes tienen que ser los dias 15 y 30.",
@@ -660,7 +668,17 @@ function sumarTotalPreciosD()
 			  }
 		  break;
 		case "Mensual":
-		  // No hay nada que validar
+			if(fecha.getDate()>28){
+				swal.fire({
+					title: "Abonos mensual",
+					text: "Los abonos mensuales no pueden ser los dias 29, 30 ni 31.",
+					type: "error",
+					confirmButtonText: "¡Cerrar!"
+				}).then((result) => {
+					$(this).val(0);
+					return;
+				  });
+			}
 		  break;
 		  default:
 			swal.fire({

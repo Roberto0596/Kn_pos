@@ -163,7 +163,7 @@
 
                     </div>
 
-                    <input type="number" min="1" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Enganche" required autocomplete="off">
+                    <input type="number" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Enganche" autocomplete="off">
 
                   </div>
 

@@ -40,17 +40,25 @@ class ControladorVentas
                         }else{
                             $fechaPrimerAbono = date("Y-m-d",strtotime($fechaPrimerAbono."+ 15 days"));
                         }
-
                         if(date("d",strtotime($fechaPrimerAbono)) == 14){
                             $fechaPrimerAbono = date("Y-m-d",strtotime($fechaPrimerAbono."+ 1 days"));
                         }
                     }
                 break;
                 case "Mensual":
-
+                    for ($i=1; $i <= $_POST["cantidadTiempo"]; $i++) {
+                        $calendarioAbonos1 = [
+                            "Fecha" => $fechaPrimerAbono,
+                            "Abono" => $_POST["abonoBase"],
+                            "Estado" => 0
+                        ];
+                        array_push($calendarioAbonos, $calendarioAbonos1);
+                        $fechaPrimerAbono = date("Y-m-d",strtotime($fechaPrimerAbono."+ 1 month"));
+                    }
                 break;
             }
             $productos = json_decode($_POST["listaProductos"]);
+            $calendarioAbonosFinal=json_encode($calendarioAbonos);
             $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"]);
 /*
             foreach ($productos as $producto) {
@@ -65,7 +73,7 @@ class ControladorVentas
 			if ($respuesta = "ok")
 			{
                 print_r($_POST);
-                print_r($calendarioAbonos);
+                echo($calendarioAbonosFinal);
 				Helpers::imprimirMensaje("success","La venta se registró correctamente.","crearventa");
 			}
 			else
