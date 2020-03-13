@@ -13,41 +13,23 @@ class TablaSolicitud
 {
 	public function MostrarTabla()
 	{
-		if (isset($_POST["status"]))
-		{
-			$almacen = $_POST["almacen"];
-			$status = $_POST["status"];
-			$respuesta = ControladorSolicitud::ctrMostrarTablaSolicitudes($status,$almacen,0);
+			$respuesta = ControladorSolicitud::ctrMostrarSolicitudes(null,null,0);
+
 			$res = [ "data" => []];
 
 			foreach ($respuesta as $key => $value)
 			{
 				$imagen = "<img src='".$value["foto"]."' width='50px'>";
+
 				$botones =  "
 				<div class='btn-group'>
 					<button class='btn btn-warning btnEditarSolicitud' idSolicitud='".$value["id_solicitud"]."'>
-						<i class='fas fa-pencil-alt'></i>
+						<i class='fas fa-eye'></i>
 					</button>
 					<button class='btn btn-danger  btnEliminarSolicitud' foto='".$value["foto"]."' idSolicitud='".$value["id_solicitud"]."'>
 						<i class='fas fa-trash'></i>
 					</button>
 				</div>";
-
-				switch ($value["status"])
-				 {
-					case 0:
-						$botonEstado = "<button class='btnCambiarStatus btn btn-default' valorActual='0' idSolicitud='".$value["id_solicitud"]."'>S/E</button>";
-						break;
-					case 1:
-						$botonEstado = "<button class='btnElegirEstado btn btn-warning' valorActual='1' idSolicitud='".$value["id_solicitud"]."' data-toggle='modal' data-target='#elegirEstado'>Procesando</button>";
-						break;
-					case 2:
-						$botonEstado = "<button class='btn btn-success' valorActual='2' idSolicitud='".$value["id_solicitud"]."'>Aceptada</button>";
-						break;
-					case 3:
-						$botonEstado = "<button class='btn btn-danger' valorActual='3' idSolicitud='".$value["id_solicitud"]."'>Rechazada</button>";
-						break;  
-				}
 
 				$cliente = ControladorClientes::ctrMostrarClientes("id_cliente",$value["id_cliente"],null);
 				$botonEmpresa = "<button class='btn btn-warning btnMostrarEmpresa' idSolicitud='".$value["id_solicitud"]."'>
@@ -63,13 +45,12 @@ class TablaSolicitud
 					$value["profesion"],
 					$botonEmpresa,
 			        $value["gastos_mensuales"],
-			        $botonEstado,
 			        $almacen["nombre"],
 	        		$botones
 				]);
 			}
 			echo json_encode($res);
-		}
+		
 	}
 }
 

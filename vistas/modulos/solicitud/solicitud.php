@@ -16,28 +16,6 @@
 
             </div>
 
-            <div class="col-md-6">
-
-              <div class="input-group">
-
-                <input type="hidden" id="id_almacen" value="<?php echo $_SESSION['almacen']?>">
-
-                <select id="solicitudes" class="form-control">
-
-                  <option value="0">Sin Asignar</option>
-
-                  <option value="1">En proceso</option>
-
-                  <option value="2">Aceptadas</option>
-
-                  <option value="3">Rechazadas</option>
-
-                </select>
-
-              </div>
-
-            </div>
-
           </div>
 
         </div>
@@ -77,7 +55,6 @@
               <th>Profesión</th>
               <th>Empresa</th>
               <th>Gastos M</th>
-              <th>Status</th>
               <th>Almacen</th>
               <th>Acciones</th>
             </tr>

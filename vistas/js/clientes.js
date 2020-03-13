@@ -67,7 +67,6 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 		dataType: "json",
 		success: function(respuesta)
 		{
-			console.log("datos",respuesta);
 			$("#nombre").val(respuesta["nombre"]);
 			$("#direccion").val(respuesta["direccion"]);
 			$("#edad").val(respuesta["edad"]);

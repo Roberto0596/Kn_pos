@@ -3,17 +3,20 @@
 require_once "../controladores/solicitud.controlador.php";
 require_once "../modelos/solicitud.modelo.php";
 
+require_once "../controladores/clientes.controlador.php";
+require_once "../modelos/clientes.modelo.php";
+
 class AjaxSolicitud
 {
 	public $idSolicitud;
-	public $nuevoStatus;
-	public function ajaxCambiarStatus()
+
+	public function ajaxTraerSolicitud()
 	{
-		$item2 = "id_solicitud";
-		$valor2 = $this->idSolicitud;
-		$item1 = "status";
-		$valor1 = $this->nuevoStatus;
-		$respuesta = ModeloSolicitud::mdlActualizarSolicitud("solicitud_credito",$item1,$valor1,$item2,$valor2);
+		$item = "id_solicitud";
+		$valor = $this->idSolicitud;
+		$respuesta = ControladorSolicitud::ctrMostrarSolicitudes($item,$valor,0);
+		$cliente = ControladorClientes::ctrMostrarClientes("id_cliente",$respuesta["id_cliente"],0);
+		array_push($respuesta,$cliente);
 		echo json_encode($respuesta);
 	}
 }
@@ -22,6 +25,5 @@ if(isset($_POST["idSolicitud"]))
 {
 	$actualizar = new AjaxSolicitud();
 	$actualizar->idSolicitud = $_POST["idSolicitud"];
-	$actualizar->nuevoStatus = $_POST["status"];
-	$actualizar->ajaxCambiarStatus();
+	$actualizar->ajaxTraerSolicitud();
 }
