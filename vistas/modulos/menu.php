@@ -26,9 +26,19 @@
 
           <li class="nav-item">
             <a href="crearventa" class="nav-link">
-              <i class="nav-icon fas fa-barcode"></i>
+              <i class="nav-icon fas fa-cash-register"></i>
               <p>
                 Crear venta
+                <span class="right badge badge-danger">Building</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="abonos" class="nav-link">
+              <i class="nav-icon fas fa-wallet"></i>
+              <p>
+                Abonar cuenta
                 <span class="right badge badge-danger">Building</span>
               </p>
             </a>
