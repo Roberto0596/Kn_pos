@@ -4,7 +4,7 @@ class ModeloClientes
 {
 	public static function mdlMostrarClientes($tabla,$item,$valor,$tipo)
 	{
-		if ($item==null && $tipo == null)
+		if ($item==null)
 		{
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo");
 			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);

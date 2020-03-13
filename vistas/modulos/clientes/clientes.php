@@ -8,7 +8,7 @@
 
         <div class="col-sm-6">
 
-          <h1>Administrar Clientes</h1>
+          <h1>Cartera de clientes</h1>
 
         </div>
 
@@ -16,7 +16,7 @@
 
           <ol class="breadcrumb float-sm-right">
 
-            <a href="clientes-nuevo" class="btn btn-block btn-primary"><i class="fa fa-fw fa-plus"></i>Agregar Nuevo</a>
+            <a href="clientes-nuevo" class="btn btn-block btn-primary"><i class="fa fa-fw fa-plus"></i>Cliente nuevo</a>
 
           </ol>
 
