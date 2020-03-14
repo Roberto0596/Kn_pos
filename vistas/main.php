@@ -41,6 +41,8 @@
   	<!-- Select2 -->
  	<link rel="stylesheet" href="vistas/plugins/select2/css/select2.min.css">
   	<link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  	<!-- iCheck for checkboxes and radio inputs -->
+  	<link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
 
 	<!-- scripts -->
 
@@ -78,6 +80,8 @@
   	<script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
   	<script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
   	<script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+  	<!-- iCheck 1.0.1 -->
+ 	<script src="vistas/plugins/iCheck/icheck.min.js"></script>
 
 </head>
 

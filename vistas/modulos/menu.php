@@ -24,14 +24,28 @@
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item">
-            <a href="crearventa" class="nav-link">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cash-register"></i>
               <p>
-                Crear venta
-                <span class="right badge badge-danger">Building</span>
+                Ventas
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="crearventa" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Venta</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?ruta=crearventa&compra=1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compra</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
           <li class="nav-item">

@@ -1,5 +1,18 @@
 <?php
-  $nuevoFolio = Helpers::NuevoFolio();
+  
+  if (isset($_GET["compra"]))
+  {
+    $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
+    $folioTag = "Folio de compra: ";
+    $nuevoFolio = Helpers::NuevoFolio("compra");
+  }
+  else
+  {
+    $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
+    $folioTag = "Folio de venta: ";
+    $nuevoFolio = Helpers::NuevoFolio("venta");
+  }
+
 ?>
 
 <div class="content-wrapper">
@@ -12,15 +25,66 @@
 
         <div class="col-sm-6">
 
-          <h1>Crear Venta</h1>
+          <h1>
+            <?php if(isset($_GET["compra"])): ?>
+              Compra a proveedor
+            <?php else: ?>
+              Crear Venta
+            <?php endif ?>
+          </h1>
 
         </div>
 
         <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Crear Venta</li>
-          </ol>
+
+          <?php if(isset($_GET["compra"])): ?>
+
+            <div class="pull-right">
+
+              <div class="row">
+
+                <div class="col-md-8">
+
+                  <div class="input-group">
+
+                    <span class="input-group-text"><i class="nav-icon fas fa-truck"></i></span>
+
+                    <select class="form-control" id="idProveedor" required>
+
+                      <option value="">Seleccione un proveedor</option>
+
+                      <?php foreach ($proveedores as $key => $value): ?>
+                          <option value="<?= $value['Id_proveedor'] ?>"><?= $value['Nombre'] ?></option>
+                      <?php endforeach ?>
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                  <div class="input-group">
+
+                    <button class="btn btn-primary" id="createProduct" data-toggle="modal" data-target="#modalCrearProducto" disabled>Crear producto</button>
+                  </div>
+
+                </div>
+
+              </div>              
+
+            </div>
+
+            <?php else: ?>
+
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
+                <li class="breadcrumb-item active">Crear Venta</li>
+              </ol>
+
+            <?php endif ?>
+
         </div>
 
       </div>
@@ -43,11 +107,15 @@
 
 
               <div class="margin-dis">
+
               <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
-                <h5 class="name-user">Folio de venta: </h5>
+
+                <h5 class="name-user"><?= $folioTag ?></h5>
+
                 <h5 class="code-sale">
                   <?= $nuevoFolio ?>
                 </h5>
+
 
               </div>
 
@@ -58,42 +126,62 @@
             <input type="hidden" id="almacenVenta" name="id_almacen" value="<?php echo $_SESSION["almacen"]?>">
 
             <div class="card-body">
-              <div class="input-group">
+
+              <div class="input-group ocultar">
+
                 <span class="input-group-text"><i class="fa fa-users"></i></span>
+
                 <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
+
                   <option></option>
-                  <?php
-                    $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
-                    foreach ($clientes as $key => $value)
-                    {
-                      if($value["id_cliente"] > 1)
-                        echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
-                    }
-                  ?>
+
+                  <?php if (isset($clientes)): ?>
+                    
+                    <?php foreach($clientes as $key => $value): ?>
+
+                      <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
+
+                    <?php endforeach ?>
+
+                  <?php endif ?>
+
                 </select>
+
                 <span class="input-group-btn">
+
                   <button type="button" class="btn btn-info tipoCompra">Crédito</button>
+
                 </span>
+
                 <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disabled="true">
+
               </div>
-            <div id="tableScroll">
-              <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 480px;">
-                <thead>
-                  <tr role="row">
-                    <th class="sorting" colspan="1" style="width: 10px;">E</th>
-                    <th class="sorting" colspan="1" style="width: 130px;">Producto</th>
-                    <th class="sorting" colspan="1" style="width: 30px;">P.U.</th>
-                    <th class="sorting" colspan="1" style="width: 30px;">Cantidad</th>
-                    <th class="sorting" colspan="1" style="width: 30px;">Importe</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
+
+              <div id="tableScroll">
+
+                <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 100%;">
+
+                  <thead>
+
+                    <tr role="row">
+                      <th class="sorting" colspan="1" style="width: 10px;">E</th>
+                      <th class="sorting" colspan="1" style="width: 130px;">Producto</th>
+                      <th class="sorting" colspan="1" style="width: 30px;">P.U.</th>
+                      <th class="sorting" colspan="1" style="width: 30px;">Cantidad</th>
+                      <th class="sorting" colspan="1" style="width: 30px;">Importe</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  </tbody>
+
+                </table>
+
+              </div>
+
               <input type="hidden" id="listaProductos" name="listaProductos">
 
-              <div class="form-group row">
+              <div class="form-group row ocultar">
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
                     <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
@@ -105,7 +193,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="form-group row ocultar">
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
                   <label for="primerAbono" class="col-sm-4 col-form-label">Tipo de abonos:</label>
@@ -120,7 +208,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="form-group row ocultar">
                 <div class="col-xs-6 pull-right">
                   <div class="input-group ">
                     <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
@@ -129,10 +217,8 @@
                 </div>
               </div>
 
-
-
               <div class="row">
-                <div class="col-xs-6 pull-right alto">
+                <div class="col-xs-6 pull-right alto ocultar">
                   <div class="input-group ">
                     <h5>
                       Descuento $<label value="0" id="descuentoT" name="descuentoT" total="">0</label>
@@ -251,6 +337,155 @@
 
 </div>
 
+<div class="modal fade" id="modalCrearProducto">
+
+  <div class="modal-dialog modal-xl">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h4 class="modal-title">Agregar Producto</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+      <form method="post">
+
+        <div class="modal-body">
+          
+          <div class="row">
+
+            <div class="col-md-6">
+
+              <label class="label-style" for="codigo">Código</label>
+
+              <div class="input-group mb-3">
+
+                  <div class="input-group-prepend">
+
+                      <span class="input-group-text" onclick="getFocus('codigo')">
+                      <i class="fas fa-barcode"></i></span>
+
+                  </div>
+
+                  <input type="text" id="nuevo_codigo_producto" placeholder="Código del producto" class="form-control form-control-lg capitalize" required>
+
+                  <input type="hidden" id="nuevo_estado_producto" name="estado" value="1">
+
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <label class="label-style" for="direccion">Nombre</label>
+
+                <div class="input-group mb-3">
+
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text" onclick="getFocus('nombre')">
+                        <i class="fas fa-dolly"></i></span>
+
+                    </div>
+
+                    <input type="text" id="nuevo_nombre_producto" placeholder="Nombre" class="form-control form-control-lg capitalize" required>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <label class="label-style" for="precio_compra">Precio de compra</label>
+
+                <div class="input-group mb-3">
+
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text" onclick="getFocus('precio_compra')">
+                        <i class="fas fa-dollar-sign"></i></span>
+
+                    </div>
+
+                    <input type="number" id="nuevo_precio_compra" placeholder="Precio de compra" class="form-control form-control-lg" required>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <label class="label-style" for="precio_venta">Precio de venta</label>
+
+              <div class="input-group mb-3">
+
+                  <div class="input-group-prepend">
+
+                      <span class="input-group-text" onclick="getFocus('precio_venta')">
+                      <i class="fas fa-dollar-sign"></i></span>
+
+                  </div>
+
+                  <input type="number" id="nuevo_precio_venta" placeholder="Precio de venta" class="form-control form-control-lg" required>
+              </div>
+
+              <div class="row">
+                
+                <div class="col-xs-6" style="margin-top: 10px; margin-right: 10px;">
+
+                  <div class="input-group">
+
+                    <label><input type="checkbox" class="minimal porcentaje" checked>Utilizar porcentaje</label>
+
+                  </div>
+
+                </div>
+
+                <div class="col-xs-6" style="padding: 0">
+
+                  <div class="input-group">
+
+                    <input type="number" step="any" id="porcent" class = "form-control form-control-lg nuevoPorcentaje" min="0" value="40">
+
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text" onclick="getFocus('porcent')">
+                        <i class="fa fa-percent"></i></i></span>
+
+                    </div>
+
+                  </div>
+                  
+                </div>
+
+              </div> 
+
+            </div>
+
+          </div>
+
+        </div>
+  
+        <div class="modal-footer justify-content-between">
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="guardarProducto" class="btn btn-primary">Guardar</button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
 <style>
 
 .dataTables_filter {
@@ -263,8 +498,16 @@
 }
 
 </style>
-
+ 
 <?php
-$CrearVenta = new ControladorVentas();
-$CrearVenta->ctrCrearVenta();
+  if(isset($_GET["compra"]))
+  {
+    echo '<script src="vistas/js/compra.js"></script>';
+  }
+  else
+  {
+    echo '<script src="vistas/js/venta.js"></script>';
+    $CrearVenta = new ControladorVentas();
+    $CrearVenta->ctrCrearVenta();
+  }
 ?>

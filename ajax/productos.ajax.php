@@ -31,6 +31,16 @@ class AjaxProductos
 			echo json_encode("error");
 		}
 	}
+
+	public $data_library;
+
+	public function ajaxCrearProducto()
+	{
+		$listaDatos = json_decode($this->data_library, true);
+		$ModeloProductos = new ModeloProductos(NULL, $listaDatos[0]["codigo"], $listaDatos[0]["nombre"], $listaDatos[0]["precio_compra"], $listaDatos[0]["precio_venta"],$listaDatos[0]["idProveedor"], $listaDatos[0]["stock"], 0, "1");
+		$respuesta = ModeloProductos::mdlCrearProducto("productos",$ModeloProductos);
+		echo json_encode($respuesta);
+	}
 }
 
 if(isset($_POST["idProducto"]))
@@ -45,6 +55,13 @@ if (isset($_POST["idProductoVenta"]))
 	$validar = new AjaxProductos();
 	$validar -> idProductoVenta = $_POST["idProductoVenta"];
 	$validar -> ajaxVerProducto();
+}
+
+if(isset($_POST["data_library"]))
+{
+	$crear = new AjaxProductos();
+	$crear -> data_library = $_POST["data_library"];
+	$crear -> ajaxCrearProducto();
 }
 
 

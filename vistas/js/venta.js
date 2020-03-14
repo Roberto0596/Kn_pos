@@ -1,4 +1,3 @@
-
 function mostrarTablaVenta()
 {
 	var tablaVenta = $('.tablaVentas').DataTable(

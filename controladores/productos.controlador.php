@@ -1,11 +1,20 @@
 <?php
-class ControladorProductos{
+class ControladorProductos
+{
     public function ctrMostrarProductos($item,$valor)
 	{
 		$tabla = "productos";
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor);
 		return $respuesta;
     }
+
+    public function ctrMostrarProductosPorProveedor($item,$valor)
+	{
+		$tabla = "productos";
+		$respuesta = ModeloProductos::mdlMostrarProductosPorProveedor($tabla,$item,$valor);
+		return $respuesta;
+    }
+
 	public function ctrMostrarProductosT()
 	{
 		$respuesta = ModeloProductos::mdlMostrarProductosT();

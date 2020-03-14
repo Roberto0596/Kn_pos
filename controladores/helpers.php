@@ -54,9 +54,17 @@ class Helpers
 		</script>'; 	
  	}
 
- 	public function NuevoFolio()
+ 	public function NuevoFolio($flag)
     {
-        $respuesta = ModeloVentas::mdlNuevoFolio();
-		return $respuesta;
+    	if ($flag == "venta")
+    	{
+    		$respuesta = ModeloVentas::mdlNuevoFolio();
+			return $respuesta;
+    	}
+    	else if($flag == "compra")
+    	{
+    		$respuesta = ModeloCompras::mdlNuevoFolio();
+			return $respuesta;
+    	}
     }
 }
