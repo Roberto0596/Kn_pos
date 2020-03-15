@@ -437,6 +437,32 @@ function listarProductos()
 	$("#listaProductos").val(JSON.stringify(listaProductos));
 }
 
+$(".crear_producto").on("change", "input#nuevo_codigo_producto", function()
+{
+    $(".alert").remove();
+    var valor = $(this).val();
+    var datos = new FormData();
+    datos.append("validarCodigo",valor);
+    $.ajax(
+    {
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) 
+        {
+            if(respuesta)
+            {
+                $("#nuevo_codigo_producto").parent().after('<div class="alert alert-warning">Este codigo ya esta registrado</div>')
+                $("#nuevo_codigo_producto").val("");  
+                $('#nuevo_codigo_producto').trigger('focus');
+            }
+        }
+    })
+})
 
 $("#guardarProducto").click(function()
 {

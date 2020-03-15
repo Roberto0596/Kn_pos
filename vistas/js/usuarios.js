@@ -193,7 +193,6 @@ $("#usuarioNew").change(function()
 			}
 		}
 	})
-
 })
 
 $(".selectAlmacen").change(function()

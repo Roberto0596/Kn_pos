@@ -41,6 +41,23 @@ class AjaxProductos
 		$respuesta = ModeloProductos::mdlCrearProducto("productos",$ModeloProductos);
 		echo json_encode($respuesta);
 	}
+
+	public  $validarCodigo;
+	
+	public function ajaxvalidarCodigo()
+	{
+		$item = "Codigo";
+		$valor = $this->validarCodigo;
+		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+		echo json_encode($respuesta);
+	}
+}
+
+if (isset($_POST["validarCodigo"]))
+{
+	$valUsuario = new AjaxProductos();
+	$valUsuario -> validarCodigo = $_POST["validarCodigo"];
+	$valUsuario -> ajaxvalidarCodigo();
 }
 
 if(isset($_POST["idProducto"]))

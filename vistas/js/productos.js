@@ -136,3 +136,46 @@ $('#modalAumentarStock').on('shown.bs.modal', function () {
   $('#modalEditarProducto').on('shown.bs.modal', function () {
 	$('#codigo').trigger('focus');
   });
+
+ $(document).ready(function()
+{
+    $("#precio_venta").prop("readonly",true);
+})
+
+$("#precio_compra").change(function()
+{
+    if ($(".porcentaje").prop("checked"))
+    {
+        var valorPorcentaje = $(".nuevoPorcentaje").val();
+
+        var porcentaje = Number(($("#precio_compra").val()*valorPorcentaje/100)) + Number($("#precio_compra").val());
+
+
+        $("#precio_venta").val(porcentaje);
+        $("#precio_venta").prop("readonly",true);
+
+    }
+})
+
+$(".nuevoPorcentaje").change(function()
+{
+    if ($(".porcentaje").prop("checked"))
+    {
+        var valorPorcentaje = $(this).val();
+
+        var porcentaje = Number(($("#precio_compra").val()*valorPorcentaje/100)) + Number($("#precio_compra").val());
+
+        $("#precio_venta").val(porcentaje);
+        $("#precio_venta").prop("readonly",true);
+    }
+})
+
+$(".porcentaje").on("ifUnchecked",function()
+{
+    $("#precio_venta").prop("readonly",false);
+})
+
+$(".porcentaje").on("ifChecked",function()
+{
+    $("#precio_venta").prop("readonly",true);
+})

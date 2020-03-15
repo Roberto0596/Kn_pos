@@ -374,7 +374,7 @@
 
       </div>
 
-      <form method="post">
+      <form method="post" class="crear_producto">
 
         <div class="modal-body">
           
