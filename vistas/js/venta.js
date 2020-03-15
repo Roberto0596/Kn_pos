@@ -160,6 +160,7 @@ function mostrarTablaVenta()
 		$('#cantidadTiempo').attr('disabled',false);
 		$('#primerAbono').attr('disabled',false);
 	});
+	
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
 		$(this).parent().parent().parent().remove();

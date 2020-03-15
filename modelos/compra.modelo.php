@@ -1,5 +1,6 @@
 <?php
 require_once "conexion.php";
+
 class ModeloCompras
 {
     public $Id_venta;
@@ -27,9 +28,10 @@ class ModeloCompras
 
     public  static function mdlNuevoFolio()
     {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM compras ORDER BY Id_venta DESC LIMIT 1;");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM compras ORDER BY Id_compra DESC LIMIT 1;");
         $stmt->execute();
 		$IdAlta = $stmt->fetch();
+
 		if ($IdAlta == false)
 		{
 			return "10001";

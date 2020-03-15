@@ -4,12 +4,14 @@
   {
     $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
     $folioTag = "Folio de compra: ";
+    $buttonTag = "Comprar";
     $nuevoFolio = Helpers::NuevoFolio("compra");
   }
   else
   {
     $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
     $folioTag = "Folio de venta: ";
+    $buttonTag = "Cobrar";
     $nuevoFolio = Helpers::NuevoFolio("venta");
   }
 
@@ -49,7 +51,7 @@
 
                     <span class="input-group-text"><i class="nav-icon fas fa-truck"></i></span>
 
-                    <select class="form-control" id="idProveedor" required>
+                    <select class="form-control" id="idProveedor" name="idProveedor" required>
 
                       <option value="">Seleccione un proveedor</option>
 
@@ -103,8 +105,9 @@
 
           <form role="form" method="post" id="frmCobro" class="formularioVenta">
 
-            <div class="card-header with-border margin-sale">
+            <input type="hidden" name="Id_proveedor" id="Id_proveedor">
 
+            <div class="card-header with-border margin-sale">
 
               <div class="margin-dis">
 
@@ -127,41 +130,43 @@
 
             <div class="card-body">
 
-              <div class="input-group ocultar">
+              <?php if (isset($clientes)): ?>
 
-                <span class="input-group-text"><i class="fa fa-users"></i></span>
+                <div class="input-group ocultar">
 
-                <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
+                  <span class="input-group-text"><i class="fa fa-users"></i></span>
 
-                  <option></option>
+                  <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
 
-                  <?php if (isset($clientes)): ?>
-                    
-                    <?php foreach($clientes as $key => $value): ?>
+                    <option></option>                  
+                      
+                      <?php foreach($clientes as $key => $value): ?>
 
-                      <?php if ($key>0): ?>
-                        <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
-                      <?php endif ?>
+                        <?php if ($key>0): ?>
 
-                    <?php endforeach ?>
+                          <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
+                          
+                        <?php endif ?>
 
-                  <?php endif ?>
+                      <?php endforeach ?>                  
 
-                </select>
+                  </select>
 
-                <span class="input-group-btn">
+                  <span class="input-group-btn">
 
-                  <button type="button" class="btn btn-info tipoCompra">Crédito</button>
+                    <button type="button" class="btn btn-info tipoCompra">Crédito</button>
 
-                </span>
+                  </span>
 
-                <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disabled="true">
+                  <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disabled="true">
 
-              </div>
+                </div>
+
+              <?php endif ?>
 
               <div id="tableScroll">
 
-                <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" style="width: 100%;">
+                <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" id="tablaProductos" style="width: 100%;">
 
                   <thead>
 
@@ -183,60 +188,66 @@
 
               <input type="hidden" id="listaProductos" name="listaProductos">
 
-              <div class="form-group row ocultar">
-                <div class="col-xs-6 pull-right">
-                  <div class="input-group ">
-                    <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
-                    <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
+              <?php if (!isset($_GET["compra"])): ?>
+
+                <div class="form-group row ocultar">
+                  <div class="col-xs-6 pull-right">
+                    <div class="input-group ">
+                      <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
+                      <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-percent"></i></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="form-group row ocultar">
-                <div class="col-xs-6 pull-right">
-                  <div class="input-group ">
-                  <label for="primerAbono" class="col-sm-4 col-form-label">Tipo de abonos:</label>
-                    <select name="tipoTiempo" id="tipoTiempo" required>
-                      <option disabled selected>Tipo de abonos</option>
-                      <option value="Semanal">Semanal</option>
-                      <option value="Quincenal">Quincenal</option>
-                      <option value="Mensual">Mensual</option>
-                    </select>
-                    <input type="number" min="1" step="any" class="form-control" id="cantidadTiempo" name="cantidadTiempo" placeholder="Cantidad" required autocomplete="off">
+                <div class="form-group row ocultar">
+                  <div class="col-xs-6 pull-right">
+                    <div class="input-group ">
+                    <label for="primerAbono" class="col-sm-4 col-form-label">Tipo de abonos:</label>
+                      <select name="tipoTiempo" id="tipoTiempo" required>
+                        <option disabled selected>Tipo de abonos</option>
+                        <option value="Semanal">Semanal</option>
+                        <option value="Quincenal">Quincenal</option>
+                        <option value="Mensual">Mensual</option>
+                      </select>
+                      <input type="number" min="1" step="any" class="form-control" id="cantidadTiempo" name="cantidadTiempo" placeholder="Cantidad" required autocomplete="off">
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="form-group row ocultar">
-                <div class="col-xs-6 pull-right">
-                  <div class="input-group ">
-                    <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
-                    <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
+                <div class="form-group row ocultar">
+                  <div class="col-xs-6 pull-right">
+                    <div class="input-group ">
+                      <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
+                      <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-xs-6 pull-right alto ocultar">
-                  <div class="input-group ">
-                    <h5>
-                      Descuento $<label value="0" id="descuentoT" name="descuentoT" total="">0</label>
-                    </h5>
-                    <input type="hidden" name="descuentoTH" id="descuentoTH" value="0">
+              <?php endif ?>
+
+                <div class="row">
+                  <?php if (!isset($_GET["compra"])): ?>
+                    <div class="col-xs-6 pull-right alto ocultar">
+                      <div class="input-group ">
+                        <h5>
+                          Descuento $<label value="0" id="descuentoT" name="descuentoT" total="">0</label>
+                        </h5>
+                        <input type="hidden" name="descuentoTH" id="descuentoTH" value="0">
+                      </div>
+                    </div>
+                  <?php endif ?>
+                  <div class="col-xs-6 pull-right alto">
+                    <div class="input-group ">
+                      <h5>
+                        Total $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
+                      </h5>
+                      <input type="hidden" name="totalVenta" id="totalVenta" value="0">
+                    </div>
                   </div>
                 </div>
-                <div class="col-xs-6 pull-right alto">
-                  <div class="input-group ">
-                    <h5>
-                      Total $<label value="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="">0</label>
-                    </h5>
-                    <input type="hidden" name="totalVenta" id="totalVenta" value="0">
-                  </div>
-                </div>
-              </div>
 
               <div class="row">
 
@@ -278,9 +289,17 @@
 
             <div class="card-footer">
 
-              <button type="submit" class="btn btn-primary pull-right">Cobrar</button>
+              <button type="submit" class="btn btn-primary pull-right"><?= $buttonTag ?></button>
 
             </div>
+
+            <?php 
+              if(isset($_GET["compra"]))
+              {
+                $crearCompra = new ControladorCompra();
+                $crearCompra->ctrCrearCompra();
+              } 
+            ?>
 
           </form>
 
