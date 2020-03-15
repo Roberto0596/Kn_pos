@@ -5,7 +5,8 @@ $(document).ready(function()
 
 function mostrarTablaVenta(idProveedor)
 {
-	var tablaVenta = $('.tablaVentas').DataTable(
+	$('.tablaVentas tbody').remove();
+	$('.tablaVentas').DataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
@@ -76,7 +77,7 @@ function mostrarTablaVenta(idProveedor)
 							'<i class="fa fa-times"></i>'+
 						'</button>'+
 						'</span>'+
-						'<input type="hidden" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregarProducto" value="'+nombre+'" readonly required>'+
+						'<input type="hidden" class="form-control nuevoNombreProducto" idProducto="'+idDproducto+'" name="agregadoProducto" value="'+nombre+'" readonly required>'+
 					'</td>'+
 					'<td>'+nombre+'</td>'+
 					'<td>$'+precio+'</td>'+
@@ -88,7 +89,7 @@ function mostrarTablaVenta(idProveedor)
 				'</tr>'
 				);
 				// sumarTotalPrecios();
-				// listarProductos();
+				//listarProductos();
 			}
 		});
 	});
@@ -147,7 +148,7 @@ function listarProductos()
 
 	for(var i=0; i<descripcion.length; i++)
 	{
-		listaProductos.push({ "id" : $(descripcion[i]).attr("idProducto"), 
+		listaProductos.push({ "id" : $(descripcion[i]).attr("idProducto"),
 							  "descripcion" : $(descripcion[i]).val(),
 							  "cantidad" : $(cantidad[i]).val(),
 							  "existencia" : $(cantidad[i]).attr("nuevaExistencia"),
@@ -155,7 +156,7 @@ function listarProductos()
 							  "total" : $(precio[i]).val()});
 	}
 
-	$("#listaProductos").val(JSON.stringify(listaProductos));  
+	$("#listaProductos").val(JSON.stringify(listaProductos));
 }
 
 
@@ -170,15 +171,15 @@ $("#guardarProducto").click(function()
 	if (codigo != "" && nombre != "" && precio_compra != "" && precio_venta != "")
 	{
 		var data_library = [{"codigo" : codigo,
-		"nombre" : nombre, 
-		"precio_compra" : precio_compra, 
-		"precio_venta" : precio_venta, 
+		"nombre" : nombre,
+		"precio_compra" : precio_compra,
+		"precio_venta" : precio_venta,
 		"stock" : 0,
 		"idProveedor":idProveedor}];
 
 		var datos = new FormData();
 		datos.append("data_library", JSON.stringify(data_library));
-		
+
 		$.ajax({
 
 			url:"ajax/productos.ajax.php",
@@ -254,10 +255,10 @@ $("#nuevo_precio_compra").change(function()
 
 		var porcentaje = Number(($("#nuevo_precio_compra").val()*valorPorcentaje/100)) + Number($("#nuevo_precio_compra").val());
 
-		
+
 		$("#nuevo_precio_venta").val(porcentaje);
 		$("#nuevo_precio_venta").prop("readonly",true);
-	
+
 	}
 })
 
@@ -268,7 +269,7 @@ $(".nuevoPorcentaje").change(function()
 		var valorPorcentaje = $(this).val();
 
 		var porcentaje = Number(($("#nuevo_precio_compra").val()*valorPorcentaje/100)) + Number($("#nuevo_precio_compra").val());
-		
+
 		$("#nuevo_precio_venta").val(porcentaje);
 		$("#nuevo_precio_venta").prop("readonly",true);
 	}
