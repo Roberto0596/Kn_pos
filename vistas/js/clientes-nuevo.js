@@ -44,6 +44,7 @@ $("#ciudad").change(function()
 
 $("#codigo_postal").change(function()
 {
+	$('#asentamiento').removeAttr("readonly");
 	$('#asentamiento').empty().append('whatever');
 	var codigo_postal = $(this).val();
 	$.ajax({
