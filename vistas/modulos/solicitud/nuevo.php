@@ -200,7 +200,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="casa">Casa</label>
+                  <label class="label-style" for="casa">Su Casa Es:</label>
 
                     <div class="input-group mb-3">
 
@@ -214,9 +214,11 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <option value="">Seleccione un item</option>
 
-                          <option value="Si">Si</option>
+                          <option value="Rentandola">Rentandola</option>
 
-                          <option value="No">No</option>
+                          <option value="Pagandola">Pagandola</option>
+                          
+                           <option value="Propietario">Propietario</option>
 
                       </select>
 
@@ -226,7 +228,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                 <div class="col-md-4">
 
-                  <label class="label-style" for="tiempo_casa">Tiempo en casa</label>
+                  <label class="label-style" for="tiempo_casa">Años de residir en ella</label>
 
                   <div class="input-group mb-3">
 
