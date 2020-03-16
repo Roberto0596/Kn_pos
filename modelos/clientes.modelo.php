@@ -30,6 +30,7 @@ class ModeloClientes
 		telefono_casa = :telefono_casa,
 		telefono_celular = :telefono_celular,
 		codigo_postal = :codigo_postal,
+		asentamiento = :asentamiento,
 		ciudad = :ciudad WHERE id_cliente = :id_cliente");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
@@ -39,6 +40,7 @@ class ModeloClientes
 		$stmt->bindParam(":telefono_celular",$datos["telefono_celular"],PDO::PARAM_STR);
 		$stmt->bindParam(":ciudad",$datos["ciudad"],PDO::PARAM_STR);
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
+		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":id_cliente",$datos["id_cliente"],PDO::PARAM_STR);
 
 		if ($stmt->execute())

@@ -170,7 +170,7 @@
 
                   <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg select2" id="codigo_postal" name="codigo_postal" required>
+                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal" required>
 
                       </select>
 
@@ -184,7 +184,7 @@
 
                   <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg select2" id="asentamiento" name="asentamiento" readonly required>
+                      <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly required>
 
                       </select>
 
