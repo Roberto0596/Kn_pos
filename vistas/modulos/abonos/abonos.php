@@ -1,3 +1,6 @@
+<?php
+$clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
+?>
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -12,23 +15,35 @@
   <section class="content">
     <div class="card">
       <div class="card-body">
+      <form role="form" method="post" id="frmCobro" class="formularioAbono">
+      <div class="input-group ocultar">
+        <span class="input-group-text"><i class="fa fa-users"></i></span>
+          <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
+            <option></option>
+            <?php if (isset($clientes)): ?>
+              <?php foreach($clientes as $key => $value): ?>
+                <?php if ($key>0): ?>
+                  <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
+                <?php endif ?>
+              <?php endforeach ?>
+            <?php endif ?>
+          </select>
+        </div>
         <table class="table table-bordered table-striped dt-responsive tablaAlmacen">
-
           <thead>
-
-            <tr>
-              <th style="width: 10px">#</th>
-              <th>Nombre</th>
-              <th>ubicacion</th>
-              <th>estado</th>
-              <th>acciones</th>
+            <tr><th>Producto</th>
+            <TD>Cama</TD> <TD>Sala</TD>
             </tr>
-
+            <tr><th>Fecha</th>
+            <TD>12-12-2020</TD> <TD>12-12-2020</TD>
+            </tr>
+            <tr><th>Abono</th>
+            <TD>200</TD> <TD>500</TD>
+            </tr>
           </thead>
 
-
         </table>
-
+        </form>
       </div>
 
     </div>

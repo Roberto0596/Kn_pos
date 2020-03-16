@@ -160,7 +160,7 @@ function mostrarTablaVenta()
 		$('#cantidadTiempo').attr('disabled',false);
 		$('#primerAbono').attr('disabled',false);
 	});
-	
+
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
 		$(this).parent().parent().parent().remove();
@@ -343,7 +343,12 @@ function mostrarTablaVenta()
 		{
 			var cambio =  Number(efectivo) - Number($('#totalVenta').val());
 			var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
-			nuevoCambioEfectivo.val(redondear(cambio,2));
+			if(cambio < 0){
+				nuevoCambioEfectivo.val(0);
+			}else{
+				nuevoCambioEfectivo.val(redondear(cambio,2));
+			}
+
 
 		}
 	});
