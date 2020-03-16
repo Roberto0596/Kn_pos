@@ -92,12 +92,6 @@
                                           </div>
 
                                         </div>
-<<<<<<< HEAD
-                                        <?php
-                                        echo Helpers::traerProveedores();
-                                        ?>
-                                    </div>
-=======
 
                                         <div class="col-xs-6" style="padding: 0">
 
@@ -118,7 +112,6 @@
 
                                     </div> 
 
->>>>>>> 99129e1e912fdced28a0dc1814054d64d2b45b20
                                 </div>
 
                             </div>
