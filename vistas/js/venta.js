@@ -1,10 +1,10 @@
-function mostrarTablaVenta()
-{
-	var tablaVenta = $('.tablaVentas').DataTable(
+function mostrarTablita() {
+	$('.tablaVentas tbody').remove();
+	$('.tablaVentas').DataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
-		"retrieve": true,
+
 		"processing": true,
 		"bFilter": true,
 		"bLengthChange" : true,
@@ -37,7 +37,11 @@ function mostrarTablaVenta()
 
 		}
 	});
+}
 
+function mostrarTablaVenta()
+{
+	mostrarTablita();
 	$(".tablaVentas tbody").on("click","button.DeUno", function()
 	{
 		var idProductoVenta = $(this).attr("idProducto");
@@ -132,36 +136,6 @@ function mostrarTablaVenta()
 		}
 	});
 
-	$(".formularioVenta").on("click", "button.btn-info", function()
-	{
-		$(".formularioVenta .tipoCompra").removeClass('btn-info');
-		$(".formularioVenta .tipoCompra").addClass('btn-secondary');
-		$(".formularioVenta .tipoCompra").text("Contado");
-
-		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
-		$('#seleccionarCliente').attr('disabled',true);
-		$('#seleccionarClienteH').attr('disabled',false);
-
-		$('#tipoTiempo').attr('disabled',true);
-		$('#cantidadTiempo').attr('disabled',true);
-		$('#primerAbono').attr('disabled',true);
-		$('#nuevoValorEfectivo').attr('placeholder','Pago');
-	});
-
-	$(".formularioVenta").on("click", "button.btn-secondary", function()
-	{
-		$(".formularioVenta .tipoCompra").removeClass('btn-secondary');
-		$(".formularioVenta .tipoCompra").addClass('btn-info');
-		$(".formularioVenta .tipoCompra").text("Crédito");
-		$("#seleccionarCliente").find("option[value='1']").remove();
-		$('#seleccionarCliente').attr('disabled',false);
-		$('#seleccionarClienteH').attr('disabled',true);
-
-		$('#tipoTiempo').attr('disabled',false);
-		$('#cantidadTiempo').attr('disabled',false);
-		$('#primerAbono').attr('disabled',false);
-		$('#nuevoValorEfectivo').attr('placeholder','Enganche');
-	});
 
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
 	{
@@ -313,8 +287,7 @@ function mostrarTablaVenta()
 		var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
 		if (Number(efectivo) > Number($('#totalVenta').val()))
 		{
-			nuevoCambioEfectivo.val(cambio);
-			nuevoCambioEfectivo.number(true, 2);
+			nuevoCambioEfectivo.val(redondear(cambio,2));
 	    }else{
 			nuevoCambioEfectivo.val(0);
 		}
@@ -534,6 +507,53 @@ window.onload = function()
    listarProductos();
    mostrarTablaVenta();
 };
+
+$(".formularioVenta").on("click", "button.btn-info", function()
+	{
+		$(".formularioVenta .tipoCompra").removeClass('btn-info');
+		$(".formularioVenta .tipoCompra").addClass('btn-secondary');
+		$(".formularioVenta .tipoCompra").text("Contado");
+
+		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
+		$('#seleccionarCliente').attr('disabled',true);
+		$('#seleccionarClienteH').attr('disabled',false);
+
+		$('#tipoTiempo').attr('disabled',true);
+		$('#cantidadTiempo').attr('disabled',true);
+		$('#primerAbono').attr('disabled',true);
+		$('#nuevoValorEfectivo').attr('placeholder','Pago');
+		$('#listaProductos').val('');
+		$('#tablaProductos tbody').empty();
+		$("#nuevoTotalVenta").html(0);
+		$("#totalVenta").val(0);
+		$("#nuevoTotalVenta").attr("total",0);
+		$("#nuevoValorEfectivo").val(null);
+		$("#nuevoCambioEfectivo").val(null);
+		mostrarTablaVenta();
+	});
+
+	$(".formularioVenta").on("click", "button.btn-secondary", function()
+	{
+		$(".formularioVenta .tipoCompra").removeClass('btn-secondary');
+		$(".formularioVenta .tipoCompra").addClass('btn-info');
+		$(".formularioVenta .tipoCompra").text("Crédito");
+		$("#seleccionarCliente").find("option[value='1']").remove();
+		$('#seleccionarCliente').attr('disabled',false);
+		$('#seleccionarClienteH').attr('disabled',true);
+
+		$('#tipoTiempo').attr('disabled',false);
+		$('#cantidadTiempo').attr('disabled',false);
+		$('#primerAbono').attr('disabled',false);
+		$('#nuevoValorEfectivo').attr('placeholder','Enganche');
+		$('#listaProductos').val('');
+		$('#tablaProductos tbody').empty();
+		$("#nuevoTotalVenta").html(0);
+		$("#totalVenta").val(0);
+		$("#nuevoTotalVenta").attr("total",0);
+		$("#nuevoValorEfectivo").val(null);
+		$("#nuevoCambioEfectivo").val(null);
+		mostrarTablaVenta();
+	});
 
 function listarProductos()
 {

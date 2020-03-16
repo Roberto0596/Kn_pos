@@ -1,5 +1,5 @@
 <?php
-  
+
   if (isset($_GET["compra"]))
   {
     $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
@@ -74,7 +74,7 @@
 
                 </div>
 
-              </div>              
+              </div>
 
             </div>
 
@@ -138,17 +138,17 @@
 
                   <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
 
-                    <option></option>                  
-                      
+                    <option></option>
+
                       <?php foreach($clientes as $key => $value): ?>
 
                         <?php if ($key>0): ?>
 
                           <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
-                          
+
                         <?php endif ?>
 
-                      <?php endforeach ?>                  
+                      <?php endforeach ?>
 
                   </select>
 
@@ -194,7 +194,7 @@
                   <div class="col-xs-6 pull-right">
                     <div class="input-group ">
                       <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
-                      <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento">
+                      <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-percent"></i></span>
                       </div>
@@ -261,7 +261,7 @@
 
                     </div>
 
-                    <input type="number" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Enganche" autocomplete="off">
+                    <input type="number" pattern="^[0-9]+" min="0" step="any" class="form-control" id="nuevoValorEfectivo" name="totalPayment" placeholder="Enganche" autocomplete="off">
 
                   </div>
 
@@ -293,12 +293,12 @@
 
             </div>
 
-            <?php 
+            <?php
               if(isset($_GET["compra"]))
               {
                 $crearCompra = new ControladorCompra();
                 $crearCompra->ctrCrearCompra();
-              } 
+              }
             ?>
 
           </form>
@@ -377,7 +377,7 @@
       <form method="post" class="crear_producto">
 
         <div class="modal-body">
-          
+
           <div class="row">
 
             <div class="col-md-6">
@@ -456,7 +456,7 @@
               </div>
 
               <div class="row">
-                
+
                 <div class="col-xs-6" style="margin-top: 10px; margin-right: 10px;">
 
                   <div class="input-group">
@@ -481,17 +481,17 @@
                     </div>
 
                   </div>
-                  
+
                 </div>
 
-              </div> 
+              </div>
 
             </div>
 
           </div>
 
         </div>
-  
+
         <div class="modal-footer justify-content-between">
 
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -519,7 +519,7 @@
 }
 
 </style>
- 
+
 <?php
   if(isset($_GET["compra"]))
   {
