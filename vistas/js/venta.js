@@ -722,3 +722,6 @@ function sumarTotalPreciosD()
 	$('#nuevoValorEfectivo').trigger('focus');
   });
 
+  $("html, body").animate({
+    scrollTop: 140
+}, 2300);
