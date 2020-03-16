@@ -114,12 +114,27 @@ button
     font: inherit
 }
 
-.seleccionarCliente{
-    height: 100px;
-}
 #tableScroll {
     overflow:auto;
     overflow-x: hidden;
     height: 200px;
-    width:498px;
+    width:100%;
+}
+
+
+.flotante {
+    display: block;
+    position: fixed;
+    bottom: 65px;
+    right: 695px;
+    z-index: 1;
+    display: block;
+    height: 43px;
+    width: 75px;
+    border-radius: 50%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+-webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.72);
+-moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.72);
+box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.72);
 }

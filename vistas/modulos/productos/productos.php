@@ -62,65 +62,105 @@
                                     <span class="input-group-text" onclick="getFocus('codigo')">
                                     <i class="fas fa-barcode"></i></span>
                                 </div>
-                                <input type="text" id="codigo" name="codigo" placeholder="Código" class="form-control form-control-lg" required>
+                                <input type="text" id="codigo" name="codigo" placeholder="Código" class="form-control form-control-lg" readonly>
+
                                 <input type="hidden" name="id_producto" id="id_producto" value="">
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="row">
 
-                                <div class="col-md-6">
-                                    <label class="label-style" for="nombre">Nombre</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" onclick="getFocus('nombre')">
-                                            <i class="fas fa-dolly"></i></span>
-                                        </div>
-                                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control form-control-lg capitalize" required>
-                                    </div>
+                            <label class="label-style" for="nombre">Nombre</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" onclick="getFocus('nombre')">
+                                    <i class="fas fa-dolly"></i></span>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <label class="label-style" for="precio_compra">Precio de compra</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" onclick="getFocus('precio_compra')">
-                                            <i class="fas fa-dollar-sign"></i></span>
-                                        </div>
-                                        <input type="text" id="precio_compra" name="precio_compra" placeholder="Precio de compra" class="form-control form-control-lg" required>
-                                    </div>
-                                </div>
-
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control form-control-lg capitalize" required>
                             </div>
                         </div>
+
                         <div class="col-md-6">
+
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <label class="label-style" for="precio_venta">Precio de venta</label>
+
+                                    <label class="label-style" for="precio_compra">Precio de compra</label>
+
                                     <div class="input-group mb-3">
+
+                                        <div class="input-group-prepend"><span class="input-group-text" onclick="getFocus('precio_compra')">
+                                            <i class="fas fa-dollar-sign"></i></span></div>
+
+                                        <input type="number" id="precio_compra" name="precio_compra" placeholder="Precio de compra" class="form-control form-control-lg" required>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="label-style" for="precio_venta">Precio de venta</label>
+
+                                    <div class="input-group mb-3">
+
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" onclick="getFocus('precio_venta')">
                                             <i class="fas fa-dollar-sign"></i></span>
                                         </div>
-                                        <input type="text" id="precio_venta" name="precio_venta" placeholder="Precio de venta" class="form-control form-control-lg" required>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-6">
-                                    <label class="label-style" for="idProveedor">Proveedor</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" onclick="getFocus('idProveedor')">
-                                            <i class="fas fa-truck"></i></span>
+                                        <input type="number" id="precio_venta" name="precio_venta" placeholder="Precio de venta" class="form-control form-control-lg" required>
+
+                                    </div>
+
+                                    <div class="row">
+                
+                                        <div class="col-xs-6" style="margin-top: 10px; margin-right: 10px;">
+
+                                          <div class="input-group">
+
+                                            <label><input type="checkbox" class="minimal porcentaje" checked>Utilizar porcentaje</label>
+
+                                          </div>
+
                                         </div>
-                                        <?php
-                                            echo ControladorProductos::traerProveedores();
-                                        ?>
-                                    </div>
+
+                                        <div class="col-xs-6" style="padding: 0">
+
+                                          <div class="input-group">
+
+                                            <input type="number" step="any" id="porcent" class = "form-control form-control-lg nuevoPorcentaje" min="0" value="40">
+
+                                            <div class="input-group-prepend">
+
+                                                <span class="input-group-text" onclick="getFocus('porcent')">
+                                                <i class="fa fa-percent"></i></i></span>
+
+                                            </div>
+
+                                          </div>
+                                          
+                                        </div>
+
+                                    </div> 
+
                                 </div>
 
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="label-style" for="idProveedor">Proveedor</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" onclick="getFocus('idProveedor')">
+                                    <i class="fas fa-truck"></i></span>
+                                </div>
+                                <?php
+                                    echo ControladorProductos::traerProveedores();
+                                ?>
                             </div>
                         </div>
 

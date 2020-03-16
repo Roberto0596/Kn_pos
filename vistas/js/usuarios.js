@@ -115,7 +115,7 @@ function mostrarTablaUsuarios(almacenId)
 		var fotoUsuario = $(this).attr("fotoUsuario");
 		var usuario = $(this).attr("usuario");
 		swal.fire({
-			title: '¿esta seguro que decea borrar usuario?',
+			title: '¿esta seguro que desea borrar usuario?',
 			text: "¡si no lo esta puede cancelar!",
 			type: 'warning',
 			showCancelButton: true,
@@ -193,7 +193,6 @@ $("#usuarioNew").change(function()
 			}
 		}
 	})
-
 })
 
 $(".selectAlmacen").change(function()

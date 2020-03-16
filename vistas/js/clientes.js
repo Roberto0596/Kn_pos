@@ -53,7 +53,24 @@ $(".tablaClientes tbody").on("click","button.btnEliminarCliente",function(){
 	})
 })
 
-$(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
+$(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
+{
+	$('#ciudad').empty().append('whatever');
+	$.ajax({
+		url:"https://api-sepomex.hckdrk.mx/query/get_municipio_por_estado/Sonora",
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			for (var i = 0; i < respuesta["response"]["municipios"].length; i++) 
+			{
+				var codigo = respuesta["response"]["municipios"][i];
+				$('#ciudad').prepend("<option value='"+codigo+"' >"+codigo+"</option>");
+			}
+			
+	}});
 	var idCliente = $(this).attr("idCliente");
 	var datos = new FormData();
 	datos.append("idCliente", idCliente);
@@ -67,14 +84,75 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 		dataType: "json",
 		success: function(respuesta)
 		{
-			console.log("datos",respuesta);
 			$("#nombre").val(respuesta["nombre"]);
 			$("#direccion").val(respuesta["direccion"]);
 			$("#edad").val(respuesta["edad"]);
 			$("#t_casa").val(respuesta["telefono_casa"]);
 			$("#t_celular").val(respuesta["telefono_celular"]);
-			$("#codigo_postal").val(respuesta["codigo_postal"]);
-			$("#ciudad").val(respuesta["ciudad"]);
+			$("#codigo_postal_enviar").val(respuesta["codigo_postal"]);
+			$("#ciudad_enviar").val(respuesta["ciudad"]);
+			$("#id_cliente").val(respuesta["id_cliente"]);
+			$("#asentamiento_enviar").val(respuesta["asentamiento"]);
+			$('#ciudad').prepend("<option value='' >"+respuesta["ciudad"]+"</option>");
+			$('#codigo_postal').prepend("<option value='' >"+respuesta["codigo_postal"]+"</option>");
+			$('#asentamiento').prepend("<option value='' >"+respuesta["asentamiento"]+"</option>");
 	}});
+})
+
+$("#ciudad").change(function()
+{
+	$('#codigo_postal').empty().append('whatever');
+	$('#asentamiento').empty().append('whatever');
+	var municipio = $(this).val();
+	$("#ciudad_enviar").val(municipio);
+	$.ajax({
+		url:"https://api-sepomex.hckdrk.mx/query/get_cp_por_municipio/"+municipio,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			for (var i = 0; i < respuesta["response"]["cp"].length; i++) 
+			{
+				var codigo = respuesta["response"]["cp"][i];
+				$('#codigo_postal').prepend("<option value='"+codigo+"' >"+codigo+"</option>");
+			}
+			
+		}});
+		$('#codigo_postal').prepend("<option value='' >Seleccione un codigo postal</option>");
+})
+
+$("#codigo_postal").change(function()
+{
+	$('#asentamiento').removeAttr("readonly");
+	$('#asentamiento').empty().append('whatever');
+	var codigo_postal = $(this).val();
+	$("#codigo_postal_enviar").val(codigo_postal);
+	$.ajax({
+		url:"https://api-sepomex.hckdrk.mx/query/info_cp/"+codigo_postal+"?type=simplified",
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{	
+			var lastValue;
+			for (var i = 0; i < respuesta["response"]["asentamiento"].length; i++) 
+			{
+				var asentamiento = respuesta["response"]["asentamiento"][i];
+				$('#asentamiento').prepend("<option value='"+asentamiento+"' >"+asentamiento+"</option>");
+				if (i==respuesta["response"]["asentamiento"].length-1)
+				{
+					lastValue =respuesta["response"]["asentamiento"][i]
+				}
+			}
+			$("#asentamiento_enviar").val($('#asentamiento').val());			
+	}});
+})
+
+$("#asentamiento").change(function()
+{
+	$("#asentamiento_enviar").val($('#asentamiento').val());
 })
 

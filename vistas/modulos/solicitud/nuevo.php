@@ -13,8 +13,15 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
       <div class="row mb-2">
 
         <div class="col-sm-6">
+          <?php if(isset($_GET["idSolicitud"])): ?>
 
-          <h1>Nueva Solicitud de Crédito</h1>
+            <h1>Visualizar solicitud</h1>
+
+          <?php else: ?>
+
+            <h1>Nueva Solicitud de Crédito</h1>
+
+          <?php endif ?>
 
         </div>
 
@@ -82,7 +89,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
           <li class="nav-item">
 
-            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Aval</a>
+            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Conyuge</a>
 
           </li>
 
@@ -529,7 +536,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize " required>
+                            <input type="text" name="nombre_familiar[]" id="ref_fam_nombre1" placeholder="Nombre" class="form-control capitalize " required>
 
                           </div>
 
@@ -539,7 +546,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Direccion" class="form-control capitalize " required>
+                            <input type="text" name="direccion_familiar[]" id="ref_fam_direccion1" placeholder="Direccion" class="form-control capitalize " required>
 
                           </div>
 
@@ -549,7 +556,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Telefono" class="form-control capitalize " data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" id="ref_fam_telefono1" placeholder="Telefono" class="form-control capitalize " data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -564,7 +571,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_familiar[]" id="ref_fam_nombre2" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -574,7 +581,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
+                            <input type="text" name="direccion_familiar[]" id="ref_fam_direccion2" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -584,7 +591,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" id="ref_fam_telefono2" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -599,7 +606,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_familiar[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_familiar[]" id="ref_fam_nombre3" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -609,7 +616,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" placeholder="Dirección" class="form-control capitalize" required>
+                            <input type="text" name="direccion_familiar[]" id="ref_fam_direccion3" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -619,7 +626,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_familiar[]" id="ref_fam_telefono3" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -656,7 +663,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_amistad[]" id="ref_amg_nombre1" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -666,7 +673,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" id="ref_amg_direccion1" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -676,7 +683,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
+                            <input type="text" name="telefono_amistad[]" id="ref_amg_telefono1" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask  required>
 
                           </div>
 
@@ -691,7 +698,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_amistad[]" id="ref_amg_nombre2" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -701,7 +708,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" id="ref_amg_direccion2" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -711,7 +718,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                            <input type="text" name="telefono_amistad[]" id="ref_amg_telefono2" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -726,7 +733,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="nombre_amistad[]" placeholder="Nombre" class="form-control capitalize" required>
+                            <input type="text" name="nombre_amistad[]" id="ref_amg_nombre3" placeholder="Nombre" class="form-control capitalize" required>
 
                           </div>
 
@@ -736,7 +743,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_amistad[]" placeholder="Dirección" class="form-control capitalize" required>
+                            <input type="text" name="direccion_amistad[]" id="ref_amg_direccion3" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -746,7 +753,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_amistad[]" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                            <input type="text" name="telefono_amistad[]" id="ref_amg_telefono3" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
                           </div>
 
@@ -797,22 +804,22 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                   <ul class="nav nav-tabs" id="myTab2" role="tablist">
 
-                    <li class="nav-item"><a class="nav-link active" id="info_personale" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Info. personal del aval</a>
+                    <li class="nav-item"><a class="nav-link active" id="info_personale" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Info. personal</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" id="general" data-toggle="tab" href="#info_general" role="tab" aria-controls="info_general">Info. general del aval</a>
+                    <li class="nav-item"><a class="nav-link" id="general" data-toggle="tab" href="#info_general" role="tab" aria-controls="info_general">Info. general</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" id="info_laboral_aval" data-toggle="tab" href="#laboral_informacion_aval" role="tab" aria-controls="laboral_informacion_aval">Info. Laboral del aval</a>
+                    <li class="nav-item"><a class="nav-link" id="info_laboral_aval" data-toggle="tab" href="#laboral_informacion_aval" role="tab" aria-controls="laboral_informacion_aval">Info. Laboral</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" id="informacion_familiar_aval_tab" data-toggle="tab" href="#informacion_familiar_aval" role="tab" aria-controls="informacion_familiar_aval_tab">Info. familiar del aval</a>
+                    <li class="nav-item"><a class="nav-link" id="informacion_familiar_aval_tab" data-toggle="tab" href="#informacion_familiar_aval" role="tab" aria-controls="informacion_familiar_aval_tab">Info. familiar</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" id="familiar_referencia_aval" data-toggle="tab" href="#referencia_familiar_aval" role="tab" aria-controls="referencia_familiar_aval">Referencia familiar del aval</a>
+                    <li class="nav-item"><a class="nav-link" id="familiar_referencia_aval" data-toggle="tab" href="#referencia_familiar_aval" role="tab" aria-controls="referencia_familiar_aval">Referencia familiar</a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" id="referencia_amistad_aval_tab" data-toggle="tab" href="#referencia_amistad_aval" role="tab" aria-controls="referencia_amistad_aval">Referencias de amistad del aval</a>
+                    <li class="nav-item"><a class="nav-link" id="referencia_amistad_aval_tab" data-toggle="tab" href="#referencia_amistad_aval" role="tab" aria-controls="referencia_amistad_aval">Referencias de amistad</a>
                     </li>
 
                   </ul>
@@ -1579,3 +1586,10 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
   </section>
 
 </div>
+
+
+<?php if(isset($_GET["idSolicitud"])): ?>
+
+  <script src="vistas/js/editarSolicitud.js"></script>
+
+<?php endif?>

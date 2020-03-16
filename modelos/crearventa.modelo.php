@@ -11,8 +11,12 @@ class ModeloVentas{
     public $ListaProductos;
     public $TotalVenta;
 	public $TotalPago;
+	public $Descuento;
+	public $Pendiente;
+	public $CalendarioAbonos;
+	public $TipoAbono;
 
-    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago)
+    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago, $Descuento, $Pendiente, $CalendarioAbonos, $TipoAbono)
 	{
 		$this->Id_venta = $Id_venta;
 		$this->Folio = $Folio;
@@ -23,7 +27,11 @@ class ModeloVentas{
 		$this->Hora = $Hora;
 		$this->ListaProductos = $ListaProductos;
         $this->TotalVenta = $TotalVenta;
-        $this->TotalPago = $TotalPago;
+		$this->TotalPago = $TotalPago;
+		$this->Descuento = $Descuento;
+		$this->Pendiente = $Pendiente;
+		$this->CalendarioAbonos = $CalendarioAbonos;
+		$this->TipoAbono = $TipoAbono;
     }
 
     public  static function mdlNuevoFolio()
@@ -55,8 +63,7 @@ class ModeloVentas{
 
     public static function mdlCrearVenta($tabla,$venta)
 	{
-		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :TotalVenta, :TotalPago);");
-
+		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono);");
 		$stmt->bindParam(":Folio", $venta->Folio, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_usuario", $venta->Id_usuario, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_cliente", $venta->Id_cliente, PDO::PARAM_STR);
@@ -64,9 +71,12 @@ class ModeloVentas{
 		$stmt->bindParam(":Fecha", $venta->Fecha, PDO::PARAM_STR);
 		$stmt->bindParam(":Hora", $venta->Hora, PDO::PARAM_STR);
 		$stmt->bindParam(":ListaProductos", $venta->ListaProductos, PDO::PARAM_STR);
+		$stmt->bindParam(":Descuento", $venta->Descuento, PDO::PARAM_STR);
 		$stmt->bindParam(":TotalVenta", $venta->TotalVenta, PDO::PARAM_STR);
 		$stmt->bindParam(":TotalPago", $venta->TotalPago, PDO::PARAM_STR);
-
+		$stmt->bindParam(":Pendiente", $venta->Pendiente, PDO::PARAM_STR);
+		$stmt->bindParam(":CalendarioAbonos", $venta->CalendarioAbonos, PDO::PARAM_STR);
+		$stmt->bindParam(":TipoAbono", $venta->TipoAbono, PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return "ok";

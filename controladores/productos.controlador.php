@@ -1,11 +1,20 @@
 <?php
-class ControladorProductos{
+class ControladorProductos
+{
     public function ctrMostrarProductos($item,$valor)
 	{
 		$tabla = "productos";
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor);
 		return $respuesta;
     }
+
+    public function ctrMostrarProductosPorProveedor($item,$valor)
+	{
+		$tabla = "productos";
+		$respuesta = ModeloProductos::mdlMostrarProductosPorProveedor($tabla,$item,$valor);
+		return $respuesta;
+    }
+
 	public function ctrMostrarProductosT()
 	{
 		$respuesta = ModeloProductos::mdlMostrarProductosT();
@@ -136,7 +145,7 @@ class ControladorProductos{
             $resultado .="</select>\n";
 			return $resultado;
 	  	}else{
-            $resultado = "<select id=\"idProveedor\" class=\"form-control-lg\" name=\"idProveedor\" required>\n<option value=\"\" >Seleccione Proveedor</option>\n";
+            $resultado = "<select id=\"idProveedor\" class=\"form-control form-control-lg\" name=\"idProveedor\" required>\n<option value=\"\" >Seleccione Proveedor</option>\n";
 
 
             for($i = 0; $i < count($proveedores); $i++)

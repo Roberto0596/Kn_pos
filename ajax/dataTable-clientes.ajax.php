@@ -12,7 +12,8 @@ class TablaClientes
 		foreach ($respuesta as $key => $value)
 		{
 
-			if($value["id_cliente"]>1){
+			if($value["id_cliente"]>1)
+			{
 				$botones =  "
 				<div class='btn-group'>
 					<button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$value["id_cliente"]."'>
@@ -24,10 +25,11 @@ class TablaClientes
 				</div>";
 
 				array_push($res['data'], [
-					($key+1),
+					($key),
 					$value["nombre"],
 					$value["direccion"],
 					$value["codigo_postal"],
+					$value["asentamiento"],
 					$value["telefono_casa"],
 					$value["telefono_celular"],
 					$value["ciudad"],
