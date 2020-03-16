@@ -145,6 +145,7 @@ function mostrarTablaVenta()
 		$('#tipoTiempo').attr('disabled',true);
 		$('#cantidadTiempo').attr('disabled',true);
 		$('#primerAbono').attr('disabled',true);
+		$('#nuevoValorEfectivo').attr('placeholder','Pago');
 	});
 
 	$(".formularioVenta").on("click", "button.btn-secondary", function()
@@ -159,6 +160,7 @@ function mostrarTablaVenta()
 		$('#tipoTiempo').attr('disabled',false);
 		$('#cantidadTiempo').attr('disabled',false);
 		$('#primerAbono').attr('disabled',false);
+		$('#nuevoValorEfectivo').attr('placeholder','Enganche');
 	});
 
 	$(".formularioVenta").on("click", "button.quitarProducto", function()
