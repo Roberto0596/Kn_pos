@@ -60,10 +60,11 @@ class ControladorClientes
 			$tabla = "cliente";
 			$datos = array('nombre' => ucfirst($_POST["nombre"]),
 							'direccion' => ucfirst($_POST["direccion"]), 
-							'codigo_postal' => $_POST["codigo_postal"],
+							'codigo_postal' => $_POST["codigo_postal_enviar"],
 							'telefono_casa' => $_POST["t_casa"],
 							'telefono_celular' => $_POST["t_celular"],
-							'ciudad' => ucfirst($_POST["ciudad"]),
+							'ciudad' => ucfirst($_POST["ciudad_enviar"]),
+							'asentamiento' => ucfirst($_POST["asentamiento_enviar"]),
 							'edad' => $_POST["edad"],
 							'id_cliente' => $_POST["id_cliente"]);
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);

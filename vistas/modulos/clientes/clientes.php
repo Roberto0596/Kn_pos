@@ -108,7 +108,7 @@
 
                 <div class="row">
 
-                  <div class="col-md-6">
+                  <div class="col-md-12">
 
                     <label class="label-style" for="direccion">Dirección</label>
 
@@ -121,24 +121,6 @@
                         </div>
 
                         <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-lg capitalize" required>
-
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-6">
-
-                    <label class="label-style" for="edad">Edad</label>
-
-                    <div class="input-group mb-3">
-
-                        <div class="input-group-prepend">
-
-                          <span class="input-group-text" onclick="getFocus('edad')"><i class="fas fa-user"></i></span>
-
-                        </div>
-
-                        <input type="number" min="18" max="99" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
 
                     </div>
 
@@ -196,25 +178,25 @@
 
                 <div class="row">
 
-                  <div class="col-md-6">
+                  <div class="col-md-4">
 
-                    <label class="label-style" for="codigo_postal">Código postal</label>
+                    <label class="label-style" for="edad">Edad</label>
 
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
 
-                          <span class="input-group-text" onclick="getFocus('codigo_postal')"><i class="fas fa-user"></i></span>
+                          <span class="input-group-text" onclick="getFocus('edad')"><i class="fas fa-user"></i></span>
 
                         </div>
 
-                        <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Código postal" class="form-control form-control-lg" maxlength="5" data-inputmask="'mask':'99999'" data-mask required>
+                        <input type="number" min="18" max="99" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
 
                     </div>
 
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-8">
 
                     <label class="label-style" for="ciudad">Ciudad</label>
 
@@ -226,7 +208,51 @@
 
                         </div>
 
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
+                        <select class="form-control form-control-lg" id="ciudad" name="ciudad" required>
+
+                        </select>
+
+                        <input type="hidden" id="ciudad_enviar" name="ciudad_enviar">
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-12">
+
+                <div class="row">
+
+                  <div class="col-md-6">
+
+                    <label class="label-style" for="codigo_postal">Código postal</label>
+
+                    <div class="input-group mb-3">
+
+                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal" required>
+
+                      </select>
+
+                      <input type="hidden" id="codigo_postal_enviar" name="codigo_postal_enviar">
+
+                    </div>
+
+                  </div>
+
+                 <div class="col-md-6">
+
+                    <label class="label-style" for="codigo_postal">Colonia</label>
+
+                    <div class="input-group mb-3">
+
+                        <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly required>
+
+                        </select>
+
+                        <input type="hidden" id="asentamiento_enviar" name="asentamiento_enviar">
 
                     </div>
 
