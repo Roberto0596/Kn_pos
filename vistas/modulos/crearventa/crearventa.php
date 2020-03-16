@@ -288,14 +288,14 @@
               </div>
 
             </div>
-<!-- 
+<!--
             <div class="card-footer">
 
               <button type="submit" class="btn btn-primary pull-right"><?= $buttonTag ?></button>
 
             </div> -->
 
-            <button class='flotante mybtn btn-primary' title="Cobrar" type="submit"><i class="ion ion-social-usd"></i></button>
+            <button class='flotante mybtn btn-primary' title="Cobrar" type="submit">Cobrar</button>
 
             <?php
               if(isset($_GET["compra"]))
