@@ -286,12 +286,14 @@
               </div>
 
             </div>
-
+<!-- 
             <div class="card-footer">
 
               <button type="submit" class="btn btn-primary pull-right"><?= $buttonTag ?></button>
 
-            </div>
+            </div> -->
+
+            <button class='flotante mybtn btn-primary' title="Cobrar" type="submit"><i class="ion ion-social-usd"></i></button>
 
             <?php
               if(isset($_GET["compra"]))
