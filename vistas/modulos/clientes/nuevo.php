@@ -118,7 +118,7 @@
 
               <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-4">
 
                   <label class="label-style" for="edad">Edad</label>
 
@@ -136,7 +136,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-8">
 
                   <label class="label-style" for="ciudad">Ciudad</label>
 
@@ -148,7 +148,9 @@
 
                       </div>
 
-                      <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" class="form-control form-control-lg capitalize" required>
+                      <select class="form-control form-control-lg" id="ciudad" name="ciudad" required>
+
+                      </select>
 
                   </div>
 
@@ -178,7 +180,7 @@
 
                 <div class="col-md-6">
 
-                  <label class="label-style" for="codigo_postal">Asentamiento</label>
+                  <label class="label-style" for="codigo_postal">Colonia</label>
 
                   <div class="input-group mb-3">
 
