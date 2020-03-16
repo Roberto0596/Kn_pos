@@ -17,11 +17,11 @@ class ControladorClientes
 			$respuesta = ModeloClientes::mdlEliminarCliente($tabla,"id_cliente",$_GET["idCliente"]);
 			if ($respuesta = "ok")
 			{
-				ControladorClientes::imprimirMensaje("success","El cliente se elimino del sistema","clientes");
+				Helpers::imprimirMensaje("success","El cliente se elimino del sistema","clientes");
 			}
 			else
 			{
-				ControladorClientes::imprimirMensaje("error","No es posible eliminar este cliente","clientes");
+				Helpers::imprimirMensaje("error","No es posible eliminar este cliente","clientes");
 			}
 		}
 	}
@@ -38,16 +38,17 @@ class ControladorClientes
 							'telefono_celular' => $_POST["t_celular"],
 							'ciudad' => ucfirst($_POST["ciudad"]),
 							'edad' => $_POST["edad"],
-							'tipo' => $_POST["tipo"]);
+							'tipo' => $_POST["tipo"],
+							'asentamiento' => $_POST["asentamiento"]);
 			
 			$respuesta = ModeloClientes::mdlCrearCliente($tabla,$datos);
 			if ($respuesta != "error")
 			{
-				ControladorClientes::imprimirMensaje("success","El cliente se creo correctamente","clientes");
+				Helpers::imprimirMensaje("success","El cliente se creo correctamente","clientes");
 			}
 			else
 			{
-				ControladorClientes::imprimirMensaje("error","El cliente no se creo","clientes");
+				Helpers::imprimirMensaje("error","El cliente no se creo","clientes");
 			}
 		}
 	}
@@ -68,32 +69,12 @@ class ControladorClientes
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);
 			if ($respuesta = "ok")
 			{
-				ControladorClientes::imprimirMensaje("success","El cliente se edito correctamente","clientes");
+				Helpers::imprimirMensaje("success","El cliente se edito correctamente","clientes");
 			}
 			else
 			{
-				ControladorClientes::imprimirMensaje("error","No fue posible editar el cliente","clientes");
+				Helpers::imprimirMensaje("error","No fue posible editar el cliente","clientes");
 			}
 		}
 	}
-
-	public function imprimirMensaje($validador,$mensaje,$destino)
- 	{
-		echo 
-		'<script>
-		swal.fire({
-			type: "'.$validador.'",
-			title: "'.$mensaje.'",
-			showConfirmButton: true,
-			confirmButtonText: "cerrar",
-			closeOnConfirm: false
-			}).then((result)=>
-		    {
-				if(result.value)
-				{
-					window.location = "'.$destino.'";
-				}
-		    })
-		</script>'; 	
- 	}
 }

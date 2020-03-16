@@ -29,6 +29,7 @@ class TablaClientes
 					$value["nombre"],
 					$value["direccion"],
 					$value["codigo_postal"],
+					$value["asentamiento"],
 					$value["telefono_casa"],
 					$value["telefono_celular"],
 					$value["ciudad"],

@@ -43,6 +43,7 @@
               <th>Nombre</th>
               <th>Dirección</th>
               <th>Código postal</th>
+              <th>Asentamiento</th>
               <th>T. Casa</th>
               <th>T. Celular</th>
               <th>Ciudad</th>

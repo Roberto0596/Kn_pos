@@ -68,7 +68,7 @@ class ModeloClientes
 	public static function mdlCrearCliente($tabla,$datos)
 	{
 		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
-		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo)");
+		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo,asentamiento) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo,:asentamiento)");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
@@ -77,6 +77,7 @@ class ModeloClientes
 		$stmt->bindParam(":telefono_celular",$datos["telefono_celular"],PDO::PARAM_STR);
 		$stmt->bindParam(":ciudad",$datos["ciudad"],PDO::PARAM_STR);
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
+		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
 
 		if ($stmt->execute())

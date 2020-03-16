@@ -78,3 +78,19 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 	}});
 })
 
+
+$("#codigo").click(function()
+{
+	$.ajax({
+		url:"https://api-sepomex.hckdrk.mx/query/info_cp/84303?type=simplified",
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			console.log(respuesta);
+	}});
+	// https://api-sepomex.hckdrk.mx/query/get_cp_por_municipio/Aguascalientes
+})
+
