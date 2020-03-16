@@ -56,6 +56,8 @@ $(".tablaClientes tbody").on("click","button.btnEliminarCliente",function(){
 $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 {
 	$('#ciudad').empty().append('whatever');
+	$('#codigo_postal').empty().append('whatever');
+	$('#asentamiento').empty().append('whatever');
 	$.ajax({
 		url:"https://api-sepomex.hckdrk.mx/query/get_municipio_por_estado/Sonora",
 		cache: false,

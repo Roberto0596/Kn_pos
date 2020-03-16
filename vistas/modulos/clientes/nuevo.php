@@ -86,7 +86,7 @@
 
                       </div>
 
-                      <input type="tel" id="t_casa" name="t_casa" placeholder="Teléfono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                      <input type="tel" id="t_casa" name="t_casa" placeholder="Teléfono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask>
 
                   </div>
 
@@ -130,7 +130,7 @@
 
                       </div>
 
-                      <input type="number" min="18" max="99" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg" required>
+                      <input type="number" min="18" max="99" id="edad" name="edad" placeholder="Edad" class="form-control form-control-lg">
 
                   </div>
 
