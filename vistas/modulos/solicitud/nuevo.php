@@ -244,24 +244,6 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                 </div>
 
-                <div class="col-md-4">
-
-                  <label class="label-style" for="gastos_mensuales">Gastos mensuales</label>
-
-                  <div class="input-group mb-3">
-
-                      <div class="input-group-prepend">
-
-                        <span class="input-group-text" onclick="getFocus('gastos_mensuales')"><i class="fas fa-user"></i></span>
-
-                      </div>
-
-                      <input type="number" min="0" id="gastos_mensuales" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control capitalize" required>
-
-                  </div>
-
-                </div>
-
               </div>
 
             </div>
@@ -473,6 +455,24 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                       </div>
 
                       <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo" class="form-control capitalize" required>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                  <label class="label-style" for="gastos_mensuales">Gastos mensuales</label>
+
+                  <div class="input-group mb-3">
+
+                      <div class="input-group-prepend">
+
+                        <span class="input-group-text" onclick="getFocus('gastos_mensuales')"><i class="fas fa-user"></i></span>
+
+                      </div>
+
+                      <input type="number" min="0" id="gastos_mensuales" name="gastos_mensuales" placeholder="Gastos mensuales" class="form-control capitalize" required>
 
                   </div>
 
