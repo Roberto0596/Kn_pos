@@ -23,7 +23,7 @@ class Helpers
 			$origen = imagecreatefrompng($foto["tmp_name"]);
 			$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 			imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-			imagejpng($destino,$ruta);
+			imagepng($destino,$ruta);
 		}
 		return $ruta;
 	}

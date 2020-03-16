@@ -10,6 +10,7 @@ referencias
 1 = amistades
 2 = padre
 3 = madre
+4 = aval
 
 solicitud
 0 = cliente

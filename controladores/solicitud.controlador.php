@@ -57,7 +57,7 @@ Class ControladorSolicitud
 
 			$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
 						'direccion' => ucfirst($_POST["direccion_aval"]), 
-						'codigo_postal' => $_POST["codigo_postal_aval"],
+						'codigo_postal' => "",
 						'telefono_casa' => $_POST["t_casa_aval"],
 						'telefono_celular' => $_POST["t_celular_aval"],
 						'ciudad' => ucfirst($_POST["ciudad_aval"]),
@@ -72,6 +72,13 @@ Class ControladorSolicitud
 
 			if ($solicitudCliente!="error")
 			{
+				var_dump($_POST["nombre_d_aval"]);
+
+				if ($_POST["nombre_d_aval"] != "")
+				{
+					 $referenciaAval = ControladorSolicitud::ctrAgregarReferencia($_POST["nombre_d_aval"] ,$_POST["direccion_d_aval"] ,$_POST["telefono_d_aval"] ,4,$solicitudCliente);
+				}
+
 				$fererenciaCliente = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$_POST["nombre_familiar"],$_POST["direccion_familiar"],$_POST["telefono_familiar"],$_POST["nombre_amistad"],$_POST["direccion_amistad"],$_POST["telefono_amistad"],$solicitudCliente);
 
 				$referenciaConyuge = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["referencia_padre_aval"],$_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["referencia_mama_aval"],$_POST["nombre_familiar_aval"],$_POST["direccion_familiar_aval"],$_POST["telefono_familiar_aval"],$_POST["nombre_amistad_aval"],$_POST["direccion_amistad_aval"],$_POST["telefono_amistad_aval"],$solicitudConyuge);
