@@ -74,6 +74,7 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function(){
 			$("#t_celular").val(respuesta["telefono_celular"]);
 			$("#codigo_postal").val(respuesta["codigo_postal"]);
 			$("#ciudad").val(respuesta["ciudad"]);
+			$("#id_cliente").val(respuesta["id_cliente"]);
 	}});
 })
 
