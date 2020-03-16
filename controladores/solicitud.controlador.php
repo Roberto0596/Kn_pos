@@ -51,7 +51,14 @@ Class ControladorSolicitud
 	{
 		if (isset($_POST["id_cliente"])) 
 		{
-			$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
+			if (isset($_FILES["nuevaFoto"]))
+			{
+				$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
+			}
+			else
+			{
+				$ruta = "vistas/img/usuarios/default/anonymous.png";
+			}
 
 			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 
