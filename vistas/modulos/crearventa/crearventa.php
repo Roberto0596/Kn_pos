@@ -5,6 +5,7 @@
     $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
     $folioTag = "Folio de compra: ";
     $buttonTag = "Comprar";
+    $altoTag = "height: 325px;";
     $nuevoFolio = Helpers::NuevoFolio("compra");
   }
   else
@@ -12,6 +13,7 @@
     $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
     $folioTag = "Folio de venta: ";
     $buttonTag = "Cobrar";
+    $altoTag = "height: 200px;";
     $nuevoFolio = Helpers::NuevoFolio("venta");
   }
 
@@ -164,7 +166,7 @@
 
               <?php endif ?>
 
-              <div id="tableScroll">
+              <div id="tableScroll" style="<?= $altoTag ?>">
 
                 <table class="table table-bordered table-striped dt-responsive no-footer nuevoProducto" id="tablaProductos" style="width: 100%;">
 
