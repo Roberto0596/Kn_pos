@@ -150,7 +150,7 @@
 
                   <span class="input-group-btn">
 
-                    <button type="button" class="btn btn-info tipoCompra">Crédito</button>
+                    <button type="button" id="cred" class="btn btn-info tipoCompra">Crédito</button>
 
                   </span>
 

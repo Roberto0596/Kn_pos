@@ -37,6 +37,9 @@ button
     color: #ffffff !important;
     margin-top: 20px;
     }
+#cred{
+    margin-left: 10px;
+}    
 .navbar-nav {
     margin: 7.5px -15px;
 }
