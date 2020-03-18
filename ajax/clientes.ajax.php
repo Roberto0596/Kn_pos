@@ -15,12 +15,15 @@ class AjaxClientes
 	}
 
 	public  $telefono;
-	
+	public  $nombre;
+
 	public function ajaxValidadCliente()
 	{
-		$item = "telefono_celular";
-		$valor = $this->telefono;
-		$respuesta = ControladorClientes::ctrValidarCliente($item, $valor,0);
+		$item1 = "telefono_celular";
+		$valor1 = $this->telefono;
+		$item2 = "nombre";
+		$valor2 = $this->nombre;
+		$respuesta = ControladorClientes::ctrValidarCliente($item1, $valor1,$item2, $valor2,0);
 		echo json_encode($respuesta);
 	}
 }
@@ -36,5 +39,6 @@ if (isset($_POST["telefono"]))
 {
 	$valUsuario = new AjaxClientes();
 	$valUsuario -> telefono = $_POST["telefono"];
+	$valUsuario -> nombre = $_POST["nombre"];
 	$valUsuario -> ajaxValidadCliente();
 }
