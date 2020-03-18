@@ -22,7 +22,10 @@ Class ControladorSolicitud
 		{
 			$tabla = "solicitud_credito";
 			$tablaRelacion = "cliente_conyuge";
-			Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+			if ($_GET["fotoCliente"]!= "vistas/img/solicitudes/default/anonymous.png")
+			{
+				Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+			}
 
 			$relacion = ModeloSolicitud::mdlMostrarSolicitudes($tablaRelacion,"id_solicitud_cliente",$_GET["idSolicitud"],null);
 
@@ -57,7 +60,7 @@ Class ControladorSolicitud
 			}
 			else
 			{
-				$ruta = "vistas/img/usuarios/default/anonymous.png";
+				$ruta = "vistas/img/solicitudes/default/anonymous.png";
 			}
 
 			$referenciaConyuge = "ok";
