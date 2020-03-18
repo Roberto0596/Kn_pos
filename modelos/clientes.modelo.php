@@ -21,6 +21,17 @@ class ModeloClientes
 		$stmt->close();
 	}
 
+	public static function mdlValidarCliente($tabla,$item1, $valor1, $item2,$valor2,$tipo)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 and $item2 = :$item2  and tipo = :tipo");
+		$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);
+		$stmt->bindParam(":".$item1,$valor1,PDO::PARAM_STR);
+		$stmt->bindParam(":".$item2,$valor2,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+		$stmt->close();
+	}
+
 	public static function mdlEditarCliente($tabla,$datos)
 	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set
