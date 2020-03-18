@@ -26,13 +26,16 @@ button
 	float: right !important;
 }
 
-@media (min-width: 768px){}
+@media (min-width: 768px){
 	.navbar-nav {
 	    float: left;
 	    margin: 0;
 	}
 }
-
+#chale{
+    background-color: #17a2b8 !important;
+    color: #ffffff !important;
+    }
 .navbar-nav {
     margin: 7.5px -15px;
 }
