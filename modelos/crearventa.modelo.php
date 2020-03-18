@@ -15,8 +15,9 @@ class ModeloVentas{
 	public $Pendiente;
 	public $CalendarioAbonos;
 	public $TipoAbono;
+	public $TipoVenta;
 
-    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago, $Descuento, $Pendiente, $CalendarioAbonos, $TipoAbono)
+    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago, $Descuento, $Pendiente, $CalendarioAbonos, $TipoAbono, $TipoVenta)
 	{
 		$this->Id_venta = $Id_venta;
 		$this->Folio = $Folio;
@@ -32,6 +33,7 @@ class ModeloVentas{
 		$this->Pendiente = $Pendiente;
 		$this->CalendarioAbonos = $CalendarioAbonos;
 		$this->TipoAbono = $TipoAbono;
+		$this->TipoVenta = $TipoVenta;
     }
 
     public  static function mdlNuevoFolio()
@@ -63,7 +65,7 @@ class ModeloVentas{
 
     public static function mdlCrearVenta($tabla,$venta)
 	{
-		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono);");
+		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono, :TipoVenta);");
 		$stmt->bindParam(":Folio", $venta->Folio, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_usuario", $venta->Id_usuario, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_cliente", $venta->Id_cliente, PDO::PARAM_STR);
@@ -77,6 +79,7 @@ class ModeloVentas{
 		$stmt->bindParam(":Pendiente", $venta->Pendiente, PDO::PARAM_STR);
 		$stmt->bindParam(":CalendarioAbonos", $venta->CalendarioAbonos, PDO::PARAM_STR);
 		$stmt->bindParam(":TipoAbono", $venta->TipoAbono, PDO::PARAM_STR);
+		$stmt->bindParam(":TipoVenta", $venta->TipoVenta, PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return "ok";

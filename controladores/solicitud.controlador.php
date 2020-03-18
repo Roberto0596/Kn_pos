@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 Class ControladorSolicitud
 {
@@ -46,10 +46,10 @@ Class ControladorSolicitud
 			}
 		}
 	}
-	
+
 	public function ctrCrearSolicitud()
 	{
-		if (isset($_POST["id_cliente"])) 
+		if (isset($_POST["id_cliente"]))
 		{
 			if (isset($_FILES["nuevaFoto"]))
 			{
@@ -63,7 +63,7 @@ Class ControladorSolicitud
 			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 
 			$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
-						'direccion' => ucfirst($_POST["direccion_aval"]), 
+						'direccion' => ucfirst($_POST["direccion_aval"]),
 						'codigo_postal' => "",
 						'telefono_casa' => $_POST["t_casa_aval"],
 						'telefono_celular' => $_POST["t_celular_aval"],
@@ -95,7 +95,7 @@ Class ControladorSolicitud
 
 					Helpers::imprimirMensaje("success","La solicitud fue creada correctamente","solicitud");
 				}
-				else											
+				else
 				{
 					Helpers::imprimirMensaje("error","No se completaron algunas fases, favor de editar la solicitud y llenar los datos faltantes","solicitud");
 				}
@@ -178,6 +178,6 @@ Class ControladorSolicitud
 					'telefono' => $telefono,
 					'tipo' => $tipo,
 					'id_solicitud' => $id);
-		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);	
+		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);
  	}
 }

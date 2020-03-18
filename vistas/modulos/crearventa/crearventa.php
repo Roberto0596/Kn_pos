@@ -81,12 +81,10 @@
             </div>
 
             <?php else: ?>
-
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
                 <li class="breadcrumb-item active">Crear Venta</li>
               </ol>
-
             <?php endif ?>
 
         </div>
@@ -144,11 +142,7 @@
 
                       <?php foreach($clientes as $key => $value): ?>
 
-                        <?php if ($key>0): ?>
-
                           <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
-
-                        <?php endif ?>
 
                       <?php endforeach ?>
 
@@ -160,7 +154,7 @@
 
                   </span>
 
-                  <input type="hidden" id="seleccionarClienteH" class="seleccionarCliente" name="id_cliente" value="1" disabled="true">
+                  <input type="hidden" id="tipoVenta" class="tipoVenta" name="tipoVenta" value="0">
 
                 </div>
 
