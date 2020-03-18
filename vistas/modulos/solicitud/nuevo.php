@@ -492,7 +492,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                       </div>
 
-                      <input type="text" class="form-control" id="tel_empresa" name="tel_empresa" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                      <input type="text" class="form-control" id="tel_empresa" name="tel_empresa" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask>
 
                   </div>
 
@@ -1233,7 +1233,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                               </div>
 
-                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask  class="form-control capitalize" required>
+                              <input type="text" name="tel_empresa_aval" id="tel_empresa_aval" placeholder="Teléfono de la empresa" data-inputmask="'mask':'(999) 999-9999'" data-mask  class="form-control capitalize">
 
                           </div>
 
