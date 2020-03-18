@@ -64,7 +64,7 @@
 
                   </div>
 
-                </div>                
+                </div>
 
               </div>
 
@@ -148,7 +148,7 @@
 
                       </div>
 
-                      <select class="form-control form-control-lg" id="ciudad" name="ciudad" required>
+                      <select class="form-control form-control-lg" id="ciudad" name="ciudad" style="width: 70%" required>
 
                       </select>
 
