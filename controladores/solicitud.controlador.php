@@ -41,6 +41,7 @@ Class ControladorSolicitud
 
 			if ($eliminarSolicitudCliente=="ok" && $eliminarConyuge=="ok")
 			{
+				ModeloClientes::mdlCreditoCliente("0",$_GET["clienteEl"]);
 				Helpers::imprimirMensaje("success","Se Elimino la solicitud","solicitud");
 			}
 			else
@@ -64,9 +65,9 @@ Class ControladorSolicitud
 			}
 
 			$referenciaConyuge = "ok";
-			
-			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 
+			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
+			ModeloClientes::mdlCreditoCliente("1",$_POST["id_cliente"]);
 			if (isset($_POST["nombre_aval"]))
 			{
 				$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),

@@ -1,5 +1,5 @@
-<?php 
-$respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
+<?php
+$respuesta = ControladorClientes::ctrMostrarClientesCredito("0");
 ?>
 
 <input type="hidden" name="idSolicitud" id="idSolicitud" value="<?php echo (isset($_GET['idSolicitud']))?$_GET['idSolicitud']:0?>">
@@ -81,7 +81,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
           </li>
 
-           <li class="nav-item">
+           <li class="nav-item ultimaNav">
 
             <a class="nav-link" id="foto" data-toggle="tab" href="#fotoNueva" role="tab" aria-controls="fotoNueva" aria-selected="false">Foto</a>
 
@@ -123,18 +123,18 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                         <input type="text" class="form-control" id="nombreCliente" readonly>
 
                         <input type="hidden" id="idCliente" name="idCliente">
-                        
+
                     <?php else: ?>
 
                       <select class="form-control select2" id="id_cliente" name="id_cliente" required>
-                          
+
                           <option value="">Selecionar Cliente</option>
 
                           <?php  foreach($respuesta as $value): ?>
 
                             <?php if($value["nombre"]!="CONTADO"): ?>
-                            
-                                <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>        
+
+                                <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
 
                             <?php endif?>
 
@@ -189,7 +189,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                       <option value="Divorciado">Divorciado</option>
 
-                      <option value="Union libre">Union libre</option>
+                      <option value="Unión libre">Unión libre</option>
 
                       <option value="Viudo">Viudo</option>
 
@@ -222,7 +222,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                           <option value="Rentandola">Rentandola</option>
 
                           <option value="Pagandola">Pagandola</option>
-                          
+
                            <option value="Propietario">Propietario</option>
 
                       </select>
@@ -270,8 +270,8 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                     <thead>
                       <th>#</th>
                       <th>Nombre</th>
-                      <th>Direccion</th>
-                      <th>Telefono</th>
+                      <th>Dirección</th>
+                      <th>Teléfono</th>
                     </thead>
                     <tbody>
                       <tr>
@@ -292,7 +292,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_papa" id="direccion_papa" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" name="direccion_papa" id="direccion_papa" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -302,7 +302,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_papa" id="telefono_papa" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask>
+                            <input type="text" name="telefono_papa" id="telefono_papa" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask>
 
                           </div>
 
@@ -328,7 +328,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" id="direccion_mama" name="direccion_mama" placeholder="Direccion" class="form-control capitalize" required>
+                            <input type="text" id="direccion_mama" name="direccion_mama" placeholder="Dirección" class="form-control capitalize" required>
 
                           </div>
 
@@ -338,7 +338,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" id="telefono_mama" name="telefono_mama" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask>
+                            <input type="text" id="telefono_mama" name="telefono_mama" placeholder="Teléfono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask>
 
                           </div>
 
@@ -561,7 +561,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="direccion_familiar[]" id="ref_fam_direccion1" placeholder="Direccion" class="form-control capitalize " required>
+                            <input type="text" name="direccion_familiar[]" id="ref_fam_direccion1" placeholder="Dirección" class="form-control capitalize " required>
 
                           </div>
 
@@ -571,7 +571,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                           <div class="input-group mb-3">
 
-                            <input type="text" name="telefono_familiar[]" id="ref_fam_telefono1" placeholder="Telefono" class="form-control capitalize " data-inputmask="'mask':'(999) 999-9999'" data-mask >
+                            <input type="text" name="telefono_familiar[]" id="ref_fam_telefono1" placeholder="Teléfono" class="form-control capitalize " data-inputmask="'mask':'(999) 999-9999'" data-mask >
 
                           </div>
 
@@ -1030,13 +1030,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                               <option value="Casado">Casado</option>
 
-                              <option value="Soltero">Soltero</option>
-
-                              <option value="Divorciado">Divorciado</option>
-
-                              <option value="Union libre">Union libre</option>
-
-                              <option value="Viudo">Viudo</option>
+                              <option value="Unión libre">Unión libre</option>
 
                             </select>
 
@@ -1067,7 +1061,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
                                    <option value="Rentandola">Rentandola</option>
 
                                   <option value="Pagandola">Pagandola</option>
-                                  
+
                                    <option value="Propietario">Propietario</option>
 
                               </select>
@@ -1552,12 +1546,12 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
         <div class="card-footer">
 
-          <div class="row">
+          <div class="row botonesAccion" style="visibility: hidden;">
 
             <div class="col-md-6">
 
               <button type="button" destino="solicitud" class="btn btn-block btn-danger float-left cancelar">
-                <i class="fa fa-fw fa-plus"></i> Cancelar
+                <i class="fa fa-fw"></i> Cancelar
               </button>
 
             </div>
@@ -1565,7 +1559,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
             <div class="col-md-6">
 
               <button type="submit" class="btn btn-block btn-success float-right">
-                <i class="fa fa-fw fa-plus"></i> Guardar
+                <i class="fa fa-fw"></i> Guardar
               </button>
 
             </div>
