@@ -36,7 +36,8 @@ $(".nuevaFoto").change(function()
 $("#casa").change(function()
 {
 	var casa = $(this).val();
-	if (estado_civil!="Propietario")
+	
+	if (casa!="Propietario")
 	{
 		$("#contenido_aval").html(contenido_aval);
 	}

@@ -251,25 +251,11 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
               </div>
 
-              <div class="row" id="mostrar" style="display: none">
+              <div class="row">
 
                 <div class="col-md-12" id="contenido_aval">
 
                 </div>
-
-                <script>
-                  $("#casa").change(function()
-                  {
-                    if ( $("#casa").val() != "Propietario")
-                    {
-                        $("#mostrar").css("display","block");
-                    }
-                    else
-                    {
-                      $("#mostrar").css("display","none");
-                    }
-                  })
-                </script>
 
               </div>
 
