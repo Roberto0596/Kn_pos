@@ -51,13 +51,10 @@ Class ControladorSolicitud
 	{
 		if (isset($_POST["id_cliente"]))
 		{
+			$ruta = "vistas/img/usuarios/default/anonymous.png";
 			if (isset($_FILES["nuevaFoto"]))
 			{
 				$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
-			}
-			else
-			{
-				$ruta = "vistas/img/usuarios/default/anonymous.png";
 			}
 
 			$referenciaConyuge = "ok";
@@ -87,7 +84,7 @@ Class ControladorSolicitud
 
 			if ($solicitudCliente!="error")
 			{
-				if ($_POST["nombre_d_aval"] != "")
+				if (isset($_POST["nombre_d_aval"]))
 				{
 					 $referenciaAval = ControladorSolicitud::ctrAgregarReferencia($_POST["nombre_d_aval"] ,$_POST["direccion_d_aval"] ,$_POST["telefono_d_aval"] ,4,$solicitudCliente);
 				}
