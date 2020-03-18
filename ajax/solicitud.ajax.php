@@ -19,6 +19,16 @@ class AjaxSolicitud
 		array_push($respuesta,$cliente);
 		echo json_encode($respuesta);
 	}
+
+	public $id_cliente;
+
+	public function ajaxValidarSolicitud()
+	{
+		$item = "id_cliente";
+		$valor = $this->id_cliente;
+		$respuesta = ControladorSolicitud::ctrMostrarSolicitudes($item,$valor,0);
+		echo json_encode($respuesta);
+	}
 }
 
 if(isset($_POST["idSolicitud"]))
@@ -26,4 +36,11 @@ if(isset($_POST["idSolicitud"]))
 	$actualizar = new AjaxSolicitud();
 	$actualizar->idSolicitud = $_POST["idSolicitud"];
 	$actualizar->ajaxTraerSolicitud();
+}
+
+if(isset($_POST["id_cliente"]))
+{
+	$actualizar = new AjaxSolicitud();
+	$actualizar->id_cliente = $_POST["id_cliente"];
+	$actualizar->ajaxValidarSolicitud();
 }

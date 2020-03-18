@@ -32,3 +32,46 @@ $(".nuevaFoto").change(function()
 		})
 	}
 })
+
+$("#id_cliente").change(function()
+{
+	var id_cliente = $(this).val();
+	var data = new FormData();
+	data.append("id_cliente",id_cliente);
+	$.ajax({
+		url:"ajax/solicitud.ajax.php",
+		method: "POST",
+		data: data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{	
+			if (respuesta)
+			{
+				toastr.warning('Este cliente ya cuenta con solicitud')
+				$("#id_cliente").val("");	
+				$("#id_cliente").focus("");
+			}		
+	}});
+})
+var html;
+$(document).ready(function(){
+	html = $("#aval").html();
+})
+
+$("#estado_civil").change(function()
+{
+	var estado_civil = $(this).val();
+	if (estado_civil=="Soltero")
+	{
+		$(".oculto").css("display","none");
+		$("#aval").html("");
+	}
+	else
+	{
+		$(".oculto").css("display","block");
+		$("#aval").html(html);
+	}
+});

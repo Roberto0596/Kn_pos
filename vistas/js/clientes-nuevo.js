@@ -97,5 +97,4 @@ $("#t_celular").change(function()
 		$("#nombre").focus();
 		$("#t_celular").val("");
 	}
-
 })

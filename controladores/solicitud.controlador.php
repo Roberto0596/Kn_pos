@@ -60,35 +60,39 @@ Class ControladorSolicitud
 				$ruta = "vistas/img/usuarios/default/anonymous.png";
 			}
 
+			$referenciaConyuge = "ok";
+			
 			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 
-			$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
-						'direccion' => ucfirst($_POST["direccion_aval"]),
-						'codigo_postal' => "",
-						'telefono_casa' => $_POST["t_casa_aval"],
-						'telefono_celular' => $_POST["t_celular_aval"],
-						'ciudad' => ucfirst($_POST["ciudad_aval"]),
-						'edad' => $_POST["edad_aval"],
-						'tipo' => $_POST["tipo_aval"]);
+			if (isset($_POST["nombre_aval"]))
+			{
+				$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
+					'direccion' => ucfirst($_POST["direccion_aval"]),
+					'codigo_postal' => "",
+					'telefono_casa' => $_POST["t_casa_aval"],
+					'telefono_celular' => $_POST["t_celular_aval"],
+					'ciudad' => ucfirst($_POST["ciudad_aval"]),
+					'edad' => $_POST["edad_aval"],
+					'tipo' => $_POST["tipo_aval"]);
 
-			$crearConyuge = ModeloClientes::mdlCrearCliente("cliente",$datosConyuge);
+				$crearConyuge = ModeloClientes::mdlCrearCliente("cliente",$datosConyuge);
 
-			$solicitudConyuge = ControladorSolicitud::ctrAgregarSolicitud($crearConyuge,$_POST["num_placas_aval"],$_POST["estado_civil_aval"],$_POST["casa_aval"],$_POST["tiempo_casa_aval"],$_POST["gastos_mensuales_aval"],$_POST["nombre_empresa_aval"],$_POST["dom_empresa_aval"],$_POST["tel_empresa_aval"],$_POST["puesto_aval"],$_POST["sueldo_aval"],$_POST["antiguedad_aval"],$_POST["profesion_aval"],$ruta,1);
+				$solicitudConyuge = ControladorSolicitud::ctrAgregarSolicitud($crearConyuge,$_POST["num_placas_aval"],$_POST["estado_civil_aval"],$_POST["casa_aval"],$_POST["tiempo_casa_aval"],$_POST["gastos_mensuales_aval"],$_POST["nombre_empresa_aval"],$_POST["dom_empresa_aval"],$_POST["tel_empresa_aval"],$_POST["puesto_aval"],$_POST["sueldo_aval"],$_POST["antiguedad_aval"],$_POST["profesion_aval"],$ruta,1);
 
-			$crearRelacion = ModeloSolicitud::mdlCrearRelacion($solicitudCliente,$solicitudConyuge);
+				$crearRelacion = ModeloSolicitud::mdlCrearRelacion($solicitudCliente,$solicitudConyuge);
+
+
+				$referenciaConyuge = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["referencia_padre_aval"],$_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["referencia_mama_aval"],$_POST["nombre_familiar_aval"],$_POST["direccion_familiar_aval"],$_POST["telefono_familiar_aval"],$_POST["nombre_amistad_aval"],$_POST["direccion_amistad_aval"],$_POST["telefono_amistad_aval"],$solicitudConyuge);
+			}
 
 			if ($solicitudCliente!="error")
 			{
-				var_dump($_POST["nombre_d_aval"]);
-
 				if ($_POST["nombre_d_aval"] != "")
 				{
 					 $referenciaAval = ControladorSolicitud::ctrAgregarReferencia($_POST["nombre_d_aval"] ,$_POST["direccion_d_aval"] ,$_POST["telefono_d_aval"] ,4,$solicitudCliente);
 				}
 
 				$fererenciaCliente = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["referencia_padre"],$_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["referencia_mama"],$_POST["nombre_familiar"],$_POST["direccion_familiar"],$_POST["telefono_familiar"],$_POST["nombre_amistad"],$_POST["direccion_amistad"],$_POST["telefono_amistad"],$solicitudCliente);
-
-				$referenciaConyuge = ControladorSolicitud::ctrCrearUnaReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["referencia_padre_aval"],$_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["referencia_mama_aval"],$_POST["nombre_familiar_aval"],$_POST["direccion_familiar_aval"],$_POST["telefono_familiar_aval"],$_POST["nombre_amistad_aval"],$_POST["direccion_amistad_aval"],$_POST["telefono_amistad_aval"],$solicitudConyuge);
 
 				if ($referenciaConyuge == "ok" && $fererenciaCliente == "ok")
 				{

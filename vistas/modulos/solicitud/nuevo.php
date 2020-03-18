@@ -87,7 +87,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item oculto">
 
             <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Conyuge</a>
 
@@ -121,11 +121,12 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                         </div>
                         <input type="text" class="form-control" id="nombreCliente" readonly>
+
                         <input type="hidden" id="idCliente" name="idCliente">
                         
                     <?php else: ?>
 
-                      <select class="form-control select2" name="id_cliente" required>
+                      <select class="form-control select2" id="id_cliente" name="id_cliente" required>
                           
                           <option value="">Selecionar Cliente</option>
 
