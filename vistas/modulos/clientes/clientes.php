@@ -48,6 +48,7 @@
               <th>T. Celular</th>
               <th>Ciudad</th>
               <th>Edad</th>
+              <th>Historial</th>
               <th>Acciones</th>
             </tr>
 
@@ -257,6 +258,24 @@
                     </div>
 
                   </div>
+
+                  <div class="col-md-6">
+
+                  <label class="label-style" for="codigo_postal">Historial</label>
+
+                  <div class="input-group mb-3">
+
+                      <select class="form-control form-control-lg" id="historial" name="historial" required>
+                          <option value="">Seleccione un Item </option>
+                          <option value="Nuevo">Nuevo</option>
+                          <option value="Bueno">Bueno</option>
+                          <option value="Medio">Medio</option>
+                          <option value="Malo">Malo</option>
+                      </select>
+
+                  </div>
+
+                </div>
 
                 </div>
 

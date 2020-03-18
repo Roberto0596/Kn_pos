@@ -39,6 +39,7 @@ class ControladorClientes
 							'ciudad' => ucfirst($_POST["ciudad"]),
 							'edad' => $_POST["edad"],
 							'tipo' => $_POST["tipo"],
+							'historial' => $_POST["historial"],
 							'asentamiento' => $_POST["asentamiento"]);
 			
 			$respuesta = ModeloClientes::mdlCrearCliente($tabla,$datos);
@@ -66,6 +67,7 @@ class ControladorClientes
 							'ciudad' => ucfirst($_POST["ciudad_enviar"]),
 							'asentamiento' => ucfirst($_POST["asentamiento_enviar"]),
 							'edad' => $_POST["edad"],
+							'historial' => $_POST["historial"],
 							'id_cliente' => $_POST["id_cliente"]);
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);
 			if ($respuesta = "ok")

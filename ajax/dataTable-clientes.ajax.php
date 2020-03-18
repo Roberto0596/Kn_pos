@@ -34,6 +34,7 @@ class TablaClientes
 					$value["telefono_celular"],
 					$value["ciudad"],
 					$value["edad"],
+					$value["historial"],
 					$botones
 				]);
 			}

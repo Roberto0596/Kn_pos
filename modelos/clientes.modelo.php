@@ -31,6 +31,7 @@ class ModeloClientes
 		telefono_celular = :telefono_celular,
 		codigo_postal = :codigo_postal,
 		asentamiento = :asentamiento,
+		historial = :historial,
 		ciudad = :ciudad WHERE id_cliente = :id_cliente");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
@@ -40,6 +41,7 @@ class ModeloClientes
 		$stmt->bindParam(":telefono_celular",$datos["telefono_celular"],PDO::PARAM_STR);
 		$stmt->bindParam(":ciudad",$datos["ciudad"],PDO::PARAM_STR);
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
+		$stmt->bindParam(":historial",$datos["historial"],PDO::PARAM_STR);
 		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":id_cliente",$datos["id_cliente"],PDO::PARAM_STR);
 
@@ -70,7 +72,7 @@ class ModeloClientes
 	public static function mdlCrearCliente($tabla,$datos)
 	{
 		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
-		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo,asentamiento) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo,:asentamiento)");
+		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo,asentamiento,historial) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo,:asentamiento,:historial)");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
@@ -81,7 +83,7 @@ class ModeloClientes
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
 		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
-
+		$stmt->bindParam(":historial",$datos["historial"],PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return $link->lastInsertId();
