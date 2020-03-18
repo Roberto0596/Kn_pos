@@ -33,6 +33,68 @@ $(".nuevaFoto").change(function()
 	}
 })
 
+$("#casa").change(function()
+{
+	var casa = $(this).val();
+	
+	if (casa!="Propietario")
+	{
+		$("#contenido_aval").html(contenido_aval);
+	}
+	else
+	{
+		$("#contenido_aval").html("");
+	}
+});
+var contenido_aval = '<label class="label-style" for="">Aval</label>'+
+                 '<table class="table">'+
+                   '<thead>'+
+                     '<th>#</th>'+
+                     '<th>Nombre</th>'+
+                     '<th>Direccion</th>'+
+                     '<th>Telefono</th>'+
+                   '</thead>'+
+                  ' <tbody>'+
+                     '<tr>'+
+
+                       '<th>Aval</th>'+
+                       '<td>'+
+
+                         '<div class="input-group mb-3">'+
+
+                            '<input type="text" name="nombre_d_aval" id="nombre_d_aval" placeholder="Nombre" class="form-control capitalize" required>'+
+                            '<input type="hidden" name="referencia_padre" value="4">'+
+
+                         '</div>'+
+
+                       '</td>'+
+
+                       '<td>'+
+
+                         '<div class="input-group mb-3">'+
+
+                           '<input type="text" name="direccion_d_aval" id="direccion_d_aval" placeholder="Direccion" class="form-control capitalize" required>'+
+
+                         '</div>'+
+
+                       '</td>'+
+
+                      ' <td>'+
+
+                         '<div class="input-group mb-3">'+
+
+                           '<input type="text" name="telefono_d_aval" id="telefono_d_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="mask:(999) 999-9999" data-mask>'+
+
+                         '</div>'+
+
+                       '</td>'+
+
+                     '</tr>'+
+
+                   '</tbody>'+
+
+                 '</table>';
+
 $("#id_cliente").change(function()
 {
 	var id_cliente = $(this).val();

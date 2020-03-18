@@ -251,73 +251,11 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
               </div>
 
-              <div class="row" id="mostrar" style="display: none">
+              <div class="row">
 
-                <div class="col-md-12">
-                  <label class="label-style" for="">Aval</label>
-                  <table class="table">
-                    <thead>
-                      <th>#</th>
-                      <th>Nombre</th>
-                      <th>Direccion</th>
-                      <th>Telefono</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-
-                        <th>Aval</th>
-                        <td>
-
-                          <div class="input-group mb-3">
-
-                            <input type="text" name="nombre_d_aval" id="nombre_d_aval" placeholder="Nombre" class="form-control capitalize" required>
-                            <input type="hidden" name="referencia_padre" value="4">
-
-                          </div>
-
-                        </td>
-
-                        <td>
-
-                          <div class="input-group mb-3">
-
-                            <input type="text" name="direccion_d_aval" id="direccion_d_aval" placeholder="Direccion" class="form-control capitalize" required>
-
-                          </div>
-
-                        </td>
-
-                        <td>
-
-                          <div class="input-group mb-3">
-
-                            <input type="text" name="telefono_d_aval" id="telefono_d_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="'mask':'(999) 999-9999'" data-mask>
-
-                          </div>
-
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
+                <div class="col-md-12" id="contenido_aval">
 
                 </div>
-
-                <script>
-                  $("#casa").change(function()
-                  {
-                    if ( $("#casa").val() != "Propietario")
-                    {
-                        $("#mostrar").css("display","block");
-                    }
-                    else
-                    {
-                      $("#mostrar").css("display","none");
-                    }
-                  })
-                </script>
 
               </div>
 

@@ -29,20 +29,29 @@ $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
             <?php endif ?>
           </select>
         </div>
-        <table class="table table-bordered table-striped dt-responsive tablaAlmacen">
+        <div class="row m-2 tablaAbonosD">
+        <table class="table table-bordered table-striped dt-responsive table-hover tablaAbonos">
           <thead>
-            <tr><th>Producto</th>
-            <TD>Cama</TD> <TD>Sala</TD>
+            <tr><th>#</th>
+            <td><strong>Credito 1</strong></td> <td><strong>Credito 2</strong></td>
             </tr>
-            <tr><th>Fecha</th>
-            <TD>12-12-2020</TD> <TD>12-12-2020</TD>
+            <tr><th>Fecha abono</th>
+            <td>13-03-2020</td> <td>15-04-2020</td>
             </tr>
             <tr><th>Abono</th>
-            <TD>200</TD> <TD>500</TD>
+            <td>200</td> <td>500</td>
+            </tr>
+            <tr><th>Próximo pago</th>
+            <td>21-03-2020</td> <td>30-04-2020</td>
+            </tr>
+            <tr><th>Su pago</th>
+              <td><input type="number" name="credito1" id="credito1"></td><td><input type="number" name="credito1" id="credito1"></td>
             </tr>
           </thead>
 
         </table>
+        </div>
+        <button class='btn btn-primary pull-right' title="Cobrar" type="submit">Abonar</button>
         </form>
       </div>
 

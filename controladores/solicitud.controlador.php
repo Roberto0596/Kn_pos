@@ -22,7 +22,10 @@ Class ControladorSolicitud
 		{
 			$tabla = "solicitud_credito";
 			$tablaRelacion = "cliente_conyuge";
-			Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+			if ($_GET["fotoCliente"]!= "vistas/img/solicitudes/default/anonymous.png")
+			{
+				Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+			}
 
 			$relacion = ModeloSolicitud::mdlMostrarSolicitudes($tablaRelacion,"id_solicitud_cliente",$_GET["idSolicitud"],null);
 
@@ -51,13 +54,13 @@ Class ControladorSolicitud
 	{
 		if (isset($_POST["id_cliente"]))
 		{
-			if (isset($_FILES["nuevaFoto"]))
+			if ($_FILES["nuevaFoto"]["name"] != "")
 			{
 				$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
 			}
 			else
 			{
-				$ruta = "vistas/img/usuarios/default/anonymous.png";
+				$ruta = "vistas/img/solicitudes/default/anonymous.png";
 			}
 
 			$referenciaConyuge = "ok";
@@ -87,7 +90,7 @@ Class ControladorSolicitud
 
 			if ($solicitudCliente!="error")
 			{
-				if ($_POST["nombre_d_aval"] != "")
+				if (isset($_POST["nombre_d_aval"]))
 				{
 					 $referenciaAval = ControladorSolicitud::ctrAgregarReferencia($_POST["nombre_d_aval"] ,$_POST["direccion_d_aval"] ,$_POST["telefono_d_aval"] ,4,$solicitudCliente);
 				}
