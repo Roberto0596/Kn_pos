@@ -13,7 +13,7 @@ class ControladorVentas
             date_default_timezone_set('America/Hermosillo');
             $fecha = date('Y-m-d');
             $hora = date('H:i:s');
-            if($_POST["id_cliente"] != 1){
+            if($_POST["tipoVenta"] == 0){ //0 es credito
                 $fechaPrimerAbono = date("Y-m-d",strtotime($_POST["primerAbono"]));
                 $pendiente = $_POST["totalVenta"] - $_POST["totalPayment"];
                 $abonoBase = $pendiente / $_POST["cantidadTiempo"];
@@ -72,14 +72,14 @@ class ControladorVentas
                     dei("Error SQL: " . $mensajeError);
                 }
             }
-            if ($_POST["id_cliente"] != 1) {
+            if ($_POST["tipoVenta"] == 0) {
                 $TipoAbono = $_POST["tipoTiempo"];
             }else{
                 $pendiente = "0";
                 $calendarioAbonosFinal = "N";
                 $TipoAbono = "N";
             }
-            $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"], $_POST["descuentoTH"], $pendiente, $calendarioAbonosFinal, $TipoAbono);
+            $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"], $_POST["descuentoTH"], $pendiente, $calendarioAbonosFinal, $TipoAbono, $_POST["tipoVenta"]);
 
             $respuesta = ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
             if ($respuesta = "ok")

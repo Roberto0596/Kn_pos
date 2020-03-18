@@ -4,7 +4,6 @@ function mostrarTablita() {
 	{
 		"destroy":true,
 		"deferRender": true,
-
 		"processing": true,
 		"bFilter": true,
 		"bLengthChange" : true,
@@ -44,17 +43,19 @@ function mostrarTablaVenta()
 	mostrarTablita();
 	$(".tablaVentas tbody").on("click","button.DeUno", function()
 	{
+		$("#descuentoP").val(null);
 		var idProductoVenta = $(this).attr("idProducto");
 		var cantidad = $(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val();
 		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").val(parseInt(cantidad)+1);
 		$(".Producto"+idProductoVenta+" .nuevaCantidadProducto").trigger('change');
-		$('#tipoTiempo').trigger('focus');
+		$('#descuentoP').trigger('focus');
 	});
 
 	$(".tablaVentas tbody").on("click","button.agregarProducto", function()
 	{
 		var opcion = $('#seleccionarCliente').val();
 		if(opcion != ""){
+			$("#descuentoP").val(null);
 			var idProductoVenta = $(this).attr("idProducto");
 			$(this).removeClass("btn-primary agregarProducto");
 			$(this).addClass("btn-default DeUno");
@@ -109,7 +110,7 @@ function mostrarTablaVenta()
 					listarProductos();
 				}
 			});
-			$('#tipoTiempo').trigger('focus');
+			$('#descuentoP').trigger('focus');
 
 		}else{
 			swal.fire({
@@ -514,9 +515,8 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$(".formularioVenta .tipoCompra").addClass('btn-secondary');
 		$(".formularioVenta .tipoCompra").text("Contado");
 
-		$("#seleccionarCliente").append('<option value="1" selected="selected">C O N T A D O</option>');
-		$('#seleccionarCliente').attr('disabled',true);
-		$('#seleccionarClienteH').attr('disabled',false);
+		$("#tipoVenta").val(1);
+		$('#seleccionarCliente').val(null).trigger('change');
 
 		$('#tipoTiempo').attr('disabled',true);
 		$('#cantidadTiempo').attr('disabled',true);
@@ -529,6 +529,7 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$("#nuevoTotalVenta").attr("total",0);
 		$("#nuevoValorEfectivo").val(null);
 		$("#nuevoCambioEfectivo").val(null);
+		$("#descuentoP").val(null);
 		mostrarTablaVenta();
 	});
 
@@ -537,9 +538,9 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$(".formularioVenta .tipoCompra").removeClass('btn-secondary');
 		$(".formularioVenta .tipoCompra").addClass('btn-info');
 		$(".formularioVenta .tipoCompra").text("Crédito");
-		$("#seleccionarCliente").find("option[value='1']").remove();
-		$('#seleccionarCliente').attr('disabled',false);
-		$('#seleccionarClienteH').attr('disabled',true);
+
+		$("#tipoVenta").val(0);
+		$('#seleccionarCliente').val(null).trigger('change');
 
 		$('#tipoTiempo').attr('disabled',false);
 		$('#cantidadTiempo').attr('disabled',false);
@@ -552,6 +553,7 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$("#nuevoTotalVenta").attr("total",0);
 		$("#nuevoValorEfectivo").val(null);
 		$("#nuevoCambioEfectivo").val(null);
+		$("#descuentoP").val(null);
 		mostrarTablaVenta();
 	});
 
@@ -583,7 +585,38 @@ $(document).ready(function() {
 function activarControles() {
 	$("#totalVenta").val();
 }
+$("#seleccionarCliente").on("change", function(){
+	if(this.value > 0 && $(".formularioVenta .tipoCompra").text()=="Crédito"){
+		var idCliente = this.value;
+		var data = new FormData();
+		data.append("id_cliente",idCliente);
+		$.ajax(
+		{
+			url: "ajax/venta.ajax.php",
+			method: "POST",
+			data: data,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType:"json",
+			success:function(respuesta)
+			{
+				if(!respuesta){
+					swal.fire({
+						title: "Cliente sin crédito",
+						text: "Cliente seleccionado no tiene crédito, se pasará a contado.",
+						type: "error",
+						confirmButtonText: "¡Cerrar!"
+					}).then((result) => {
+						$(".formularioVenta .tipoCompra").click();
+						$('#seleccionarCliente').val(idCliente).trigger('change');
+					  });
+				}
 
+			}
+		});
+	}
+});
 $( "#frmCobro" ).submit(function( event ) {
 	if($("#totalVenta").val() > $("#nuevoValorEfectivo").val() && $("#nuevoCambioEfectivo").val() == 0 && $(".formularioVenta .tipoCompra").text()=="Contado"){
 		event.preventDefault();
