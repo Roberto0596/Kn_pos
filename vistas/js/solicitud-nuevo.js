@@ -1,23 +1,23 @@
 $(".nuevaFoto").change(function()
 {
 	var imagen = this.files[0];
-	if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") 
+	if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png")
 	{
-		$(".nuevaFoto").val(""); 
+		$(".nuevaFoto").val("");
 
 		swal({
-			title: "error al subir foto",
-			text: "¡la imagen debe ser en formato JPG o PNG!",
+			title: "Error al subir foto",
+			text: "¡La imagen debe ser en formato JPG o PNG!",
 			type: "error",
-			conmfirmButtonText:"¡cerrar!"});
+			conmfirmButtonText:"¡Cerrar!"});
 	}
-	else 
+	else
 	if(imagen["size"] > 2000000)
 	{
-		$(".nuevaFoto").val(""); 
+		$(".nuevaFoto").val("");
 		swal({
 			title: "Error al subir la imagen",
-			text: "la imagen no debe pesar mas de 2MB",
+			text: "La imagen no debe pesar mas de 2MB",
 			type: "error",
 			conmfirmButtonText: "¡Cerrar!"});
 	}
@@ -36,10 +36,11 @@ $(".nuevaFoto").change(function()
 $("#casa").change(function()
 {
 	var casa = $(this).val();
-	
+
 	if (casa!="Propietario")
 	{
 		$("#contenido_aval").html(contenido_aval);
+		$('input[name="telefono_d_aval"]').inputmask({"mask": "(999) 999-9999"});
 	}
 	else
 	{
@@ -51,8 +52,8 @@ var contenido_aval = '<label class="label-style" for="">Aval</label>'+
                    '<thead>'+
                      '<th>#</th>'+
                      '<th>Nombre</th>'+
-                     '<th>Direccion</th>'+
-                     '<th>Telefono</th>'+
+                     '<th>Dirección</th>'+
+                     '<th>Teléfono</th>'+
                    '</thead>'+
                   ' <tbody>'+
                      '<tr>'+
@@ -73,7 +74,7 @@ var contenido_aval = '<label class="label-style" for="">Aval</label>'+
 
                          '<div class="input-group mb-3">'+
 
-                           '<input type="text" name="direccion_d_aval" id="direccion_d_aval" placeholder="Direccion" class="form-control capitalize" required>'+
+                           '<input type="text" name="direccion_d_aval" id="direccion_d_aval" placeholder="Dirección" class="form-control capitalize" required>'+
 
                          '</div>'+
 
@@ -83,7 +84,7 @@ var contenido_aval = '<label class="label-style" for="">Aval</label>'+
 
                          '<div class="input-group mb-3">'+
 
-                           '<input type="text" name="telefono_d_aval" id="telefono_d_aval" placeholder="Telefono" class="form-control capitalize" data-inputmask="mask:(999) 999-9999" data-mask>'+
+                           '<input type="text" name="telefono_d_aval" id="telefono_d_aval" placeholder="Teléfono" class="form-control">'+
 
                          '</div>'+
 
@@ -109,13 +110,13 @@ $("#id_cliente").change(function()
 		processData: false,
 		dataType: "json",
 		success: function(respuesta)
-		{	
+		{
 			if (respuesta)
 			{
 				toastr.warning('Este cliente ya cuenta con solicitud')
-				$("#id_cliente").val("");	
-				$("#id_cliente").focus("");
-			}		
+				$("#id_cliente").val(0).trigger('change');
+				$("#id_cliente").focus();
+			}
 	}});
 })
 var html;
@@ -126,7 +127,7 @@ $(document).ready(function(){
 $("#estado_civil").change(function()
 {
 	var estado_civil = $(this).val();
-	if (estado_civil=="Soltero")
+	if (estado_civil=="Soltero" || estado_civil=="Divorciado" || estado_civil=="Viudo")
 	{
 		$(".oculto").css("display","none");
 		$("#aval").html("");
@@ -137,3 +138,24 @@ $("#estado_civil").change(function()
 		$("#aval").html(html);
 	}
 });
+
+$( "#myTab .nav-item .nav-link" ).on( "click", function() {
+	if($( this ).text() == "Foto"){
+		if($("#estado_civil").val()=="Soltero" || $("#estado_civil").val()=="Divorciado" || $("#estado_civil").val()=="Viudo"){
+			$(".botonesAccion").css("visibility","visible");
+		}
+	}else{
+		$(".botonesAccion").css("visibility","hidden");
+		$( "#myTab2 .nav-item .nav-link" ).on( "click", function() {
+		  if($( this ).text() == "Referencias de amistad"){
+			  if($("#estado_civil").val()=="Casado" || $("#estado_civil").val()=="Unión libre" ){
+				  $(".botonesAccion").css("visibility","visible");
+			  }
+		  }else{
+			  $(".botonesAccion").css("visibility","hidden");
+		  }
+		});
+	}
+  });
+
+

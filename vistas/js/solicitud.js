@@ -38,14 +38,14 @@ $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 	var idSolicitud = $(this).attr("idSolicitud");
 	var fotoCliente = $(this).attr("foto");
 	swal.fire({
-			title: '¿esta seguro que decea borrar la solicitud?',
-			text: "¡si no lo esta puede cancelar!",
+			title: '¿Está seguro que desea borrar la solicitud?',
+			text: "¡Si no lo está puede cancelar!",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			cancelButtonText: 'Cancelar',
-			confirmButtonText: 'Si, borrar solicitud'
+			confirmButtonText: 'Sí, borrar solicitud'
 
 		}).then((result)=>
 		{
@@ -59,5 +59,5 @@ $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 $(".tablaSolicitudes tbody").on("click","button.btnEditarSolicitud",function()
 {
 	var idSolicitud = $(this).attr("idSolicitud");
-	window.location = "index.php?ruta=solicitud-nuevo&idSolicitud="+idSolicitud;	
+	window.location = "index.php?ruta=solicitud-nuevo&idSolicitud="+idSolicitud;
 });
