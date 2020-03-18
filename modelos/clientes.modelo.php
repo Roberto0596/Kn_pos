@@ -21,6 +21,15 @@ class ModeloClientes
 		$stmt->close();
 	}
 
+	public static function mdlMostrarClientesCredito($valor)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE Credito = :Credito");
+		$stmt->bindParam(":Credito",$valor,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
 	public static function mdlValidarCliente($tabla,$item1, $valor1, $item2,$valor2,$tipo)
 	{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 and $item2 = :$item2  and tipo = :tipo");
@@ -70,6 +79,21 @@ class ModeloClientes
 	{
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE $item = :$item");
 		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
+
+	public static function mdlCreditoCliente($valor, $idCliente)
+	{
+		$stmt = Conexion::conectar()->prepare("UPDATE cliente SET Credito = :Credito WHERE id_cliente = :id_cliente");
+		$stmt->bindParam(":Credito",$valor,PDO::PARAM_STR);
+		$stmt->bindParam(":id_cliente",$idCliente,PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return "ok";

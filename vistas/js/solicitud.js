@@ -37,6 +37,7 @@ $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 {
 	var idSolicitud = $(this).attr("idSolicitud");
 	var fotoCliente = $(this).attr("foto");
+	var clienteEl = $(this).attr("clienteEl");
 	swal.fire({
 			title: '¿Está seguro que desea borrar la solicitud?',
 			text: "¡Si no lo está puede cancelar!",
@@ -51,7 +52,7 @@ $(".tablaSolicitudes tbody").on("click","button.btnEliminarSolicitud",function()
 		{
 			if (result.value)
 			{
-				window.location = "index.php?ruta=solicitud&idSolicitud="+idSolicitud+"&fotoCliente="+fotoCliente;
+				window.location = "index.php?ruta=solicitud&idSolicitud="+idSolicitud+"&fotoCliente="+fotoCliente+"&clienteEl="+clienteEl;
 			}
 		})
 })

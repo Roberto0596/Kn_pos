@@ -1,5 +1,5 @@
 <?php
-$respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
+$respuesta = ControladorClientes::ctrMostrarClientesCredito("0");
 ?>
 
 <input type="hidden" name="idSolicitud" id="idSolicitud" value="<?php echo (isset($_GET['idSolicitud']))?$_GET['idSolicitud']:0?>">

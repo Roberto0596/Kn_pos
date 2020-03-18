@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once "../controladores/solicitud.controlador.php";
 require_once "../modelos/solicitud.modelo.php";
@@ -26,7 +26,7 @@ class TablaSolicitud
 					<button class='btn btn-warning btnEditarSolicitud' idSolicitud='".$value["id_solicitud"]."'>
 						<i class='fas fa-eye'></i>
 					</button>
-					<button class='btn btn-danger  btnEliminarSolicitud' foto='".$value["foto"]."' idSolicitud='".$value["id_solicitud"]."'>
+					<button class='btn btn-danger  btnEliminarSolicitud' clienteEl='".$value["id_cliente"]."' foto='".$value["foto"]."' idSolicitud='".$value["id_solicitud"]."'>
 						<i class='fas fa-trash'></i>
 					</button>
 				</div>";
@@ -50,7 +50,7 @@ class TablaSolicitud
 				]);
 			}
 			echo json_encode($res);
-		
+
 	}
 }
 
