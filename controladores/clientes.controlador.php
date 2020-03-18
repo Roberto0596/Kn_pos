@@ -9,6 +9,13 @@ class ControladorClientes
 		return $respuesta;
 	}
 
+	public function ctrValidarCliente($item,$valor,$tipo)
+	{
+		$tabla = "cliente";
+		$respuesta = ModeloClientes::mdlValidarCliente($tabla,$item,$valor,$tipo);
+		return $respuesta;
+	}
+
 	public function ctrEliminarCliente()
 	{
 		if (isset($_GET["idCliente"]))

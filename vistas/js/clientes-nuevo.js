@@ -62,3 +62,28 @@ $("#codigo_postal").change(function()
 			}			
 	}});
 })
+
+
+$("#t_celular").change(function()
+{
+	$(".alert").remove();
+	var telefono = $(this).val();
+	var data = new FormData();
+	data.append("telefono",telefono);
+	$.ajax({
+		url:"ajax/clientes.ajax.php",
+		method: "POST",
+		data: data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{	
+			if (respuesta)
+			{
+				toastr.warning('Tal vez ya tengamos este cliente registrado, favor de revisar')
+				$("#t_celular").val("");	
+			}		
+	}});
+})

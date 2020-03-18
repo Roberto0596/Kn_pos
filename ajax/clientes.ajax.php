@@ -14,12 +14,13 @@ class AjaxClientes
 		echo json_encode($respuesta);
 	}
 
-	public  $validarUsuario;
-	public function ajaxValidarUsuario()
+	public  $telefono;
+	
+	public function ajaxValidadCliente()
 	{
-		$item = "usuario";
-		$valor = $this->validarUsuario;
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "telefono_celular";
+		$valor = $this->telefono;
+		$respuesta = ControladorClientes::ctrValidarCliente($item, $valor,0);
 		echo json_encode($respuesta);
 	}
 }
@@ -31,9 +32,9 @@ if(isset($_POST["idCliente"]))
 	$editar -> ajaxEditarCliente();
 }
 
-if (isset($_POST["validarUsuario"]))
+if (isset($_POST["telefono"]))
 {
 	$valUsuario = new AjaxClientes();
-	$valUsuario -> validarUsuario = $_POST["validarUsuario"];
-	$valUsuario -> ajaxValidarUsuario();
+	$valUsuario -> telefono = $_POST["telefono"];
+	$valUsuario -> ajaxValidadCliente();
 }
