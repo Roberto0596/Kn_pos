@@ -1030,7 +1030,7 @@ $respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 
                               <option value="Casado">Casado</option>
 
-                              <option value="Union libre">Unión libre</option>
+                              <option value="Unión libre">Unión libre</option>
 
                             </select>
 

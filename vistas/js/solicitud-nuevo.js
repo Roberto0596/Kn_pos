@@ -136,6 +136,7 @@ $("#estado_civil").change(function()
 	{
 		$(".oculto").css("display","block");
 		$("#aval").html(html);
+		$("#estado_civil_aval").val(estado_civil).trigger('change');
 	}
 });
 
@@ -149,6 +150,7 @@ $( "#myTab .nav-item .nav-link" ).on( "click", function() {
 		$( "#myTab2 .nav-item .nav-link" ).on( "click", function() {
 		  if($( this ).text() == "Referencias de amistad"){
 			  if($("#estado_civil").val()=="Casado" || $("#estado_civil").val()=="Unión libre" ){
+
 				  $(".botonesAccion").css("visibility","visible");
 			  }
 		  }else{
