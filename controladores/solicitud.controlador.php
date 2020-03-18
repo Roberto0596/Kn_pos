@@ -51,10 +51,13 @@ Class ControladorSolicitud
 	{
 		if (isset($_POST["id_cliente"]))
 		{
-			$ruta = "vistas/img/usuarios/default/anonymous.png";
-			if (isset($_FILES["nuevaFoto"]))
+			if ($_FILES["nuevaFoto"]["name"] != "")
 			{
 				$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["id_cliente"],"solicitudes",1000,1000);
+			}
+			else
+			{
+				$ruta = "vistas/img/usuarios/default/anonymous.png";
 			}
 
 			$referenciaConyuge = "ok";
