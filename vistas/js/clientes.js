@@ -53,11 +53,19 @@ $(".tablaClientes tbody").on("click","button.btnEliminarCliente",function(){
 	})
 })
 
+var initCredito = '<div class="input-group-prepend">'+
+                              '<span class="input-group-text"><i class="fas fa-user"></i></span>'+
+                            '</div>'+
+                            '<input type="text" class=" form-control form-control-lg" id="credito-text" readonly>'+
+                            '<input type="hidden" name="credito" id="credito" value="0">'
+
 $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 {
 	$('#ciudad').empty().append('whatever');
 	$('#codigo_postal').empty().append('whatever');
 	$('#asentamiento').empty().append('whatever');
+	$("#cambiar_credito").html(initCredito);
+
 	$.ajax({
 		url:"https://api-sepomex.hckdrk.mx/query/get_municipio_por_estado/Sonora",
 		cache: false,
@@ -73,6 +81,7 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 			}
 
 	}});
+	
 	var idCliente = $(this).attr("idCliente");
 	var datos = new FormData();
 	datos.append("idCliente", idCliente);
@@ -98,8 +107,11 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 			$('#ciudad').prepend("<option value='' >"+respuesta["ciudad"]+"</option>");
 			$('#codigo_postal').prepend("<option value='' >"+respuesta["codigo_postal"]+"</option>");
 			$('#asentamiento').prepend("<option value='' >"+respuesta["asentamiento"]+"</option>");
-			$("#historial").val(respuesta["historial"]).trigger('change');;
-	}});
+			$("#historial").val(respuesta["historial"]).trigger('change');
+			$("#credito-text").val((respuesta["Credito"]==0)?"Contado":"Crédito");
+			$("#credito").val(respuesta["Credito"]);
+		}
+	});
 })
 
 $("#ciudad").change(function()
@@ -157,5 +169,43 @@ $("#codigo_postal").change(function()
 $("#asentamiento").change(function()
 {
 	$("#asentamiento_enviar").val($('#asentamiento').val());
+})
+
+// $(document).ready(function() {
+// 	$("#ciudad").select2({
+// 		placeholder: "Ciudad",
+// 		allowClear: true,
+// 		width: 'resolve'
+// 	});
+// 	$("#codigo_postal").select2({
+// 		placeholder: "Código postal",
+// 		allowClear: true,
+// 		width: 'resolve'
+// 	});
+// 	$("#asentamiento").select2({
+// 		placeholder: "Colonia",
+// 		allowClear: true,
+// 		width: 'resolve'
+// 	});
+// });
+
+
+$("#cambiar").click(function()
+{
+	if ($("#credito").val() == 0)
+	{
+		var options = '<option value="0">Contado</option>'+
+                      '<option value="1">Crédito</option>';
+	}
+	else
+	{
+		var options = '<option value="1">Crédito</option>'+
+                      '<option value="0">Contado</option>';
+	}
+	$("#cambiar_credito").html('<div class="input-group-prepend">'+
+                            '<span class="input-group-text"><i class="fas fa-user"></i></span>'+
+                         	'</div><select class="form-control form-control-lg" id="credito" name="credito">'+
+                              options +
+                          '</select>');
 })
 

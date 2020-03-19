@@ -192,6 +192,24 @@
 
                 </div>
 
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">                      
+                      <label class="label-style" for="codigo_postal">Credito</label>
+                      <div class="input-group mb-3" id="cambiar_credito">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          </div>
+                          <input type="text" class=" form-control form-control-lg" value="Contado" readonly>
+                          <input type="hidden" name="credito" id="credito" value="0">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" style="margin-top: 6vh;" class="btn btn-primary" id="cambiar">Cambiar</button>
+                    </div>
+                  </div>
+                </div>
+
                  <div class="col-md-6">
 
                   <label class="label-style" for="codigo_postal">Historial</label>

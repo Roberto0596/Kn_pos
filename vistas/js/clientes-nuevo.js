@@ -19,6 +19,16 @@ $(document).ready(function()
 
 })
 
+$("#cambiar").click(function()
+{
+	$("#cambiar_credito").html('<div class="input-group-prepend">'+
+                            '<span class="input-group-text"><i class="fas fa-user"></i></span>'+
+                         	'</div><select class="form-control form-control-lg" id="credito" name="credito">'+
+                              '<option value="0">Contado</option>'+
+                              '<option value="1">Crédito</option>'+
+                          '</select>');
+})
+
 $("#ciudad").change(function()
 {
 	$('#codigo_postal').empty().append('whatever');
@@ -104,11 +114,12 @@ $(document).ready(function() {
 		placeholder: "Ciudad",
 		allowClear: true
 	});
-});
-
-$(document).ready(function() {
 	$("#codigo_postal").select2({
 		placeholder: "Código postal",
+		allowClear: true
+	});
+	$("#asentamiento").select2({
+		placeholder: "Colonia",
 		allowClear: true
 	});
 });

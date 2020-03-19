@@ -204,13 +204,7 @@
 
                     <div class="input-group mb-3">
 
-                        <div class="input-group-prepend">
-
-                          <span class="input-group-text" onclick="getFocus('ciudad')"><i class="fas fa-user"></i></span>
-
-                        </div>
-
-                        <select class="form-control form-control-lg" id="ciudad" name="ciudad">
+                        <select class="form-control form-control-lg" id="ciudad" name="ciudad" style="width: 100%">
 
                         </select>
 
@@ -234,7 +228,7 @@
 
                     <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal">
+                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal" style="width: 100%">
 
                       </select>
 
@@ -250,7 +244,7 @@
 
                     <div class="input-group mb-3">
 
-                        <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly>
+                        <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly style="width: 100%">
 
                         </select>
 
@@ -258,6 +252,22 @@
 
                     </div>
 
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8">                      
+                        <label class="label-style" for="codigo_postal">Credito</label>
+                        <div class="input-group mb-3" id="cambiar_credito">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button type="button" style="margin-top: 6vh;" class="btn btn-primary" id="cambiar">Cambiar</button>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-md-6">

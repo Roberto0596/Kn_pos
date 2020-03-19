@@ -52,7 +52,8 @@ class ModeloClientes
 		codigo_postal = :codigo_postal,
 		asentamiento = :asentamiento,
 		historial = :historial,
-		ciudad = :ciudad WHERE id_cliente = :id_cliente");
+		ciudad = :ciudad,
+		Credito = :Credito WHERE id_cliente = :id_cliente");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
@@ -63,6 +64,7 @@ class ModeloClientes
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
 		$stmt->bindParam(":historial",$datos["historial"],PDO::PARAM_STR);
 		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
+		$stmt->bindParam(":Credito",$datos["Credito"],PDO::PARAM_STR);
 		$stmt->bindParam(":id_cliente",$datos["id_cliente"],PDO::PARAM_STR);
 
 		if ($stmt->execute())
@@ -107,7 +109,7 @@ class ModeloClientes
 	public static function mdlCrearCliente($tabla,$datos)
 	{
 		$link = new PDO("mysql:host=localhost;dbname=kn_pos","root","");
-		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo,asentamiento,historial) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo,:asentamiento,:historial)");
+		$stmt = $link->prepare("INSERT INTO $tabla(nombre,direccion,codigo_postal,telefono_casa,telefono_celular,ciudad,edad,tipo,asentamiento,historial,Credito) VALUES(:nombre,:direccion,:codigo_postal,:telefono_casa,:telefono_celular,:ciudad,:edad,:tipo,:asentamiento,:historial,:Credito)");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
@@ -118,6 +120,7 @@ class ModeloClientes
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
 		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
+		$stmt->bindParam(":Credito",$datos["Credito"],PDO::PARAM_STR);
 		$stmt->bindParam(":historial",$datos["historial"],PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
