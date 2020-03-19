@@ -23,7 +23,10 @@ class TablaClientes
 						<i class='fas fa-trash'></i>
 					</button>
 				</div>";
-
+				$credito = "Crédito";
+				if($value["Credito"] == "0"){
+					$credito = "Contado";
+				}
 				array_push($res['data'], [
 					($key),
 					$value["nombre"],
@@ -35,6 +38,7 @@ class TablaClientes
 					$value["ciudad"],
 					$value["edad"],
 					$value["historial"],
+					$credito,
 					$botones
 				]);
 			}

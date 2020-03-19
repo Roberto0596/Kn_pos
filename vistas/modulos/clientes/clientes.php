@@ -49,6 +49,7 @@
               <th>Ciudad</th>
               <th>Edad</th>
               <th>Historial</th>
+              <th>Crédito</th>
               <th>Acciones</th>
             </tr>
 
