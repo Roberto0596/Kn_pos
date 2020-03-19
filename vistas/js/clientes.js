@@ -66,12 +66,12 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 		dataType: "json",
 		success: function(respuesta)
 		{
-			for (var i = 0; i < respuesta["response"]["municipios"].length; i++) 
+			for (var i = 0; i < respuesta["response"]["municipios"].length; i++)
 			{
 				var codigo = respuesta["response"]["municipios"][i];
 				$('#ciudad').prepend("<option value='"+codigo+"' >"+codigo+"</option>");
 			}
-			
+
 	}});
 	var idCliente = $(this).attr("idCliente");
 	var datos = new FormData();
@@ -98,6 +98,7 @@ $(".tablaClientes tbody").on("click","button.btnEditarCliente",function()
 			$('#ciudad').prepend("<option value='' >"+respuesta["ciudad"]+"</option>");
 			$('#codigo_postal').prepend("<option value='' >"+respuesta["codigo_postal"]+"</option>");
 			$('#asentamiento').prepend("<option value='' >"+respuesta["asentamiento"]+"</option>");
+			$("#historial").val(respuesta["historial"]).trigger('change');;
 	}});
 })
 
@@ -115,12 +116,12 @@ $("#ciudad").change(function()
 		dataType: "json",
 		success: function(respuesta)
 		{
-			for (var i = 0; i < respuesta["response"]["cp"].length; i++) 
+			for (var i = 0; i < respuesta["response"]["cp"].length; i++)
 			{
 				var codigo = respuesta["response"]["cp"][i];
 				$('#codigo_postal').prepend("<option value='"+codigo+"' >"+codigo+"</option>");
 			}
-			
+
 		}});
 		$('#codigo_postal').prepend("<option value='' >Seleccione un codigo postal</option>");
 })
@@ -138,9 +139,9 @@ $("#codigo_postal").change(function()
 		processData: false,
 		dataType: "json",
 		success: function(respuesta)
-		{	
+		{
 			var lastValue;
-			for (var i = 0; i < respuesta["response"]["asentamiento"].length; i++) 
+			for (var i = 0; i < respuesta["response"]["asentamiento"].length; i++)
 			{
 				var asentamiento = respuesta["response"]["asentamiento"][i];
 				$('#asentamiento').prepend("<option value='"+asentamiento+"' >"+asentamiento+"</option>");
@@ -149,7 +150,7 @@ $("#codigo_postal").change(function()
 					lastValue =respuesta["response"]["asentamiento"][i]
 				}
 			}
-			$("#asentamiento_enviar").val($('#asentamiento').val());			
+			$("#asentamiento_enviar").val($('#asentamiento').val());
 	}});
 })
 
