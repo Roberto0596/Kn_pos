@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-03-2020 a las 06:29:25
+-- Tiempo de generación: 19-03-2020 a las 20:12:58
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -59,17 +59,19 @@ CREATE TABLE `cliente` (
   `edad` int(11) NOT NULL,
   `tipo` int(1) NOT NULL DEFAULT 0,
   `asentamiento` varchar(100) NOT NULL,
-  `historial` varchar(50) NOT NULL
+  `historial` varchar(50) NOT NULL,
+  `Credito` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `telefono_casa`, `telefono_celular`, `ciudad`, `edad`, `tipo`, `asentamiento`, `historial`) VALUES
-(1, 'CONTADO', 'CONTADO', 'NA', 'NA', 'NA', 'AGUA PRIETA', 0, 0, 'CONTADO', ''),
-(10, 'Roberto Manuel Cordero Balderas', 'Cantera#1', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo'),
-(11, 'Federico daniel villa leyva', 'Calle emiliano zapata', '83364', '', '(634) 015-9555', 'San Miguel de Horcasitas', 19, 0, 'El Tren', 'Nuevo');
+INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `telefono_casa`, `telefono_celular`, `ciudad`, `edad`, `tipo`, `asentamiento`, `historial`, `Credito`) VALUES
+(1, 'CONTADO', 'CONTADO', 'NA', 'NA', 'NA', 'AGUA PRIETA', 0, 0, 'CONTADO', '', 0),
+(10, 'Roberto Manuel Cordero Balderas', 'Cantera#1', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo', 0),
+(11, 'Federico daniel villa leyva', 'Calle emiliano zapata', '83364', '', '(634) 015-9555', 'San Miguel de Horcasitas', 19, 0, 'El Tren', 'Medio', 1),
+(12, 'Wilber Lopez cliente mejor', 'Calle 12', '84200', '(999) 999-9999', '(444) 444-4444', 'Agua Prieta', 34, 0, 'Centro', 'Nuevo', 0);
 
 -- --------------------------------------------------------
 
@@ -182,6 +184,21 @@ CREATE TABLE `referencias` (
   `id_solicitud` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `referencias`
+--
+
+INSERT INTO `referencias` (`id_referencia`, `nombre`, `direccion`, `telefono`, `tipo`, `id_solicitud`) VALUES
+(173, 'Asd', 'Asd', 'sdf', '4', 24),
+(174, 'Sdf', '55', '(777) 777-7777', '2', 24),
+(175, 'Rr', 'Gg', '(777) 777-7777', '3', 24),
+(176, 'Sdf', 'Jjnnj', '(666) 666-6666', '0', 24),
+(177, 'Sdf', 'Ijij', '(888) 888-8888', '0', 24),
+(178, 'Ijij', 'Jjnj', '(999) 999-9999', '0', 24),
+(179, 'Uhu', 'Njn', '(888) 888-8888', '1', 24),
+(180, 'Jjn', 'Jnjn', '(888) 888-8888', '1', 24),
+(181, 'Jjn', 'Jnj', '(888) 888-8888', '1', 24);
+
 -- --------------------------------------------------------
 
 --
@@ -209,6 +226,13 @@ CREATE TABLE `solicitud_credito` (
   `tipo` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `solicitud_credito`
+--
+
+INSERT INTO `solicitud_credito` (`id_solicitud`, `id_cliente`, `num_placas`, `estado_civil`, `casa`, `profesion`, `empresa`, `dom_empresa`, `tel_empresa`, `tiempo_casa`, `puesto`, `sueldo`, `antiguedad`, `gastos_mensuales`, `fecha`, `id_almacen`, `foto`, `tipo`) VALUES
+(24, 11, 'DF55', 'Soltero', 'Pagandola', 'Fsd', 'Sdf', 'Sdf', 0, 3, 'Sdf', 44444, 2, 444, '2020-03-18 07:14:16', 3, 'vistas/img/solicitudes/11/743.png', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -233,7 +257,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `almacen`, `estado`, `ultimo_login`, `fecha`) VALUES
-(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-03-15 20:29:24', '2020-03-16 03:29:24'),
+(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-03-18 11:07:17', '2020-03-18 18:07:17'),
 (35, 'federico daniel villa leyva', 'dani', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Administrador', 'vistas/img/usuarios//701.jpg', 3, 0, '0000-00-00 00:00:00', '2020-02-11 07:35:34');
 
 -- --------------------------------------------------------
@@ -342,7 +366,7 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -366,13 +390,13 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud_credito`
 --
 ALTER TABLE `solicitud_credito`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
