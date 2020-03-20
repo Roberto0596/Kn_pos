@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+// error_reporting(0);
 
 Class ControladorSolicitud
 {
@@ -303,12 +303,12 @@ Class ControladorSolicitud
 
 				foreach ($_POST["nombre_familiar_aval"] as $key => $value)
 				{
-					$referenciaAvalFamiliar = ControladorSolicitud::validarReferencia($_POST["nombre_familiar_aval"][$key],$_POST["direccion_familiar_aval"][$key],$_POST["telefono_familiar_aval"][$key],(isset($_POST["id_amg_ref_aval".($key+1)])?$_POST["id_amg_ref_aval".($key+1)]:0),0,$_POST["idSolicitudConyuge"]);
+					$referenciaAvalFamiliar = ControladorSolicitud::validarReferencia($_POST["nombre_familiar_aval"][$key],$_POST["direccion_familiar_aval"][$key],$_POST["telefono_familiar_aval"][$key],(isset($_POST["id_amg_ref_aval".($key+1)])?$_POST["id_fam_ref_aval".($key+1)]:0),0,$_POST["idSolicitudConyuge"]);
 				}
 
 				foreach ($_POST["nombre_amistad_aval"] as $key => $value)
 				{
-					$referenciaAmistadAval = ControladorSolicitud::validarReferencia($_POST["nombre_amistad_aval"][$key],$_POST["direccion_amistad_aval"][$key],$_POST["telefono_amistad_aval"][$key],(isset($_POST["id_fam_ref".($key+1)])?$_POST["id_fam_ref".($key+1)]:0),1,$_POST["idSolicitudConyuge"]);
+					$referenciaAmistadAval = ControladorSolicitud::validarReferencia($_POST["nombre_amistad_aval"][$key],$_POST["direccion_amistad_aval"][$key],$_POST["telefono_amistad_aval"][$key],(isset($_POST["id_fam_ref_aval".($key+1)])?$_POST["id_amg_ref_aval".($key+1)]:0),1,$_POST["idSolicitudConyuge"]);
 				}
 			}
 
