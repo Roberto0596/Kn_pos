@@ -135,7 +135,7 @@ $(document).ready(function()
 						var ref_amg_aval = 1;
 
 						var datosReferencias = new FormData();
-						datosReferencias.append("idSolicitud_ref", idSolicitud);
+						datosReferencias.append("idSolicitud_ref", $("#idSolicitudConyuge").val());
 						$.ajax({
 							url:"ajax/solicitud.ajax.php",
 							method: "POST",
@@ -144,39 +144,39 @@ $(document).ready(function()
 							contentType: false,
 							processData: false,
 							dataType: "json",
-							success: function(respuesta2)
+							success: function(respuesta3)
 							{
-								for (var i = 0; i < respuesta2.length; i++)
+								for (var i = 0; i < respuesta3.length; i++)
 								{
-									if (respuesta2[i]["tipo"] == 0)
+									if (respuesta3[i]["tipo"] == 0)
 									{
-										$("#ref_fam_nombre_aval"+ref_fam_aval).val(respuesta2[i]["nombre"]);
-										$("#ref_fam_direccion_aval"+ref_fam_aval).val(respuesta2[i]["direccion"]);
-										$("#ref_fam_telefono_aval"+ref_fam_aval).val(respuesta2[i]["telefono"]);
-										$("#ides").append('<input type="hidden" name="id_fam_ref_aval'+ref_fam_aval+'" value="'+respuesta2[i]["id_referencia"]+'">');
+										$("#ref_fam_nombre_aval"+ref_fam_aval).val(respuesta3[i]["nombre"]);
+										$("#ref_fam_direccion_aval"+ref_fam_aval).val(respuesta3[i]["direccion"]);
+										$("#ref_fam_telefono_aval"+ref_fam_aval).val(respuesta3[i]["telefono"]);
+										$("#ides").append('<input type="hidden" name="id_fam_ref_aval'+ref_fam_aval+'" value="'+respuesta3[i]["id_referencia"]+'">');
 										ref_fam_aval ++ ;
 									}
-									else if (respuesta2[i]["tipo"]==1)
+									else if (respuesta3[i]["tipo"]==1)
 									{
-										$("#nombre_amistad_aval"+ref_amg_aval).val(respuesta2[i]["nombre"]);
-										$("#direccion_amistad_aval"+ref_amg_aval).val(respuesta2[i]["direccion"]);
-										$("#telefono_amistad_aval"+ref_amg_aval).val(respuesta2[i]["telefono"]);
-										$("#ides").append('<input type="hidden" name="id_amg_ref_aval'+ref_amg_aval+'" value="'+respuesta2[i]["id_referencia"]+'">');
+										$("#nombre_amistad_aval"+ref_amg_aval).val(respuesta3[i]["nombre"]);
+										$("#direccion_amistad_aval"+ref_amg_aval).val(respuesta3[i]["direccion"]);
+										$("#telefono_amistad_aval"+ref_amg_aval).val(respuesta3[i]["telefono"]);
+										$("#ides").append('<input type="hidden" name="id_amg_ref_aval'+ref_amg_aval+'" value="'+respuesta3[i]["id_referencia"]+'">');
 										ref_amg_aval ++;
 									}
-									else if (respuesta2[i]["tipo"]==2)
+									else if (respuesta3[i]["tipo"]==2)
 									{
-										$("#nombre_papa_aval").val(respuesta2[i]["nombre"]);
-										$("#direccion_papa_aval").val(respuesta2[i]["direccion"]);
-										$("#telefono_papa_aval").val(respuesta2[i]["telefono"]);
-										$("#ides").append('<input type="hidden" name="id_papa_ref_aval" value="'+respuesta2[i]["id_referencia"]+'">');
+										$("#nombre_papa_aval").val(respuesta3[i]["nombre"]);
+										$("#direccion_papa_aval").val(respuesta3[i]["direccion"]);
+										$("#telefono_papa_aval").val(respuesta3[i]["telefono"]);
+										$("#ides").append('<input type="hidden" name="id_papa_ref_aval" value="'+respuesta3[i]["id_referencia"]+'">');
 									}
-									else if (respuesta2[i]["tipo"]==3)
+									else if (respuesta3[i]["tipo"]==3)
 									{
-										$("#nombre_mama_aval").val(respuesta2[i]["nombre"]);
-										$("#direccion_mama_aval").val(respuesta2[i]["direccion"]);
-										$("#telefono_mama_aval").val(respuesta2[i]["telefono"]);
-										$("#ides").append('<input type="hidden" name="id_mama_ref_aval" value="'+respuesta2[i]["id_referencia"]+'">');
+										$("#nombre_mama_aval").val(respuesta3[i]["nombre"]);
+										$("#direccion_mama_aval").val(respuesta3[i]["direccion"]);
+										$("#telefono_mama_aval").val(respuesta3[i]["telefono"]);
+										$("#ides").append('<input type="hidden" name="id_mama_ref_aval" value="'+respuesta3[i]["id_referencia"]+'">');
 									}
 								}
 							}

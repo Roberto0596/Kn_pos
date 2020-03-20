@@ -63,7 +63,7 @@ Class ControladorSolicitud
 		if (isset($_POST["idSolicitud"]))
 		{
 			$tabla = "solicitud_credito";
-
+			$tablaReferencia = "referencias";
 			$datos = array('num_placas'=> strtoupper($_POST["num_placas"]),
 					'estado_civil'=> $_POST["estado_civil"],
 					'casa'=> $_POST["casa"],
@@ -81,9 +81,30 @@ Class ControladorSolicitud
 
 			$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datos);
 
+			if (isset($_POST["id_papa_ref"]))
+			{
+				$editarPapa = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["id_papa_ref"]);
+			}
+
+			if (isset($_POST["id_mama_ref"]))
+			{
+				$editarMama = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["id_mama_ref"]);
+			}
+
+			foreach ($_POST["nombre_familiar"] as $key => $value)
+			{
+				$referenciaFamiliar = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_familiar"][$key],$_POST["direccion_familiar"][$key],$_POST["telefono_familiar"][$key],$_POST["id_fam_ref".($key+1)]);
+			}
+
+			foreach ($_POST["nombre_amistad"] as $key => $value)
+			{
+				$referenciaAmistad = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_amistad"][$key],$_POST["direccion_amistad"][$key],$_POST["telefono_amistad"][$key],$_POST["id_amg_ref".($key+1)]);
+			}
+
 			if ($_POST["idSolicitudConyuge"] != 0)
 			{
 				$tablaCliente = "cliente";
+
 				$datosCliente = array(
 					'nombre' => ucfirst($_POST["nombre_aval"]),
 					'direccion' => ucfirst($_POST["direccion_aval"]),
@@ -118,28 +139,24 @@ Class ControladorSolicitud
 
 				$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datosSolicitud);
 
-				$tablaReferencia = "referencias";
-				
-				if (isset($_POST["id_papa_ref"]))
+				if (isset($_POST["id_mama_ref_aval"]))
 				{
-					$datosPadre = array(
-					'nombre'=> ucfirst($_POST["nombre_papa"]),
-					'direccion'=> $_POST["direccion_papa"],
-					'telefono'=> $_POST["telefono_papa"],
-					'id_referencia'=> $_POST["id_papa_ref"]);
-					var_dump($datosPadre);
-					$editarPapa = ModeloSolicitud::mdlEditarReferencia($tablaReferencia,$datosPadre);
-					var_dump($editarPapa);
+					$editarMamaReferencia = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["id_mama_ref_aval"]);
 				}
 
-				if (isset($_POST["id_mama_ref"]))
+				if (isset($_POST["id_papa_ref_aval"]))
 				{
-					$datosMama = array(
-					'nombre'=> ucfirst($_POST["nombre_mama"]),
-					'direccion'=> $_POST["direccion_mama"],
-					'telefono'=> $_POST["telefono_mama"],
-					'id_referencia'=> $_POST["id_mama_ref"]);
-					$editarMama = ModeloSolicitud::mdlEditarReferencia($tablaReferencia,$datosMama);
+					$editarpapaReferencia = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["id_papa_ref_aval"]);
+				}
+
+				foreach ($_POST["nombre_familiar_aval"] as $key => $value)
+				{
+					$referenciaAvalFamiliar = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_familiar_aval"][$key],$_POST["direccion_familiar_aval"][$key],$_POST["telefono_familiar_aval"][$key],$_POST["id_fam_ref_aval".($key+1)]);
+				}
+
+				foreach ($_POST["nombre_amistad_aval"] as $key => $value)
+				{
+					$referenciaAmistadAval = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_amistad_aval"][$key],$_POST["direccion_amistad_aval"][$key],$_POST["telefono_amistad_aval"][$key],$_POST["id_amg_ref_aval".($key+1)]);
 				}
 			}
 
@@ -153,6 +170,17 @@ Class ControladorSolicitud
 			}
 		}
 		
+	}
+
+	public function ctrActualizarReferencia($nombre,$direccion,$telefono,$id)
+	{
+		$tabla = "referencias";
+		$datosPadre = array(
+					'nombre'=> ucfirst($nombre),
+					'direccion'=> $direccion,
+					'telefono'=> $telefono,
+					'id_referencia'=> $id);
+		return ModeloSolicitud::mdlEditarReferencia($tabla,$datosPadre);
 	}
 
 	public function ctrCrearSolicitud()

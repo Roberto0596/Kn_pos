@@ -94,7 +94,7 @@ if (isset($_GET["idSolicitud"]))
 
           <li class="nav-item oculto">
 
-            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Conyuge</a>
+            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Cónyuge</a>
 
           </li>
 

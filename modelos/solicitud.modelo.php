@@ -183,7 +183,7 @@ class ModeloSolicitud
 			SET 
 			nombre=:nombre,
 			direccion=:direccion,
-			telefono=:telefono,
+			telefono=:telefono
 			WHERE id_referencia = :id_referencia");
 
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
