@@ -8,7 +8,7 @@
 
   <div class="navbar-custom-menu ml-auto">
 
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" style="margin-right: 1vh;">
 
       <li style="padding-top: 8px;    padding-right: 20px;">
         <?php

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 Class ControladorSolicitud
 {
 	public function ctrMostrarSolicitudes($item,$valor,$tipo)
