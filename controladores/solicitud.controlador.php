@@ -86,6 +86,8 @@ Class ControladorSolicitud
 					'telefono_celular' => $_POST["t_celular_aval"],
 					'ciudad' => ucfirst($_POST["ciudad_aval"]),
 					'edad' => $_POST["edad_aval"],
+					'Credito' => "nunguno",
+					'historial' => "ninguno",
 					'tipo' => $_POST["tipo_aval"]);
 
 				$crearConyuge = ModeloClientes::mdlCrearCliente("cliente",$datosConyuge);
