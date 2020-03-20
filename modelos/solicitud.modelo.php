@@ -177,6 +177,15 @@ class ModeloSolicitud
 		}
 	}
 
+	static public function mdlValidarReferencia($dato)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM referencias WHERE id_referencia = :id_referencia");
+		$stmt->bindParam(":id_referencia",$dato,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+
+	}
+
 	static public function mdlEditarReferencia($tabla,$datos)
 	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla 

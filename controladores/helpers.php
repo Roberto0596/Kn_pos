@@ -10,7 +10,7 @@ class Helpers
 		if ($foto["type"] == "image/jpeg")
 		{
 			$aleatorio = mt_rand(100,999);
-			$ruta = "vistas/img/".$folder."/".$_POST["id_cliente"]."/".$aleatorio.".jpg";
+			$ruta = "vistas/img/".$folder."/".$id."/".$aleatorio.".jpg";
 			$origen = imagecreatefromjpeg($foto["tmp_name"]);
 			$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 			imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -19,7 +19,7 @@ class Helpers
 		if ($foto["type"] == "image/png")
 		{
 			$aleatorio = mt_rand(100,999);
-			$ruta = "vistas/img/".$folder."/".$_POST["id_cliente"]."/".$aleatorio.".png";
+			$ruta = "vistas/img/".$folder."/".$id."/".$aleatorio.".png";
 			$origen = imagecreatefrompng($foto["tmp_name"]);
 			$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 			imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);

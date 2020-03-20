@@ -29,9 +29,10 @@ Class ControladorSolicitud
 		{
 			$tabla = "solicitud_credito";
 			$tablaRelacion = "cliente_conyuge";
+
 			if ($_GET["fotoCliente"]!= "vistas/img/solicitudes/default/anonymous.png")
 			{
-				Helpers::eliminarImagen($_GET["idSolicitud"],"solicitudes",$_GET["fotoCliente"]);
+				Helpers::eliminarImagen($_GET["clienteEl"],"solicitudes",$_GET["fotoCliente"]);
 			}
 
 			$relacion = ModeloSolicitud::mdlMostrarSolicitudes($tablaRelacion,"id_solicitud_cliente",$_GET["idSolicitud"],null);
@@ -56,131 +57,6 @@ Class ControladorSolicitud
 				Helpers::imprimirMensaje("error","No se puede borrar la solicitud","solicitud");
 			}
 		}
-	}
-
-	public function ctrEditarSolicitud()
-	{
-		if (isset($_POST["idSolicitud"]))
-		{
-			$tabla = "solicitud_credito";
-			$tablaReferencia = "referencias";
-			$datos = array('num_placas'=> strtoupper($_POST["num_placas"]),
-					'estado_civil'=> $_POST["estado_civil"],
-					'casa'=> $_POST["casa"],
-					'tiempo_casa'=> $_POST["tiempo_casa"],
-					'gastos_mensuales'=> $_POST["gastos_mensuales"],
-					'nombre_empresa'=> ucfirst($_POST["nombre_empresa"]),
-					'dom_empresa'=> ucfirst($_POST["dom_empresa"]),
-					'tel_empresa'=> $_POST["tel_empresa"],
-					'puesto'=> ucfirst($_POST["puesto"]),
-					'sueldo'=> $_POST["sueldo"],
-					'id_solicitud'=> $_POST["idSolicitud"],
-					'antiguedad'=> $_POST["antiguedad"],
-					'profesion'=> ucfirst($_POST["profesion"]),
-					'foto'=> $_POST["fotoVieja"]);
-
-			$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datos);
-
-			if (isset($_POST["id_papa_ref"]))
-			{
-				$editarPapa = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],$_POST["id_papa_ref"]);
-			}
-
-			if (isset($_POST["id_mama_ref"]))
-			{
-				$editarMama = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],$_POST["id_mama_ref"]);
-			}
-
-			foreach ($_POST["nombre_familiar"] as $key => $value)
-			{
-				$referenciaFamiliar = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_familiar"][$key],$_POST["direccion_familiar"][$key],$_POST["telefono_familiar"][$key],$_POST["id_fam_ref".($key+1)]);
-			}
-
-			foreach ($_POST["nombre_amistad"] as $key => $value)
-			{
-				$referenciaAmistad = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_amistad"][$key],$_POST["direccion_amistad"][$key],$_POST["telefono_amistad"][$key],$_POST["id_amg_ref".($key+1)]);
-			}
-
-			if ($_POST["idSolicitudConyuge"] != 0)
-			{
-				$tablaCliente = "cliente";
-
-				$datosCliente = array(
-					'nombre' => ucfirst($_POST["nombre_aval"]),
-					'direccion' => ucfirst($_POST["direccion_aval"]),
-					'codigo_postal' => "ninguno",
-					'asentamiento' => "ninguno",
-					'telefono_casa' => $_POST["t_casa_aval"],
-					'telefono_celular' => $_POST["t_celular_aval"],
-					'ciudad' => ucfirst($_POST["ciudad_aval"]),
-					'edad' => $_POST["edad_aval"],
-					'Credito' => "nunguno",
-					'historial' => "ninguno",
-					'tipo' => $_POST["tipo_aval"],
-					'id_cliente'=>$_POST["id_cliente_aval"]); 
-
-				$actualizarClienteAval = ModeloClientes::mdlEditarCliente($tablaCliente,$datosCliente);
-
-				$datosSolicitud = array(
-					'num_placas'=> strtoupper($_POST["num_placas_aval"]),
-					'estado_civil'=> $_POST["estado_civil_aval"],
-					'casa'=> $_POST["casa_aval"],
-					'tiempo_casa'=> $_POST["tiempo_casa_aval"],
-					'gastos_mensuales'=> $_POST["gastos_mensuales_aval"],
-					'nombre_empresa'=> ucfirst($_POST["nombre_empresa_aval"]),
-					'dom_empresa'=> ucfirst($_POST["dom_empresa_aval"]),
-					'tel_empresa'=> $_POST["tel_empresa_aval"],
-					'puesto'=> ucfirst($_POST["puesto_aval"]),
-					'sueldo'=> $_POST["sueldo_aval"],
-					'id_solicitud'=> $_POST["idSolicitudConyuge"],
-					'antiguedad'=> $_POST["antiguedad_aval"],
-					'profesion'=> ucfirst($_POST["profesion_aval"]),
-					'foto'=> $_POST["fotoVieja"]);
-
-				$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datosSolicitud);
-
-				if (isset($_POST["id_mama_ref_aval"]))
-				{
-					$editarMamaReferencia = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],$_POST["id_mama_ref_aval"]);
-				}
-
-				if (isset($_POST["id_papa_ref_aval"]))
-				{
-					$editarpapaReferencia = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],$_POST["id_papa_ref_aval"]);
-				}
-
-				foreach ($_POST["nombre_familiar_aval"] as $key => $value)
-				{
-					$referenciaAvalFamiliar = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_familiar_aval"][$key],$_POST["direccion_familiar_aval"][$key],$_POST["telefono_familiar_aval"][$key],$_POST["id_fam_ref_aval".($key+1)]);
-				}
-
-				foreach ($_POST["nombre_amistad_aval"] as $key => $value)
-				{
-					$referenciaAmistadAval = ControladorSolicitud::ctrActualizarReferencia($_POST["nombre_amistad_aval"][$key],$_POST["direccion_amistad_aval"][$key],$_POST["telefono_amistad_aval"][$key],$_POST["id_amg_ref_aval".($key+1)]);
-				}
-			}
-
-			if ($actualizarSolicitudCliente=="ok") 
-			{
-				//Helpers::imprimirMensaje("success","Se modifico adecuadamente","solicitud");
-			}
-			else
-			{
-				Helpers::imprimirMensaje("error","No se modifico adecuadamente","solicitud");
-			}
-		}
-		
-	}
-
-	public function ctrActualizarReferencia($nombre,$direccion,$telefono,$id)
-	{
-		$tabla = "referencias";
-		$datosPadre = array(
-					'nombre'=> ucfirst($nombre),
-					'direccion'=> $direccion,
-					'telefono'=> $telefono,
-					'id_referencia'=> $id);
-		return ModeloSolicitud::mdlEditarReferencia($tabla,$datosPadre);
 	}
 
 	public function ctrCrearSolicitud()
@@ -325,4 +201,151 @@ Class ControladorSolicitud
 					'id_solicitud' => $id);
 		return ModeloSolicitud::mdlCrearReferencia($tabla,$datos);
  	}
+
+ 	//editar referencia
+ 	public function ctrEditarSolicitud()
+	{
+		if (isset($_POST["idSolicitud"]))
+		{
+			if ($_FILES["nuevaFoto"]["name"] != "")
+			{
+				if (!strpos($_POST["fotoVieja"], "default"))
+				{
+					Helpers::eliminarImagen($_POST["idCliente"],"solicitudes",$_POST["fotoVieja"]);
+				}
+				$ruta = Helpers::ctrCrearImagen($_FILES["nuevaFoto"],$_POST["idCliente"],"solicitudes",1000,1000);
+			}
+			else
+			{
+				$ruta =  $_POST["fotoVieja"];
+			}
+
+			$tabla = "solicitud_credito";
+			$tablaReferencia = "referencias";
+			$datos = array('num_placas'=> strtoupper($_POST["num_placas"]),
+					'estado_civil'=> $_POST["estado_civil"],
+					'casa'=> $_POST["casa"],
+					'tiempo_casa'=> $_POST["tiempo_casa"],
+					'gastos_mensuales'=> $_POST["gastos_mensuales"],
+					'nombre_empresa'=> ucfirst($_POST["nombre_empresa"]),
+					'dom_empresa'=> ucfirst($_POST["dom_empresa"]),
+					'tel_empresa'=> $_POST["tel_empresa"],
+					'puesto'=> ucfirst($_POST["puesto"]),
+					'sueldo'=> $_POST["sueldo"],
+					'id_solicitud'=> $_POST["idSolicitud"],
+					'antiguedad'=> $_POST["antiguedad"],
+					'profesion'=> ucfirst($_POST["profesion"]),
+					'foto'=> $ruta);
+
+			$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datos);
+
+			$editarPapa = ControladorSolicitud::validarReferencia($_POST["nombre_papa"],$_POST["direccion_papa"],$_POST["telefono_papa"],(isset($_POST["id_papa_ref"])?$_POST["id_papa_ref"]:0),2,$_POST["idSolicitud"]);
+
+			$editarAval = ControladorSolicitud::validarReferencia($_POST["nombre_d_aval"],$_POST["direccion_d_aval"],$_POST["telefono_d_aval"],(isset($_POST["id_d_aval"])?$_POST["id_d_aval"]:0),4,$_POST["idSolicitud"]);
+
+			$editarMama = ControladorSolicitud::validarReferencia($_POST["nombre_mama"],$_POST["direccion_mama"],$_POST["telefono_mama"],(isset($_POST["id_mama_ref"])?$_POST["id_mama_ref"]:0),3,$_POST["idSolicitud"]);
+
+			foreach ($_POST["nombre_familiar"] as $key => $value)
+			{
+				$referenciaFamiliar = ControladorSolicitud::validarReferencia($_POST["nombre_familiar"][$key],$_POST["direccion_familiar"][$key],$_POST["telefono_familiar"][$key],(isset($_POST["id_fam_ref".($key+1)])?$_POST["id_fam_ref".($key+1)]:0),0,$_POST["idSolicitud"]);
+			}
+
+			foreach ($_POST["nombre_amistad"] as $key => $value)
+			{
+				$referenciaAmistad = ControladorSolicitud::validarReferencia($_POST["nombre_amistad"][$key],$_POST["direccion_amistad"][$key],$_POST["telefono_amistad"][$key],(isset($_POST["id_amg_ref".($key+1)])?$_POST["id_amg_ref".($key+1)]:0),1,$_POST["idSolicitud"]);
+			}
+
+			if ($_POST["idSolicitudConyuge"] != 0)
+			{
+				$tablaCliente = "cliente";
+
+				$datosCliente = array(
+					'nombre' => ucfirst($_POST["nombre_aval"]),
+					'direccion' => ucfirst($_POST["direccion_aval"]),
+					'codigo_postal' => "ninguno",
+					'asentamiento' => "ninguno",
+					'telefono_casa' => $_POST["t_casa_aval"],
+					'telefono_celular' => $_POST["t_celular_aval"],
+					'ciudad' => ucfirst($_POST["ciudad_aval"]),
+					'edad' => $_POST["edad_aval"],
+					'Credito' => "nunguno",
+					'historial' => "ninguno",
+					'tipo' => $_POST["tipo_aval"],
+					'id_cliente'=>$_POST["id_cliente_aval"]); 
+
+				$actualizarClienteAval = ModeloClientes::mdlEditarCliente($tablaCliente,$datosCliente);
+
+				$datosSolicitud = array(
+					'num_placas'=> strtoupper($_POST["num_placas_aval"]),
+					'estado_civil'=> $_POST["estado_civil_aval"],
+					'casa'=> $_POST["casa_aval"],
+					'tiempo_casa'=> $_POST["tiempo_casa_aval"],
+					'gastos_mensuales'=> $_POST["gastos_mensuales_aval"],
+					'nombre_empresa'=> ucfirst($_POST["nombre_empresa_aval"]),
+					'dom_empresa'=> ucfirst($_POST["dom_empresa_aval"]),
+					'tel_empresa'=> $_POST["tel_empresa_aval"],
+					'puesto'=> ucfirst($_POST["puesto_aval"]),
+					'sueldo'=> $_POST["sueldo_aval"],
+					'id_solicitud'=> $_POST["idSolicitudConyuge"],
+					'antiguedad'=> $_POST["antiguedad_aval"],
+					'profesion'=> ucfirst($_POST["profesion_aval"]),
+					'foto'=> $_POST["fotoVieja"]);
+
+				$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datosSolicitud);
+
+				$editarMamaReferencia = ControladorSolicitud::validarReferencia($_POST["nombre_mama_aval"],$_POST["direccion_mama_aval"],$_POST["telefono_mama_aval"],
+						(isset($_POST["id_mama_ref_aval"])?$_POST["id_mama_ref_aval"]:0),3,$_POST["idSolicitudConyuge"]);
+
+				$editarpapaReferencia = ControladorSolicitud::validarReferencia($_POST["nombre_papa_aval"],$_POST["direccion_papa_aval"],$_POST["telefono_papa_aval"],
+						(isset($_POST["id_papa_ref_aval"])?$_POST["id_papa_ref_aval"]:0),2,$_POST["idSolicitudConyuge"]);
+
+				foreach ($_POST["nombre_familiar_aval"] as $key => $value)
+				{
+					$referenciaAvalFamiliar = ControladorSolicitud::validarReferencia($_POST["nombre_familiar_aval"][$key],$_POST["direccion_familiar_aval"][$key],$_POST["telefono_familiar_aval"][$key],(isset($_POST["id_amg_ref_aval".($key+1)])?$_POST["id_amg_ref_aval".($key+1)]:0),0,$_POST["idSolicitudConyuge"]);
+				}
+
+				foreach ($_POST["nombre_amistad_aval"] as $key => $value)
+				{
+					$referenciaAmistadAval = ControladorSolicitud::validarReferencia($_POST["nombre_amistad_aval"][$key],$_POST["direccion_amistad_aval"][$key],$_POST["telefono_amistad_aval"][$key],(isset($_POST["id_fam_ref".($key+1)])?$_POST["id_fam_ref".($key+1)]:0),1,$_POST["idSolicitudConyuge"]);
+				}
+			}
+
+			if ($actualizarSolicitudCliente=="ok") 
+			{
+				Helpers::imprimirMensaje("success","Se modifico adecuadamente","solicitud");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","No se modifico adecuadamente","solicitud");
+			}
+		}
+		
+	}
+
+	public function validarReferencia($nombre,$direccion,$telefono,$id,$tipo,$idSolicitud)
+	{
+		if ($id!=0)
+		{
+			$editarReferencia = ControladorSolicitud::ctrActualizarReferencia($nombre,$direccion,$telefono,$id);
+		}
+		else
+		{
+			if ($nombre != "" || $nombre != " ")
+			{
+				$editarReferencia= ControladorSolicitud::ctrAgregarReferencia($nombre,$direccion,$telefono,$tipo,$idSolicitud);	
+			}
+		}
+		return $editarReferencia;
+	}
+
+	public function ctrActualizarReferencia($nombre,$direccion,$telefono,$id)
+	{
+		$tabla = "referencias";
+		$datosPadre = array(
+					'nombre'=> ucfirst($nombre),
+					'direccion'=> $direccion,
+					'telefono'=> $telefono,
+					'id_referencia'=> $id);
+		return ModeloSolicitud::mdlEditarReferencia($tabla,$datosPadre);
+	}
 }
