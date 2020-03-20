@@ -96,7 +96,7 @@ Class ControladorSolicitud
 					'Credito' => "nunguno",
 					'historial' => "ninguno",
 					'tipo' => $_POST["tipo_aval"],
-					'id_cliente'=>$_POST["id_cliente_aval"]);
+					'id_cliente'=>$_POST["id_cliente_aval"]); 
 				$actualizarClienteAval = ModeloClientes::mdlEditarCliente($tablaCliente,$datosCliente);
 			}
 

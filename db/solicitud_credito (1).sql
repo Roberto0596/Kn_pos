@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2020 a las 06:06:44
+-- Tiempo de generación: 20-03-2020 a las 07:54:09
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -37,7 +37,7 @@ CREATE TABLE `solicitud_credito` (
   `profesion` varchar(200) NOT NULL,
   `empresa` varchar(200) NOT NULL,
   `dom_empresa` varchar(200) NOT NULL,
-  `tel_empresa` int(20) NOT NULL,
+  `tel_empresa` varchar(20) NOT NULL,
   `tiempo_casa` varchar(50) NOT NULL,
   `puesto` varchar(200) NOT NULL,
   `sueldo` int(11) NOT NULL,
@@ -54,9 +54,9 @@ CREATE TABLE `solicitud_credito` (
 --
 
 INSERT INTO `solicitud_credito` (`id_solicitud`, `id_cliente`, `num_placas`, `estado_civil`, `casa`, `profesion`, `empresa`, `dom_empresa`, `tel_empresa`, `tiempo_casa`, `puesto`, `sueldo`, `antiguedad`, `gastos_mensuales`, `fecha`, `id_almacen`, `foto`, `tipo`) VALUES
-(31, 10, 'UQWUE', 'Casado', 'Rentandola', 'Programador', 'Blazarsoft', 'Ninguna', 0, '8', 'Programador', 1200, '1 año', 200, '2020-03-20 04:14:55', 3, 'vistas/img/solicitudes/default/anonymous.png', 0),
-(32, 31, 'UEUEUE', 'Casado', 'Propietario', 'Ninguna', 'Ninguna', 'Ninguna', 0, '8', 'Ninguno', 3000, '1 año', 2000, '2020-03-20 04:14:55', 3, 'vistas/img/solicitudes/default/anonymous.png', 1),
-(33, 11, 'YTYUTUY', 'Soltero', 'Propietario', 'E', 'E', 'E', 0, '8', 'E', 8798, '1 año', 9879, '2020-03-20 04:46:15', 3, 'vistas/img/solicitudes/default/anonymous.png', 0);
+(37, 10, '', 'Soltero', 'Propietario', 'E', 'Blazarsoft', 'E', '(234) 234-2342', '4343', 'E', 899, '1 año', 988, '2020-03-20 05:28:49', 3, 'vistas/img/solicitudes/default/anonymous.png', 0),
+(38, 11, 'YUIO', 'Casado', 'Pagandola', 'E', 'E', 'E', '(878) 978-9789', '8 meses', 'E', 8989, '1 año', 8789, '2020-03-20 06:44:21', 3, 'vistas/img/solicitudes/default/anonymous.png', 0),
+(39, 32, '234234', 'Casado', 'Pagandola', 'Ninguna', 'E', 'E', '(879) 788-9789', '8 meses', 'E', 8798, 'Menos de un año', 897897, '2020-03-20 06:44:21', 3, 'vistas/img/solicitudes/default/anonymous.png', 1);
 
 --
 -- Índices para tablas volcadas
@@ -76,7 +76,7 @@ ALTER TABLE `solicitud_credito`
 -- AUTO_INCREMENT de la tabla `solicitud_credito`
 --
 ALTER TABLE `solicitud_credito`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
