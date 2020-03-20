@@ -97,7 +97,27 @@ Class ControladorSolicitud
 					'historial' => "ninguno",
 					'tipo' => $_POST["tipo_aval"],
 					'id_cliente'=>$_POST["id_cliente_aval"]); 
+
 				$actualizarClienteAval = ModeloClientes::mdlEditarCliente($tablaCliente,$datosCliente);
+
+				$datosSolicitud = array(
+					'num_placas'=> strtoupper($_POST["num_placas_aval"]),
+					'estado_civil'=> $_POST["estado_civil_aval"],
+					'casa'=> $_POST["casa_aval"],
+					'tiempo_casa'=> $_POST["tiempo_casa_aval"],
+					'gastos_mensuales'=> $_POST["gastos_mensuales_aval"],
+					'nombre_empresa'=> ucfirst($_POST["nombre_empresa_aval"]),
+					'dom_empresa'=> ucfirst($_POST["dom_empresa_aval"]),
+					'tel_empresa'=> $_POST["tel_empresa_aval"],
+					'puesto'=> ucfirst($_POST["puesto_aval"]),
+					'sueldo'=> $_POST["sueldo_aval"],
+					'id_solicitud'=> $_POST["idSolicitudConyuge"],
+					'antiguedad'=> $_POST["antiguedad_aval"],
+					'profesion'=> ucfirst($_POST["profesion_aval"]),
+					'foto'=> $_POST["fotoVieja"]);
+				$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datosSolicitud);
+
+
 			}
 
 			if ($actualizarSolicitudCliente=="ok") 

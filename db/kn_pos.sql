@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2020 a las 20:12:58
+-- Tiempo de generación: 20-03-2020 a las 08:02:24
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -69,9 +69,30 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `telefono_casa`, `telefono_celular`, `ciudad`, `edad`, `tipo`, `asentamiento`, `historial`, `Credito`) VALUES
 (1, 'CONTADO', 'CONTADO', 'NA', 'NA', 'NA', 'AGUA PRIETA', 0, 0, 'CONTADO', '', 0),
-(10, 'Roberto Manuel Cordero Balderas', 'Cantera#1', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo', 0),
+(10, 'Roberto Manuel Cordero Balderas', 'Cantera#1', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo', 1),
 (11, 'Federico daniel villa leyva', 'Calle emiliano zapata', '83364', '', '(634) 015-9555', 'San Miguel de Horcasitas', 19, 0, 'El Tren', 'Medio', 1),
-(12, 'Wilber Lopez cliente mejor', 'Calle 12', '84200', '(999) 999-9999', '(444) 444-4444', 'Agua Prieta', 34, 0, 'Centro', 'Nuevo', 0);
+(12, 'Wilber Lopez cliente mejor', 'Calle 12', '84200', '(999) 999-9999', '(444) 444-4444', 'Agua Prieta', 34, 0, 'Centro', 'Nuevo', 0),
+(13, 'Lorenzo pedregal', 'Ninguna', '85774', '(234) 234-2342', '(423) 423-4234', 'Alamos', 23, 0, 'Los Amoles', 'Nuevo', 0),
+(32, 'Elizabeth zamorano', 'Cantera #1', 'ningu', '(234) 342-3423', '(234) 234-2342', 'Ninguna', 23, 1, 'ninguno', 'ninguno', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente_conyuge`
+--
+
+CREATE TABLE `cliente_conyuge` (
+  `id` int(11) NOT NULL,
+  `id_solicitud_cliente` int(11) NOT NULL,
+  `id_solicitud_conyuge` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cliente_conyuge`
+--
+
+INSERT INTO `cliente_conyuge` (`id`, `id_solicitud_cliente`, `id_solicitud_conyuge`) VALUES
+(3, 38, 39);
 
 -- --------------------------------------------------------
 
@@ -189,15 +210,31 @@ CREATE TABLE `referencias` (
 --
 
 INSERT INTO `referencias` (`id_referencia`, `nombre`, `direccion`, `telefono`, `tipo`, `id_solicitud`) VALUES
-(173, 'Asd', 'Asd', 'sdf', '4', 24),
-(174, 'Sdf', '55', '(777) 777-7777', '2', 24),
-(175, 'Rr', 'Gg', '(777) 777-7777', '3', 24),
-(176, 'Sdf', 'Jjnnj', '(666) 666-6666', '0', 24),
-(177, 'Sdf', 'Ijij', '(888) 888-8888', '0', 24),
-(178, 'Ijij', 'Jjnj', '(999) 999-9999', '0', 24),
-(179, 'Uhu', 'Njn', '(888) 888-8888', '1', 24),
-(180, 'Jjn', 'Jnjn', '(888) 888-8888', '1', 24),
-(181, 'Jjn', 'Jnj', '(888) 888-8888', '1', 24);
+(280, 'E', 'E', '(889) 798-7897', '2', 37),
+(281, 'Mama', 'E', '(897) 897-8978', '3', 37),
+(282, 'E', 'E', '(897) 987-9878', '0', 37),
+(283, 'R', 'R', '(897) 897-8978', '0', 37),
+(284, 'Tres', 'Tres', '(098) 098-0980', '0', 37),
+(285, 'E', 'E', '(798) 789-7897', '1', 37),
+(286, 'E', 'E', '(878) 978-9789', '1', 37),
+(287, 'E', 'E98789', '(897) 897-8978', '1', 37),
+(288, 'Concubina', 'Ninda', '(324) 234-2342', '2', 39),
+(289, 'Eleazar', 'Asdjasdj', '(324) 234-2342', '3', 39),
+(290, 'E', 'E', '(789) 789-7897', '0', 39),
+(291, 'E', 'E', '(987) 897-8978', '0', 39),
+(292, 'E', 'E', '(987) 897-8978', '0', 39),
+(293, 'E', 'E', '(879) 897-8978', '1', 39),
+(294, 'E', 'E98', '(987) 897-8978', '1', 39),
+(295, 'E', 'E', '(987) 897-8979', '1', 39),
+(296, 'Avel', 'Ninguna', '(234) 234-2342', '4', 38),
+(297, 'E', 'E', '(678) 789-7897', '2', 38),
+(298, 'E', 'E', '(897) 897-8979', '3', 38),
+(299, 'E', 'E', '(879) 878-9798', '0', 38),
+(300, 'E', 'E', '(897) 897-9878', '0', 38),
+(301, 'E', 'E', '(987) 897-8978', '0', 38),
+(302, 'E', 'E', '(798) 789-7897', '1', 38),
+(303, 'E', 'E', '(987) 897-8978', '1', 38),
+(304, 'E', 'E', '(878) 978-9789', '1', 38);
 
 -- --------------------------------------------------------
 
@@ -214,11 +251,11 @@ CREATE TABLE `solicitud_credito` (
   `profesion` varchar(200) NOT NULL,
   `empresa` varchar(200) NOT NULL,
   `dom_empresa` varchar(200) NOT NULL,
-  `tel_empresa` int(20) NOT NULL,
-  `tiempo_casa` int(11) NOT NULL,
+  `tel_empresa` varchar(20) NOT NULL,
+  `tiempo_casa` varchar(50) NOT NULL,
   `puesto` varchar(200) NOT NULL,
   `sueldo` int(11) NOT NULL,
-  `antiguedad` int(11) NOT NULL,
+  `antiguedad` varchar(50) NOT NULL,
   `gastos_mensuales` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_almacen` int(11) NOT NULL,
@@ -231,7 +268,9 @@ CREATE TABLE `solicitud_credito` (
 --
 
 INSERT INTO `solicitud_credito` (`id_solicitud`, `id_cliente`, `num_placas`, `estado_civil`, `casa`, `profesion`, `empresa`, `dom_empresa`, `tel_empresa`, `tiempo_casa`, `puesto`, `sueldo`, `antiguedad`, `gastos_mensuales`, `fecha`, `id_almacen`, `foto`, `tipo`) VALUES
-(24, 11, 'DF55', 'Soltero', 'Pagandola', 'Fsd', 'Sdf', 'Sdf', 0, 3, 'Sdf', 44444, 2, 444, '2020-03-18 07:14:16', 3, 'vistas/img/solicitudes/11/743.png', 0);
+(37, 10, '', 'Soltero', 'Propietario', 'E', 'Blazarsoft', 'E', '(234) 234-2342', '4343', 'E', 899, '1 año', 988, '2020-03-20 05:28:49', 3, 'vistas/img/solicitudes/default/anonymous.png', 0),
+(38, 11, 'YUIO', 'Casado', 'Pagandola', 'E', 'E', 'E', '(878) 978-9789', '8 meses', 'E', 8989, '1 año', 8789, '2020-03-20 06:44:21', 3, 'vistas/img/solicitudes/default/anonymous.png', 0),
+(39, 32, 'HMO', 'Unión libre', 'Rentandola', 'Programadora', 'Blazarsoft', 'E', '(879) 788-9789', '9 meses', 'E', 8798, 'Menos de un año', 897897, '2020-03-20 06:44:21', 3, 'vistas/img/solicitudes/default/anonymous.png', 1);
 
 -- --------------------------------------------------------
 
@@ -309,6 +348,12 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
+-- Indices de la tabla `cliente_conyuge`
+--
+ALTER TABLE `cliente_conyuge`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
@@ -366,7 +411,13 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT de la tabla `cliente_conyuge`
+--
+ALTER TABLE `cliente_conyuge`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -390,13 +441,13 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud_credito`
 --
 ALTER TABLE `solicitud_credito`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
