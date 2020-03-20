@@ -133,6 +133,37 @@ class ModeloSolicitud
 		}
 	}
 
+	static public function mdlEditarSolicitud($tabla,$datos)
+	{
+		$stmt=Conexion::conectar()->prepare("UPDATE $tabla 
+		SET
+		num_placas=:num_placas,
+		estado_civil=:estado_civil,
+		casa=:casa,
+		profesion=:profesion,
+		empresa=:empresa,
+		dom_empresa=:dom_empresa,
+		tel_empresa=:tel_empresa,
+		tiempo_casa=:tiempo_casa,
+		puesto=:puesto,
+		sueldo=:sueldo,
+		antiguedad=:antiguedad,
+		gastos_mensuales=:gastos_mensuales,
+		fecha=:fecha,
+		foto=:tiempo_casa
+		WHERE id_solicitud = :id_solicitud");
+		
+		$stmt->bindParam(":id_solicitud",$datos["id_solicitud"],PDO::PARAM_STR);
+
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
 	static public function mdlActualizarSolicitud($tabla,$item1,$valor1,$item2,$valor2)
 	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");

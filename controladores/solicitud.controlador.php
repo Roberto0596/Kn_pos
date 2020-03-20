@@ -75,11 +75,13 @@ Class ControladorSolicitud
 
 			$solicitudCliente = ControladorSolicitud::ctrAgregarSolicitud($_POST["id_cliente"],$_POST["num_placas"],$_POST["estado_civil"],$_POST["casa"],$_POST["tiempo_casa"],$_POST["gastos_mensuales"],$_POST["nombre_empresa"],$_POST["dom_empresa"],$_POST["tel_empresa"],$_POST["puesto"],$_POST["sueldo"],$_POST["antiguedad"],$_POST["profesion"],$ruta,0);
 			ModeloClientes::mdlCreditoCliente("1",$_POST["id_cliente"]);
+
 			if (isset($_POST["nombre_aval"]))
 			{
 				$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
 					'direccion' => ucfirst($_POST["direccion_aval"]),
-					'codigo_postal' => "",
+					'codigo_postal' => "ninguno",
+					'asentamiento' => "ninguno",
 					'telefono_casa' => $_POST["t_casa_aval"],
 					'telefono_celular' => $_POST["t_celular_aval"],
 					'ciudad' => ucfirst($_POST["ciudad_aval"]),

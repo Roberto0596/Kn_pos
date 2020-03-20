@@ -172,4 +172,3 @@ $( "#myTab .nav-item .nav-link" ).on( "click", function() {
 	}
   });
 
-
