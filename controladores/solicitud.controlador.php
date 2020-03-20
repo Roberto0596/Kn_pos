@@ -16,6 +16,13 @@ Class ControladorSolicitud
 		return $respuesta;
 	}
 
+	public function ctrMostrarReferencias($item,$valor)
+	{
+		$tabla = "referencias";
+		$respuesta = ModeloSolicitud::mdlMostrarReferencias($tabla,$item,$valor);
+		return $respuesta;
+	}
+
 	public function ctrEliminarSolicitud()
 	{
 		if (isset($_GET["idSolicitud"]))

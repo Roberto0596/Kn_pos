@@ -20,6 +20,16 @@ class AjaxSolicitud
 		echo json_encode($respuesta);
 	}
 
+	public $idSolicitud_ref;
+
+	public function ajaxTraerReferencias()
+	{
+		$item = "id_solicitud";
+		$valor = $this->idSolicitud_ref;
+		$respuesta = ControladorSolicitud::ctrMostrarReferencias($item,$valor);
+		echo json_encode($respuesta);
+	}
+
 	public $id_cliente;
 
 	public function ajaxValidarSolicitud()
@@ -36,6 +46,13 @@ if(isset($_POST["idSolicitud"]))
 	$actualizar = new AjaxSolicitud();
 	$actualizar->idSolicitud = $_POST["idSolicitud"];
 	$actualizar->ajaxTraerSolicitud();
+}
+
+if(isset($_POST["idSolicitud_ref"]))
+{
+	$actualizar = new AjaxSolicitud();
+	$actualizar->idSolicitud_ref = $_POST["idSolicitud_ref"];
+	$actualizar->ajaxTraerReferencias();
 }
 
 if(isset($_POST["id_cliente"]))

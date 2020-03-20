@@ -22,6 +22,24 @@ class ModeloSolicitud
 		$stmt->close();
 	}
 
+	public static function mdlMostrarReferencias($tabla,$item,$valor)
+	{
+		if ($item==null)
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item group by tipo");
+			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetchAll();
+		}
+		else
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt->execute();
+			return $stmt->fetchAll();
+		}
+		$stmt->close();
+	}
+
 	public static function mdlMostrarTablaSolicitudes($tabla,$status,$almacen,$tipo)
 	{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE status = :status and id_almacen = :id_almacen and tipo = :tipo");

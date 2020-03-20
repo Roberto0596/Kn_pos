@@ -5,7 +5,7 @@ $(".nuevaFoto").change(function()
 	{
 		$(".nuevaFoto").val("");
 
-		swal({
+		swal.fire({
 			title: "Error al subir foto",
 			text: "¡La imagen debe ser en formato JPG o PNG!",
 			type: "error",
@@ -15,7 +15,7 @@ $(".nuevaFoto").change(function()
 	if(imagen["size"] > 2000000)
 	{
 		$(".nuevaFoto").val("");
-		swal({
+		swal.fire({
 			title: "Error al subir la imagen",
 			text: "La imagen no debe pesar mas de 2MB",
 			type: "error",
@@ -119,14 +119,17 @@ $("#id_cliente").change(function()
 			}
 	}});
 })
+
 var html;
-$(document).ready(function(){
+$(document).ready(function()
+{
 	html = $("#aval").html();
 })
 
 $("#estado_civil").change(function()
 {
 	var estado_civil = $(this).val();
+
 	if (estado_civil=="Soltero" || estado_civil=="Divorciado" || estado_civil=="Viudo")
 	{
 		$(".oculto").css("display","none");
@@ -136,6 +139,15 @@ $("#estado_civil").change(function()
 	{
 		$(".oculto").css("display","block");
 		$("#aval").html(html);
+		$('input[name="telefono_mama_aval"]').inputmask({"mask": "(999) 999-9999"});
+		$('input[name="telefono_papa_aval"]').inputmask({"mask": "(999) 999-9999"});
+
+		$('input[name="telefono_familiar_aval[]"]').inputmask({"mask": "(999) 999-9999"});
+		$('input[name="telefono_amistad_aval[]"]').inputmask({"mask": "(999) 999-9999"});
+		
+		$('input[name="tel_empresa_aval"]').inputmask({"mask": "(999) 999-9999"});
+		$('input[name="t_celular_aval"]').inputmask({"mask": "(999) 999-9999"});
+		$('input[name="t_casa_aval"]').inputmask({"mask": "(999) 999-9999"});
 		$("#estado_civil_aval").val(estado_civil).trigger('change');
 	}
 });
