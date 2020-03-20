@@ -105,7 +105,7 @@ if (isset($_GET["idSolicitud"]))
       <form method="post" enctype="multipart/form-data">
 
         <?php 
-            if (isset($_GET["idSolicitud"]))
+            if (isset($_GET["idSolicitud"]) && $relacion)
             {
               echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="'.$relacion["id_solicitud_conyuge"].'">';
             }

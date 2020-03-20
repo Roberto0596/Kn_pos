@@ -179,16 +179,27 @@ class ModeloSolicitud
 
 	static public function mdlEditarReferencia($tabla,$datos)
 	{
-		$stmt = Conexion::conectar()->prepare("UPDATE `referencias` 
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla 
 			SET 
 			nombre=:nombre,
 			direccion=:direccion,
 			telefono=:telefono,
 			WHERE id_referencia = :id_referencia");
+
 		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
 		$stmt->bindParam(":telefono",$datos["telefono"],PDO::PARAM_STR);
-		$stmt->bindParam(":id_referencia",$datos["id_referencia"],PDO::PARAM_STR);
+		$stmt->bindParam(":id_referencia",$datos["id_referencia"],PDO::PARAM_INT);
+
+		if($stmt->execute())
+		{
+			return "ok";	
+		}
+		else
+		{
+			return "error";	
+		}
+		$stmt->close();
 	}
 
 	static public function mdlActualizarSolicitud($tabla,$item1,$valor1,$item2,$valor2)

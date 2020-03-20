@@ -115,14 +115,37 @@ Class ControladorSolicitud
 					'antiguedad'=> $_POST["antiguedad_aval"],
 					'profesion'=> ucfirst($_POST["profesion_aval"]),
 					'foto'=> $_POST["fotoVieja"]);
+
 				$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datosSolicitud);
 
+				$tablaReferencia = "referencias";
+				
+				if (isset($_POST["id_papa_ref"]))
+				{
+					$datosPadre = array(
+					'nombre'=> ucfirst($_POST["nombre_papa"]),
+					'direccion'=> $_POST["direccion_papa"],
+					'telefono'=> $_POST["telefono_papa"],
+					'id_referencia'=> $_POST["id_papa_ref"]);
+					var_dump($datosPadre);
+					$editarPapa = ModeloSolicitud::mdlEditarReferencia($tablaReferencia,$datosPadre);
+					var_dump($editarPapa);
+				}
 
+				if (isset($_POST["id_mama_ref"]))
+				{
+					$datosMama = array(
+					'nombre'=> ucfirst($_POST["nombre_mama"]),
+					'direccion'=> $_POST["direccion_mama"],
+					'telefono'=> $_POST["telefono_mama"],
+					'id_referencia'=> $_POST["id_mama_ref"]);
+					$editarMama = ModeloSolicitud::mdlEditarReferencia($tablaReferencia,$datosMama);
+				}
 			}
 
 			if ($actualizarSolicitudCliente=="ok") 
 			{
-				Helpers::imprimirMensaje("success","Se modifico adecuadamente","solicitud");
+				//Helpers::imprimirMensaje("success","Se modifico adecuadamente","solicitud");
 			}
 			else
 			{
