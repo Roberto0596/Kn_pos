@@ -94,7 +94,7 @@ if (isset($_GET["idSolicitud"]))
 
           <li class="nav-item oculto">
 
-            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Conyuge</a>
+            <a class="nav-link" id="avalNuevo" data-toggle="tab" href="#aval" role="tab" aria-controls="aval" aria-selected="false">Cónyuge</a>
 
           </li>
 
@@ -104,7 +104,7 @@ if (isset($_GET["idSolicitud"]))
 
       <form method="post" enctype="multipart/form-data">
 
-        <?php 
+        <?php
             if (isset($_GET["idSolicitud"]) && $relacion)
             {
               echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="'.$relacion["id_solicitud_conyuge"].'">';
@@ -1568,7 +1568,7 @@ if (isset($_GET["idSolicitud"]))
             </div>
 
             <div id="ides">
-                
+
             </div>
 
           </div>
@@ -1608,7 +1608,7 @@ if (isset($_GET["idSolicitud"]))
           {
             $crearSolicitud = new ControladorSolicitud();
             $crearSolicitud->ctrCrearSolicitud();
-          }          
+          }
         ?>
 
       </form>
