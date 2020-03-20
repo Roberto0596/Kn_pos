@@ -50,11 +50,6 @@
               <th style="width: 10px">#</th>
               <th>Cliente</th>
               <th>Foto</th>
-              <th>N. Placas</th>
-              <th>Estado civil</th>
-              <th>Profesión</th>
-              <th>Empresa</th>
-              <th>Gastos M</th>
               <th>Almacen</th>
               <th>Acciones</th>
             </tr>

@@ -23,7 +23,7 @@ class TablaSolicitud
 
 				$botones =  "
 				<div class='btn-group'>
-					<button class='btn btn-warning btnEditarSolicitud' idSolicitud='".$value["id_solicitud"]."'>
+					<button class='btn btn-warning btnEditarSolicitud' title='Ver datos' idSolicitud='".$value["id_solicitud"]."'>
 						<i class='fas fa-eye'></i>
 					</button>
 					<button class='btn btn-danger  btnEliminarSolicitud' clienteEl='".$value["id_cliente"]."' foto='".$value["foto"]."' idSolicitud='".$value["id_solicitud"]."'>
@@ -40,11 +40,6 @@ class TablaSolicitud
 					($key+1),
 					$cliente["nombre"],
 					$imagen,
-					$value["num_placas"],
-					$value["estado_civil"],
-					$value["profesion"],
-					$botonEmpresa,
-			        $value["gastos_mensuales"],
 			        $almacen["nombre"],
 	        		$botones
 				]);
