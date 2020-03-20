@@ -104,7 +104,7 @@ if (isset($_GET["idSolicitud"]))
 
       <form method="post" enctype="multipart/form-data">
 
-        <?php 
+        <?php
             if (isset($_GET["idSolicitud"]) && $relacion)
             {
               echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="'.$relacion["id_solicitud_conyuge"].'">';
@@ -1568,7 +1568,7 @@ if (isset($_GET["idSolicitud"]))
             </div>
 
             <div id="ides">
-                
+
             </div>
 
           </div>
@@ -1608,7 +1608,7 @@ if (isset($_GET["idSolicitud"]))
           {
             $crearSolicitud = new ControladorSolicitud();
             $crearSolicitud->ctrCrearSolicitud();
-          }          
+          }
         ?>
 
       </form>

@@ -256,8 +256,8 @@
 
                   <div class="col-md-6">
                     <div class="row">
-                      <div class="col-md-8">                      
-                        <label class="label-style" for="codigo_postal">Credito</label>
+                      <div class="col-md-8">
+                        <label class="label-style" for="codigo_postal">Crédito</label>
                         <div class="input-group mb-3" id="cambiar_credito">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
