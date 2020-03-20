@@ -24,9 +24,9 @@ class ModeloSolicitud
 
 	public static function mdlMostrarReferencias($tabla,$item,$valor)
 	{
-		if ($item==null)
+		if ($item!=null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item group by tipo");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetchAll();
@@ -149,11 +149,23 @@ class ModeloSolicitud
 		sueldo=:sueldo,
 		antiguedad=:antiguedad,
 		gastos_mensuales=:gastos_mensuales,
-		fecha=:fecha,
-		foto=:tiempo_casa
+		foto=:foto
 		WHERE id_solicitud = :id_solicitud");
-		
+
 		$stmt->bindParam(":id_solicitud",$datos["id_solicitud"],PDO::PARAM_STR);
+		$stmt->bindParam(":num_placas",$datos["num_placas"],PDO::PARAM_STR);
+		$stmt->bindParam(":estado_civil",$datos["estado_civil"],PDO::PARAM_STR);
+		$stmt->bindParam(":casa",$datos["casa"],PDO::PARAM_STR);
+		$stmt->bindParam(":profesion",$datos["profesion"],PDO::PARAM_STR);
+		$stmt->bindParam(":empresa",$datos["nombre_empresa"],PDO::PARAM_STR);
+		$stmt->bindParam(":dom_empresa",$datos["dom_empresa"],PDO::PARAM_STR);
+		$stmt->bindParam(":tel_empresa",$datos["tel_empresa"],PDO::PARAM_STR);
+		$stmt->bindParam(":tiempo_casa",$datos["tiempo_casa"],PDO::PARAM_STR);
+		$stmt->bindParam(":puesto",$datos["puesto"],PDO::PARAM_STR);
+		$stmt->bindParam(":sueldo",$datos["sueldo"],PDO::PARAM_STR);
+		$stmt->bindParam(":antiguedad",$datos["antiguedad"],PDO::PARAM_STR);
+		$stmt->bindParam(":gastos_mensuales",$datos["gastos_mensuales"],PDO::PARAM_STR);
+		$stmt->bindParam(":foto",$datos["foto"],PDO::PARAM_STR);
 
 		if ($stmt->execute())
 		{
@@ -164,6 +176,21 @@ class ModeloSolicitud
 			return "error";
 		}
 	}
+
+	static public function mdlEditarReferencia($tabla,$datos)
+	{
+		$stmt = Conexion::conectar()->prepare("UPDATE `referencias` 
+			SET 
+			nombre=:nombre,
+			direccion=:direccion,
+			telefono=:telefono,
+			WHERE id_referencia = :id_referencia");
+		$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
+		$stmt->bindParam(":direccion",$datos["direccion"],PDO::PARAM_STR);
+		$stmt->bindParam(":telefono",$datos["telefono"],PDO::PARAM_STR);
+		$stmt->bindParam(":id_referencia",$datos["id_referencia"],PDO::PARAM_STR);
+	}
+
 	static public function mdlActualizarSolicitud($tabla,$item1,$valor1,$item2,$valor2)
 	{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");

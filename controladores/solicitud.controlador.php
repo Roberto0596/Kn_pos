@@ -58,6 +58,60 @@ Class ControladorSolicitud
 		}
 	}
 
+	public function ctrEditarSolicitud()
+	{
+		if (isset($_POST["idSolicitud"]))
+		{
+			$tabla = "solicitud_credito";
+
+			$datos = array('num_placas'=> strtoupper($_POST["num_placas"]),
+					'estado_civil'=> $_POST["estado_civil"],
+					'casa'=> $_POST["casa"],
+					'tiempo_casa'=> $_POST["tiempo_casa"],
+					'gastos_mensuales'=> $_POST["gastos_mensuales"],
+					'nombre_empresa'=> ucfirst($_POST["nombre_empresa"]),
+					'dom_empresa'=> ucfirst($_POST["dom_empresa"]),
+					'tel_empresa'=> $_POST["tel_empresa"],
+					'puesto'=> ucfirst($_POST["puesto"]),
+					'sueldo'=> $_POST["sueldo"],
+					'id_solicitud'=> $_POST["idSolicitud"],
+					'antiguedad'=> $_POST["antiguedad"],
+					'profesion'=> ucfirst($_POST["profesion"]),
+					'foto'=> $_POST["fotoVieja"]);
+
+			$actualizarSolicitudCliente = ModeloSolicitud::mdlEditarSolicitud($tabla,$datos);
+
+			if ($_POST["idSolicitudConyuge"] != 0)
+			{
+				$tablaCliente = "cliente";
+				$datosCliente = array(
+					'nombre' => ucfirst($_POST["nombre_aval"]),
+					'direccion' => ucfirst($_POST["direccion_aval"]),
+					'codigo_postal' => "ninguno",
+					'asentamiento' => "ninguno",
+					'telefono_casa' => $_POST["t_casa_aval"],
+					'telefono_celular' => $_POST["t_celular_aval"],
+					'ciudad' => ucfirst($_POST["ciudad_aval"]),
+					'edad' => $_POST["edad_aval"],
+					'Credito' => "nunguno",
+					'historial' => "ninguno",
+					'tipo' => $_POST["tipo_aval"],
+					'id_cliente'=>$_POST["id_cliente_aval"]);
+				$actualizarClienteAval = ModeloClientes::mdlEditarCliente($tablaCliente,$datosCliente);
+			}
+
+			if ($actualizarSolicitudCliente=="ok") 
+			{
+				Helpers::imprimirMensaje("success","Se modifico adecuadamente","solicitud");
+			}
+			else
+			{
+				Helpers::imprimirMensaje("error","No se modifico adecuadamente","solicitud");
+			}
+		}
+		
+	}
+
 	public function ctrCrearSolicitud()
 	{
 		if (isset($_POST["id_cliente"]))
@@ -78,7 +132,8 @@ Class ControladorSolicitud
 
 			if (isset($_POST["nombre_aval"]))
 			{
-				$datosConyuge = array('nombre' => ucfirst($_POST["nombre_aval"]),
+				$datosConyuge = array(
+					'nombre' => ucfirst($_POST["nombre_aval"]),
 					'direccion' => ucfirst($_POST["direccion_aval"]),
 					'codigo_postal' => "ninguno",
 					'asentamiento' => "ninguno",

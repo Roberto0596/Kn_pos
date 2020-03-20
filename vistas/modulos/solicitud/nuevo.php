@@ -3,12 +3,11 @@ $respuesta = ControladorClientes::ctrMostrarClientesCredito("0");
 if (isset($_GET["idSolicitud"]))
 {
   $relacion = ModeloSolicitud::mdlMostrarSolicitudes("cliente_conyuge","id_solicitud_cliente",$_GET["idSolicitud"],null);
-  echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="'.$relacion["id_solicitud_conyuge"].'">';
 }
 
 ?>
 
-<input type="hidden" name="idSolicitud" id="idSolicitud" value="<?php echo (isset($_GET['idSolicitud']))?$_GET['idSolicitud']:0?>">
+
 
 <div class="content-wrapper">
 
@@ -105,6 +104,17 @@ if (isset($_GET["idSolicitud"]))
 
       <form method="post" enctype="multipart/form-data">
 
+        <?php 
+            if (isset($_GET["idSolicitud"]))
+            {
+              echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="'.$relacion["id_solicitud_conyuge"].'">';
+            }
+            else
+            {
+               echo '<input type="hidden" name="idSolicitudConyuge" id="idSolicitudConyuge" value="0">';
+            }
+        ?>
+
         <div class="card-body">
 
           <div class="tab-content" id="myTabContent">
@@ -129,6 +139,7 @@ if (isset($_GET["idSolicitud"]))
                         <input type="text" class="form-control" id="nombreCliente" readonly>
 
                         <input type="hidden" id="idCliente" name="idCliente">
+                        <input type="hidden" name="idSolicitud" id="idSolicitud" value="<?php echo (isset($_GET['idSolicitud']))?$_GET['idSolicitud']:0?>">
 
                     <?php else: ?>
 
@@ -877,8 +888,12 @@ if (isset($_GET["idSolicitud"]))
 
                               </div>
 
-                              <input type="text" id="nombre_aval" name="nombre_aval" placeholder="Nombres y Apellido" class="form-control form-control-lg capitalize">
+                              <input type="text" id="nombre_aval" name="nombre_aval" placeholder="Nombres y Apellido" class="form-control capitalize">
                               <input type="hidden" name="tipo_aval" value="1">
+
+                              <?php if (isset($_GET["idSolicitud"])): ?>
+                                  <input type="hidden" name="id_cliente_aval" id="id_cliente_aval">
+                              <?php endif ?>
 
                           </div>
 
@@ -900,7 +915,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   </div>
 
-                                  <input type="text" id="direccion_aval" name="direccion_aval" placeholder="Dirección" class="form-control form-control-lg capitalize">
+                                  <input type="text" id="direccion_aval" name="direccion_aval" placeholder="Dirección" class="form-control capitalize">
 
                               </div>
 
@@ -918,7 +933,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   </div>
 
-                                  <input type="text" id="edad_aval" name="edad_aval" placeholder="Edad" class="form-control form-control-lg">
+                                  <input type="text" id="edad_aval" name="edad_aval" placeholder="Edad" class="form-control">
 
                               </div>
 
@@ -944,7 +959,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   </div>
 
-                                  <input type="tel" id="t_casa_aval" name="t_casa_aval" placeholder="Teléfono de casa" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask >
+                                  <input type="tel" id="t_casa_aval" name="t_casa_aval" placeholder="Teléfono de casa" class="form-control" data-inputmask="'mask':'(999) 999-9999'" data-mask >
 
                               </div>
 
@@ -962,7 +977,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   </div>
 
-                                  <input type="text" id="t_celular_aval" name="t_celular_aval" placeholder="Teléfono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask >
+                                  <input type="text" id="t_celular_aval" name="t_celular_aval" placeholder="Teléfono celular" class="form-control" data-inputmask="'mask':'(999) 999-9999'" data-mask >
 
                               </div>
 
@@ -988,7 +1003,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   </div>
 
-                                  <input type="text" id="ciudad_aval" name="ciudad_aval" placeholder="Ciudad" class="form-control form-control-lg capitalize">
+                                  <input type="text" id="ciudad_aval" name="ciudad_aval" placeholder="Ciudad" class="form-control capitalize">
 
                               </div>
 
@@ -1336,7 +1351,7 @@ if (isset($_GET["idSolicitud"]))
 
                                   <div class="input-group mb-3">
 
-                                    <input type="text" name="nombre_mama_aval" placeholder="Nombre" class="form-control capitalize">
+                                    <input type="text" id="nombre_mama_aval" name="nombre_mama_aval" placeholder="Nombre" class="form-control capitalize">
                                     <input type="hidden" id="referencia_mama_aval" name="referencia_mama_aval" value="3">
 
                                   </div>
@@ -1552,6 +1567,10 @@ if (isset($_GET["idSolicitud"]))
 
             </div>
 
+            <div id="ides">
+                
+            </div>
+
           </div>
 
         </div>
@@ -1580,8 +1599,16 @@ if (isset($_GET["idSolicitud"]))
         </div>
 
         <?php
-          $crearSolicitud = new ControladorSolicitud();
-          $crearSolicitud->ctrCrearSolicitud();
+          if (isset($_GET["idSolicitud"]))
+          {
+            $editarSolicitud = new ControladorSolicitud();
+            $editarSolicitud->ctrEditarSolicitud();
+          }
+          else
+          {
+            $crearSolicitud = new ControladorSolicitud();
+            $crearSolicitud->ctrCrearSolicitud();
+          }          
         ?>
 
       </form>

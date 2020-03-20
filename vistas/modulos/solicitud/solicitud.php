@@ -8,15 +8,7 @@
 
         <div class="col-sm-6">
 
-          <div class="row">
-
-            <div class="col-md-6">
-
-              <h1>Administrar Solicitudes</h1>
-
-            </div>
-
-          </div>
+          <h1>Administrar Solicitudes</h1>
 
         </div>
 

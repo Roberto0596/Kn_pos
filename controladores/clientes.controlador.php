@@ -83,6 +83,7 @@ class ControladorClientes
 							'Credito' => $_POST["credito"],
 							'historial' => $_POST["historial"],
 							'id_cliente' => $_POST["id_cliente"]);
+			
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);
 			if ($respuesta = "ok")
 			{
