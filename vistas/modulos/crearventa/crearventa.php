@@ -280,9 +280,9 @@
                 </div>
 
               </div>
-              
+
               <button class="form-control"  title="Cobrar" id="chale" type="submit">Cobrar</button>
-                  
+
             </div>
 <!--
             <div class="card-footer">
@@ -291,7 +291,7 @@
 
             </div> -->
 
-           
+
 
             <?php
               if(isset($_GET["compra"]))
