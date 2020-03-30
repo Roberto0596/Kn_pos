@@ -142,7 +142,7 @@
 
                       <?php foreach($clientes as $key => $value): ?>
 
-                          <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
+                          <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?>. NUM <?= $value['id_cliente'] ?></option>
 
                       <?php endforeach ?>
 

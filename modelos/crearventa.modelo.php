@@ -44,22 +44,12 @@ class ModeloVentas{
 		return $IdAlta['Folio'] + 1;
     }
 
-    public static function mdlMostrarVentas($tabla,$item,$valor)
+    public static function mdlMostrarCreditos($idCliente)
 	{
-		if ($item==null)
-		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla;");
-			$stmt->execute();
-			return $stmt->fetchAll();
-		}
-		else
-		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
-			$stmt->execute();
-			return $stmt->fetch();
-		}
-		$stmt->close();
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM ventas WHERE Pendiente > 0 and TipoVenta = 0 AND Id_cliente = :idCliente ORDER BY Folio DESC;");
+		$stmt->bindParam(":idCliente", $idCliente, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
 	}
 
 

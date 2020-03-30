@@ -1,5 +1,5 @@
 <?php
-$clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
+$clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 ?>
 <div class="content-wrapper">
   <section class="content-header">
@@ -16,40 +16,58 @@ $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
     <div class="card">
       <div class="card-body">
       <form role="form" method="post" id="frmCobro" class="formularioAbono">
-      <div class="input-group ocultar">
+      <div class="input-group">
         <span class="input-group-text"><i class="fa fa-users"></i></span>
-          <select class="form-control traerProducto col-md-8" id="seleccionarCliente" name="id_cliente" required>
-            <option></option>
-            <?php if (isset($clientes)): ?>
-              <?php foreach($clientes as $key => $value): ?>
-                <?php if ($key>0): ?>
-                  <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?></option>
-                <?php endif ?>
-              <?php endforeach ?>
-            <?php endif ?>
-          </select>
+        <select class="form-control col-md-5" id="seleccionarCliente" name="id_cliente" required>
+          <option></option>
+          <?php if (isset($clientes)): ?>
+            <?php foreach($clientes as $key => $value): ?>
+                <option value="<?= $value['id_cliente'] ?>"><?= $value["nombre"] ?>. NUM <?= $value['id_cliente'] ?></option>
+            <?php endforeach ?>
+          <?php endif ?>
+        </select> <span class="input-group-text"><i class="fa fa-users"></i></span>
+        <select class="form-control col-md-3" id="seleccionarCredito" name="nCredito" required>
+          <option></option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card datosClienteH" style="visibility: hidden;">
+            <div class="card-body datosCliente">
+
+            </div>
+          </div>
         </div>
+        <div class="col-sm-6">
+          <div class="card conceptoCompra"  style="visibility: hidden;">
+            <div class="card-body">
+              <p><strong>Concepto: </strong>
+                <div id="conceptoCompra"></div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row datosCredito">
+      </div>
         <div class="row m-2 tablaAbonosD">
+        <input type="hidden" name="folioCompra" id="folioCompra">
         <table class="table table-bordered table-striped dt-responsive table-hover tablaAbonos">
           <thead>
-            <tr><th>#</th>
-            <td><strong>Credito 1</strong></td> <td><strong>Credito 2</strong></td>
-            </tr>
-            <tr><th>Fecha abono</th>
-            <td>13-03-2020</td> <td>15-04-2020</td>
-            </tr>
-            <tr><th>Abono</th>
-            <td>200</td> <td>500</td>
-            </tr>
-            <tr><th>Próximo pago</th>
-            <td>21-03-2020</td> <td>30-04-2020</td>
-            </tr>
-            <tr><th>Su pago</th>
-              <td><input type="number" name="credito1" id="credito1"></td><td><input type="number" name="credito1" id="credito1"></td>
+            <tr role="row">
+              <th class="sorting" colspan="1" style="width: 10px;">#</th>
+              <th class="sorting" colspan="1" style="width: 60px;">Vencimiento</th>
+              <th class="sorting" colspan="1" style="width: 30px;">Folio de pago</th>
+              <th class="sorting" colspan="1" style="width: 60px;">Fecha de pago</th>
+              <th class="sorting" colspan="1" style="width: 30px;">Cantidad</th>
+              <th class="sorting" colspan="1" style="width: 30px;">Saldo</th>
+              <th class="sorting" colspan="1" style="width: 30px;">Abonar</th>
             </tr>
           </thead>
-
+          <tbody>
+          </tbody>
         </table>
+
         </div>
         <button class='btn btn-primary pull-right' title="Cobrar" type="submit">Abonar</button>
         </form>

@@ -93,5 +93,11 @@ class ControladorVentas
 		}
     }
 
+    public function ctrMostrarCreditos($idCliente)
+	{
+		$respuesta = ModeloVentas::mdlMostrarCreditos($idCliente);
+		return $respuesta;
+    }
+
 }
 ?>
