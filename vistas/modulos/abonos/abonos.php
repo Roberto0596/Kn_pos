@@ -1,6 +1,7 @@
 <?php
 $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 ?>
+<form role="form" method="post" id="frmCobro" class="formularioAbono">
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -15,7 +16,6 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
   <section class="content">
     <div class="card">
       <div class="card-body">
-      <form role="form" method="post" id="frmCobro" class="formularioAbono">
       <div class="input-group">
         <span class="input-group-text"><i class="fa fa-users"></i></span>
         <select class="form-control col-md-5" id="seleccionarCliente" name="id_cliente" required>
@@ -52,6 +52,7 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
       </div>
         <div class="row m-2 tablaAbonosD">
         <input type="hidden" name="folioCompra" id="folioCompra">
+        <input type="hidden" name="abonosActuales" id="abonosActuales">
         <table class="table table-bordered table-striped dt-responsive table-hover tablaAbonos">
           <thead>
             <tr role="row">
@@ -69,8 +70,6 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
         </table>
 
         </div>
-        <button class='btn btn-primary pull-right' title="Cobrar" type="submit">Abonar</button>
-        </form>
       </div>
 
     </div>
@@ -79,7 +78,7 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
 </div>
 
-<div class="modal fade" id="modalAgregarAlmacen">
+<div class="modal fade" id="modalCobro">
 
   <div class="modal-dialog modal-lg">
 
@@ -87,7 +86,7 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
       <div class="modal-header">
 
-        <h4 class="modal-title">Agregar Almacen</h4>
+        <h4 class="modal-title">Abonar</h4>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -95,127 +94,41 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
       </div>
 
-      <form method="post">
-
         <div class="modal-body">
 
-          <label class="label-style" for="nuevoAlmacen">Nombre de almacen</label>
+          <label class="label-style" for="nCredito">Crédito</label>
 
           <div class="input-group mb-3">
 
-              <div class="input-group-prepend">
-
-                <span class="input-group-text" onclick="getFocus('nuevoAlmacen')"><i class="fas fa-user"></i></span>
-
-              </div>
-
-              <input type="text" class="form-control form-control-lg capitalize" id="nuevoAlmacen" name="nuevoAlmacen" placeholder="Ingrese Nombre" required>
+              <input type="text" class="form-control form-control-lg" id="nCredito" name="nCredito" readonly required>
 
           </div>
 
-          <label class="label-style" for="nuevaUbicacion">Ubicacion</label>
+          <label class="label-style" for="efectivo">Efectivo</label>
 
           <div class="input-group mb-3">
 
-              <div class="input-group-prepend">
 
-                <span class="input-group-text" onclick="getFocus('nuevaUbicacion')"><i class="fas fa-user"></i></span>
-
-              </div>
-
-              <input type="text" class="form-control form-control-lg capitalize" id="nuevaUbicacion" name="nuevaUbicacion" placeholder="Ubicacion" required>
+              <input type="text" class="form-control form-control-lg capitalize" id="efectivo" name="efectivo" placeholder="Efectivo" required>
 
           </div>
 
         </div>
 
         <div class="modal-footer justify-content-between">
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">Liquidar</button>
+          <button type="submit" class="btn btn-primary">Abonar</button>
 
         </div>
 
         <?php
-            $crearAlmacen = new ControladorAlmacen();
-            $crearAlmacen->ctrAgregarAlmacen();
+            //$crearAlmacen = new ControladorAlmacen();
+            //$crearAlmacen->ctrAgregarAlmacen();
           ?>
-
-      </form>
 
     </div>
 
   </div>
 
 </div>
-
-<div class="modal fade" id="modalEditarAlmacen">
-
-  <div class="modal-dialog modal-lg">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <h4 class="modal-title">Editar Almacen</h4>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-
-      </div>
-
-      <form method="post">
-
-        <div class="modal-body">
-
-          <label class="label-style" for="editarAlmacen">Nombre de almacen</label>
-
-          <div class="input-group mb-3">
-
-              <div class="input-group-prepend">
-
-                <span class="input-group-text" onclick="getFocus('editarAlmacen')"><i class="fas fa-user"></i></span>
-
-              </div>
-
-              <input type="text" class="form-control form-control-lg capitalize" name="editarAlmacen" id="editarAlmacen" required>
-              <input type="hidden" name="id_almacen" id="id_almacen">
-
-          </div>
-
-          <label class="label-style" for="editarUbicacion">Ubicacion</label>
-
-          <div class="input-group mb-3">
-
-              <div class="input-group-prepend">
-
-                <span class="input-group-text" onclick="getFocus('editarUbicacion')"><i class="fas fa-user"></i></span>
-
-              </div>
-
-              <input type="text" class="form-control form-control-lg capitalize" name="editarUbicacion" id="editarUbicacion" required>
-
-          </div>
-
-        </div>
-
-        <div class="modal-footer justify-content-between">
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-        <?php
-            $crearAlmacen = new ControladorAlmacen();
-            $crearAlmacen->ctrEditarAlmacen();
-          ?>
-
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
+</form>

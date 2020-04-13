@@ -69,6 +69,9 @@ $("#seleccionarCliente").on("change", function(){
 
 });
 
+function darFormato(cantidad) {
+	return new Intl.NumberFormat('en-US', {minimumFractionDigits: 2}).format(cantidad);
+}
 
 $("#seleccionarCredito").on("change", function(){
 	var indiceCred = this.value;
@@ -97,22 +100,60 @@ $("#seleccionarCredito").on("change", function(){
 				$("#conceptoCompra").html(" ");
 				var credito = $.parseJSON(creditos[indiceCred-1]);
 				$.each(credito, function (indice, producto) {
-					$("#conceptoCompra").prepend("<p>"+producto.cantidad+" "+producto.descripcion+" $"+producto.total+"</p>");
+					$("#conceptoCompra").prepend("<p>"+producto.cantidad+" "+producto.descripcion+" $"+darFormato(producto.total)+"</p>");
 				});
 				$(".datosCredito").html(" ");
 				var fechas = $.parseJSON(fechasAbonos[indiceCred-1]);
 				var datosCredito = "<div class='col-md-2'>"+fechas.length+" pagos</div>";
-				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+fechas[fechas.length-1].Abono+"</div>";
-				datosCredito += "<div class='col-md-2'>Importe $"+importes[indiceCred-1]+"</div>";
-				datosCredito += "<div class='col-md-2'>Enganche $"+enganches[indiceCred-1]+"</div>";
-				datosCredito += "<div class='col-md-2'>Saldo $"+saldos[indiceCred-1]+"</div>";
+				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+darFormato(fechas[fechas.length-1].Abono)+"</div>";
+				datosCredito += "<div class='col-md-2'>Importe $"+darFormato(importes[indiceCred-1])+"</div>";
+				datosCredito += "<div class='col-md-2'>Enganche $"+darFormato(enganches[indiceCred-1])+"</div>";
+				var saldin = importes[indiceCred-1]-enganches[indiceCred-1];
+				datosCredito += "<div class='col-md-2'>Saldo $"+darFormato(saldin)+"</div>";
 				$(".datosCredito").prepend(datosCredito);
 				$(".tablaAbonos tbody").html(" ");
-				$.each(fechas, function (indice, fecha) {
 
-					$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>23</td><td>12-12-2012</td><td>$120</td><td>$1209</td><td>23</td></tr>");
+				abonosActuales = [];
+				var data = new FormData();
+				data.append("traerAbonos",folioCompra);
+				$.ajax(
+				{
+					url: "ajax/abonos.ajax.php",
+					method: "POST",
+					data: data,
+					cache: false,
+					contentType: false,
+					processData: false,
+					dataType:"json",
+					success:function(abonosActuales)
+					{
+						if(abonosActuales.length==0){ //Nada de abonos
+							$.each(fechas, function (indice, fecha) {
+								if(indice == 0){
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
+								}else{
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
+								}
+
+							});
+						}else{//si hay abonos
+							var verifica = 0;
+							$.each(fechas, function (indice, fecha) {
+								if(abonosActuales[indice] != null){
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td><td></td></tr>");
+								}else{
+									if(verifica == 0){
+										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
+										verifica = verifica + 1;
+									}else{
+										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
+									}
+								}
+
+							});
+						}
+					}
 				});
-
 			}
 		});
 	}else{
@@ -124,4 +165,10 @@ $("#seleccionarCredito").on("change", function(){
 		$(".tablaAbonos tbody").html(" ");
 		$("#folioCompra").val(null);
 	}
+});
+
+//.tablaAbonos tbody tr td button
+$(".tablaAbonos tbody").on("click","button.btnAbonar", function()
+{
+	$("#nCredito").val($("#folioCompra").val());
 });
