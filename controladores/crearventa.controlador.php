@@ -99,5 +99,13 @@ class ControladorVentas
 		return $respuesta;
     }
 
+    public function ctrAbonar($folioVenta,$nuevoSaldo)
+	{
+        $tabla = "ventas";
+        $item="Folio";
+		$respuesta = ModeloVentas::mdlAbonar($tabla,$item,$folioVenta,$nuevoSaldo);
+		return $respuesta;
+    }
+
 }
 ?>

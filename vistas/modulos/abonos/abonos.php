@@ -52,7 +52,9 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
       </div>
         <div class="row m-2 tablaAbonosD">
         <input type="hidden" name="folioCompra" id="folioCompra">
-        <input type="hidden" name="abonosActuales" id="abonosActuales">
+        <input type="hidden" name="nAbono" id="nAbono">
+        <input type="hidden" name="ultimoSaldo" id="ultimoSaldo">
+        <input type="hidden" name="fechaVence" id="fechaVence">
         <table class="table table-bordered table-striped dt-responsive table-hover tablaAbonos">
           <thead>
             <tr role="row">
@@ -96,34 +98,52 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
         <div class="modal-body">
 
-          <label class="label-style" for="nCredito">Crédito</label>
-
-          <div class="input-group mb-3">
-
-              <input type="text" class="form-control form-control-lg" id="nCredito" name="nCredito" readonly required>
-
+          <label class="label-style">Crédito <span id="nCreditoS"></span> | Saldo actual $<span id="saldoActual"></span></label><br />
+          <div class="oculto" style="visibility: hidden;">
+            <label class="label-style" for="descuentoP">Descuento</label>
+            <div class="input-group">
+              <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0" disabled>
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-percent"></i></span>
+              </div>
+          </div>
+          </div>
+          <label class="label-style" for="abono">Abono</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
+            </div>
+            <input type="text" class="form-control" id="abono" name="abono" placeholder="Abono" required>
           </div>
 
           <label class="label-style" for="efectivo">Efectivo</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
+            </div>
+            <input type="number" pattern="^[0-9]+" min="0" step="any" class="form-control" id="efectivo" name="efectivo" placeholder="Efectivo" autocomplete="off" required>
+          </div>
 
-          <div class="input-group mb-3">
-
-
-              <input type="text" class="form-control form-control-lg capitalize" id="efectivo" name="efectivo" placeholder="Efectivo" required>
-
+          <label class="label-style" for="cambio">Cambio</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
+            </div>
+            <input type="text" class="form-control" id="cambio" name="cambio" placeholder="0" readonly required>
           </div>
 
         </div>
 
         <div class="modal-footer justify-content-between">
-          <button type="submit" class="btn btn-primary">Liquidar</button>
-          <button type="submit" class="btn btn-primary">Abonar</button>
+          <button type="button" class="btn btn-primary btnCambiar">Liquidar</button>
+          <button type="submit" class="btn btn-primary">Pagar</button>
 
         </div>
 
         <?php
-            //$crearAlmacen = new ControladorAlmacen();
-            //$crearAlmacen->ctrAgregarAlmacen();
+            $crearAbono = new ControladorAbonos();
+            $crearAbono->ctrRegistrarAbono();
+            //print_r($_POST);
           ?>
 
     </div>

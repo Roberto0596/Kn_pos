@@ -4,6 +4,9 @@ var tipoAbonos = [];
 var enganches = [];
 var importes = [];
 var saldos = [];
+var abonoBase = 0;
+var saldoActual = 0;
+var fechaVence = "";
 
 $(document).ready(function() {
 	$("#seleccionarCliente").select2({
@@ -105,7 +108,8 @@ $("#seleccionarCredito").on("change", function(){
 				$(".datosCredito").html(" ");
 				var fechas = $.parseJSON(fechasAbonos[indiceCred-1]);
 				var datosCredito = "<div class='col-md-2'>"+fechas.length+" pagos</div>";
-				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+darFormato(fechas[fechas.length-1].Abono)+"</div>";
+				abonoBase = fechas[fechas.length-1].Abono;
+				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+darFormato(abonoBase)+"</div>";
 				datosCredito += "<div class='col-md-2'>Importe $"+darFormato(importes[indiceCred-1])+"</div>";
 				datosCredito += "<div class='col-md-2'>Enganche $"+darFormato(enganches[indiceCred-1])+"</div>";
 				var saldin = importes[indiceCred-1]-enganches[indiceCred-1];
@@ -130,6 +134,10 @@ $("#seleccionarCredito").on("change", function(){
 						if(abonosActuales.length==0){ //Nada de abonos
 							$.each(fechas, function (indice, fecha) {
 								if(indice == 0){
+									$("#nAbono").val(1);
+									$("#abono").val(abonoBase);
+									$("#ultimoSaldo").val(saldos[indiceCred-1]);
+									fechaVence = fecha.Fecha;
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
 								}else{
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -142,7 +150,11 @@ $("#seleccionarCredito").on("change", function(){
 								if(abonosActuales[indice] != null){
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td><td></td></tr>");
 								}else{
-									if(verifica == 0){
+									if(verifica == 0){ //ultimo abono
+										$("#nAbono").val(indice+1);
+										$("#abono").val(abonoBase);
+										$("#ultimoSaldo").val(saldos[indiceCred-1]);
+										fechaVence = fecha.Fecha;
 										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
 										verifica = verifica + 1;
 									}else{
@@ -164,11 +176,132 @@ $("#seleccionarCredito").on("change", function(){
 		$(".datosCredito").html(" ");
 		$(".tablaAbonos tbody").html(" ");
 		$("#folioCompra").val(null);
+		$("#nAbono").val(null);
+		$("#ultimoSaldo").val(null);
+		$("#efectivo").val(null);
+		$("#cambio").val(null);
 	}
 });
 
 //.tablaAbonos tbody tr td button
 $(".tablaAbonos tbody").on("click","button.btnAbonar", function()
 {
-	$("#nCredito").val($("#folioCompra").val());
+	$("#nCreditoS").html($("#folioCompra").val());
+	$("#saldoActual").html(darFormato($("#ultimoSaldo").val()));
+	$(".btnCambiar").html("Liquidar");
+	$(".oculto").css("visibility", "hidden");
+	$('#descuentoP').val(0);
+	$('#descuentoP').prop("disabled", true);
+	$("#abono").val(abonoBase);
+	$("#fechaVence").val(fechaVence);
+	$("#abono").prop("readonly", false);
+	$('#efectivo').trigger('focus');
 });
+$(".modal-footer").on("click","button.btnCambiar", function()
+{
+	$("#efectivo").val(null);
+	$("#cambio").val(null);
+	if($(".btnCambiar").html() == "Liquidar"){
+		$(".btnCambiar").html("Abonar");
+		$(".oculto").css("visibility", "visible");
+		$('#descuentoP').prop("disabled", false);
+		$('#descuentoP').val(0);
+		$("#abono").val($("#ultimoSaldo").val());
+		$("#abono").prop("readonly", true);
+	}else{
+		$(".btnCambiar").html("Liquidar");
+		$(".oculto").css("visibility", "hidden");
+		$('#descuentoP').val(0);
+		$('#descuentoP').prop("disabled", true);
+		$("#abono").val(abonoBase);
+		$("#abono").prop("readonly", false);
+	}
+	$('#efectivo').trigger('focus');
+});
+function redondear(numero, digitos){
+    let base = Math.pow(10, digitos);
+    let entero = Math.round(numero * base);
+    return entero / base;
+}
+
+$("#descuentoP").on("change",function()
+{
+	var porcentaje = this.value;
+	var ultimoAbono = $("#ultimoSaldo").val();
+	if(porcentaje != 0 && porcentaje < 100){
+		var descuentoE = (porcentaje/100) * ultimoAbono;
+		$("#abono").val(redondear(ultimoAbono - descuentoE,2));
+	}else{
+		$("#abono").val(ultimoAbono);
+	}
+});
+
+$( "#descuentoP" ).keyup(function() {
+	var porcentaje = this.value;
+	var ultimoAbono = $("#ultimoSaldo").val();
+	if(porcentaje != 0 && porcentaje < 100){
+		var descuentoE = (porcentaje/100) * ultimoAbono;
+		$("#abono").val(redondear(ultimoAbono - descuentoE,2));
+	}else{
+		$("#abono").val(ultimoAbono);
+	}
+});
+
+$("#efectivo").on("change",function()
+{
+	var efectivo = this.value;
+	var totalA = $("#abono").val();
+	var cambio = efectivo - totalA;
+	if(cambio>0){
+		$("#cambio").val(redondear(cambio,2));
+	}else{
+		$("#cambio").val(0);
+	}
+});
+
+$( "#efectivo" ).keyup(function() {
+	var efectivo = this.value;
+	var totalA = $("#abono").val();
+	var cambio = efectivo - totalA;
+	if(cambio>0){
+		$("#cambio").val(redondear(cambio,2));
+	}else{
+		$("#cambio").val(0);
+	}
+});
+
+$( "#frmCobro" ).submit(function( event ) {
+	if($("#abono").val() > $("#efectivo").val() || $("#efectivo").val() == 0){
+		event.preventDefault();
+		swal.fire({
+			title: "El efectivo es menor al abono total",
+			text: "¡Favor de capturar bien el pago!",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		}).then((result) => {
+			if (result.value) {
+				$('#efectivo').trigger('focus');
+			}
+		  });
+		  $("#efectivo").val(null);
+		  $("#cambio").val(null);
+	}
+
+	if($("#abono").val() < abonoBase){
+		event.preventDefault();
+		swal.fire({
+			title: "El abono tiene que ser igual o mayor a $"+abonoBase,
+			text: "¡Favor de capturar bien el abono!",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		}).then((result) => {
+			if (result.value) {
+				$('#efectivo').trigger('focus');
+			}
+		  });
+		  $("#abono").val(abonoBase);
+		  $("#efectivo").val(null);
+		  $("#cambio").val(null);
+	}
+
+  });

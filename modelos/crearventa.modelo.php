@@ -52,6 +52,20 @@ class ModeloVentas{
 		return $stmt->fetchAll();
 	}
 
+	public static function mdlAbonar($tabla,$item,$valor,$nuevoSaldo)
+	{
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set Pendiente = :saldo WHERE $item = :$item;");
+		$stmt->bindParam(":saldo", $nuevoSaldo, PDO::PARAM_STR);
+		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
 
     public static function mdlCrearVenta($tabla,$venta)
 	{
