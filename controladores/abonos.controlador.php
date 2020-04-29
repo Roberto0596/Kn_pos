@@ -36,7 +36,6 @@ class ControladorAbonos
 				$respuesta = ModeloAbonos::mdlRegistrarAbono($tabla,$ModeloAbono);
 				if ($respuesta = "ok")
 				{
-					$respuesta = ModeloAbonos::mdlRegistrarAbono($tabla,$ModeloAbono);
 					Helpers::imprimirMensaje("success","El abono se guardo correctamente.","abonos");
 				}
 				else
