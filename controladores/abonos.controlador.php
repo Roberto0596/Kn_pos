@@ -28,16 +28,6 @@ class ControladorAbonos
 			date_default_timezone_set('America/Hermosillo');
 			$fechaPago = date('Y-m-d');
 			$nuevoSaldo = $_POST["ultimoSaldo"] - $_POST["abono"];
-			/*
-    public $Folio_venta;
-    public $Folio_pago;
-    public $Fecha_vencimiento;
-    public $Fecha_pago;
-    public $Numero_abono;
-	public $Cantidad;
-	public $Saldo;
-    public $Estado;
-			*/
 			$ModeloAbono= new ModeloAbonos(NULL, $_POST["folioCompra"], ($this->ctrTraerUltimoFolio()+1), $_POST["fechaVence"], $fechaPago, $_POST["nAbono"], $_POST["abono"], $nuevoSaldo, 1);
 			$respuesta = ModeloVentas::mdlAbonar("ventas","Folio",$_POST["folioCompra"],$nuevoSaldo);
 
@@ -60,53 +50,6 @@ class ControladorAbonos
 			}
 		}
 
- 	}
-
-
- 	public function ctrEliminarAlmacen()
- 	{
- 		if (isset($_GET["idAlmacen"]))
- 		{
- 			$tabla = "almacen";
- 			$idAlmacen = $_GET["idAlmacen"];
- 			$respuesta = ModeloAlmacen::mdlEliminarAlmacen($tabla,$idAlmacen);
- 			if ($respuesta=="ok")
-		 	{
-		 		echo '<script>
-				swal.fire({
-					type: "success",
-					title: "El almacen se borro correctamente",
-					showConfirmButton: true,
-					confirmButtonText: "cerrar",
-					closeOnConfirm: false
-					}).then((result)=>
-				    {
-						if(result.value)
-						{
-							window.location = "almacen";
-						}
-				    })
-				</script>';
-		 	}
-		 	else
-		 	{
-		 		echo '<script>
-				swal.fire({
-					type: "error",
-					title: "El almacen no se puede borrar correctamente",
-					showConfirmButton: true,
-					confirmButtonText: "cerrar",
-					closeOnConfirm: false
-					}).then((result)=>
-				    {
-						if(result.value)
-						{
-							window.location = "almacen";
-						}
-				    })
-				</script>';
-		 	}
- 		}
  	}
 }
 
