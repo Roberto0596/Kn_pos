@@ -12,9 +12,8 @@ class AjaxVentaCredito
 
 	public function ajaxTraerSolicitud()
 	{
-		$item = "id_cliente";
 		$valor = $this->idCliente;
-		$respuesta = ControladorSolicitud::ctrMostrarSolicitudes($item,$valor,0);
+		$respuesta = ControladorClientes::ctrMostrarClienteCredito($valor);
 		echo json_encode($respuesta);
 	}
 }

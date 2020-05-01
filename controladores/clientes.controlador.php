@@ -8,9 +8,16 @@ class ControladorClientes
 		$respuesta = ModeloClientes::mdlMostrarClientes($tabla,$item,$valor,$tipo);
 		return $respuesta;
 	}
+
 	public function ctrMostrarClientesCredito($valor)
 	{
 		$respuesta = ModeloClientes::mdlMostrarClientesCredito($valor);
+		return $respuesta;
+	}
+
+	public function ctrMostrarClienteCredito($idCliente)
+	{
+		$respuesta = ModeloClientes::mdlMostrarClienteCredito($idCliente);
 		return $respuesta;
 	}
 
@@ -53,7 +60,7 @@ class ControladorClientes
 							'tipo' => $_POST["tipo"],
 							'Credito' => $_POST["credito"],
 							'historial' => $_POST["historial"],
-							'asentamiento' => $_POST["asentamiento"], 'Credito' => "0");
+							'asentamiento' => $_POST["asentamiento"]);
 
 			$respuesta = ModeloClientes::mdlCrearCliente($tabla,$datos);
 			if ($respuesta != "error")
@@ -83,7 +90,7 @@ class ControladorClientes
 							'Credito' => $_POST["credito"],
 							'historial' => $_POST["historial"],
 							'id_cliente' => $_POST["id_cliente"]);
-			
+
 			$respuesta = ModeloClientes::mdlEditarCliente($tabla,$datos);
 			if ($respuesta = "ok")
 			{

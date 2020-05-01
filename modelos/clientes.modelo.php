@@ -30,6 +30,15 @@ class ModeloClientes
 		$stmt->close();
 	}
 
+	public static function mdlMostrarClienteCredito($idCliente)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE id_cliente = :idCliente AND Credito = 1");
+		$stmt->bindParam(":idCliente",$idCliente,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+		$stmt->close();
+	}
+
 	public static function mdlValidarCliente($tabla,$item1, $valor1, $item2,$valor2,$tipo)
 	{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 and $item2 = :$item2  and tipo = :tipo");
@@ -120,8 +129,8 @@ class ModeloClientes
 		$stmt->bindParam(":edad",$datos["edad"],PDO::PARAM_STR);
 		$stmt->bindParam(":asentamiento",$datos["asentamiento"],PDO::PARAM_STR);
 		$stmt->bindParam(":tipo",$datos["tipo"],PDO::PARAM_STR);
-		$stmt->bindParam(":Credito",$datos["Credito"],PDO::PARAM_STR);
 		$stmt->bindParam(":historial",$datos["historial"],PDO::PARAM_STR);
+		$stmt->bindParam(":Credito",$datos["Credito"],PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return $link->lastInsertId();
