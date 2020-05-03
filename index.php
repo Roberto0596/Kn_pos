@@ -10,6 +10,7 @@
 	include_once "controladores/compra.controlador.php";
 	include_once "controladores/abonos.controlador.php";
 	require_once "controladores/helpers.php";
+	require_once "controladores/reportes.controlador.php";
 	require_once "modelos/usuarios.modelo.php";
 	require_once "modelos/almacen.modelo.php";
 	require_once "modelos/clientes.modelo.php";
@@ -19,6 +20,7 @@
 	include_once "modelos/crearventa.modelo.php";
 	include_once "modelos/compra.modelo.php";
 	include_once "modelos/abonos.modelo.php";
+	include_once "modelos/reportes.modelo.php";
 	$main = new ControladorMain();
 	$main->ctrActivarMain();
  ?>

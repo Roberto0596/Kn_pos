@@ -9,6 +9,13 @@ class ControladorClientes
 		return $respuesta;
 	}
 
+	public function ctrMostrarClienteReporteCredito($item,$valor)
+	{
+		$tabla = "cliente";
+		$respuesta = ModeloClientes::mdlMostrarClienteReporteCredito($tabla,$item,$valor);
+		return $respuesta;
+	}
+
 	public function ctrMostrarClientesCredito($valor)
 	{
 		$respuesta = ModeloClientes::mdlMostrarClientesCredito($valor);

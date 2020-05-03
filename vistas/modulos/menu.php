@@ -24,6 +24,16 @@
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+          <li class="nav-item">
+            <a href="reportes" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Reportes
+                <span class="right badge badge-danger">Building</span>
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cash-register"></i>
@@ -73,7 +83,7 @@
               <i class="nav-icon fas fa-clone"></i>
               <p>
                 Solicitudes
-                <span class="right badge badge-danger">Building</span>
+                <span class="right badge badge-danger">new</span>
               </p>
             </a>
           </li>
