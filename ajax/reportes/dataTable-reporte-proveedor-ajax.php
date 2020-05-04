@@ -1,32 +1,30 @@
 <?php
 
-require_once "../../controladores/clientes.controlador.php";
-require_once "../../modelos/clientes.modelo.php";
+require_once "../../controladores/compra.controlador.php";
+require_once "../../modelos/compra.modelo.php";
 
 class TablaProveedorAjax
 {
 	public function MostrarTabla()
 	{
-		if (isset($_POST["id_proveedor"]))
+		if (isset($_POST["folio"]))
 		{
-			$item = "id_proveedor";
-			$valor = $_POST["id_proveedor"];
-			$respuesta = ControladorClientes::ctrMostrarClienteReporteCredito($item,$valor);
+			$item = "Folio";
+			$valor = $_POST["folio"];
+			$respuesta = ControladorCompra::ctrMostrarCompras($item,$valor);
 			$res = [ "data" => []];
 			if ($respuesta != false)
 			{
-				foreach($respuesta as $key => $value)
+				$listaProductos = json_decode($respuesta["ListaProductos"],true);
+				foreach($listaProductos as $key => $value)
 				{
 					array_push($res['data'], [
 						($key+1),
-						$value["nombre"],
-						$value["direccion"],
-						$value["codigo_postal"],
-						$value["asentamiento"],
-						$value["telefono_casa"],
-						$value["telefono_celular"],
-						$value["ciudad"],
-						$value["edad"],
+						$respuesta["Folio"],
+						$value["descripcion"],
+						$value["cantidad"],
+						$value["precio"],
+						$value["total"]
 					]);
 				}	
 			}
@@ -35,5 +33,5 @@ class TablaProveedorAjax
 	}
 }
 
-$clientes = new TablaProveedorAjax();
-$clientes->MostrarTabla();
+$compras = new TablaProveedorAjax();
+$compras->MostrarTabla();

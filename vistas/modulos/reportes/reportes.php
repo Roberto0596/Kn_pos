@@ -116,11 +116,11 @@
 
           <div class="col-md-2">
 
-            <div class="btn-group">
+            <!-- <div class="btn-group">
 
               <button class="btn btn-success" id="generar">Generar</button>
 
-            </div>
+            </div> -->
 
           </div>
 

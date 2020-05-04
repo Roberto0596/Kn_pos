@@ -44,10 +44,10 @@ function mostrarTablaCredito(id_cliente)
 	});
 }
 
-function mostrarTablaProveedor(id_proveedor)
+function mostrarTablaProveedor(folio)
 {
-	$('.tableCredito tbody').remove();
-	$(".tableCredito").dataTable(
+	$('.tableProveedor tbody').remove();
+	$(".tableProveedor").dataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
@@ -59,7 +59,7 @@ function mostrarTablaProveedor(id_proveedor)
 		{
 			url: "ajax/reportes/dataTable-reporte-proveedor-ajax.php",
 			type: "POST",
-			data: {id_proveedor:id_proveedor}
+			data: {folio:folio}
 	    },
 		"language": {
 
@@ -100,7 +100,6 @@ $(document).ready(function()
 
 $("#client").change(function()
 {
-	console.log("hola mundo");
 	mostrarTablaCredito($(this).val());
 })
 
@@ -124,4 +123,69 @@ $("#tipo").change(function()
 		$("#table-cliente").css("display","block");
 		$(".abonos").css("display","block");
 	}
+})
+
+$("#provider").change(function()
+{
+	var data = new FormData();
+	data.append("id_proveedor",$(this).val());
+	$.ajax({
+		url:"ajax/reportes.ajax.php",
+		method: "POST",
+		data:data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			$("#ejecutivo").html(respuesta["Ejecutivo"]);
+			$("#cuenta").html(respuesta["Cuenta_bancaria"]);
+			var dataCompra = new FormData();
+			dataCompra.append("idProveedor", respuesta["Id_proveedor"]);
+			dataCompra.append("item_compras", "Id_proveedor");
+			$.ajax({
+				url:"ajax/reportes.ajax.php",
+				method: "POST",
+				data:dataCompra,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success: function(respuesta2)
+				{
+					$('#compras').empty().append('whatever');
+					for (var i = 0; i < respuesta2.length; i++)
+					{
+						var folio = respuesta2[i]["Folio"];
+						$('#compras').prepend("<option value='"+folio+"' >"+folio+"</option>");
+					}
+				}
+			});
+		}
+	});
+})
+
+$("#compras").change(function()
+{
+	var id = $(this).val();
+	var data = new FormData();
+	data.append("idProveedor", id);
+	data.append("item_compras", "Folio");
+	$.ajax({
+		url:"ajax/reportes.ajax.php",
+		method: "POST",
+		data:data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			console.log(respuesta);
+			$("#fecha").html(respuesta["Fecha"]);
+			$("#monto").html(respuesta["TotalVenta"]);
+			mostrarTablaProveedor(respuesta["Folio"]);
+		}
+	});
 })

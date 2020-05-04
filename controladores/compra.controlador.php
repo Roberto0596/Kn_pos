@@ -48,6 +48,20 @@ class ControladorCompra
             }
 		}
     }
+
+    public function ctrMostrarCompras($item,$valor)
+    {
+        $tabla = "compras";
+        $respuesta = ModeloCompras::mdlMostrarCompras($tabla,$item,$valor);
+        return $respuesta;
+    }
+
+    public function ctrMostrarComprasPorProveedor($item,$valor)
+    {
+        $tabla = "compras";
+        $respuesta = ModeloCompras::mdlMostrarComprasPorProveedor($tabla,$item,$valor);
+        return $respuesta;
+    }
 }
 
 ?>
