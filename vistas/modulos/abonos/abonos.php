@@ -63,8 +63,8 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
               <th class="sorting" colspan="1" style="width: 30px;">Folio de pago</th>
               <th class="sorting" colspan="1" style="width: 60px;">Fecha de pago</th>
               <th class="sorting" colspan="1" style="width: 30px;">Cantidad</th>
-              <th class="sorting" colspan="1" style="width: 30px;">Saldo</th>
               <th class="sorting" colspan="1" style="width: 30px;">Abonar</th>
+              <th class="sorting" colspan="1" style="width: 30px;">Saldo</th>
             </tr>
           </thead>
           <tbody>

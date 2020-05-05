@@ -27,7 +27,11 @@ class ControladorAbonos
 			$tabla = "abonos";
 			date_default_timezone_set('America/Hermosillo');
 			$fechaPago = date('Y-m-d');
-			$nuevoSaldo = $_POST["ultimoSaldo"] - $_POST["abono"];
+			$nuevoSaldo = 0;
+			if (!isset($_POST['descuentoP'])) {
+				$nuevoSaldo = $_POST["ultimoSaldo"] - $_POST["abono"];
+			}
+			print_r($_POST);
 			$ModeloAbono= new ModeloAbonos(NULL, $_POST["folioCompra"], ($this->ctrTraerUltimoFolio()+1), $_POST["fechaVence"], $fechaPago, $_POST["nAbono"], $_POST["abono"], $nuevoSaldo, 1);
 			$respuesta = ModeloVentas::mdlAbonar("ventas","Folio",$_POST["folioCompra"],$nuevoSaldo);
 

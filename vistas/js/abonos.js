@@ -138,7 +138,7 @@ $("#seleccionarCredito").on("change", function(){
 									$("#abono").val(abonoBase);
 									$("#ultimoSaldo").val(saldos[indiceCred-1]);
 									fechaVence = fecha.Fecha;
-									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
 								}else{
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
 								}
@@ -148,14 +148,14 @@ $("#seleccionarCredito").on("change", function(){
 							var verifica = 0;
 							$.each(fechas, function (indice, fecha) {
 								if(abonosActuales[indice] != null){
-									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td><td></td></tr>");
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td></td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td></tr>");
 								}else{
 									if(verifica == 0){ //ultimo abono
 										$("#nAbono").val(indice+1);
 										$("#abono").val(abonoBase);
 										$("#ultimoSaldo").val(saldos[indiceCred-1]);
 										fechaVence = fecha.Fecha;
-										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td></tr>");
+										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
 										verifica = verifica + 1;
 									}else{
 										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
