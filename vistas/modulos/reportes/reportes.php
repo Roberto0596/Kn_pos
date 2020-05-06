@@ -20,8 +20,8 @@
 
                 <select id="concepto" class="form-control capitalize">
 
-                  <option value="credito">Vendas Credito</option>
-                  <option value="contado">Vendas Contado</option>
+                  <option value="credito">Ventas Credito</option>
+                  <option value="contado">Ventas Contado</option>
                   <option value="compras">Compras</option>
                   <option value="ventas">Ventas General</option>
 
