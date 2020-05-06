@@ -30,8 +30,8 @@ class ModeloAbonos
 	{
 		if ($item!=null)
 		{
-			$stmt=conexion::conectar()->prepare("SELECT * from $tabla where $item = :valor ORDER BY folio_pago ASC;");
-			$stmt->bindParam(":valor",$valor,PDO::PARAM_STR);
+			$stmt=conexion::conectar()->prepare("SELECT * from $tabla where $item = :$item ORDER BY folio_pago ASC;");
+			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
@@ -41,6 +41,15 @@ class ModeloAbonos
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
+	}
+
+	public function mdlValidarUltimoPago($valor1,$valor2)
+	{
+		$stmt=conexion::conectar()->prepare("SELECT * from abonos where Folio_venta = :Folio_venta and Fecha_vencimiento = :Fecha_vencimiento");
+		$stmt->bindParam(":Folio_venta",$valor1,PDO::PARAM_STR);
+		$stmt->bindParam(":Fecha_vencimiento",$valor2,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
 	}
 
 	public function mdlTraerUltimoFolio($tabla)

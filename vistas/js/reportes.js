@@ -86,6 +86,44 @@ function mostrarTablaCredito(Folio)
 	});
 }
 
+function mostrarTablaRetrasos()
+{
+	$(".tableRetrasos").dataTable(
+	{
+		"destroy":true,
+		"deferRender": true,
+		"processing": true,
+		"bFilter": true,
+		"ajax":"ajax/reportes/dataTable-reporte-retrasos-ajax.php",
+		"language": {
+
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+
+		}
+	});
+}
+
 function mostrarTablaContado(rango)
 {
 	$('.tablaContado tbody').remove();
@@ -221,8 +259,7 @@ $('#ventas-credito-cliente').change(function()
 var elementsArray = new Object([
 	{"elemento": "cliente", "valor": "1"},
 	{"elemento": "table-cliente", "valor": "1"},
-	{"elemento": "table-cliente-retrasos", "valor": "0"},
-	{"elemento": "clientes_vencidos", "valor": "0"}]);
+	{"elemento": "table-cliente-retrasos", "valor": "0"}]);
 
 $('#select-modalidad').change(function()
 {
@@ -235,6 +272,7 @@ $('#select-modalidad').change(function()
 	else
 	{
 		hideOrShowElement(elementsArray,null);
+		mostrarTablaRetrasos();
 	}
 })
 

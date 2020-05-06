@@ -1,6 +1,6 @@
 <div id="table-cliente-retrasos" style="display: none">
 
-    <div class="row select-ventas-credito-cliente" style="display: none">
+<!--     <div class="row select-ventas-credito-cliente" style="display: none">
 
         <div class="col-md-4">
 
@@ -22,19 +22,19 @@
 
         </div>
 
-    </div>
+    </div> -->
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover tableRetrasos">
         <thead>
             <tr>
                 <th style="width: 25px">#</th>
-                <th>Folio venta</th>
-                <th>Folio pago</th>
-                <th>Fecha de vencida</th>
-                <th>Fecha de pago</th>
+                <th>Nombre</th>
+                <th>Folio</th>
+                <th>F. Vencimiento</th>
+                <th>Abono</th>
                 <th>Fecha Prox. pago</th>
-                <th>cantidad</th>
-                <th>Saldo</th>
+                <th>Abono Prox. pago</th>
+                <th>Acciones</th>
             </tr>
         </thead>
     </table>

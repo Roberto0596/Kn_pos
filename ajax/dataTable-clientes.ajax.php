@@ -9,7 +9,6 @@ class TablaClientes
 	{
 		$respuesta = ControladorClientes::ctrMostrarClientes(null,null,0);
 		$res = [ "data" => []];
-		var_dump($respuesta);
 		foreach ($respuesta as $key => $value)
 		{
 			if($value["id_cliente"]>1)

@@ -2,7 +2,6 @@
   
   $clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
   $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
-
 ?>
 
 <div class="content-wrapper">
@@ -69,22 +68,6 @@
 
             </div>
 
-            <div class="input-group mb-3" id="clientes_vencidos" style="display: none;">
-
-                <select class="form-control capitalize select2" id="lista_vencidos" >
-
-                  <option value=""># proveedor</option>
-
-                  <?php  foreach($proveedores as $value): ?>
-
-                      <option value="<?= $value['Id_proveedor'] ?>"><?= $value['Nombre'] ?></option>
-
-                  <?php endforeach?>
-
-                </select>
-
-            </div>
-
             <div class="input-group mb-3" id="proveedor" style="display: none;">
 
                 <select class="form-control capitalize select2" id="provider" >
@@ -124,7 +107,7 @@
           <?php include "reportes/tabla-proveedor.php" ?>
           <?php include "reportes/tabla-contado.php" ?>
           <?php include "reportes/ventas.php" ?>
-          
+
       </div>
 
     </div>
