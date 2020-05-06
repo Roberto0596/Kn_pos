@@ -276,9 +276,9 @@ $('#select-modalidad').change(function()
 	}
 })
 
-$("#fechaFinalCredito").change(function(){
-	var fechaInicial = $("#fechaInicialCredito").val();
-	var fechaFinal = $("#fechaFinalCredito").val();
+$("#fechaFinalContado").change(function(){
+	var fechaInicial = $("#fechaInicialContado").val();
+	var fechaFinal = $("#fechaFinalContado").val();
 	if (fechaInicial.length>1)
 	{
 		mostrarTablaContado(fechaInicial+"|"+fechaFinal);
@@ -290,7 +290,7 @@ $("#fechaFinalCredito").change(function(){
 			type: "error",
 			confirmButtonText: "¡Cerrar!"
 		});
-		$("#fechaFinalCredito").val("");
+		$("#fechaFinalContado").val("");
 	}
 });
 
