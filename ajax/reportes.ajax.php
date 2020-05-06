@@ -9,6 +9,12 @@ require_once "../modelos/proveedores.modelo.php";
 require_once "../controladores/compra.controlador.php";
 require_once "../modelos/compra.modelo.php";
 
+require_once "../controladores/crearventa.controlador.php";
+require_once "../modelos/crearventa.modelo.php";
+
+require_once "../controladores/abonos.controlador.php";
+require_once "../modelos/abonos.modelo.php";
+
 class AjaxReportes
 {
 	public $id_proveedor;
@@ -18,6 +24,33 @@ class AjaxReportes
 		$item = "id_proveedor";
 		$valor = $this->id_proveedor;
 		$respuesta = ControladorProveedores::ctrMostrarProveedores($item,$valor);
+		echo json_encode($respuesta);
+	}
+
+	public $clientId;
+
+	public function ajaxTraerVentasCliente()
+	{
+		$item = "Id_cliente";
+		$valor = $this->clientId;
+		$respuesta = ControladorVentas::ctrMostrarClienteVentas($item,$valor);
+		echo json_encode($respuesta);
+	}
+
+	public function ajaxTraerVentas()
+	{
+		$respuesta = ControladorVentas::ctrMostrarVentas(null,null);
+		echo json_encode($respuesta);
+	}
+
+	public $fechaInicial;
+	public $fechaFinal;
+
+	public function ajaxTraerVentasPorFecha()
+	{
+		$valor1 = $this->fechaInicial;
+		$valor2 = $this->fechaFinal;
+		$respuesta = ControladorVentas::ctrMostrarVentasPorFecha($valor1,$valor2);
 		echo json_encode($respuesta);
 	}
 
@@ -42,6 +75,26 @@ class AjaxReportes
 	}
 }
 
+if (isset($_POST["activar"]))
+{
+	$mostrar = new AjaxReportes();
+	$mostrar->ajaxTraerVentas();
+}
+
+if (isset($_POST["fechaFinal"]))
+{
+	$mostrar = new AjaxReportes();
+	$mostrar-> fechaInicial = $_POST["fechaInicial"];
+	$mostrar-> fechaFinal = $_POST["fechaFinal"];
+	$mostrar->ajaxTraerVentasPorFecha();
+}
+
+if (isset($_POST["clientId"]))
+{
+	$mostrar = new AjaxReportes();
+	$mostrar-> clientId = $_POST["clientId"];
+	$mostrar->ajaxTraerVentasCliente();
+}
 
 if (isset($_POST["id_proveedor"]))
 {

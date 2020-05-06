@@ -107,5 +107,22 @@ class ControladorVentas
 		return $respuesta;
     }
 
+    public function ctrMostrarVentas($item,$valor)
+    {
+        $respuesta = ModeloVentas::mdlMostrarVentas($item,$valor);
+        return $respuesta;
+    }
+
+     public function ctrMostrarClienteVentas($item,$valor)
+    {
+        $respuesta = ModeloVentas::mdlMostrarClienteVentas($item,$valor);
+        return $respuesta;
+    }
+
+    public function ctrMostrarVentasPorFecha($valor1,$valor2)
+    {
+        $respuesta = ModeloVentas::mdlMostrarVentasPorFecha($valor1,$valor2);
+        return $respuesta;
+    }
 }
 ?>

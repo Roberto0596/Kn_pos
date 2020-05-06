@@ -4,37 +4,8 @@
   $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
 
 ?>
+
 <div class="content-wrapper">
-
-  <section class="content-header">
-
-    <div class="container-fluid">
-
-      <div class="row mb-2">
-
-        <div class="col-sm-6">
-
-          <h1>Reportes</h1>
-
-        </div>
-
-        <div class="col-sm-6">
-
-          <ol class="breadcrumb float-sm-right">
-
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-
-            <li class="breadcrumb-item active">Reportes</li>
-
-          </ol>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
 
   <section class="content">
 
@@ -48,11 +19,12 @@
 
             <div class="input-group mb-3">
 
-                <select id="tipo" class="form-control capitalize">
+                <select id="concepto" class="form-control capitalize">
 
-                  <option value="credito">Vendas credito</option>
-                  <option value="credito">Vendas contado</option>
+                  <option value="credito">Vendas Credito</option>
+                  <option value="contado">Vendas Contado</option>
                   <option value="compras">Compras</option>
+                  <option value="ventas">Ventas General</option>
 
                 </select>
 
@@ -60,13 +32,14 @@
 
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-2" id="abonos">
             
-            <div class="input-group mb-3 abonos">
+            <div class="input-group mb-3">
 
-                <select id="nombre" class="form-control capitalize">
+                <select id="select-modalidad" class="form-control capitalize">
 
                   <option value="abonos">Abonos</option>
+                  <option value="vencidos">Vencidos</option>
 
                 </select>
 
@@ -76,9 +49,9 @@
 
           <div class="col-md-3">
             
-            <div class="input-group mb-3 cliente">
+            <div class="input-group mb-3" id="cliente">
 
-                <select class="form-control capitalize select2" id="client" >
+                <select class="form-control capitalize select2" id="credito-abono-cliente" >
 
                   <option value=""># cliente</option>
 
@@ -96,7 +69,23 @@
 
             </div>
 
-            <div class="input-group mb-3 proveedor">
+            <div class="input-group mb-3" id="clientes_vencidos" style="display: none;">
+
+                <select class="form-control capitalize select2" id="lista_vencidos" >
+
+                  <option value=""># proveedor</option>
+
+                  <?php  foreach($proveedores as $value): ?>
+
+                      <option value="<?= $value['Id_proveedor'] ?>"><?= $value['Nombre'] ?></option>
+
+                  <?php endforeach?>
+
+                </select>
+
+            </div>
+
+            <div class="input-group mb-3" id="proveedor" style="display: none;">
 
                 <select class="form-control capitalize select2" id="provider" >
 
@@ -111,16 +100,6 @@
                 </select>
 
             </div>
-
-          </div>
-
-          <div class="col-md-2">
-
-            <!-- <div class="btn-group">
-
-              <button class="btn btn-success" id="generar">Generar</button>
-
-            </div> -->
 
           </div>
 
@@ -141,7 +120,11 @@
       <div class="card-body">
 
           <?php include "reportes/tabla-credito.php" ?>
+          <?php include "reportes/tabla-retrasos.php" ?>
           <?php include "reportes/tabla-proveedor.php" ?>
+          <?php include "reportes/tabla-contado.php" ?>
+          <?php include "reportes/ventas.php" ?>
+          
       </div>
 
     </div>

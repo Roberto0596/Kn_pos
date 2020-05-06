@@ -67,6 +67,59 @@ class ModeloVentas{
 		}
 	}
 
+	static public function mdlMostrarVentas($item,$valor)
+	{
+		if ($item != null)
+		{
+			$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE $item = :$item");
+			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
+			$stmt -> execute();
+			return $stmt -> fetch();
+		}
+		else
+		{
+			$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		$stmt -> close();
+		$stmt = null;
+	}
+
+	static public function mdlMostrarClienteVentas($item,$valor)
+	{
+		$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE $item = :$item");
+		$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;
+	}
+
+	static public function mdlMostrarVentasPorFecha($fechaInicial,$fechaFinal)
+	{
+		if($fechaInicial == null)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT * FROM ventas ORDER BY id_venta ASC");
+			$stmt -> execute();
+			return $stmt -> fetchAll();	
+		}
+		else if($fechaInicial == $fechaFinal)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT * FROM ventas WHERE fecha like '%$fechaFinal%'");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		else
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM ventas WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		$stmt -> close();
+		$stmt = null;
+	}
+
     public static function mdlCrearVenta($tabla,$venta)
 	{
 		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono, :TipoVenta);");

@@ -1,4 +1,4 @@
-<div id="table-proveedor">
+<div id="table-proveedor" style="display: none">
 
     <div class="row">
         <div class="col-sm-8">
