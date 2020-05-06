@@ -216,7 +216,7 @@
                 <div class="form-group row ocultar">
                   <div class="col-xs-6 pull-right">
                     <div class="input-group ">
-                      <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primero pago:</label>
+                      <label for="primerAbono" class="col-sm-6 col-form-label">Fecha de primer pago:</label>
                       <input type="date" id="primerAbono" name="primerAbono" class="form-control" required>
                     </div>
                   </div>
@@ -335,7 +335,7 @@
 
                  <tr>
                   <th style="width: 10px">#</th>
-                  <th>Codigo</th>
+                  <th>Código</th>
                   <th>Producto</th>
                   <th>Precio</th>
                   <th>Existencia</th>
