@@ -107,7 +107,7 @@
               </p>
             </a>
           </li>
-
+<!--
           <li class="nav-item">
             <a href="descuentos" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
@@ -117,7 +117,7 @@
               </p>
             </a>
           </li>
-
+-->
           <li class="nav-item">
             <a href="usuarios" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
