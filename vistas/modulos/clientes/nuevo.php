@@ -60,7 +60,7 @@
 
                       </div>
 
-                      <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-lg capitalize" required>
+                      <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-lg capitalize" >
 
                   </div>
 
@@ -104,7 +104,7 @@
 
                       </div>
 
-                      <input type="tel" id="t_celular" name="t_celular" placeholder="Teléfono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                      <input type="tel" id="t_celular" name="t_celular" placeholder="Teléfono celular" class="form-control form-control-lg" data-inputmask="'mask':'(999) 999-9999'" data-mask >
 
                   </div>
 
@@ -148,7 +148,7 @@
 
                       </div>
 
-                      <select class="form-control form-control-lg" id="ciudad" name="ciudad" style="width: 70%" required>
+                      <select class="form-control form-control-lg" id="ciudad" name="ciudad" style="width: 70%" >
 
                       </select>
 
@@ -170,7 +170,7 @@
 
                   <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal" required>
+                      <select class="form-control form-control-lg" id="codigo_postal" name="codigo_postal" >
 
                       </select>
 
@@ -184,7 +184,7 @@
 
                   <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly required>
+                      <select class="form-control form-control-lg" id="asentamiento" name="asentamiento" readonly >
 
                       </select>
 
@@ -216,7 +216,7 @@
 
                   <div class="input-group mb-3">
 
-                      <select class="form-control form-control-lg" id="historial" name="historial" required>
+                      <select class="form-control form-control-lg" id="historial" name="historial" >
                           <option value="">Seleccione un Item </option>
                           <option value="Nuevo">Nuevo</option>
                           <option value="Bueno">Bueno</option>
