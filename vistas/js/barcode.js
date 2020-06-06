@@ -53,14 +53,14 @@ function printTicket(codigo)
 
 }
 
-function printTicketApartado(idApartado) 
+function printTicketVenta(id) 
 {
-    var mywindow = window.open('vistas/modulos/print-ticketApartado.php?idApartado='+idApartado, 'PRINT');
+    var mywindow = window.open('vistas/modulos/ticket.php?Folio='+id, 'PRINT');
     mywindow.focus(); 
     setTimeout(function() {
         mywindow.print();
         mywindow.close();
-        window.location = "apartados";
+        //window.location = "apartados";
     });
 }
 

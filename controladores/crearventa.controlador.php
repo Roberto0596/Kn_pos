@@ -84,7 +84,23 @@ class ControladorVentas
             $respuesta = ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
             if ($respuesta = "ok")
             {
-                Helpers::imprimirMensaje("success","La venta se registró correctamente.","crearventa");
+                echo 
+                '<script>
+                swal.fire({
+                    type: "success",
+                    title: "La venta se registró correctamente.",
+                    showConfirmButton: true,
+                    confirmButtonText: "cerrar",
+                    closeOnConfirm: false
+                    }).then((result)=>
+                    {
+                        if(result.value)
+                        {
+                            printTicketVenta('.$_POST["nuevaVenta"].')
+                            window.location="crearventa";
+                        }
+                    })
+                </script>'; 
             }
             else
             {

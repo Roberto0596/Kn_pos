@@ -271,7 +271,8 @@ $( "#efectivo" ).keyup(function() {
 });
 
 $( "#frmCobro" ).submit(function( event ) {
-	if($("#abono").val() > $("#efectivo").val() || $("#efectivo").val() == 0){
+	console.log($("#abono").val());
+	if(Number($("#abono").val()) > Number($("#efectivo").val()) || Number($("#efectivo").val()) == 0){
 		event.preventDefault();
 		swal.fire({
 			title: "El efectivo es menor al abono total",

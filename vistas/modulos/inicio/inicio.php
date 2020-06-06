@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="card-body">
-          <button onclick="printTicket('100022')">clic me</button>
+          <button onclick="printTicketVenta('100022')">clic me</button>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
