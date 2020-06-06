@@ -106,10 +106,10 @@ $abono = ModeloAbonos::mdlMostrarAbonos("abonos","folio_venta",$data["Folio"]);
             <td class="item"><?= $data["Fecha"] ?></td>
           </tr>
 
-          <tr>
+<!--           <tr>
             <td class="index">Vencidos</td>
             <td class="item">2 pagos</td>
-          </tr>
+          </tr> -->
 
           <tr>
             <td class="index">Abono</td>
