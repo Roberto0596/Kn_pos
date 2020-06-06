@@ -39,11 +39,11 @@ class ControladorUsuarios
 							{
 								if ($respuesta["perfil"]!="Gerente General")
 								{
-									echo '<script> window.location = "crear-venta"; </script>';
+									echo '<script> window.location = "crearventa"; </script>';
 								}
 								else
 								{
-									echo '<script> window.location = "inicio"; </script>';
+									echo '<script> window.location = "reportes"; </script>';
 								}
 							}
 							else

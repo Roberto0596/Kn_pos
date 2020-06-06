@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          <button onclick="printTicket('100022')">clic me</button>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

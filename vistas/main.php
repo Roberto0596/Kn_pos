@@ -144,6 +144,7 @@
 	    }
     ?>
     <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/barcode.js"></script>
 	<script>
 	  $.widget.bridge('uibutton', $.ui.button)
 	</script>
