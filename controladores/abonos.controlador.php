@@ -53,7 +53,7 @@ class ControladorAbonos
 		                        if(result.value)
 		                        {
 		                            printTicket('.$_POST["folioCompra"].')
-		                            window.location="abonos";
+		                            //window.location="abonos";
 		                        }
 		                    })
 		                </script>';

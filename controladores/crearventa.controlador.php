@@ -97,7 +97,7 @@ class ControladorVentas
                         if(result.value)
                         {
                             printTicketVenta('.$_POST["nuevaVenta"].')
-                            window.location="crearventa";
+                            //window.location="crearventa";
                         }
                     })
                 </script>'; 

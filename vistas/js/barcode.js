@@ -45,11 +45,12 @@ function printTicket(codigo)
 {
     var mywindow = window.open('vistas/modulos/printticket.php?codigo='+codigo, 'PRINT');
 	mywindow.focus(); // necessary for IE >= 10*/
+    
 	setTimeout(function() {
-		mywindow.print();
+        mywindow.print();
 		mywindow.close();
-        // window.location = "inicio";
-	});
+        window.location = "crearventa";
+	},300);
 
 }
 
@@ -61,7 +62,7 @@ function printTicketVenta(id)
         mywindow.print();
         mywindow.close();
         //window.location = "apartados";
-    });
+    },300);
 }
 
 $(function() {
