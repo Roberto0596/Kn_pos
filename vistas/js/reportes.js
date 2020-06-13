@@ -35,6 +35,16 @@ $("#concepto").change(function()
 		hideOrShowElement(elementsArrayConcept,3);
 		traerTodasLasVentas();
 	}
+
+	if (valor!="credito")
+	{
+		$("#table-cliente-retrasos").css("display","none");
+	}
+})
+
+$("#generar").click(function()
+{
+	window.print();
 })
 
 
