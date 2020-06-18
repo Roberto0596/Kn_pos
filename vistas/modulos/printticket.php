@@ -2,6 +2,7 @@
 require_once "../../modelos/crearventa.modelo.php";
 require_once "../../modelos/clientes.modelo.php";
 require_once "../../modelos/abonos.modelo.php";
+
 if (isset($_GET["codigo"]))
 {
   $code = $_GET["codigo"];

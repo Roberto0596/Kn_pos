@@ -40,23 +40,11 @@ class ControladorAbonos
 				$respuesta = ModeloAbonos::mdlRegistrarAbono($tabla,$ModeloAbono);
 				if ($respuesta = "ok")
 				{
-					echo 
-		                '<script>
-		                swal.fire({
-		                    type: "success",
-		                    title: "Se abono correctamente.",
-		                    showConfirmButton: true,
-		                    confirmButtonText: "cerrar",
-		                    closeOnConfirm: false
-		                    }).then((result)=>
-		                    {
-		                        if(result.value)
-		                        {
-		                            printTicket('.$_POST["folioCompra"].')
-		                            //window.location="abonos";
-		                        }
-		                    })
-		                </script>';
+					$print = Helpers::imprimirTicketAbono($_POST["folioCompra"]);
+					if ($print == "ok")
+					{
+						Helpers::imprimirMensaje("suceess","todo bien","abonos");
+					}
 				}
 				else
 				{
