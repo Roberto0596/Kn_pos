@@ -43,13 +43,12 @@ class ControladorAbonos
 				$respuesta = ModeloAbonos::mdlRegistrarAbono($tabla,$ModeloAbono);
 				if ($respuesta = "ok")
 				{
-					// registrar fecha para saber ultimo loguin
 					date_default_timezone_set('America/Hermosillo');
 					$fecha = date('Y-m-d');
 					$hora = date('H:i:s');
 					$fechaActual = $fecha.' '.$hora;
-
-					$data = ModeloVentas::mdlMostrarVentas("Folio",$code);
+					print_r($ModeloAbono->Id);
+					$data = ModeloVentas::mdlMostrarVentas("Folio",$_POST['folioCompra']);
 					$cliente = ModeloClientes::mdlMostrarClientes("cliente","id_cliente",$data["Id_cliente"],0);
 					$abono = ModeloAbonos::mdlMostrarAbonos("abonos","folio_venta",$data["Folio"]);
 
@@ -58,7 +57,7 @@ class ControladorAbonos
 					$printer = new Printer($connector);
 					$printer->setJustification(Printer::JUSTIFY_CENTER);
 
-					$logo = EscposImage::load("Karina.jpg", false);
+					$logo = EscposImage::load(__DIR__ . "/karina.jpg", false);
 					$printer->bitImage($logo);
 
 					$printer->setTextSize(1, 2);
@@ -67,20 +66,19 @@ class ControladorAbonos
 					$printer->feed();
 					$printer->setTextSize(1, 1);
 					$printer->feed();
-					$printer->text("No. Cliente: 24          Fecha: ".$fechaActual."\n");
-					$printer->text("Credito: 2\n");
-					$printer->text("Cliente: Diana Luara Lopez B". $cliente["nombre"] .".\n");
+					$printer->text("No. Cliente: ".$_POST['id_cliente']."          Fecha: ".$fechaActual."\n");
+					$printer->text("Credito: ".$_POST['folioCompra']."\n");
+					$printer->text("Cliente: ". $cliente["nombre"] .".\n");
 					$printer->text("______________________________________\n");
 					$printer->text("No. pago: 4     Fecha: 23/01/2020\n");
 					$printer->text("Abono________________________$".$abono[count($abono)-1]["cantidad"] ."\n");
-					$printer->text("Intereses_____________________$0.00\n");
 					$printer->text("Descuento_____________________$0.00\n");
 					$printer->text("______________________________________\n");
 					$printer->text("Total a pagar_________________$200.00\n");
 					$printer->feed();
 					$printer->text("Saldo actual___________$".$abono[count($abono)-1]["saldo"]."\n");
-					$printer->text("Saldo anterior___________$".$abono[count($abono)-1]["saldo"] + $abono[count($abono)-1]["cantidad"]."\n");
-					
+					$printer->text("Saldo anterior___________$".$_POST['ultimoSaldo']."\n");
+
 					$printer->text("Proximo pago :23/02/2020\n");
 					$printer->feed();
 					$printer->setTextSize(1, 2);

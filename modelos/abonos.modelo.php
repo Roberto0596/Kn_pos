@@ -61,7 +61,8 @@ class ModeloAbonos
 
 	public function mdlRegistrarAbono($tabla,$abono)
 	{
-		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio_venta, :Folio_pago, :Fecha_vencimiento, :Fecha_pago, :Numero_abono, :Cantidad, :Saldo, :Estado);");
+		$conexion = Conexion::Conectar();
+		$stmt = $conexion->prepare("INSERT INTO $tabla VALUES(NULL, :Folio_venta, :Folio_pago, :Fecha_vencimiento, :Fecha_pago, :Numero_abono, :Cantidad, :Saldo, :Estado);");
 
 		$stmt->bindParam(":Folio_venta", $abono->Folio_venta, PDO::PARAM_STR);
 		$stmt->bindParam(":Folio_pago", $abono->Folio_pago, PDO::PARAM_STR);
@@ -74,6 +75,7 @@ class ModeloAbonos
 
 		if ($stmt->execute())
 		{
+			$abono->Id = $conexion->lastInsertId();
 			return "ok";
 		}
 		else
