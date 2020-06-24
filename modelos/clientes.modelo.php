@@ -6,14 +6,14 @@ class ModeloClientes
 	{
 		if ($item==null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = :tipo and activo = 1");
 			$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}
 		else
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item and activo = 1");
 			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetch();
@@ -23,7 +23,7 @@ class ModeloClientes
 
 	public static function mdlMostrarClienteReporteCredito($tabla,$item,$valor)
 	{
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item and activo = 1");
 		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt->fetch();
@@ -31,7 +31,7 @@ class ModeloClientes
 
 	public static function mdlMostrarClientesCredito($valor)
 	{
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE Credito = :Credito");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE Credito = :Credito and activo = 1");
 		$stmt->bindParam(":Credito",$valor,PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt->fetchAll();
@@ -40,7 +40,7 @@ class ModeloClientes
 
 	public static function mdlMostrarClienteCredito($idCliente)
 	{
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE id_cliente = :idCliente AND Credito = 1");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM cliente WHERE id_cliente = :idCliente AND Credito = 1 and activo = 1");
 		$stmt->bindParam(":idCliente",$idCliente,PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt->fetch();
@@ -49,7 +49,7 @@ class ModeloClientes
 
 	public static function mdlValidarCliente($tabla,$item1, $valor1, $item2,$valor2,$tipo)
 	{
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 and $item2 = :$item2  and tipo = :tipo");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 and $item2 = :$item2  and tipo = :tipo and activo = 1");
 		$stmt->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 		$stmt->bindParam(":".$item1,$valor1,PDO::PARAM_STR);
 		$stmt->bindParam(":".$item2,$valor2,PDO::PARAM_STR);
@@ -96,7 +96,7 @@ class ModeloClientes
 
 	public static function mdlEliminarCliente($tabla,$item,$valor)
 	{
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set activo = 0 WHERE $item = :$item");
 		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
