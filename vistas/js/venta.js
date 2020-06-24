@@ -633,7 +633,6 @@ $( "#frmCobro" ).submit(function( event ) {
 		$("#nuevoValorEfectivo").val(null);
 		$("#nuevoCambioEfectivo").val(0);
 	}
-
   });
 
 

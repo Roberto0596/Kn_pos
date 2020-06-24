@@ -273,7 +273,7 @@
 
                     </div>
 
-                    <input type="text" class="form-control" id="nuevoCambioEfectivo" placeholder="Cambio" readonly required>
+                    <input type="text" class="form-control" id="nuevoCambioEfectivo" name="cambio" placeholder="Cambio" readonly>
 
                   </div>
 

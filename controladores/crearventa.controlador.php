@@ -1,11 +1,15 @@
 <?php
-
+require __DIR__ . '/autoload.php';
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 class ControladorVentas
 {
     public function ctrCrearVenta()
 	{
 		if (isset($_POST["nuevaVenta"]))
 		{
+            //print_r($_POST);
             include_once "modelos/crearventa.modelo.php";
             include_once "controladores/productos.controlador.php";
             include_once "controladores/helpers.php";
@@ -13,6 +17,7 @@ class ControladorVentas
             date_default_timezone_set('America/Hermosillo');
             $fecha = date('Y-m-d');
             $hora = date('H:i:s');
+            $fechaActual = $fecha.' '.$hora;
             if($_POST["tipoVenta"] == 0){ //0 es credito
                 $fechaPrimerAbono = date("Y-m-d",strtotime($_POST["primerAbono"]));
                 $pendiente = $_POST["totalVenta"] - $_POST["totalPayment"];
@@ -80,27 +85,86 @@ class ControladorVentas
                 $TipoAbono = "N";
             }
             $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"], $_POST["descuentoTH"], $pendiente, $calendarioAbonosFinal, $TipoAbono, $_POST["tipoVenta"]);
-
+            //print_r($_POST);
             $respuesta = ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
             if ($respuesta = "ok")
             {
-                echo 
-                '<script>
-                swal.fire({
-                    type: "success",
-                    title: "La venta se registró correctamente.",
-                    showConfirmButton: true,
-                    confirmButtonText: "cerrar",
-                    closeOnConfirm: false
-                    }).then((result)=>
-                    {
-                        if(result.value)
-                        {
-                            printTicketVenta('.$_POST["nuevaVenta"].')
-                            //window.location="crearventa";
+					$cliente = ModeloClientes::mdlMostrarClientes("cliente","id_cliente",$_POST["id_cliente"],0);
+
+					$nombre_impresora = "POS-80";
+					$connector = new WindowsPrintConnector($nombre_impresora);
+                    $printer = new Printer($connector);
+                    $logo = EscposImage::load(__DIR__ . "/karina.jpg", false);
+                    for ($contador=0; $contador < 3; $contador++) {
+                        $printer->setJustification(Printer::JUSTIFY_CENTER);
+                        $printer->bitImage($logo);
+                        $printer->setTextSize(1, 2);
+                        $printer->text("Calle 9 y 10 Avenida 28 Tel: 633-121-0748\n Agua Prieta, Son.\n");
+                        $printer->text("__________________________________________\n");
+                        $printer->feed();
+                        if ($_POST["tipoVenta"] == 0) { //credito
+                            $printer->text("Nuevo crédito: ".$_POST['nuevaVenta']."\n");
+                        }else{//contado
+                            $printer->text("Ticket #".$_POST['nuevaVenta']."\n");
                         }
-                    })
-                </script>'; 
+                        $printer->setTextSize(1, 1);
+                        $printer->feed();
+                        $printer->text("Ticket #". $_POST['nuevaVenta'] ."    Fecha: ".$fechaActual."\n");
+                        $printer->text("Cliente: ".$_POST['id_cliente']." - ". $cliente["nombre"] ."\n");
+                        $printer->text("________________________________________________\n");
+                        foreach ($productos as $producto) {
+                            $printer->text($producto->id . "-" .substr($producto->descripcion, 0, 12). " $". $producto->precio ." x " . $producto->cantidad . " ··········· $" .$producto->total."\n");
+                        }
+                        $printer->text("________________________________________________\n");
+                        $totalVenta = $_POST['totalVenta'];
+                        $descuento = 0;
+                        if (isset($_POST['descuentoP'])) {
+                            $descuento = $_POST['descuentoTH'];
+                            $totalVenta = $_POST['totalVenta'] + $_POST['descuentoTH'];
+                            $printer->text("Subtotal ·············· $".$totalVenta."\n");
+                            $printer->text("Descuento ··················· $".$_POST['descuentoTH']."\n");
+                        }
+                        if ($_POST["tipoVenta"] == 0) { //credito
+                            $printer->text("Total a pagar ·············· $".$_POST['totalPayment']."\n");
+                            $printer->text("Pagó con ··················· $".$_POST['totalPayment']."\n");
+                            $printer->text("Cambio ····················· $0\n");
+                            $printer->feed(2);
+                            $printer->text("\n");
+                            $printer->setJustification(Printer::JUSTIFY_LEFT);
+                            $printer->text("Nuevo crédito agregado a la cuenta\n");
+                            $printer->text("Total de la cuenta $".$totalVenta."\n");
+                            $printer->text("Descuento $".$descuento."\n");
+                            $printer->text("Anticipo $".$_POST['totalPayment']."\n");
+                            $printer->text("Monto pendiente $".$pendiente."\n");
+                            $printer->text("Tipo de abono: ".$_POST['tipoTiempo']."\n");
+                            $printer->text("Cantidad de abonos: ".$_POST['cantidadTiempo']."\n");
+                            $printer->text("Monto a abonar $".$abonoBase."\n");
+                            $printer->text("Fecha del primer abono: ".$_POST['primerAbono']."\n");
+                            $printer->setJustification(Printer::JUSTIFY_CENTER);
+                        }else{//contado
+                            $printer->text("Total a pagar ·············· $".$_POST['totalVenta']."\n");
+                            $printer->text("Pagó con ··················· $".$_POST['totalPayment']."\n");
+                            $printer->text("Cambio ·················· $".$_POST['cambio']."\n");
+                        }
+                        $printer->feed(2);
+                        $printer->setTextSize(1, 2);
+                        $printer->text("Gracias por su preferencia!\n");
+                        if ($_POST["tipoVenta"] == 0) { //credito
+                            $printer->text("--- CUIDE SU CRÉDITO ---\n\n\n\n");
+                        }else{//contado
+
+                        }
+                        if($contador == 0){
+                            $printer->text("- COMPROBANTE ORIGINAL -\n\n");
+                            $printer->cut();
+                        }else{
+                            $printer->text("- COPIA -\n\n");
+                            $printer->cut();
+                        }
+                    }
+					$printer->pulse();
+					$printer->close();
+					Helpers::imprimirMensaje("suceess","Se ha registrado la venta.","crearventa");
             }
             else
             {

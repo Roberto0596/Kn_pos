@@ -7,6 +7,9 @@ var saldos = [];
 var abonoBase = 0;
 var saldoActual = 0;
 var fechaVence = "";
+var fechaProximo = "";
+var numeroAbono = 0;
+var descuentoTotal = 0;
 
 $(document).ready(function() {
 	$("#seleccionarCliente").select2({
@@ -135,9 +138,12 @@ $("#seleccionarCredito").on("change", function(){
 							$.each(fechas, function (indice, fecha) {
 								if(indice == 0){
 									$("#nAbono").val(1);
+									numeroAbono = 1;
 									$("#abono").val(abonoBase);
 									$("#ultimoSaldo").val(saldos[indiceCred-1]);
 									fechaVence = fecha.Fecha;
+									fechaProximo = fechas[indice+1].Fecha;
+									numeroAbono = indice;
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
 								}else{
 									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -152,9 +158,18 @@ $("#seleccionarCredito").on("change", function(){
 								}else{
 									if(verifica == 0){ //ultimo abono
 										$("#nAbono").val(indice+1);
+										numeroAbono = indice+1;
 										$("#abono").val(abonoBase);
 										$("#ultimoSaldo").val(saldos[indiceCred-1]);
 										fechaVence = fecha.Fecha;
+										if(fechas.length == numeroAbono){
+											abonoBase = saldos[indiceCred-1];
+											$("#abono").val(abonoBase);
+											fechaProximo = "LIQUIDADO";
+										}else{
+											fechaProximo = fechas[indice+1].Fecha;
+										}
+										numeroAbono = indice;
 										$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
 										verifica = verifica + 1;
 									}else{
@@ -194,6 +209,7 @@ $(".tablaAbonos tbody").on("click","button.btnAbonar", function()
 	$('#descuentoP').prop("disabled", true);
 	$("#abono").val(abonoBase);
 	$("#fechaVence").val(fechaVence);
+	$("#fechaProximo").val(fechaProximo);
 	$("#abono").prop("readonly", false);
 	$('#efectivo').trigger('focus');
 });
@@ -229,8 +245,9 @@ $("#descuentoP").on("change",function()
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
 	if(porcentaje != 0 && porcentaje < 100){
-		var descuentoE = (porcentaje/100) * ultimoAbono;
-		$("#abono").val(redondear(ultimoAbono - descuentoE,2));
+		descuentoTotal = (porcentaje/100) * ultimoAbono;
+		$("#descuentoTotal").val(redondear(descuentoTotal,2));
+		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{
 		$("#abono").val(ultimoAbono);
 	}
@@ -240,8 +257,9 @@ $( "#descuentoP" ).keyup(function() {
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
 	if(porcentaje != 0 && porcentaje < 100){
-		var descuentoE = (porcentaje/100) * ultimoAbono;
-		$("#abono").val(redondear(ultimoAbono - descuentoE,2));
+		descuentoTotal = (porcentaje/100) * ultimoAbono;
+		$("#descuentoTotal").val(redondear(descuentoTotal,2));
+		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{
 		$("#abono").val(ultimoAbono);
 	}

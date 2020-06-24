@@ -54,7 +54,9 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
         <input type="hidden" name="folioCompra" id="folioCompra">
         <input type="hidden" name="nAbono" id="nAbono">
         <input type="hidden" name="ultimoSaldo" id="ultimoSaldo">
+        <input type="hidden" name="descuentoTotal" id="descuentoTotal">
         <input type="hidden" name="fechaVence" id="fechaVence">
+        <input type="hidden" name="fechaProximo" id="fechaProximo">
         <table class="table table-bordered table-striped dt-responsive table-hover tablaAbonos">
           <thead>
             <tr role="row">
