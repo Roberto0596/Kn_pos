@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-  <a href="inicio" class="brand-link">
+  <a href="reportes" class="brand-link">
 
     <img src="vistas/img/plantilla/logo.png" alt="" class="brand-image img-circle elevation-3"
          style="opacity: .8">
@@ -29,7 +29,7 @@
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Reportes
-                <span class="right badge badge-danger">Building</span>
+                <!--<span class="right badge badge-danger">Building</span>-->
               </p>
             </a>
           </li>
@@ -63,7 +63,7 @@
               <i class="nav-icon fas fa-wallet"></i>
               <p>
                 Abonar cuenta
-                <span class="right badge badge-danger">Building</span>
+                <!--<span class="right badge badge-danger">Building</span>-->
               </p>
             </a>
           </li>
@@ -73,7 +73,7 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Clientes
-                <span class="right badge badge-danger">New</span>
+                <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
           </li>
@@ -83,7 +83,7 @@
               <i class="nav-icon fas fa-clone"></i>
               <p>
                 Solicitudes
-                <span class="right badge badge-danger">new</span>
+                <!--<span class="right badge badge-danger">new</span>-->
               </p>
             </a>
           </li>
@@ -93,7 +93,7 @@
               <i class="nav-icon fas fa-truck"></i>
               <p>
                 Proveedores
-                <span class="right badge badge-danger">New</span>
+                <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
           </li>
@@ -103,7 +103,7 @@
               <i class="nav-icon fas fa-dolly"></i>
               <p>
                 Productos
-                <span class="right badge badge-danger">Building</span>
+                <!--<span class="right badge badge-danger">Building</span> -->
               </p>
             </a>
           </li>
@@ -123,7 +123,7 @@
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuarios
-                <span class="right badge badge-danger">New</span>
+                <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
           </li>
@@ -133,7 +133,7 @@
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Almacenes
-                <span class="right badge badge-danger">New</span>
+                <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
           </li>
