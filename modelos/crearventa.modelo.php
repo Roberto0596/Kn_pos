@@ -40,8 +40,16 @@ class ModeloVentas{
     {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM ventas ORDER BY Id_venta DESC LIMIT 1;");
         $stmt->execute();
-		$IdAlta = $stmt->fetch();
-		return $IdAlta['Folio'] + 1;
+        $IdAlta = $stmt->fetch();
+        if ($IdAlta)
+        {
+			return $IdAlta['Folio'] + 1;
+        }
+        else
+        {
+        	return "10001";
+        }
+		
     }
 
     public static function mdlMostrarCreditos($idCliente)
