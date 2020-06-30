@@ -8,7 +8,7 @@ require_once "../modelos/clientes.modelo.php";
 
 require_once "../controladores/almacen.controlador.php";
 require_once "../modelos/almacen.modelo.php";
-
+error_reporting(0);
 class TablaSolicitud
 {
 	public function MostrarTabla()

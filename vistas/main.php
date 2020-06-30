@@ -139,7 +139,7 @@
 					}
 					else
 					{
-						$valid_routes = ["clientes","solicitud","crearventa","abonos"];
+						$valid_routes = ["clientes","solicitud","crearventa","abonos","salir"];
 						if (in_array($url[0], $valid_routes))
 						{					
 							if(count($url) > 1)
