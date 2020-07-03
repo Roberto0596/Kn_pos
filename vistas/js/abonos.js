@@ -247,8 +247,8 @@ $("#descuentoP").on("change",function()
 {
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
-	if(porcentaje != 0 && porcentaje < 100){
-		descuentoTotal = (porcentaje/100) * ultimoAbono;
+	if(porcentaje != 0 && porcentaje > 0){
+		descuentoTotal = porcentaje;//(porcentaje/100) * ultimoAbono;
 		$("#descuentoTotal").val(redondear(descuentoTotal,2));
 		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{
@@ -259,8 +259,8 @@ $("#descuentoP").on("change",function()
 $( "#descuentoP" ).keyup(function() {
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
-	if(porcentaje != 0 && porcentaje < 100){
-		descuentoTotal = (porcentaje/100) * ultimoAbono;
+	if(porcentaje != 0 && porcentaje > 0){
+		descuentoTotal = porcentaje;//(porcentaje/100) * ultimoAbono;
 		$("#descuentoTotal").val(redondear(descuentoTotal,2));
 		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{
