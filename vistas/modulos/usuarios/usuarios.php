@@ -173,8 +173,6 @@
 
                       <option value="">Selecionar perfil</option>
 
-                      <option value="Administrador">Administrador</option>
-
                       <option value="Vendedor">Vendedor</option>
 
                       <option value="Gerente General">Gerente General</option>
@@ -330,11 +328,9 @@
 
                     <option value="" id="editarPerfil"></option>
 
-                    <option value="Administrador">Administrador</option>
-
-                    <option value="Especial">Especial</option>
-
                     <option value="Vendedor">Vendedor</option>
+
+                    <option value="Gerente General">Gerente General</option>
 
                   </select>
 

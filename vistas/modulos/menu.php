@@ -24,6 +24,9 @@
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+          <?php if ($_SESSION["perfil"]=="Gerente General"): ?>          
+          
+
           <li class="nav-item">
             <a href="reportes" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
@@ -33,6 +36,8 @@
               </p>
             </a>
           </li>
+
+          <?php endif ?>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -88,6 +93,8 @@
             </a>
           </li>
 
+          <?php if ($_SESSION["perfil"]=="Gerente General"): ?> 
+
           <li class="nav-item">
             <a href="proveedores" class="nav-link">
               <i class="nav-icon fas fa-truck"></i>
@@ -107,6 +114,7 @@
               </p>
             </a>
           </li>
+
 <!--
           <li class="nav-item">
             <a href="descuentos" class="nav-link">
@@ -137,6 +145,12 @@
               </p>
             </a>
           </li>
+<<<<<<< HEAD
+=======
+
+          <?php endif ?>
+
+>>>>>>> 11e678bb1944be4daf4267177a7dd91b7e74b529
         </ul>
       </nav>
     </div>

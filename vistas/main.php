@@ -114,26 +114,67 @@
 				$url = rtrim($_GET["ruta"],'-');
 				$url = filter_var($url, FILTER_SANITIZE_URL);
 				$url = explode('-',$url);
-				if(file_exists('vistas/modulos/'.$url[0].'/'.$url[0].'.php')){
-					if(count($url) > 1){
-						if(file_exists('vistas/modulos/'.$url[0].'/'.$url[1].'.php')){
-							include "modulos/".$url[0]."/".$url[1].".php";
-                        	echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
-						}else{
-							include_once "modulos/404.php";
+
+				if(file_exists('vistas/modulos/'.$url[0].'/'.$url[0].'.php'))
+				{
+					if ($_SESSION["perfil"] =="Gerente General")
+					{				
+						if(count($url) > 1)
+						{
+							if(file_exists('vistas/modulos/'.$url[0].'/'.$url[1].'.php'))
+							{
+								include "modulos/".$url[0]."/".$url[1].".php";
+	                        	echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
+							}
+							else
+							{
+								include_once "modulos/404.php";
+							}
 						}
-					}else{
-						include_once "modulos/".$url[0]."/".$url[0].".php";
-		          		echo '<script src="vistas/js/'.$url[0].'.js"></script>';
+						else
+						{
+							include_once "modulos/".$url[0]."/".$url[0].".php";
+			          		echo '<script src="vistas/js/'.$url[0].'.js"></script>';
+						}
 					}
-				}else{
+					else
+					{
+						$valid_routes = ["clientes","solicitud","crearventa","abonos","salir"];
+						if (in_array($url[0], $valid_routes))
+						{					
+							if(count($url) > 1)
+							{
+								if(file_exists('vistas/modulos/'.$url[0].'/'.$url[1].'.php'))
+								{
+									include "modulos/".$url[0]."/".$url[1].".php";
+		                        	echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
+								}
+								else
+								{
+									include_once "modulos/404.php";
+								}
+							}
+							else
+							{
+								include_once "modulos/".$url[0]."/".$url[0].".php";
+				          		echo '<script src="vistas/js/'.$url[0].'.js"></script>';
+							}
+						}
+						else
+						{
+							include_once "modulos/crearventa/crearventa.php";
+						}
+					}
+				}
+				else
+				{
 					include_once "modulos/404.php";
 				}
 		    }
 		    else
 		    {
 		      	include "modulos/inicio.php";
-		         echo '<script src="vistas/js/inicio.js"></script>';
+		        echo '<script src="vistas/js/inicio.js"></script>';
 		    }
 		    include "modulos/footer.php";
 		    echo '</div>';
