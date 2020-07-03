@@ -673,7 +673,7 @@ function sumarTotalPreciosD()
 	sumarTotalPreciosD();
 	var totalVent = $('#totalVenta').val();
 	var porcentaje = $(this).val();
-	var descuento = (porcentaje/100) * totalVent;
+	var descuento = porcentaje;//(porcentaje/100) * totalVent;
 	descuento = redondear(descuento,2);
 	totalVent = totalVent - descuento;
 	totalVent = redondear(totalVent,2);

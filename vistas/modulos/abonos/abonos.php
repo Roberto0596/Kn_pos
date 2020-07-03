@@ -100,7 +100,7 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
         <div class="modal-body">
 
-          <label class="label-style">Crédito <span id="nCreditoS"></span> | Saldo actual $<span id="saldoActual"></span></label><br />
+          <label class="label-style">Crédito <span id="nCreditoS"></span> | Saldo actual $<span id="saldoActual"></span> | Importe $<span id="importeL"></span></label><br />
           <div class="oculto" style="visibility: hidden;">
             <label class="label-style" for="descuentoP">Descuento</label>
             <div class="input-group">
