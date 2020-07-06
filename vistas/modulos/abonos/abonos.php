@@ -100,14 +100,11 @@ $clientes = ControladorClientes::ctrMostrarClientesCredito("1");
 
         <div class="modal-body">
 
-          <label class="label-style">Crédito <span id="nCreditoS"></span> | Saldo actual $<span id="saldoActual"></span></label><br />
+          <label class="label-style">Crédito <span id="nCreditoS"></span> | Saldo actual $<span id="saldoActual"></span> | Importe $<span id="importeL"></span></label><br />
           <div class="oculto" style="visibility: hidden;">
             <label class="label-style" for="descuentoP">Descuento</label>
             <div class="input-group">
-              <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0" disabled>
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-percent"></i></span>
-              </div>
+              <input type="number" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0" disabled>
           </div>
           </div>
           <label class="label-style" for="abono">Abono</label>

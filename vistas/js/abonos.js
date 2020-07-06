@@ -10,6 +10,7 @@ var fechaVence = "";
 var fechaProximo = "";
 var numeroAbono = 0;
 var descuentoTotal = 0;
+var importeSelect = 0;
 
 $(document).ready(function() {
 	$("#seleccionarCliente").select2({
@@ -113,6 +114,7 @@ $("#seleccionarCredito").on("change", function(){
 				var datosCredito = "<div class='col-md-2'>"+fechas.length+" pagos</div>";
 				abonoBase = fechas[fechas.length-1].Abono;
 				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+darFormato(abonoBase)+"</div>";
+				importeSelect = importes[indiceCred-1];
 				datosCredito += "<div class='col-md-2'>Importe $"+darFormato(importes[indiceCred-1])+"</div>";
 				datosCredito += "<div class='col-md-2'>Enganche $"+darFormato(enganches[indiceCred-1])+"</div>";
 				var saldin = importes[indiceCred-1]-enganches[indiceCred-1];
@@ -203,6 +205,7 @@ $(".tablaAbonos tbody").on("click","button.btnAbonar", function()
 {
 	$("#nCreditoS").html($("#folioCompra").val());
 	$("#saldoActual").html(darFormato($("#ultimoSaldo").val()));
+	$("#importeL").html(darFormato(importeSelect));
 	$(".btnCambiar").html("Liquidar");
 	$(".oculto").css("visibility", "hidden");
 	$('#descuentoP').val(0);
@@ -244,8 +247,8 @@ $("#descuentoP").on("change",function()
 {
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
-	if(porcentaje != 0 && porcentaje < 100){
-		descuentoTotal = (porcentaje/100) * ultimoAbono;
+	if(porcentaje != 0 && porcentaje > 0){
+		descuentoTotal = porcentaje;//(porcentaje/100) * ultimoAbono;
 		$("#descuentoTotal").val(redondear(descuentoTotal,2));
 		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{
@@ -256,8 +259,8 @@ $("#descuentoP").on("change",function()
 $( "#descuentoP" ).keyup(function() {
 	var porcentaje = this.value;
 	var ultimoAbono = $("#ultimoSaldo").val();
-	if(porcentaje != 0 && porcentaje < 100){
-		descuentoTotal = (porcentaje/100) * ultimoAbono;
+	if(porcentaje != 0 && porcentaje > 0){
+		descuentoTotal = porcentaje;//(porcentaje/100) * ultimoAbono;
 		$("#descuentoTotal").val(redondear(descuentoTotal,2));
 		$("#abono").val(redondear(ultimoAbono - descuentoTotal,2));
 	}else{

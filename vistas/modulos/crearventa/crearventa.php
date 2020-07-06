@@ -217,10 +217,7 @@
                   <div class="col-xs-6 pull-right">
                     <div class="input-group ">
                       <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
-                      <input type="number" max="99" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-percent"></i></span>
-                      </div>
+                      <input type="number" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0">
                     </div>
                   </div>
                 </div>
