@@ -13,21 +13,21 @@ class TablaVenta
 
   			if($value["Stock"] <= 10)
   			{
-  				$existencia = "<button class='btn btn-danger'>".$value["Stock"]."</button>";
+  				$existencia = "<button type='button' class='btn btn-danger'>".$value["Stock"]."</button>";
   			}
   			else if($value["Stock"] > 11 && $value["Stock"] <= 15)
   			{
-  				$existencia = "<button class='btn btn-warning'>".$value["Stock"]."</button>";
+  				$existencia = "<button type='button' class='btn btn-warning'>".$value["Stock"]."</button>";
   			}
   			else
   			{
-  				$existencia = "<button class='btn btn-success'>".$value["Stock"]."</button>";
+  				$existencia = "<button type='button' class='btn btn-success'>".$value["Stock"]."</button>";
   			}
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<button class='btn btn-primary agregarProducto' idProducto='".$value["Id_producto"]."' id='button".$value["Id_producto"]."'>Agregar</button>"; 
+		  	$botones =  "<button type='button' class='btn btn-primary agregarProducto' idProducto='".$value["Id_producto"]."' id='button".$value["Id_producto"]."'>Agregar</button>"; 
 
 		    array_push($res['data'], [
 				($key+1),

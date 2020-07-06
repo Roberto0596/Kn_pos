@@ -21,13 +21,15 @@
 
 <div class="content-wrapper">
 
+  <form role="form" method="post" id="frmCobro" class="formularioVenta">
+
   <section class="content-header">
 
     <div class="container-fluid">
 
       <div class="row mb-2">
 
-        <div class="col-sm-6">
+        <div class="col-sm-4">
 
           <h1>
             <?php if(isset($_GET["compra"])): ?>
@@ -39,7 +41,7 @@
 
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-8">
 
           <?php if(isset($_GET["compra"])): ?>
 
@@ -47,7 +49,19 @@
 
               <div class="row">
 
-                <div class="col-md-8">
+                <div class="col-md-4">
+
+                  <div class="input-group">
+
+                    <span class="input-group-text"><i class="nav-icon fas fa-calendar"></i></span>
+
+                    <input type="date" name="fecha" class="form-control" value='<?php echo date("Y-m-d");?>'>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-4">
 
                   <div class="input-group">
 
@@ -71,7 +85,8 @@
 
                   <div class="input-group">
 
-                    <button class="btn btn-primary" id="createProduct" data-toggle="modal" data-target="#modalCrearProducto" disabled>Crear producto</button>
+                    <button type="button" class="btn btn-primary" id="createProduct" data-toggle="modal" data-target="#modalCrearProducto" disabled>Crear producto</button>
+
                   </div>
 
                 </div>
@@ -103,22 +118,34 @@
 
         <div class="card">
 
-          <form role="form" method="post" id="frmCobro" class="formularioVenta">
-
             <input type="hidden" name="Id_proveedor" id="Id_proveedor">
 
             <div class="card-header with-border margin-sale">
 
               <div class="margin-dis">
 
-              <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>" >
-
                 <h5 class="name-user"><?= $folioTag ?></h5>
 
-                <h5 class="code-sale">
-                  <?= $nuevoFolio ?>
-                </h5>
+                <?php if(isset($_GET["compra"])): ?>
 
+                  <div>
+
+                    <input type="text" class="form-control input-xs" name="nuevaVenta" required>
+
+                  </div>
+                    
+                <?php else : ?>
+
+                  
+                    <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>">
+
+                  <h5 class="code-sale">
+
+                    <?= $nuevoFolio ?>
+
+                  </h5>
+
+                <?php endif ?>
 
               </div>
 
@@ -284,24 +311,8 @@
               <button class="form-control"  title="Cobrar" id="chale" type="submit">Cobrar</button>
 
             </div>
-<!--
-            <div class="card-footer">
 
-              <button type="submit" class="btn btn-primary pull-right"><?= $buttonTag ?></button>
-
-            </div> -->
-
-
-
-            <?php
-              if(isset($_GET["compra"]))
-              {
-                $crearCompra = new ControladorCompra();
-                $crearCompra->ctrCrearCompra();
-              }
-            ?>
-
-          </form>
+            
 
         </div>
 
@@ -355,6 +366,16 @@
     </div>
 
   </section>
+
+  <?php
+    if(isset($_GET["compra"]))
+    {
+      $crearCompra = new ControladorCompra();
+      $crearCompra->ctrCrearCompra();
+    }
+  ?>
+
+  </form>
 
 </div>
 

@@ -19,22 +19,19 @@ class ControladorCompra
                 array_push($totalProductosComprados, $value["cantidad"]);
                 
                 $tablaProductos = "productos";
-                $item = "id_producto";
+                $item = "Id_producto";
                 $valor = $value["id"];
 
                 $respuesta = ModeloProductos::mdlMostrarProductos($tablaProductos,$item,$valor);
 
-                $item1a = "Ventas";
-                $valor1a = $value["cantidad"] + $respuesta["Ventas"];
-
-                $nuevaVenta = ModeloProductos::mdlActualizarProducto($tablaProductos,$item1a,$valor1a,$valor);
-
                 $item1b = "Stock";
-                $valor1b = $value["existencia"];
+                $valor1b = $respuesta["Stock"]+$value["cantidad"];
                 $nuevaExistencia = ModeloProductos::mdlActualizarProducto($tablaProductos,$item1b,$valor1b,$valor);
             }
 
-            $compra = new ModeloCompras(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["Id_proveedor"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"]);
+            $compra = new ModeloCompras(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["Id_proveedor"], $_POST["id_almacen"], $_POST["fecha"], $hora, $_POST["listaProductos"], $_POST["totalVenta"]);
+
+            var_dump($compra);
 
             $respuesta = ModeloCompras::mdlCrearCompra($tabla,$compra);
 
@@ -44,7 +41,7 @@ class ControladorCompra
             }
             else
             {
-                Helpers::imprimirMensaje("error","La compra no se realizo correctamente","index.php?ruta=crearventa&compra=1");
+                // Helpers::imprimirMensaje("error","La compra no se realizo correctamente","index.php?ruta=crearventa&compra=1");
             }
 		}
     }
