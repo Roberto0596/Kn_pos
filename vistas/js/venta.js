@@ -1,6 +1,7 @@
+var tablaVenta;
 function mostrarTablita() {
 	$('.tablaVentas tbody').remove();
-	$('.tablaVentas').DataTable(
+	tablaVenta = $('.tablaVentas').DataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
