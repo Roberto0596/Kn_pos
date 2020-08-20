@@ -1,3 +1,6 @@
+const options2 = { style: 'currency', currency: 'USD' };
+const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
 function mostrarTablaProveedor(folio)
 {
 	$('.tableProveedor tbody').remove();
@@ -102,7 +105,7 @@ $("#compras-realizadas").change(function()
 		success: function(respuesta)
 		{
 			$("#fecha").html(respuesta["Fecha"]);
-			$("#monto").html(respuesta["TotalVenta"]);
+			$("#monto").html(numberFormat2.format(respuesta["TotalVenta"]));
 			mostrarTablaProveedor(respuesta["Folio"]);
 		}
 	});

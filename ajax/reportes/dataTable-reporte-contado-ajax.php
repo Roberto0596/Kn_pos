@@ -39,7 +39,7 @@ class TablaReporteContado
 					$cliente["telefono_casa"]!=null?$cliente["telefono_casa"]:"N/A",
 					$boton,
 					$value["Fecha"].$value["Hora"],
-					$value["TotalVenta"],
+					"$".number_format($value["TotalVenta"],2),
 				]);
 			}	
 			echo json_encode($res);

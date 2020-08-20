@@ -29,8 +29,8 @@ class TablaProveedorAjax
 						$respuesta["Fecha"],
 						$value["descripcion"],
 						$value["cantidad"],
-						$value["precio"],
-						$value["total"]
+						"$".number_format($value["precio"],2),
+						"$".number_format($value["total"],2)
 					]);
 				}	
 			}

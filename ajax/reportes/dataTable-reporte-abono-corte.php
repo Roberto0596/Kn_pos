@@ -43,8 +43,8 @@ class TablaCorteAbono
 					$cliente["direccion"]!=null?$cliente["direccion"]:"N/A",
 					$cliente["telefono_casa"]!=null?$cliente["telefono_casa"]:"N/A",
 					$value["fecha_pago"],
-					$value["cantidad"],
-					$value["saldo"],
+					"$".number_format($value["cantidad"],2),
+					"$".number_format($value["saldo"],2)
 				]);
 			}
 			echo json_encode($res);
