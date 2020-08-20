@@ -1,6 +1,30 @@
-<div id="table-proveedor" style="display: none">
+<?php 
+    $proveedores = ControladorProveedores::ctrMostrarProveedores(null,null);
+ ?>
+<div id="tabla-compras" style="display: none">
 
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="input-group mb-12">
+
+                        <select class="form-control capitalize form-control-lg" id="provider" style="width: 100%">
+
+                          <option value=""># proveedor</option>
+
+                          <?php  foreach($proveedores as $value): ?>
+
+                              <option value="<?= $value['Id_proveedor'] ?>"><?= $value['Nombre'] ?></option>
+
+                          <?php endforeach?>
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-8">
           <div class="card">
             <div class="card-body">
@@ -23,7 +47,7 @@
                         <label>Compras: </label>
                         <div class="input-group mb-3 pull-left">
 
-                           <select id="compras" class="form-control">
+                           <select id="compras-realizadas" class="form-control">
                                
                            </select> 
 
@@ -62,8 +86,11 @@
             <tr>
                 <th style="width: 25px">#</th>
                 <th>Folio</th>
-                <th>Descripcion</th>
-                <th>Cantidad</th>
+                <th>Proveedor</th>
+                <th>Ejecutivo</th>
+                <th>Fecha</th>
+                <th>Articulo</th>
+                <th>Unidades</th>
                 <th>Precio</th>
                 <th>Total</th>
             </tr>
@@ -71,3 +98,5 @@
     </table>
 
 </div>
+
+<script src="vistas/js/reportes-compras.js"></script>

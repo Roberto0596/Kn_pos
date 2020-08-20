@@ -31,7 +31,7 @@ class TablaReporteContado
 						{
 							
 						}	
-						if ($value2["CalendarioAbonos"]!="N")
+						if ($value2["TipoVenta"]==0)
 						{
 							$calendario = json_decode($value2["CalendarioAbonos"],true);
 							$proximaFecha = $calendario[$value3["numero_abono"]]["Fecha"];

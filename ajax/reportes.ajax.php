@@ -15,6 +15,7 @@ require_once "../modelos/crearventa.modelo.php";
 require_once "../controladores/abonos.controlador.php";
 require_once "../modelos/abonos.modelo.php";
 
+
 class AjaxReportes
 {
 	public $id_proveedor;
@@ -41,6 +42,14 @@ class AjaxReportes
 	{
 		$respuesta = ControladorVentas::ctrMostrarVentas(null,null);
 		echo json_encode($respuesta);
+	}
+
+	public $folio;
+
+	public function ajaxTraerProductos()
+	{
+		$respuesta = ControladorVentas::ctrMostrarVentas("Folio",$this->folio);
+		echo json_encode($respuesta["ListaProductos"]);
 	}
 
 	public $fechaInicial;
@@ -80,6 +89,14 @@ if (isset($_POST["activar"]))
 	$mostrar = new AjaxReportes();
 	$mostrar->ajaxTraerVentas();
 }
+
+if (isset($_POST["folio"]))
+{
+	$mostrar = new AjaxReportes();
+	$mostrar-> folio = $_POST["folio"];
+	$mostrar->ajaxTraerProductos();
+}
+
 
 if (isset($_POST["fechaFinal"]))
 {

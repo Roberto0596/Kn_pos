@@ -62,11 +62,59 @@
                 <th style="width: 25px">#</th>
                 <th>Folio venta</th>
                 <th>Cliente</th>
+                <th>Direccion</th>
+                <th>Num. Telefono</th>
+                <th>Articulos</th>
                 <th>Fecha</th>
-                <th>Descuento</th>
                 <th>Total venta</th>
-                <th>Tipo abono</th>
             </tr>
         </thead>
     </table>
+</div>
+
+<div class="modal fade" id="modalVerProductos">
+
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h4 class="modal-title">Productos de venta</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+        <div class="modal-body">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripcion</th>
+                        <th>Cantidad</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-products">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal-footer justify-content-between">
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+        </div>
+
+    </div>
+
+  </div>
+
 </div>

@@ -101,4 +101,28 @@ class ModeloAbonos
 		$stmt=null;
 	}
 
+	static public function mdlMostrarAbonosPorFecha($fechaInicial,$fechaFinal)
+	{
+		if($fechaInicial == null)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT * FROM abonos where fecha_pago = '$fechaFinal'");
+			$stmt -> execute();
+			return $stmt -> fetchAll();	
+		}
+		else if($fechaInicial == $fechaFinal)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT * FROM abonos WHERE fecha_pago like '%$fechaFinal%'");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		else
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM abonos WHERE fecha_pago BETWEEN '$fechaInicial' AND '$fechaFinal'");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		$stmt -> close();
+		$stmt = null;
+	}
+
 }

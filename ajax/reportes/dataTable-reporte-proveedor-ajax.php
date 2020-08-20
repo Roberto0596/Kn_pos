@@ -2,6 +2,8 @@
 
 require_once "../../controladores/compra.controlador.php";
 require_once "../../modelos/compra.modelo.php";
+require_once "../../controladores/proveedores.controlador.php";
+require_once "../../modelos/proveedores.modelo.php";
 
 class TablaProveedorAjax
 {
@@ -18,9 +20,13 @@ class TablaProveedorAjax
 				$listaProductos = json_decode($respuesta["ListaProductos"],true);
 				foreach($listaProductos as $key => $value)
 				{
+					$proveedor = ControladorProveedores::ctrMostrarProveedores("Id_proveedor",$respuesta["Id_proveedor"]);
 					array_push($res['data'], [
 						($key+1),
 						$respuesta["Folio"],
+						$proveedor["Nombre"],
+						$proveedor["Ejecutivo"],
+						$respuesta["Fecha"],
 						$value["descripcion"],
 						$value["cantidad"],
 						$value["precio"],

@@ -29,14 +29,17 @@ class TablaReporteContado
 			{		
 				$cliente = ControladorClientes::ctrMostrarClientes("id_cliente",$value["Id_cliente"],0);
 
+				$boton = '<button class="btn btn-success verProductos" data-toggle="modal" data-target="#modalVerProductos" folio="'.$value["Folio"].'">Articulos</button>';
+
 				array_push($res['data'], [
 					($key+1),
 					$value["Folio"],
 					$cliente["nombre"],
+					$cliente["direccion"]!=null?$cliente["direccion"]:"N/A",
+					$cliente["telefono_casa"]!=null?$cliente["telefono_casa"]:"N/A",
+					$boton,
 					$value["Fecha"].$value["Hora"],
-					$value["Descuento"],
 					$value["TotalVenta"],
-					$value["TipoAbono"],
 				]);
 			}	
 			echo json_encode($res);
