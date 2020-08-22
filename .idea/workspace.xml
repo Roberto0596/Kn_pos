@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bundler" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bundler" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:vistas" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bundler" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:vistas" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bower" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bundler" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:vistas" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bower" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bootstrap" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a4be691a-2f38-4855-824c-d82bd4a6d511" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kn_pos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-credito.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajax/reportes.ajax.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax/reportes.ajax.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajax/reportes/dataTable-reporte-contado-ajax.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax/reportes/dataTable-reporte-contado-ajax.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelos/crearventa.modelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelos/crearventa.modelo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/js/reportes-abonos.js" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/js/reportes-abonos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/js/reportes-compras.js" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/js/reportes-compras.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/js/reportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/js/reportes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/modulos/reportes/reportes.php" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/modulos/reportes/reportes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-abonos.php" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-abonos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-compras.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-contado.php" beforeDir="false" afterPath="$PROJECT_DIR$/vistas/modulos/reportes/reportes/tabla-contado.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gNzJVYrp4mT0nyCbsvvVeXE2fS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a4be691a-2f38-4855-824c-d82bd4a6d511" name="Default Changelist" comment="" />
+      <created>1597969767284</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597969767284</updated>
+      <workItem from="1597969768592" duration="7264000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

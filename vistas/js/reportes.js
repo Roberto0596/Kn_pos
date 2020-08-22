@@ -5,7 +5,7 @@ $("#select-concepto").change(function(){
 	{
 		hideOrShowElement(elementsArrayConcept,1);
 	}
-	if (concepto == "compras")
+	else if(concepto == "compras")
 	{
 		hideOrShowElement(elementsArrayConcept,2);
 	}
@@ -14,12 +14,18 @@ $("#select-concepto").change(function(){
 		hideOrShowElement(elementsArrayConcept,3);
 		mostrarTablaContado(null);
 	}
+	else if (concepto=="atrasos")
+	{
+		hideOrShowElement(elementsArrayConcept,4);
+		mostrarTablaRetrasos();
+	}
 });
 
 var elementsArrayConcept = new Object([
 	{"elemento": "tabla-abonos", "valor": "1","grupo":1},
 	{"elemento": "tabla-compras", "valor": "0","grupo":2},
-	{"elemento": "tabla_contado", "valor": "0","grupo":3}]);
+	{"elemento": "tabla_contado", "valor": "0","grupo":3},
+	{"elemento": "tabla-retrasos", "valor": "0","grupo":4}]);
 
 function hideOrShowElement(array,grupo)
 {
@@ -114,6 +120,23 @@ function mostrarTablaContado(rango)
 
 		}
 	});
+
+	var datos = new FormData();
+	datos.append("rango",rango);
+	$.ajax({
+		url:"ajax/reportes.ajax.php",
+		method: "POST",
+		data:datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			$("#total-contado").html(numberFormat2.format(respuesta));
+		}
+	});
+
 	$(".tablaContado tbody").on("click","button.verProductos", function(){
 		$("#body-table-products").empty();
 		var folio = $(this).attr("folio");
@@ -162,3 +185,41 @@ $("#fechaFinalContado").change(function(){
 		$("#fechaFinalContado").val("");
 	}
 });
+
+function mostrarTablaRetrasos()
+{
+	$(".tableRetrasos").dataTable(
+	{
+		"destroy":true,
+		"deferRender": true,
+		"processing": true,
+		"bFilter": true,
+		"ajax":"ajax/reportes/dataTable-reporte-retrasos-ajax.php",
+		"language": {
+
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+
+		}
+	});
+}

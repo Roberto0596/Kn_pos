@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="input-group mb-12">
 
-                        <select class="form-control capitalize form-control-lg" id="provider" style="width: 100%">
+                        <select class="form-control capitalize form-control-lg" id="provider-pro" style="width: 100%">
 
                           <option value=""># proveedor</option>
 

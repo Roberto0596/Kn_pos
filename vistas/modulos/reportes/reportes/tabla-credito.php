@@ -1,12 +1,12 @@
-<div id="tabla_contado" style="display: none">
-    
+<div id="tabla_credito" style="display: none">
+
     <div class="row">
 
         <div class="col-md-6">
 
             <div class="card">
 
-                <div class="card-body">                    
+                <div class="card-body">
 
                     <div class="row">
 
@@ -22,7 +22,7 @@
 
                                 </div>
 
-                               <input type="date" class="form-control" id="fechaInicialContado">
+                                <input type="date" class="form-control" id="fechaInicialContado">
 
                             </div>
 
@@ -40,7 +40,7 @@
 
                                 </div>
 
-                               <input type="date" class="form-control" id="fechaFinalContado"> 
+                                <input type="date" class="form-control" id="fechaFinalContado">
 
                             </div>
 
@@ -81,40 +81,40 @@
 
     <table class="table table-bordered table-hover tablaContado">
         <thead>
-            <tr>
-                <th style="width: 25px">#</th>
-                <th>Folio venta</th>
-                <th>Cliente</th>
-                <th>Direccion</th>
-                <th>Num. Telefono</th>
-                <th>Articulos</th>
-                <th>Fecha</th>
-                <th>Total venta</th>
-            </tr>
+        <tr>
+            <th style="width: 25px">#</th>
+            <th>Folio venta</th>
+            <th>Cliente</th>
+            <th>Direccion</th>
+            <th>Num. Telefono</th>
+            <th>Articulos</th>
+            <th>Fecha</th>
+            <th>Total venta</th>
+        </tr>
         </thead>
     </table>
 </div>
 
 <div class="modal fade" id="modalVerProductos">
 
-  <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg">
 
-    <div class="modal-content">
+        <div class="modal-content">
 
-      <div class="modal-header">
+            <div class="modal-header">
 
-        <h4 class="modal-title">Productos de venta</h4>
+                <h4 class="modal-title">Productos de venta</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
+            </div>
 
-        <div class="modal-body">
+            <div class="modal-body">
 
-            <table class="table">
-                <thead>
+                <table class="table">
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Descripcion</th>
@@ -123,21 +123,21 @@
                         <th>Precio</th>
                         <th>Total</th>
                     </tr>
-                </thead>
-                <tbody id="body-table-products">
-                    
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody id="body-table-products">
 
-        <div class="modal-footer justify-content-between">
+                    </tbody>
+                </table>
+            </div>
 
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <div class="modal-footer justify-content-between">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+            </div>
 
         </div>
 
     </div>
-
-  </div>
 
 </div>

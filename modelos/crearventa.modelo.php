@@ -94,6 +94,13 @@ class ModeloVentas{
 		$stmt = null;
 	}
 
+    static public function mdlMostrarVentasContado()
+    {
+        $stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE TipoVenta = 1");
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
+
 	static public function mdlMostrarClienteVentas($item,$valor)
 	{
 		$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE $item = :$item");
@@ -127,6 +134,30 @@ class ModeloVentas{
 		$stmt -> close();
 		$stmt = null;
 	}
+
+    static public function mdlMostrarVentasContadoPorFecha($fechaInicial,$fechaFinal)
+    {
+        if($fechaInicial == null)
+        {
+            $stmt = conexion::conectar()->prepare("SELECT * FROM ventas WHERE TipoVenta = 1 ORDER BY id_venta ASC");
+            $stmt -> execute();
+            return $stmt -> fetchAll();
+        }
+        else if($fechaInicial == $fechaFinal)
+        {
+            $stmt = conexion::conectar()->prepare("SELECT * FROM ventas WHERE TipoVenta = 1 and fecha like '%$fechaFinal%'");
+            $stmt -> execute();
+            return $stmt -> fetchAll();
+        }
+        else
+        {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM ventas WHERE TipoVenta = 1 and fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+            $stmt -> execute();
+            return $stmt -> fetchAll();
+        }
+        $stmt -> close();
+        $stmt = null;
+    }
 
     public static function mdlCrearVenta($tabla,$venta)
 	{

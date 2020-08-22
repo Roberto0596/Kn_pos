@@ -15,7 +15,7 @@
                         <select class="form-control capitalize" id="concepto-abonos">
 
                           <option value="0">Corte diario de abonos</option>
-                          <option value="1">Corte por dia</option>
+                          <option value="1">Rango de fechas</option>
                           <option value="2">Abonos por cliente</option>
 
                         </select>
@@ -124,6 +124,30 @@
 
                             </div>
 
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 caja">
+
+            <div class="card" style="min-height: 126px;">
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12" style="display: flex">
+                            <strong>Fecha actual: </strong><p style="margin-left: 15px;"><?php echo date('Y-m-d')?></p>
+                        </div>
+
+                        <div class="col-md-12" style="display: flex">
+                            <strong>Recibido: </strong><p style="margin-left: 15px;" id="total"></p>
                         </div>
 
                     </div>

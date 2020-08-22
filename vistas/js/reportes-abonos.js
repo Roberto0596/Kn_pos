@@ -1,3 +1,6 @@
+const options2 = { style: 'currency', currency: 'USD' };
+const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
 $(document).ready(function(){
 	cargarTablaCorteAbono(null);
 })
@@ -8,17 +11,19 @@ $("#concepto-abonos").change(function(){
 		$(".hide-element").fadeOut(1000,function()
 		{
 			$("#tabla-abonos-2").fadeIn(1000);
+			$(".caja").fadeIn(1000);
 
 		});
 		$("#tabla-abonos-1").fadeOut(1000,function()
 		{
 			$("#tabla-abonos-2").fadeIn(1000);
+			$(".caja").fadeIn(1000);
 
 		});
 		$(".rango-fechas").fadeOut(1000,function()
 		{
 			$("#tabla-abonos-2").fadeIn(1000);
-
+			$(".caja").fadeIn(1000);
 		});
 		cargarTablaCorteAbono(null);
 	}else if(concepto==1){
@@ -26,12 +31,14 @@ $("#concepto-abonos").change(function(){
 		{
 			$(".rango-fechas").fadeIn(1000);
 			$("#tabla-abonos-2").fadeIn(1000);
+			$(".caja").fadeIn(1000);
 
 		});
 		$("#tabla-abonos-1").fadeOut(1000,function()
 		{
 			$(".rango-fechas").fadeIn(1000);
 			$("#tabla-abonos-2").fadeIn(1000);
+			$(".caja").fadeIn(1000);
 
 		});
 	}else if(concepto==2){
@@ -45,6 +52,7 @@ $("#concepto-abonos").change(function(){
 			$(".hide-element").fadeIn(1000);
 		    $("#tabla-abonos-1").fadeIn(1000);
 		});
+		$(".caja").fadeOut(1000);
 	}
 });
 
@@ -90,6 +98,22 @@ function cargarTablaCorteAbono(fecha)
 				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			}
 
+		}
+	});
+
+	var datos = new FormData();
+	datos.append("fechas",fecha);
+	$.ajax({
+		url:"ajax/reportes.ajax.php",
+		method: "POST",
+		data:datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta)
+		{
+			$("#total").html(numberFormat2.format(respuesta));
 		}
 	});
 }

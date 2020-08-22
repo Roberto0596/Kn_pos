@@ -21,9 +21,8 @@
                 <select id="select-concepto" class="form-control capitalize">
                   
                   <option value="abonos">Abonos</option>
-                  <option value="credito">Ventas Credito</option>
                   <option value="contado">Ventas Contado</option>
-                  <option value="abonos-atrasados">Abonos atrasados</option>
+                  <option value="atrasos">Abonos atrasados</option>
                   <option value="compras">Compras</option>
 
                 </select>
@@ -52,6 +51,7 @@
           <?php include "reportes/tabla-retrasos.php" ?>
           <?php include "reportes/tabla-compras.php" ?>
           <?php include "reportes/tabla-contado.php" ?>
+          <?php include "reportes/tabla-credito.php" ?>
           <?php include "reportes/ventas.php" ?>
 
       </div>

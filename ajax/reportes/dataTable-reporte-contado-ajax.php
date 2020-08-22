@@ -13,14 +13,14 @@ class TablaReporteContado
 		{
 			if ($_POST["rango"]==null)
 			{
-				$respuesta = ControladorVentas::ctrMostrarVentas(null,null);
+				$respuesta = ModeloVentas::mdlMostrarVentasContado();
 			}
 			else
 			{
 				$fechas = explode("|", $_POST["rango"]);
 				$valor1 = $fechas[0];
 				$valor2=$fechas[1];
-				$respuesta = ControladorVentas::ctrMostrarVentasPorFecha($valor1,$valor2);
+				$respuesta = ModeloVentas::mdlMostrarVentasContadoPorFecha($valor1,$valor2);
 			}
 
 			$res = [ "data" => []];

@@ -1,4 +1,4 @@
-<div id="table-cliente-retrasos" style="display: none">
+<div id="tabla-retrasos" style="display: none">
 
 <!--     <div class="row select-ventas-credito-cliente" style="display: none">
 
@@ -39,3 +39,5 @@
         </thead>
     </table>
 </div>
+
+<script src="vistas/js/reportes-retrasos.js"></script>

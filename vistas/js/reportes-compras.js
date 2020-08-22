@@ -1,5 +1,5 @@
-const options2 = { style: 'currency', currency: 'USD' };
-const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+const ip = { style: 'currency', currency: 'USD' };
+const numberFormat34 = new Intl.NumberFormat('en-US', ip);
 
 function mostrarTablaProveedor(folio)
 {
@@ -47,7 +47,7 @@ function mostrarTablaProveedor(folio)
 	});
 }
 
-$("#provider").change(function()
+$("#provider-pro").change(function()
 {
 	var data = new FormData();
 	data.append("id_proveedor",$(this).val());
@@ -105,8 +105,9 @@ $("#compras-realizadas").change(function()
 		success: function(respuesta)
 		{
 			$("#fecha").html(respuesta["Fecha"]);
-			$("#monto").html(numberFormat2.format(respuesta["TotalVenta"]));
+			$("#monto").html(numberFormat34.format(respuesta["TotalVenta"]));
 			mostrarTablaProveedor(respuesta["Folio"]);
 		}
 	});
 });
+
