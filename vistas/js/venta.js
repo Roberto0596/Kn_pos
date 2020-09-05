@@ -515,6 +515,7 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$(".formularioVenta .tipoCompra").removeClass('btn-info');
 		$(".formularioVenta .tipoCompra").addClass('btn-secondary');
 		$(".formularioVenta .tipoCompra").text("Contado");
+		$("#folioLabel").text("CO:");
 
 		$("#tipoVenta").val(1);
 		$('#seleccionarCliente').val(null).trigger('change');
@@ -539,6 +540,7 @@ $(".formularioVenta").on("click", "button.btn-info", function()
 		$(".formularioVenta .tipoCompra").removeClass('btn-secondary');
 		$(".formularioVenta .tipoCompra").addClass('btn-info');
 		$(".formularioVenta .tipoCompra").text("Crédito");
+		$("#folioLabel").text("CR:");
 
 		$("#tipoVenta").val(0);
 		$('#seleccionarCliente').val(null).trigger('change');

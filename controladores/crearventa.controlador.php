@@ -77,14 +77,17 @@ class ControladorVentas
                     dei("Error SQL: " . $mensajeError);
                 }
             }
+
             if ($_POST["tipoVenta"] == 0) {
                 $TipoAbono = $_POST["tipoTiempo"];
+                $folioFact = "CR:".$_POST["falioFact"];
             }else{
                 $pendiente = "0";
                 $calendarioAbonosFinal = "N";
                 $TipoAbono = "N";
+                $folioFact = "CO:".$_POST["falioFact"];
             }
-            $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"], $_POST["descuentoTH"], $pendiente, $calendarioAbonosFinal, $TipoAbono, $_POST["tipoVenta"]);
+            $ModeloCrearventa = new ModeloVentas(NULL, $_POST["nuevaVenta"], $_POST["id_usuario"], $_POST["id_cliente"], $_POST["id_almacen"], $fecha, $hora, $_POST["listaProductos"], $_POST["totalVenta"], $_POST["totalPayment"], $_POST["descuentoTH"], $pendiente, $calendarioAbonosFinal, $TipoAbono, $_POST["tipoVenta"], $folioFact);
             //print_r($_POST);
             $respuesta = ModeloVentas::mdlCrearVenta($tabla,$ModeloCrearventa);
             if ($respuesta = "ok")

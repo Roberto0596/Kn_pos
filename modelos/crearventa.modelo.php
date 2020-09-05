@@ -16,8 +16,9 @@ class ModeloVentas{
 	public $CalendarioAbonos;
 	public $TipoAbono;
 	public $TipoVenta;
+	public $FolioFact;
 
-    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago, $Descuento, $Pendiente, $CalendarioAbonos, $TipoAbono, $TipoVenta)
+    function __construct($Id_venta, $Folio, $Id_usuario, $Id_cliente, $Id_almacen, $Fecha, $Hora, $ListaProductos, $TotalVenta, $TotalPago, $Descuento, $Pendiente, $CalendarioAbonos, $TipoAbono, $TipoVenta, $FolioFact)
 	{
 		$this->Id_venta = $Id_venta;
 		$this->Folio = $Folio;
@@ -34,6 +35,7 @@ class ModeloVentas{
 		$this->CalendarioAbonos = $CalendarioAbonos;
 		$this->TipoAbono = $TipoAbono;
 		$this->TipoVenta = $TipoVenta;
+		$this->FolioFact = $FolioFact;
     }
 
     public  static function mdlNuevoFolio()
@@ -49,7 +51,7 @@ class ModeloVentas{
         {
         	return "10001";
         }
-		
+
     }
 
     public static function mdlMostrarCreditos($idCliente)
@@ -117,7 +119,7 @@ class ModeloVentas{
 		{
 			$stmt = conexion::conectar()->prepare("SELECT * FROM ventas ORDER BY id_venta ASC");
 			$stmt -> execute();
-			return $stmt -> fetchAll();	
+			return $stmt -> fetchAll();
 		}
 		else if($fechaInicial == $fechaFinal)
 		{
@@ -161,7 +163,7 @@ class ModeloVentas{
 
     public static function mdlCrearVenta($tabla,$venta)
 	{
-		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono, :TipoVenta);");
+		$stmt = Conexion::Conectar()->prepare("INSERT INTO $tabla VALUES(NULL, :Folio, :Id_usuario, :Id_cliente, :Id_almacen, :Fecha, :Hora, :ListaProductos, :Descuento, :TotalVenta, :TotalPago, :Pendiente, :CalendarioAbonos, :TipoAbono, :TipoVenta, :FolioFact);");
 		$stmt->bindParam(":Folio", $venta->Folio, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_usuario", $venta->Id_usuario, PDO::PARAM_STR);
 		$stmt->bindParam(":Id_cliente", $venta->Id_cliente, PDO::PARAM_STR);
@@ -176,6 +178,7 @@ class ModeloVentas{
 		$stmt->bindParam(":CalendarioAbonos", $venta->CalendarioAbonos, PDO::PARAM_STR);
 		$stmt->bindParam(":TipoAbono", $venta->TipoAbono, PDO::PARAM_STR);
 		$stmt->bindParam(":TipoVenta", $venta->TipoVenta, PDO::PARAM_STR);
+		$stmt->bindParam(":FolioFact", $venta->FolioFact, PDO::PARAM_STR);
 		if ($stmt->execute())
 		{
 			return "ok";

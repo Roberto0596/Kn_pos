@@ -133,10 +133,10 @@
                     <input type="text" class="form-control input-xs" name="nuevaVenta" required>
 
                   </div>
-                    
+
                 <?php else : ?>
 
-                  
+
                     <input type="hidden" id="nuevaVenta" name="nuevaVenta" value="<?php echo $nuevoFolio; ?>">
 
                   <h5 class="code-sale">
@@ -215,10 +215,18 @@
 
                 <div class="form-group row ocultar">
                   <div class="col-xs-6 pull-right">
-                    <div class="input-group ">
-                      <label for="descuentoP" class="col-sm-6 col-form-label">Descuento:</label>
+                  <div class="row">
+                  <div class="input-group ">
+                      <label for="descuentoP" class="col-sm-8 col-form-label">Descuento:</label>
                       <input type="number" id="descuentoP" name="descuentoP" class="form-control" placeholder="Descuento" pattern="^[0-9]+" min="0">
+                      <label for="falioFact" id="folioLabel" class="col-sm-6 col-form-label">CR:</label>
+                      <input type="text" id="falioFact" name="falioFact" class="form-control" placeholder="Folio">
                     </div>
+                    <div class="input-group ">
+
+                    </div>
+                  </div>
+
                   </div>
                 </div>
 
@@ -309,7 +317,7 @@
 
             </div>
 
-            
+
 
         </div>
 
