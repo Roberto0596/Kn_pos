@@ -177,7 +177,7 @@ $("#seleccionarCredito").on("change", function(){
 						}
 
 					}
-					if(indice == fechas.length-1){
+					if(indice == fechas.length-1 && fecha.FechaPago != 0){
 						$("#nAbono").val(indice+1);
 						numeroAbono = indice+1;
 						$("#abono").val(abonoBase);
