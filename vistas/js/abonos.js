@@ -177,6 +177,22 @@ $("#seleccionarCredito").on("change", function(){
 						}
 
 					}
+					if(indice == fechas.length-1){
+						$("#nAbono").val(indice+1);
+						numeroAbono = indice+1;
+						$("#abono").val(abonoBase);
+						$("#ultimoSaldo").val(saldos[indiceCred-1]);
+						fechaVence = fecha.Fecha;
+						if(fechas.length == numeroAbono){
+							abonoBase = saldos[indiceCred-1];
+							$("#abono").val(abonoBase);
+							fechaProximo = "LIQUIDADO";
+						}else{
+							fechaProximo = fechas[indice+1].Fecha;
+						}
+						numeroAbono = indice;
+						$('.tablaAbonos tbody').append("<tr><td>EXTRA</td><td>PENDIENTE</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
+					}
 
 				});
 
