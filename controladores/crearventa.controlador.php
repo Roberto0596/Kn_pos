@@ -20,8 +20,13 @@ class ControladorVentas
             $fechaActual = $fecha.' '.$hora;
             if($_POST["tipoVenta"] == 0){ //0 es credito
                 $fechaPrimerAbono = date("Y-m-d",strtotime($_POST["primerAbono"]));
-                print_r($_POST);
-                $pendiente = $_POST["totalVenta"] - $_POST["totalPayment"];
+
+                if(is_numeric($_POST["totalPayment"])){
+                    $pendiente = $_POST["totalVenta"] - $_POST["totalPayment"];
+                }else{
+                    $pendiente = $_POST["totalVenta"];
+                }
+
                 $abonoBase = $pendiente / $_POST["cantidadTiempo"];
                 $abonoBase = round($abonoBase,2);
                 $calendarioAbonos = [];
