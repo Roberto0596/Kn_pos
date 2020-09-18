@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2020 a las 21:32:49
+-- Tiempo de generación: 19-09-2020 a las 00:14:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `kn_pos`
 --
+CREATE DATABASE IF NOT EXISTS `kn_pos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `kn_pos`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +30,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `abonos`
 --
 
+DROP TABLE IF EXISTS `abonos`;
 CREATE TABLE `abonos` (
   `id_abono` int(11) NOT NULL,
   `folio_venta` int(11) NOT NULL,
@@ -45,10 +48,7 @@ CREATE TABLE `abonos` (
 --
 
 INSERT INTO `abonos` (`id_abono`, `folio_venta`, `folio_pago`, `fecha_vencimiento`, `fecha_pago`, `numero_abono`, `cantidad`, `saldo`, `estado`) VALUES
-(1, 100019, 100001, '2020-03-27', '2020-03-27', 1, 111.62, 5469.43, 1),
-(2, 100022, 100002, '2020-03-30', '2020-03-30', 1, 210.16, 5043.89, 1),
-(3, 100022, 100003, '2020-04-15', '2020-04-15', 2, 210.16, 4833.73, 1),
-(4, 100019, 100004, '2020-04-03', '2020-04-14', 2, 111.62, 5357.81, 1);
+(1, 100019, 100001, '2020-03-27', '2020-03-27', 1, 111.62, 5469.43, 1);
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,7 @@ INSERT INTO `abonos` (`id_abono`, `folio_venta`, `folio_pago`, `fecha_vencimient
 -- Estructura de tabla para la tabla `almacen`
 --
 
+DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE `almacen` (
   `id_almacen` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
@@ -76,6 +77,7 @@ INSERT INTO `almacen` (`id_almacen`, `nombre`, `ubicacion`, `estado`) VALUES
 -- Estructura de tabla para la tabla `cliente`
 --
 
+DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE `cliente` (
   `id_cliente` int(11) NOT NULL,
   `nombre` varchar(75) NOT NULL,
@@ -88,21 +90,25 @@ CREATE TABLE `cliente` (
   `tipo` int(1) NOT NULL DEFAULT 0,
   `asentamiento` varchar(100) NOT NULL,
   `historial` varchar(50) NOT NULL,
-  `Credito` int(1) NOT NULL
+  `Credito` int(1) NOT NULL,
+  `activo` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `telefono_casa`, `telefono_celular`, `ciudad`, `edad`, `tipo`, `asentamiento`, `historial`, `Credito`) VALUES
-(1, 'CONTADO', 'CONTADO', 'NA', 'NA', 'NA', 'AGUA PRIETA', 0, 0, 'CONTADO', '', 0),
-(10, 'Roberto Manuel Cordero Balderas', 'Calle siempre viva #34', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo', 1),
-(11, 'Federico daniel villa leyva', 'Calle emiliano zapata', '83364', '', '(634) 015-9555', 'San Miguel de Horcasitas', 19, 0, 'El Tren', 'Medio', 1),
-(12, 'Wilber Lopez cliente mejor', 'Calle 12', '84200', '(999) 999-9999', '(444) 444-4444', 'Agua Prieta', 34, 0, 'Centro', 'Nuevo', 1),
-(13, 'Lorenzo pedregal', 'Ninguna', '85774', '(234) 234-2342', '(423) 423-4234', 'Alamos', 23, 0, 'Los Amoles', 'Nuevo', 1),
-(32, 'Elizabeth zamorano', 'Cantera #1', 'ningu', '(234) 342-3423', '(234) 234-2342', 'Ninguna', 23, 1, 'ninguno', 'ninguno', 0),
-(33, 'IjfijTTT', 'AsjdajsduFF', 'ningu', '(958) 585-8585', '(777) 777-7777', 'Agua prieta', 23, 1, 'ninguno', 'ninguno', 0);
+INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `telefono_casa`, `telefono_celular`, `ciudad`, `edad`, `tipo`, `asentamiento`, `historial`, `Credito`, `activo`) VALUES
+(1, 'CONTADO', 'CONTADO', 'NA', 'NA', 'NA', 'AGUA PRIETA', 0, 0, 'CONTADO', '', 0, 1),
+(10, 'Roberto Manuel Cordero Balderas', 'Calle siempre viva #34', '83917', '(234) 234-2342', '(423) 423-4234', 'Benjamín Hill', 48, 0, 'El Picacho', 'Nuevo', 1, 1),
+(11, 'Federico daniel villa leyva', 'Calle emiliano zapata', '83364', '', '(634) 015-9555', 'San Miguel de Horcasitas', 19, 0, 'El Tren', 'Medio', 1, 1),
+(12, 'Wilber Lopez cliente mejor', 'Calle 12', '84200', '(999) 999-9999', '(444) 444-4444', 'Agua Prieta', 34, 0, 'Centro', 'Nuevo', 1, 1),
+(13, 'Lorenzo pedregal', 'Ninguna', '85774', '(234) 234-2342', '(423) 423-4234', 'Alamos', 23, 0, 'Los Amoles', 'Nuevo', 1, 1),
+(32, 'Elizabeth zamorano', 'Cantera #1', 'ningu', '(234) 342-3423', '(234) 234-2342', 'Ninguna', 23, 1, 'ninguno', 'ninguno', 0, 1),
+(33, 'IjfijTTT', 'AsjdajsduFF', 'ningu', '(958) 585-8585', '(777) 777-7777', 'Agua prieta', 23, 1, 'ninguno', 'ninguno', 0, 1),
+(34, 'Cliente Prueba', 'Calle 10', '84200', '(655) 555-5949', '(949) 595-9599', 'Agua Prieta', 27, 0, 'Centro', 'Medio', 1, 1),
+(35, 'Client pruena ', 'Calle 10', '84200', '(777) 777-7777', '(777) 777-7777', 'Agua Prieta', 77, 0, 'Centro', 'Medio', 1, 1),
+(36, 'Adilene Valencia', 'Calle 49 avenida 10', '84316', '(455) 555-5555', '', 'Agua Prieta', 25, 0, 'El Potrero de la Sierra', 'Bueno', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -110,6 +116,7 @@ INSERT INTO `cliente` (`id_cliente`, `nombre`, `direccion`, `codigo_postal`, `te
 -- Estructura de tabla para la tabla `cliente_conyuge`
 --
 
+DROP TABLE IF EXISTS `cliente_conyuge`;
 CREATE TABLE `cliente_conyuge` (
   `id` int(11) NOT NULL,
   `id_solicitud_cliente` int(11) NOT NULL,
@@ -130,6 +137,7 @@ INSERT INTO `cliente_conyuge` (`id`, `id_solicitud_cliente`, `id_solicitud_conyu
 -- Estructura de tabla para la tabla `compras`
 --
 
+DROP TABLE IF EXISTS `compras`;
 CREATE TABLE `compras` (
   `Id_compra` int(11) NOT NULL,
   `Folio` int(11) NOT NULL,
@@ -150,7 +158,8 @@ INSERT INTO `compras` (`Id_compra`, `Folio`, `Id_usuario`, `Id_proveedor`, `Id_a
 (1, 10001, 25, 2, 3, '2020-03-14', '23:45:08', '[{\"id\":\"10\",\"descripcion\":\"Cama\",\"cantidad\":\"3\",\"existencia\":\"-3\",\"precio\":\"400\",\"total\":\"1200\"}]', '1200'),
 (2, 10002, 25, 2, 3, '2020-03-15', '00:13:55', '[{\"id\":\"10\",\"descripcion\":\"Cama\",\"cantidad\":\"4\",\"existencia\":\"4\",\"precio\":\"400\",\"total\":\"1600\"}]', '1600'),
 (3, 10003, 25, 2, 3, '2020-03-15', '00:14:12', '[{\"id\":\"10\",\"descripcion\":\"Cama\",\"cantidad\":\"3\",\"existencia\":\"7\",\"precio\":\"400\",\"total\":\"1200\"}]', '1200'),
-(4, 10004, 25, 2, 3, '2020-03-16', '00:50:12', '[{\"id\":\"15\",\"descripcion\":\"productonuevo\",\"cantidad\":\"3\",\"existencia\":\"3\",\"precio\":\"500\",\"total\":\"1500\"},{\"id\":\"14\",\"descripcion\":\"Mueble loco\",\"cantidad\":\"3\",\"existencia\":\"3\",\"precio\":\"400\",\"total\":\"1200\"}]', '2700');
+(4, 10004, 25, 2, 3, '2020-03-16', '00:50:12', '[{\"id\":\"15\",\"descripcion\":\"productonuevo\",\"cantidad\":\"3\",\"existencia\":\"3\",\"precio\":\"500\",\"total\":\"1500\"},{\"id\":\"14\",\"descripcion\":\"Mueble loco\",\"cantidad\":\"3\",\"existencia\":\"3\",\"precio\":\"400\",\"total\":\"1200\"}]', '2700'),
+(5, 10005, 25, 2, 3, '2020-06-22', '13:36:39', '[{\"id\":\"10\",\"descripcion\":\"Cama\",\"cantidad\":\"31\",\"existencia\":\"38\",\"precio\":\"402\",\"total\":\"12462\"}]', '12462');
 
 -- --------------------------------------------------------
 
@@ -158,6 +167,7 @@ INSERT INTO `compras` (`Id_compra`, `Folio`, `Id_usuario`, `Id_proveedor`, `Id_a
 -- Estructura de tabla para la tabla `productos`
 --
 
+DROP TABLE IF EXISTS `productos`;
 CREATE TABLE `productos` (
   `Id_producto` int(11) NOT NULL,
   `Codigo` varchar(70) NOT NULL,
@@ -175,13 +185,13 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Id_producto`, `Codigo`, `Nombre`, `Precio_compra`, `Precio_venta`, `Id_proveedor`, `Stock`, `Ventas`, `Estado`) VALUES
-(4, '345357898678', 'Cama matrimonial', '4799', '5899', 5, 23, 0, 1),
-(5, '345357893453', 'Sala', '9455', '10599', 5, 34, 0, 1),
-(6, '343534545443', 'Ropero', '4755', '6899', 6, 30, 0, 1),
-(7, '343534545129', 'Ropero grande', '5399', '6499', 4, 33, 0, 1),
-(8, '343534545123', 'Sala gris', '7499', '8999', 4, 37, 0, 1),
+(4, '345357898678', 'Cama matrimonial', '4799', '5899', 5, 15, 0, 1),
+(5, '345357893453', 'Sala', '9455', '10599', 5, 14, 0, 1),
+(6, '343534545443', 'Ropero', '4755', '6899', 6, 17, 0, 1),
+(7, '343534545129', 'Ropero grande', '5399', '6499', 4, 26, 0, 1),
+(8, '343534545123', 'Sala gris', '7499', '8999', 4, 30, 0, 1),
 (9, '343534545312', 'Ropero chico', '3000', '3599', 6, 33, 0, 1),
-(10, '23434', 'Cama', '402', '570.84', 2, 7, 11, 1),
+(10, '23434', 'Cama', '402', '570.84', 2, 38, 42, 1),
 (11, '23434', 'Cama', '400', '400', 4, 0, 0, 1),
 (12, '3249235', 'mueble nuevo', '400', '500', 5, 0, 0, 1),
 (13, '32473', 'Esquinero', '300', '420', 4, 0, 0, 1),
@@ -195,6 +205,7 @@ INSERT INTO `productos` (`Id_producto`, `Codigo`, `Nombre`, `Precio_compra`, `Pr
 -- Estructura de tabla para la tabla `proveedores`
 --
 
+DROP TABLE IF EXISTS `proveedores`;
 CREATE TABLE `proveedores` (
   `Id_proveedor` int(11) NOT NULL,
   `Nombre` varchar(70) NOT NULL,
@@ -226,6 +237,7 @@ INSERT INTO `proveedores` (`Id_proveedor`, `Nombre`, `Direccion`, `RFC`, `Telefo
 -- Estructura de tabla para la tabla `referencias`
 --
 
+DROP TABLE IF EXISTS `referencias`;
 CREATE TABLE `referencias` (
   `id_referencia` int(11) NOT NULL,
   `nombre` varchar(150) NOT NULL,
@@ -297,6 +309,7 @@ INSERT INTO `referencias` (`id_referencia`, `nombre`, `direccion`, `telefono`, `
 -- Estructura de tabla para la tabla `solicitud_credito`
 --
 
+DROP TABLE IF EXISTS `solicitud_credito`;
 CREATE TABLE `solicitud_credito` (
   `id_solicitud` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
@@ -336,6 +349,7 @@ INSERT INTO `solicitud_credito` (`id_solicitud`, `id_cliente`, `num_placas`, `es
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
@@ -354,7 +368,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `almacen`, `estado`, `ultimo_login`, `fecha`) VALUES
-(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-04-29 12:32:03', '2020-04-29 19:32:03'),
+(25, 'Roberto Manuel Cordero Balderas', 'robert', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Gerente General', 'vistas/img/usuarios/robert/566.jpg', 3, 1, '2020-09-18 11:48:04', '2020-09-18 18:48:04'),
 (35, 'federico daniel villa leyva', 'dani', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'Administrador', 'vistas/img/usuarios//701.jpg', 3, 0, '0000-00-00 00:00:00', '2020-02-11 07:35:34');
 
 -- --------------------------------------------------------
@@ -363,6 +377,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`,
 -- Estructura de tabla para la tabla `ventas`
 --
 
+DROP TABLE IF EXISTS `ventas`;
 CREATE TABLE `ventas` (
   `Id_venta` int(11) NOT NULL,
   `Folio` int(11) NOT NULL,
@@ -378,21 +393,16 @@ CREATE TABLE `ventas` (
   `Pendiente` varchar(20) NOT NULL,
   `CalendarioAbonos` text NOT NULL,
   `TipoAbono` varchar(40) NOT NULL,
-  `TipoVenta` int(1) NOT NULL
+  `TipoVenta` int(1) NOT NULL,
+  `FolioFact` varchar(60) NOT NULL DEFAULT 'NO_PRESENTADO'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`Id_venta`, `Folio`, `Id_usuario`, `Id_cliente`, `Id_almacen`, `Fecha`, `Hora`, `ListaProductos`, `Descuento`, `TotalVenta`, `TotalPago`, `Pendiente`, `CalendarioAbonos`, `TipoAbono`, `TipoVenta`) VALUES
-(13, 100013, 25, 1, 3, '2020-03-11', '22:40:34', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonials\",\"cantidad\":\"1\",\"existencia\":\"16\",\"precio\":\"899\",\"total\":\"899\"}]', '0', '899', '900', '0', 'N', 'N', 0),
-(20, 100017, 25, 6, 3, '2020-03-11', '23:07:19', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonials\",\"cantidad\":\"1\",\"existencia\":\"12\",\"precio\":\"899\",\"total\":\"899\"}]', '44.95', '854.05', '60', '794.05', '[{\"Fecha\":\"2020-03-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-04-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-04-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-05-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-06-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-06-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-07-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-07-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-08-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-08-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-09-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-09-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-10-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-11-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-11-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-12-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2020-12-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-01-30\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-02-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-02-28\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-03-15\",\"Abono\":31.76,\"Estado\":0},{\"Fecha\":\"2021-03-30\",\"Abono\":31.76,\"Estado\":0}]', 'Quincenal', 0),
-(21, 100018, 25, 9, 3, '2020-03-12', '22:14:04', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonial\",\"cantidad\":\"1\",\"existencia\":\"26\",\"precio\":\"5899\",\"total\":\"5899\"}]', '3539.4', '2359.6', '635', '1724.6', '[{\"Fecha\":\"2020-03-20\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-03-27\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-04-03\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-04-10\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-04-17\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-04-24\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-05-01\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-05-08\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-05-22\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-05-29\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-06-05\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-06-12\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-06-19\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-06-26\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-07-03\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-07-10\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-07-17\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-07-24\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-07-31\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-08-07\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-08-14\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-08-21\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-08-28\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-09-04\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-09-11\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-09-18\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-09-25\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-10-02\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-10-09\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-10-16\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-10-23\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-11-06\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-11-13\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-11-20\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-11-27\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-12-04\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-12-11\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-12-18\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2020-12-25\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-01-01\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-01-08\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-01-22\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-01-29\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-02-05\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-02-12\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-02-19\",\"Abono\":34.49,\"Estado\":0},{\"Fecha\":\"2021-02-26\",\"Abono\":34.49,\"Estado\":0}]', 'Semanal', 0),
-(22, 100019, 25, 10, 3, '2020-03-20', '15:20:47', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonial\",\"cantidad\":\"1\",\"existencia\":\"25\",\"precio\":\"5899\",\"total\":\"5899\"}]', '294.95', '5604.05', '23', '5357.81', '[{\"Fecha\":\"2020-03-27\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-03\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-10\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-17\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-24\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-01\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-08\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-22\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-29\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-05\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-12\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-19\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-26\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-03\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-10\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-17\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-24\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-31\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-07\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-14\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-21\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-28\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-04\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-11\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-18\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-25\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-02\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-09\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-16\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-23\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-06\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-13\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-20\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-27\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-04\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-11\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-18\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-25\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-01\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-08\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-22\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-29\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-05\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-12\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-19\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-26\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-03-05\",\"Abono\":111.62,\"Estado\":0}]', 'Semanal', 0),
-(23, 100020, 25, 10, 3, '2020-03-20', '15:22:09', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonial\",\"cantidad\":\"1\",\"existencia\":\"24\",\"precio\":\"5899\",\"total\":\"5899\"}]', '294.95', '5604.05', '9000', '0', 'N', 'N', 1),
-(24, 100021, 25, 10, 3, '2020-03-29', '16:41:40', '[{\"id\":\"5\",\"descripcion\":\"Sala\",\"cantidad\":\"1\",\"existencia\":\"34\",\"precio\":\"10599\",\"total\":\"10599\"},{\"id\":\"7\",\"descripcion\":\"Ropero grande\",\"cantidad\":\"1\",\"existencia\":\"33\",\"precio\":\"6499\",\"total\":\"6499\"}]', '854.9', '16243.1', '500', '15743.1', '[{\"Fecha\":\"2020-03-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-04-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-05-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-06-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-07-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-08-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-09-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-10-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-11-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2020-12-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2021-01-27\",\"Abono\":1311.93,\"Estado\":0},{\"Fecha\":\"2021-02-27\",\"Abono\":1311.93,\"Estado\":0}]', 'Mensual', 0),
-(25, 100022, 25, 10, 3, '2020-03-30', '16:45:43', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonial\",\"cantidad\":\"1\",\"existencia\":\"23\",\"precio\":\"5899\",\"total\":\"5899\"}]', '294.95', '5604.05', '350', '4833.73', '[{\"Fecha\":\"2020-03-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-04-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-04-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-05-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-06-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-06-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-07-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-07-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-08-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-08-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-09-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-09-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-10-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-11-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-11-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-12-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2020-12-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-01-30\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-02-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-02-28\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-03-15\",\"Abono\":210.16,\"Estado\":0},{\"Fecha\":\"2021-03-30\",\"Abono\":210.16,\"Estado\":0}]', 'Quincenal', 0);
+INSERT INTO `ventas` (`Id_venta`, `Folio`, `Id_usuario`, `Id_cliente`, `Id_almacen`, `Fecha`, `Hora`, `ListaProductos`, `Descuento`, `TotalVenta`, `TotalPago`, `Pendiente`, `CalendarioAbonos`, `TipoAbono`, `TipoVenta`, `FolioFact`) VALUES
+(22, 100019, 25, 10, 3, '2020-03-20', '15:20:47', '[{\"id\":\"4\",\"descripcion\":\"Cama matrimonial\",\"cantidad\":\"1\",\"existencia\":\"25\",\"precio\":\"5899\",\"total\":\"5899\"}]', '294.95', '5604.05', '23', '0', '[{\"Fecha\":\"2020-03-27\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-03\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-10\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-17\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-04-24\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-01\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-08\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-15\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-22\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-05-29\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-05\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-12\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-19\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-06-26\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-03\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-10\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-17\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-24\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-07-31\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-07\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-14\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-21\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-08-28\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-04\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-11\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-18\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-09-25\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-02\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-09\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-16\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-23\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-10-30\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-06\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-13\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-20\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-11-27\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-04\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-11\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-18\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2020-12-25\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-01\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-08\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-15\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-22\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-01-29\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-05\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-12\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-19\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-02-26\",\"Abono\":111.62,\"Estado\":0},{\"Fecha\":\"2021-03-05\",\"Abono\":111.62,\"Estado\":0}]', 'Semanal', 0, 'NO_PRESENTADO');
 
 --
 -- Índices para tablas volcadas
@@ -474,7 +484,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `abonos`
 --
 ALTER TABLE `abonos`
-  MODIFY `id_abono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_abono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT de la tabla `almacen`
@@ -486,7 +496,7 @@ ALTER TABLE `almacen`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente_conyuge`
@@ -498,7 +508,7 @@ ALTER TABLE `cliente_conyuge`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `Id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -516,13 +526,13 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `id_referencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud_credito`
 --
 ALTER TABLE `solicitud_credito`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -534,7 +544,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `Id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `Id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- Restricciones para tablas volcadas
