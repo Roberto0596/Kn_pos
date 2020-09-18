@@ -77,6 +77,21 @@ class ModeloVentas{
 		}
 	}
 
+	public static function mdlMCalendario($item,$valor,$nuevoValor)
+	{
+		$stmt = Conexion::conectar()->prepare("UPDATE ventas set CalendarioAbonos = :calendario WHERE $item = :$item;");
+		$stmt->bindParam(":calendario", $nuevoValor, PDO::PARAM_STR);
+		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+	}
+
 	static public function mdlMostrarVentas($item,$valor)
 	{
 		if ($item != null)

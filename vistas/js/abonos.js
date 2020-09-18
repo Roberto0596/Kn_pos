@@ -58,6 +58,19 @@ $("#seleccionarCliente").on("change", function(){
 					$('#seleccionarCredito').val(0).trigger('change');
 				}
 			}else{
+				$("#seleccionarCredito").html("");
+				$("#seleccionarCredito").prepend("<option></option>");
+				$('.datosClienteH').css("visibility","hidden");
+				$('.conceptoCompra').css("visibility","hidden");
+				$(".datosCliente").html(" ");
+				$("#conceptoCompra").html(" ");
+				$(".datosCredito").html(" ");
+				$(".tablaAbonos tbody").html(" ");
+				$("#folioCompra").val(null);
+				$("#nAbono").val(null);
+				$("#ultimoSaldo").val(null);
+				$("#efectivo").val(null);
+				$("#cambio").val(null);
 				$.each(respuesta, function (indice, elemento) {
 					//alert(elemento["ListaProductos"]);
 					//$("#seleccionarCredito").prepend("<option value='"+indice+"'>Crédito "+(indice+1)+"</option>");
@@ -112,6 +125,7 @@ $("#seleccionarCredito").on("change", function(){
 				$(".datosCredito").html(" ");
 				var fechas = $.parseJSON(fechasAbonos[indiceCred-1]);
 				var datosCredito = "<div class='col-md-2'>"+fechas.length+" pagos</div>";
+				//abonoBase = fechas[fechas.length-1].Abono;
 				abonoBase = fechas[fechas.length-1].Abono;
 				datosCredito += "<div class='col-md-2'>"+tipoAbonos[indiceCred-1]+" de $"+darFormato(abonoBase)+"</div>";
 				importeSelect = importes[indiceCred-1];
@@ -121,7 +135,52 @@ $("#seleccionarCredito").on("change", function(){
 				datosCredito += "<div class='col-md-2'>Saldo $"+darFormato(saldin)+"</div>";
 				$(".datosCredito").prepend(datosCredito);
 				$(".tablaAbonos tbody").html(" ");
+				var saldoMostrar = parseFloat(saldin);
+				var tiene = false;
+				var verifica = 0;
+				$.each(fechas, function (indice, fecha) {
 
+					if(indice == 0 && fecha.Estado == 0){ //no hay abonos
+						verifica = 1;
+						$("#nAbono").val(1);
+						numeroAbono = 1;
+						$("#abono").val(abonoBase);
+						$("#ultimoSaldo").val(saldos[indiceCred-1]);
+						fechaVence = fecha.Fecha;
+						fechaProximo = fechas[indice+1].Fecha;
+						numeroAbono = indice;
+						$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
+
+					}else if(fecha.FechaPago == 0 && fecha.Folio == 0 && verifica == 0){
+						$("#nAbono").val(indice+1);
+						numeroAbono = indice+1;
+						$("#abono").val(abonoBase);
+						$("#ultimoSaldo").val(saldos[indiceCred-1]);
+						fechaVence = fecha.Fecha;
+						if(fechas.length == numeroAbono){
+							abonoBase = saldos[indiceCred-1];
+							$("#abono").val(abonoBase);
+							fechaProximo = "LIQUIDADO";
+						}else{
+							fechaProximo = fechas[indice+1].Fecha;
+						}
+						numeroAbono = indice;
+						$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td><button id='btnAbonar' class='btn btn-primary pull-right btnAbonar' title='Cobrar' type='button' data-toggle = 'modal' data-target = '#modalCobro'>Abonar</button></td><td></td></tr>");
+						verifica = verifica + 1;
+
+					}else{
+						if(fecha.FechaPago == 0 && fecha.Folio == 0){
+							$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td></td><td></td><td></td><td></td><td></td></tr>");
+						}else{
+							saldoMostrar = saldoMostrar - parseFloat(fecha.Cantidad);
+							$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+fecha.Folio+"</td><td>"+fecha.FechaPago+"</td><td>$"+fecha.Cantidad+"</td><td></td><td>$"+darFormato(saldoMostrar)+"</td></tr>");
+						}
+
+					}
+
+				});
+
+/*
 				abonosActuales = [];
 				var data = new FormData();
 				data.append("traerAbonos",folioCompra);
@@ -156,7 +215,8 @@ $("#seleccionarCredito").on("change", function(){
 							var verifica = 0;
 							$.each(fechas, function (indice, fecha) {
 								if(abonosActuales[indice] != null){
-									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td></td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td></tr>");
+									//$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+abonosActuales[indice].fecha_pago+"</td><td>$"+darFormato(abonosActuales[indice].cantidad)+"</td><td></td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td></tr>");
+									$('.tablaAbonos tbody').append("<tr><td>"+(indice+1)+"</td><td>"+fecha.Fecha+"</td><td>"+abonosActuales[indice].folio_pago+"</td><td>"+fecha.FechaPago+"</td><td>$"+fecha.Cantidad+"</td><td></td><td>$"+darFormato(abonosActuales[indice].saldo)+"</td></tr>");
 								}else{
 									if(verifica == 0){ //ultimo abono
 										$("#nAbono").val(indice+1);
@@ -182,7 +242,7 @@ $("#seleccionarCredito").on("change", function(){
 							});
 						}
 					}
-				});
+				});*/
 			}
 		});
 	}else{

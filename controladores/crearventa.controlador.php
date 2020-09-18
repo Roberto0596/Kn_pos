@@ -31,7 +31,10 @@ class ControladorVentas
                             $calendarioAbonos1 = [
                                 "Fecha" => $fechaPrimerAbono,
                                 "Abono" => $abonoBase,
-                                "Estado" => 0
+                                "Estado" => 0,
+                                "FechaPago" => 0,
+                                "Cantidad" => 0,
+                                "Folio" => 0
                             ];
                             array_push($calendarioAbonos, $calendarioAbonos1);
                             $fechaPrimerAbono = date("Y-m-d",strtotime($fechaPrimerAbono."+ 7 days"));
@@ -42,7 +45,10 @@ class ControladorVentas
                             $calendarioAbonos1 = [
                                 "Fecha" => $fechaPrimerAbono,
                                 "Abono" => $abonoBase,
-                                "Estado" => 0
+                                "Estado" => 0,
+                                "FechaPago" => 0,
+                                "Cantidad" => 0,
+                                "Folio" => 0
                             ];
                             array_push($calendarioAbonos, $calendarioAbonos1);
                             if(date("m",strtotime($fechaPrimerAbono)) == 2 && date("d",strtotime($fechaPrimerAbono)) == 15){
@@ -60,7 +66,10 @@ class ControladorVentas
                             $calendarioAbonos1 = [
                                 "Fecha" => $fechaPrimerAbono,
                                 "Abono" => $abonoBase,
-                                "Estado" => 0
+                                "Estado" => 0,
+                                "FechaPago" => 0,
+                                "Cantidad" => 0,
+                                "Folio" => 0
                             ];
                             array_push($calendarioAbonos, $calendarioAbonos1);
                             $fechaPrimerAbono = date("Y-m-d",strtotime($fechaPrimerAbono."+ 1 month"));

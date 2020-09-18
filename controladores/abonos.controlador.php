@@ -5,6 +5,7 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
 class ControladorAbonos
 {
+	public $abonosDados = array(array("fechaVence", "Cantidad"));
 
  	function ctrTraerUltimoFolio()
  	{
@@ -18,7 +19,57 @@ class ControladorAbonos
  		$tabla = "abonos";
  		$respuesta = ModeloAbonos::mdlMostrarAbonos($tabla,$item,$valor);
  		return $respuesta;
- 	}
+	 }
+
+	public function ctrAbonar($modeloVentas, $abonoT, $fecha, $folio){
+		//print_r($modeloVentas);
+		$calendarioAbonos = json_decode($modeloVentas['CalendarioAbonos']);
+		// Estado 0: Activo, 1: Modificado, 2: Liquidado
+
+        foreach ($calendarioAbonos as $numero => $valor) {
+			if($abonoT == 0) break;
+
+			if($calendarioAbonos[$numero]->Estado == 0 || $calendarioAbonos[$numero]->Estado == 1){
+				$abonoT = round($abonoT, 2);
+				$diferencia = $abonoT - $calendarioAbonos[$numero]->Abono;
+				$diferencia = round($diferencia, 2);
+				if($diferencia == 0){
+					array_push($this->abonosDados, array($calendarioAbonos[$numero]->Fecha, $calendarioAbonos[$numero]->Abono));
+
+					$calendarioAbonos[$numero]->Cantidad = $calendarioAbonos[$numero]->Abono;
+					$calendarioAbonos[$numero]->Abono = 0;
+					$calendarioAbonos[$numero]->Estado = 2;
+					$abonoT = 0;
+
+				}elseif($diferencia < 0){
+					array_push($this->abonosDados, array($calendarioAbonos[$numero]->Fecha, $abonoT));
+					$calendarioAbonos[$numero]->Cantidad = $abonoT;
+					$calendarioAbonos[$numero]->Abono = $calendarioAbonos[$numero]->Abono - $abonoT;
+					$calendarioAbonos[$numero]->Estado = 1;
+					$abonoT = 0;
+				}else{
+					array_push($this->abonosDados, array($calendarioAbonos[$numero]->Fecha, $calendarioAbonos[$numero]->Abono));
+					if($calendarioAbonos[$numero]->Estado == 1){
+						$calendarioAbonos[$numero]->Cantidad = $calendarioAbonos[$numero]->Abono + $calendarioAbonos[$numero]->Cantidad;
+					}else{
+						$calendarioAbonos[$numero]->Cantidad = $calendarioAbonos[$numero]->Abono;
+					}
+
+					$calendarioAbonos[$numero]->Abono = 0;
+					$calendarioAbonos[$numero]->Estado = 2;
+					$abonoT = $diferencia;
+				}
+				$calendarioAbonos[$numero]->FechaPago = $fecha;
+				if($calendarioAbonos[$numero]->Folio == "0"){
+					$calendarioAbonos[$numero]->Folio = $folio;
+				}else{
+					$calendarioAbonos[$numero]->Folio = $calendarioAbonos[$numero]->Folio.",".$folio;
+				}
+
+			}
+		}
+		return json_encode($calendarioAbonos);
+	}
 
  	public function ctrRegistrarAbono()
  	{
@@ -52,6 +103,8 @@ class ControladorAbonos
 					$data = ModeloVentas::mdlMostrarVentas("Folio",$_POST['folioCompra']);
 					$cliente = ModeloClientes::mdlMostrarClientes("cliente","id_cliente",$data["Id_cliente"],0);
 					$abono = ModeloAbonos::mdlMostrarAbonos("abonos","folio_venta",$data["Folio"]);
+					$nuevoCalendario = $this->ctrAbonar($data, $_POST["abono"], $fechaPago,$abono[count($abono)-1]["folio_pago"]);
+					$modiVent = ModeloVentas::mdlMCalendario("Folio",$_POST["folioCompra"],$nuevoCalendario);
 
 					$nombre_impresora = "POS-80";
 					$connector = new WindowsPrintConnector($nombre_impresora);
