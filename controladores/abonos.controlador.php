@@ -27,7 +27,14 @@ class ControladorAbonos
 		// Estado 0: Activo, 1: Modificado, 2: Liquidado
 
         foreach ($calendarioAbonos as $numero => $valor) {
-			if($abonoT == 0) break;
+			if($abonoT == 0){
+				if($calendarioAbonos[$numero]->Cantidad == 0){
+					array_push($this->abonosDados, array($calendarioAbonos[$numero]->Fecha, $calendarioAbonos[$numero]->Abono));
+				}else{
+					array_push($this->abonosDados, array($calendarioAbonos[$numero-1]->Fecha, $calendarioAbonos[$numero-1]->Abono));
+				}
+				break;
+			}
 
 			if($calendarioAbonos[$numero]->Estado == 0 || $calendarioAbonos[$numero]->Estado == 1){
 				$abonoT = round($abonoT, 2);
@@ -125,6 +132,16 @@ class ControladorAbonos
 						$printer->text("________________________________________________\n");
 						$printer->text("No. pago: ".$_POST['nAbono']."  Fecha de vencimiento: ".$_POST['fechaVence']."\n");
 						$printer->text("Abono ······················· $".$abono[count($abono)-1]["cantidad"] ."\n");
+						$ultimaL = 0;
+						foreach ($this->abonosDados as $numero => $valor) {
+							if($numero > 0){
+								if($numero == count($this->abonosDados)-1){
+									$ultimaL = $numero;
+									break;
+								}
+								$printer->text("Fecha abonada: ".$valor[0]." Cantidad $".$valor[1]."\n");
+							}
+                        }
 						if (isset($_POST['descuentoP'])) {
 							$printer->text("Descuento ··················· $".$_POST['descuentoTotal']."\n");
 						}else{
@@ -138,7 +155,7 @@ class ControladorAbonos
 						$printer->text("\n");
 						$printer->text("Saldo actual ·········· $".$abono[count($abono)-1]["saldo"]."\n");
 						$printer->text("Saldo anterior ········ $".$_POST['ultimoSaldo']."\n");
-						$printer->text("Fecha de próximo pago: ".$_POST['fechaProximo']."\n");
+						$printer->text("Fecha de próximo pago: ".$this->abonosDados[$ultimaL][1]."\n");
 						$printer->feed(2);
 						$printer->setTextSize(1, 2);
 						$printer->text("Gracias por su preferencia!\n");
