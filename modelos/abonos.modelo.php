@@ -26,6 +26,14 @@ class ModeloAbonos
         $this->Estado=$Estado;
 	}
 
+	public function mdlUltimoAbono($tabla, $item, $value)
+	{
+		$stmt=conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = '$value' order by id_abono desc limit 1");
+		$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
 	public function mdlMostrarAbonos($tabla,$item,$valor)
 	{
 		if ($item!=null)

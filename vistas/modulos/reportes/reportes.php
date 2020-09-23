@@ -61,3 +61,9 @@
   </section>
 
 </div>
+
+<script>
+  $("#generar").click(function(){
+    window.print();
+  })
+</script>

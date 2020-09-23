@@ -211,7 +211,7 @@ class ControladorVentas
         return $respuesta;
     }
 
-     public function ctrMostrarClienteVentas($item,$valor)
+    public function ctrMostrarClienteVentas($item,$valor)
     {
         $respuesta = ModeloVentas::mdlMostrarClienteVentas($item,$valor);
         return $respuesta;
@@ -220,6 +220,17 @@ class ControladorVentas
     public function ctrMostrarVentasPorFecha($valor1,$valor2)
     {
         $respuesta = ModeloVentas::mdlMostrarVentasPorFecha($valor1,$valor2);
+        return $respuesta;
+    }
+
+    public function ctrMostrarVentasCreditoCliente($item,$valor) {
+        $respuesta = ModeloVentas::mdlMostrarVentasCreditoCliente($item,$valor);
+        return $respuesta;
+    }
+
+    public function ctrMostrarVentasCredito()
+    {
+        $respuesta = ModeloVentas::mdlMostrarVentasCredito();
         return $respuesta;
     }
 }

@@ -118,6 +118,21 @@ class ModeloVentas{
         return $stmt -> fetchAll();
     }
 
+    static public function mdlMostrarVentasCredito()
+    {
+    	$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE TipoVenta = 0");
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
+
+    static public function mdlMostrarVentasCreditoCliente($item,$valor)
+    {
+        $stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE $item = :$item and TipoVenta = 0");
+        $stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
+
 	static public function mdlMostrarClienteVentas($item,$valor)
 	{
 		$stmt = Conexion::Conectar()->prepare("SELECT * FROM ventas WHERE $item = :$item");

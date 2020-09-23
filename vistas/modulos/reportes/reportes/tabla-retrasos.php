@@ -30,14 +30,14 @@
                 <th style="width: 25px">#</th>
                 <th>Nombre</th>
                 <th>Folio</th>
-                <th>F. Vencimiento</th>
                 <th>Abono</th>
+                <th>F. Vencimiento</th>
+                <th>Fecha de hoy</th>
                 <th>Fecha Prox. pago</th>
-                <th>Abono Prox. pago</th>
-                <th>Acciones</th>
-            </tr>
+<!--                 <th>Acciones</th>
+ -->            </tr>
         </thead>
     </table>
 </div>
 
-<script src="vistas/js/reportes-retrasos.js"></script>
+<script src="vistas/js/reportes-atrasos.js"></script>

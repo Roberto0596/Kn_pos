@@ -21,6 +21,13 @@ class ControladorAbonos
  		return $respuesta;
 	 }
 
+	public function ctrUltimoAbono($item, $valor)
+	{
+		$tabla = "abonos";
+		$respuesta = ModeloAbonos::mdlUltimoAbono($tabla,$item,$valor);
+ 		return $respuesta;
+	}
+
 	public function ctrAbonar($modeloVentas, $abonoT, $fecha, $folio){
 		//print_r($modeloVentas);
 		$calendarioAbonos = json_decode($modeloVentas['CalendarioAbonos']);

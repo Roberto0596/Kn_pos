@@ -11,56 +11,40 @@ class TablaReporteContado
 {
 	public function MostrarTabla()
 	{
-		date_default_timezone_set('America/Hermosillo');
-		$fecha = date('Y-m-d');
-		$clientes = ControladorClientes::ctrMostrarClientes(null,null,0);
+		$ventas = ControladorVentas::ctrMostrarVentasCredito(null,null,0);
 		$res = [ "data" => []];
 		$count;
-		foreach ($clientes as $key1 => $value)
+		foreach ($ventas as $key1 => $value)
 		{
-			$ventas = ControladorVentas::ctrMostrarClienteVentas("Id_cliente",$value["id_cliente"]);
-
-			if ($ventas!=false)
-			{
-				foreach ($ventas as $key1 => $value2) 
-				{
-					$abonos = ControladorAbonos::ctrMostrarAbonos("folio_venta",$value2["Folio"]);
-					if ($abonos!=false)
-					{
-						foreach ($abonos as $key1 => $value3)
-						{
-							
-						}	
-						if ($value2["TipoVenta"]==0)
-						{
-							$calendario = json_decode($value2["CalendarioAbonos"],true);
-							$proximaFecha = $calendario[$value3["numero_abono"]]["Fecha"];
-							$validate = ModeloAbonos::mdlValidarUltimoPago($value2["Folio"],$proximaFecha);
-							if ($fecha>=$proximaFecha && $validate !=false) 
-							{
-								$botones =  "
-								<div class='btn-group'>
-									<button class='btn btn-danger  btnEliminarCliente' title='Aumentar interes'>
-										<i class='fas fa-trash'></i>
-									</button>
-								</div>";
-
-								$count++;
-								array_push($res['data'], [
-									($count),
-									$value["nombre"],
-									$value2["Folio"],
-									$proximaFecha,
-									$calendario[($value3["numero_abono"])]["Abono"],
-									$calendario[($value3["numero_abono"]+1)]["Fecha"],
-									$calendario[($value3["numero_abono"]+1)]["Abono"],
-									$botones
-								]);							
-							}
-						}				
-					}					
+			try {
+				$cliente = ControladorClientes::ctrMostrarClientes("id_cliente", $value["Id_cliente"], null);	
+				$abono = ControladorAbonos::ctrUltimoAbono("folio_venta", $value["Folio"]);	
+				$calendario = json_decode($value["CalendarioAbonos"],true);
+				$anotherDate = [];
+				foreach ($calendario as $key => $value2) {
+					if ($value2["Estado"] == 0) {
+						$anotherDate = $value2;
+						break;
+					}
 				}
-			}
+
+				$proximoAbono = $anotherDate["Fecha"];
+				date_default_timezone_set('America/Hermosillo');
+				$fecha = date('Y-m-d');
+				if ($fecha > $proximoAbono) {
+					array_push($res['data'], [
+						($key+1),
+						$cliente["nombre"],
+						$value["Folio"],
+						$anotherDate["Abono"],
+						$proximoAbono,
+						$fecha,
+						$calendario[$key+1]["Fecha"],
+					]);
+				}
+			} catch(Exception $e) {
+				array_push($res['data'], []);
+			}									
 		}
 		echo  json_encode($res);
 	}

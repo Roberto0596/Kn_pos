@@ -198,4 +198,4 @@
 
 </div>
 
-<script src="/vistas/js/reportes-abonos.js"></script>
+<script src="vistas/js/reportes-abonos.js"></script>
