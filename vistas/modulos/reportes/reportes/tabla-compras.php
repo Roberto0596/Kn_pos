@@ -25,23 +25,71 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-12 col-md-12 ocultar" style="display: none">
           <div class="card">
             <div class="card-body">
 
                 <div class="row">
                     
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <p><strong>Ejecutivo: </strong>
                             <div id="ejecutivo"></div>
                         </p>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <p><strong>Cuenta: </strong>
                             <div id="cuenta"></div>
                         </p>
                     </div>
+
+                    <div class="col-md-6">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <label>Fecha Inicial: </label>
+
+                                <div class="input-group mb-3 pull-left">
+
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text" onclick="getFocus('nombre')"><i class="fa fa-calendar"></i></span>
+
+                                    </div>
+
+                                   <input type="date" class="form-control" id="fechaInicialProveedores" value="none">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                 <label>Fecha Final: </label>
+
+                                <div class="input-group mb-3 pull-left">
+
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text" onclick="getFocus('nombre')"><i class="fa fa-calendar"></i></span>
+
+                                    </div>
+
+                                   <input type="date" class="form-control" id="fechaFinalProveedores" value="none"> 
+
+                                </div>
+
+                            </div>
+
+                        </div>                            
+
+                    </div>
+
+                </div>
+
+                <div class="row">
 
                     <div class="col-md-4">
                         <label>Compras: </label>
@@ -55,23 +103,12 @@
 
                     </div>
 
-                </div>
-                    
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body" style="min-height: 126px;">
-
-                <div class="row">
-                    
-                    <div class="col-md-12" style="display: flex">
-                        <strong>Fecha: </strong><p style="margin-left: 15px;" id="fecha"></p>
+                    <div class="col-md-2" style="display: flex">
+                        <strong>Fecha: </strong><br><p style="margin-left: 15px;" id="fecha"></p>
                     </div>
 
-                    <div class="col-md-12" style="display: flex">
-                        <strong>Monto: </strong><p style="margin-left: 15px;" id="monto"></p>
+                    <div class="col-md-2" style="display: flex">
+                        <strong>Monto: </strong><br><p style="margin-left: 15px;" id="monto"></p>
                     </div>
 
                 </div>

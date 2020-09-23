@@ -178,7 +178,7 @@ $("#fechaFinalContado").change(function(){
 	else
 	{
 		swal.fire({
-			title: "Tiene que elejir una fecha inicial",
+			title: "Tiene que elegir una fecha inicial",
 			type: "error",
 			confirmButtonText: "¡Cerrar!"
 		});

@@ -2,6 +2,12 @@
 
 class ControladorCompra
 {
+    public function ctrMostrarComprasPorFecha($proveedor, $valor1,$valor2)
+    {
+        $respuesta = ModeloCompras::mdlMostrarComprasPorFecha($proveedor,$valor1,$valor2);
+        return $respuesta;
+    }
+
     public function ctrCrearCompra()
 	{
 		if (isset($_POST["nuevaVenta"]))

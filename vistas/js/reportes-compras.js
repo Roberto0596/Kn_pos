@@ -1,6 +1,9 @@
 const ip = { style: 'currency', currency: 'USD' };
 const numberFormat34 = new Intl.NumberFormat('en-US', ip);
 
+$(document).ready(function() {
+	$(".tableProveedor").DataTable();
+})
 function mostrarTablaProveedor(folio)
 {
 	$('.tableProveedor tbody').remove();
@@ -82,10 +85,57 @@ $("#provider-pro").change(function()
 						var folio = respuesta2[i]["Folio"];
 						$('#compras-realizadas').prepend("<option value='"+folio+"' >"+folio+"</option>");
 					}
+					$('#compras-realizadas').prepend("<option value='' selected>Seleccione una opción</option>");
+					$(".ocultar").fadeIn(1000);
 				}
 			});
 		}
 	});
+});
+
+$("#fechaFinalProveedores").change(function() {
+	var fechaInicial = $("#fechaInicialProveedores").val();
+	var fechaFinal = $(this).val();
+	if(fechaInicial.length > 0) {
+		var data = new FormData();
+		data.append("fechaInicialProveedor", fechaInicial);
+		data.append("fechaFinalProveedor", fechaFinal);
+		data.append("proveedorCompras", $("#provider-pro").val());
+		$.ajax({
+			url:"ajax/reportes.ajax.php",
+			method: "POST",
+			data:data,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "json",
+			success: function(respuesta)
+			{
+				if(respuesta.length > 0) {
+					$('#compras-realizadas').empty().append('whatever');
+					for (var i = 0; i < respuesta.length; i++)
+					{
+						var folio = respuesta[i]["Folio"];
+						$('#compras-realizadas').prepend("<option value='"+folio+"' >"+folio+"</option>");
+					}
+					$('#compras-realizadas').prepend("<option value='' selected>Seleccione una opción</option>");
+				} else {
+					swal.fire({
+						title: "Sin resultados",
+						type: "info",
+						confirmButtonText: "¡Cerrar!"
+					});
+				}
+			}
+		});
+	} else {
+		swal.fire({
+			title: "Tiene que elegir una fecha inicial",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+		$("#fechaFinalProveedores").val("");
+	}
 })
 
 $("#compras-realizadas").change(function()

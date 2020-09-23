@@ -63,6 +63,19 @@ class AjaxReportes
 		echo json_encode($respuesta);
 	}
 
+	public $fechaInicialProveedor;
+	public $fechaFinalProveedor;
+	public $proveedorCompras;
+
+	public function ajaxTraerComprasPorFecha()
+	{
+		$valor1 = $this->fechaInicialProveedor;
+		$valor2 = $this->fechaFinalProveedor;
+		$proveedor = $this->proveedorCompras;
+		$respuesta = ControladorCompra::ctrMostrarComprasPorFecha($proveedor,$valor1,$valor2);
+		echo json_encode($respuesta);
+	}
+
     public $rango;
 
     public function ajaxTraerTotalVenta()
@@ -206,3 +219,13 @@ if (isset($_POST["idProveedor"]))
 	$mostrar-> item_compras = $_POST["item_compras"];
 	$mostrar->ajaxMostrarCompras();
 }
+
+if (isset($_POST["fechaInicialProveedor"]))
+{
+	$mostrar = new AjaxReportes();
+	$mostrar-> fechaInicialProveedor = $_POST["fechaInicialProveedor"];
+	$mostrar-> fechaFinalProveedor = $_POST["fechaFinalProveedor"];
+	$mostrar-> proveedorCompras = $_POST["proveedorCompras"];
+	$mostrar->ajaxTraerComprasPorFecha();
+}
+

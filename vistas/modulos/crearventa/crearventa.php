@@ -16,7 +16,7 @@
     $altoTag = "height: 200px;";
     $nuevoFolio = Helpers::NuevoFolio("venta");
   }
-
+  date_default_timezone_set('America/Hermosillo');
 ?>
 
 <div class="content-wrapper">

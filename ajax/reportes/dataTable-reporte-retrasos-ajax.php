@@ -6,7 +6,7 @@ require_once "../../controladores/crearventa.controlador.php";
 require_once "../../modelos/crearventa.modelo.php";
 require_once "../../controladores/abonos.controlador.php";
 require_once "../../modelos/abonos.modelo.php";
-
+error_reporting(0);
 class TablaReporteContado
 {
 	public function MostrarTabla()
