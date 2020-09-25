@@ -3,7 +3,54 @@ const numberFormat34 = new Intl.NumberFormat('en-US', ip);
 
 $(document).ready(function() {
 	$(".tableProveedor").DataTable();
-})
+	$(".tableComprasGenerales").DataTable();
+});
+
+function tableComprasGenerales(init, final) {
+    $('.tableComprasGenerales tbody').remove();
+	$(".tableComprasGenerales").dataTable(
+	{
+		"destroy":true,
+		"deferRender": true,
+		"processing": true,
+		"bFilter": true,
+		"bLengthChange" : true,
+		"lengthMenu":[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
+		"ajax":
+		{
+			url: "ajax/reportes/dataTable-reporte-compras-ajax.php",
+			type: "POST",
+			data: {init:init,final:final}
+	    },
+		"language": {
+
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+
+		}
+	});
+}
+
 function mostrarTablaProveedor(folio)
 {
 	$('.tableProveedor tbody').remove();
@@ -136,7 +183,7 @@ $("#fechaFinalProveedores").change(function() {
 		});
 		$("#fechaFinalProveedores").val("");
 	}
-})
+});
 
 $("#compras-realizadas").change(function()
 {
@@ -159,5 +206,31 @@ $("#compras-realizadas").change(function()
 			mostrarTablaProveedor(respuesta["Folio"]);
 		}
 	});
+});
+
+$("#pro-mode").change(function() {
+	if ($(this).val() == "compras-general") {
+		$(".ocultar-tabla-por-proveedor-2").hide();
+		$(".ocultar-tabla-por-proveedor-1").show();
+		tableComprasGenerales(null, null);
+	} else {
+		$(".ocultar-tabla-por-proveedor-1").hide();
+		$(".ocultar-tabla-por-proveedor-2").show();
+	}
+});
+
+$("#fechaComprasFinal").change(function() {
+	var fechaInicial = $("#fechaComprasInicial").val();
+	var fechaFinal = $(this).val();
+	if(fechaInicial.length > 0) {
+		tableComprasGenerales(fechaInicial, fechaFinal);
+	} else {
+		swal.fire({
+			title: "Tiene que elegir una fecha inicial",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+		$("#fechaComprasFinal").val("");
+	}
 });
 

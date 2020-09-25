@@ -93,24 +93,47 @@ class ModeloCompras
 
     static public function mdlMostrarComprasPorFecha($proveedor,$fechaInicial,$fechaFinal)
 	{
-		if($fechaInicial == null)
-		{
-			$stmt = conexion::conectar()->prepare("SELECT * FROM compras where Id_proveedor = '$proveedor' ORDER BY id_venta ASC");
-			$stmt -> execute();
-			return $stmt -> fetchAll();
+		if ($proveedor == null) {
+
+			if($fechaInicial == null)
+			{
+				$stmt = conexion::conectar()->prepare("SELECT * FROM compras ORDER BY Id_compra desc");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
+			else if($fechaInicial == $fechaFinal)
+			{
+				$stmt = conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha like '%$fechaFinal%'");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
+			else
+			{
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
+		} else {
+			if($fechaInicial == null)
+			{
+				$stmt = conexion::conectar()->prepare("SELECT * FROM compras where Id_proveedor = '$proveedor' ORDER BY Id_compra desc");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
+			else if($fechaInicial == $fechaFinal)
+			{
+				$stmt = conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha like '%$fechaFinal%' and Id_proveedor = '$proveedor'");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
+			else
+			{
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal' and Id_proveedor = '$proveedor'");
+				$stmt -> execute();
+				return $stmt -> fetchAll();
+			}
 		}
-		else if($fechaInicial == $fechaFinal)
-		{
-			$stmt = conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha like '%$fechaFinal%' and Id_proveedor = '$proveedor'");
-			$stmt -> execute();
-			return $stmt -> fetchAll();
-		}
-		else
-		{
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM compras WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal' and Id_proveedor = '$proveedor'");
-			$stmt -> execute();
-			return $stmt -> fetchAll();
-		}
+		
 		$stmt -> close();
 		$stmt = null;
 	}
