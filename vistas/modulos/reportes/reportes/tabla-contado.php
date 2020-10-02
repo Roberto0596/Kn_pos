@@ -53,6 +53,7 @@
             </div>
 
         </div>
+
         <div class="col-md-3 caja-contado">
 
             <div class="card" style="min-height: 126px;">
@@ -78,7 +79,14 @@
         </div>
 
     </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button class="btn btn-success" id="imprimir-ventas-contado">Imprimir</button>
+            </div>
+        </div>
+    </div>
+    <br>
     <table class="table table-bordered table-hover tablaContado">
         <thead>
             <tr>

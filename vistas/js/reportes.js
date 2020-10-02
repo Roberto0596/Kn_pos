@@ -1,3 +1,5 @@
+var globalRangoContado = null;
+
 $("#select-concepto").change(function(){
 	var concepto = $(this).val();
 	console.log(concepto);
@@ -8,6 +10,10 @@ $("#select-concepto").change(function(){
 	else if(concepto == "compras")
 	{
 		hideOrShowElement(elementsArrayConcept,2);
+	}
+	else if(concepto == "credito")
+	{
+		hideOrShowElement(elementsArrayConcept,5);
 	}
 	else if (concepto=="contado")
 	{
@@ -25,7 +31,8 @@ var elementsArrayConcept = new Object([
 	{"elemento": "tabla-abonos", "valor": "1","grupo":1},
 	{"elemento": "tabla-compras", "valor": "0","grupo":2},
 	{"elemento": "tabla_contado", "valor": "0","grupo":3},
-	{"elemento": "tabla-retrasos", "valor": "0","grupo":4}]);
+	{"elemento": "tabla-retrasos", "valor": "0","grupo":4},
+	{"elemento": "tabla_credito", "valor": "0","grupo":5}]);
 
 function hideOrShowElement(array,grupo)
 {
@@ -121,6 +128,8 @@ function mostrarTablaContado(rango)
 		}
 	});
 
+	const options = { style: 'currency', currency: 'USD' };
+    const money = new Intl.NumberFormat('en-US', options);
 	var datos = new FormData();
 	datos.append("rango",rango);
 	$.ajax({
@@ -133,7 +142,7 @@ function mostrarTablaContado(rango)
 		dataType: "json",
 		success: function(respuesta)
 		{
-			$("#total-contado").html(numberFormat2.format(respuesta));
+			$("#total-contado").html(money.format(respuesta));
 		}
 	});
 
@@ -173,10 +182,12 @@ $("#fechaFinalContado").change(function(){
 	var fechaFinal = $("#fechaFinalContado").val();
 	if (fechaInicial.length>1)
 	{
+		globalRangoContado = fechaInicial+"|"+fechaFinal;
 		mostrarTablaContado(fechaInicial+"|"+fechaFinal);
 	}
 	else
 	{
+		globalRangoContado = null;
 		swal.fire({
 			title: "Tiene que elegir una fecha inicial",
 			type: "error",
@@ -223,3 +234,8 @@ function mostrarTablaRetrasos()
 		}
 	});
 }
+
+$('#imprimir-ventas-contado').click(function() {
+	var tipoAbonos = "Reporte de ventas al contado";
+	window.open("extenciones/mpdf/reporte/reporte-ventas-contado.php?tipo="+tipoAbonos+"&rango="+globalRangoContado,"_blank");
+});

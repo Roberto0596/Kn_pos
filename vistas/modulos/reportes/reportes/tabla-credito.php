@@ -22,7 +22,7 @@
 
                                 </div>
 
-                                <input type="date" class="form-control" id="fechaInicialContado">
+                                <input type="date" class="form-control" id="fechaInicialCreditos">
 
                             </div>
 
@@ -40,7 +40,7 @@
 
                                 </div>
 
-                                <input type="date" class="form-control" id="fechaFinalContado">
+                                <input type="date" class="form-control" id="fechaFinalCreditos">
 
                             </div>
 
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="col-md-12" style="display: flex">
-                            <strong>Total: </strong><p style="margin-left: 15px;" id="total-contado"></p>
+                            <strong>Total: </strong><p style="margin-left: 15px;" id="total-credito-venta"></p>
                         </div>
 
                     </div>
@@ -78,8 +78,15 @@
         </div>
 
     </div>
-
-    <table class="table table-bordered table-hover tablaContado">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button class="btn btn-success" id="imprimir-ventas-credito">Imprimir</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover tablaCreditoVentas">
         <thead>
         <tr>
             <th style="width: 25px">#</th>
@@ -95,7 +102,7 @@
     </table>
 </div>
 
-<div class="modal fade" id="modalVerProductos">
+<div class="modal fade" id="modalLaracast">
 
     <div class="modal-dialog modal-lg">
 
@@ -124,7 +131,7 @@
                         <th>Total</th>
                     </tr>
                     </thead>
-                    <tbody id="body-table-products">
+                    <tbody id="laracast">
 
                     </tbody>
                 </table>
@@ -141,3 +148,5 @@
     </div>
 
 </div>
+
+<script src="vistas/js/reportes-credito.js"></script>

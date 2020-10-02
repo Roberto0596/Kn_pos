@@ -161,6 +161,14 @@
     </div>
 
     <div id="tabla-abonos-1" style="display: none">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <button class="btn btn-success" id="imprimir-abonos-cliente">Imprimir</button>
+                </div>
+            </div>
+        </div>
+        <br>
         <table class="table tablaAbonos table-bordered table-hover" id="tablaAbonos" >
             <thead>
                 <tr>
@@ -177,6 +185,14 @@
         </table>
     </div>
     <div id="tabla-abonos-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <button class="btn btn-success" id="imprimir-abonos-corte">Imprimir</button>
+                </div>
+            </div>
+        </div>
+        <br>
         <table class="table tablaCorteAbonos table-bordered table-hover" id="tablaCorteAbonos">
             <thead>
                 <tr>

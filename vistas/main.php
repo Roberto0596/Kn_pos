@@ -74,6 +74,8 @@
 	<!-- DataTables -->
 	<script src="vistas/plugins/datatables/jquery.dataTables.js"></script>
 	<script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
+    <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
 	<!-- sweetalert -->
   	<script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
   	<!-- Select2 -->

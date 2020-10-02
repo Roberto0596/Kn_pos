@@ -1,8 +1,11 @@
 const options2 = { style: 'currency', currency: 'USD' };
 const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+var globalDate = null;
+var globalFolio = null;
 
 $(document).ready(function(){
 	cargarTablaCorteAbono(null);
+	cargarTablaAbonoPorCliente(null);
 })
 $("#concepto-abonos").change(function(){
 	var concepto = $(this).val();
@@ -26,6 +29,7 @@ $("#concepto-abonos").change(function(){
 			$(".caja").fadeIn(1000);
 		});
 		cargarTablaCorteAbono(null);
+		globalDate = null;
 	}else if(concepto==1){
 		$(".hide-element").fadeOut(1000,function()
 		{
@@ -118,9 +122,15 @@ function cargarTablaCorteAbono(fecha)
 	});
 }
 
+$('#imprimir-abonos-corte').click(function() {
+	var tipoAbonos = "Corte de abonos";
+	window.open("extenciones/mpdf/reporte/reporte-abonos-corte.php?tipo="+tipoAbonos+"&fecha="+globalDate,"_blank");
+});
+
 $("#fechaFinal").change(function()
 {
 	var fecha = $("#fechaInicial").val()+"|"+$("#fechaFinal").val();
+	globalDate = fecha;
 	cargarTablaCorteAbono(fecha);
 });
 
@@ -158,14 +168,16 @@ $("#abonos-cliente").change(function()
 
 $('#ventas-cliente').change(function()
 {
+	globalFolio = $(this).val();
 	cargarTablaAbonoPorCliente($(this).val());
 });
 
 //SECCION DE LAS TABLAS
 function cargarTablaAbonoPorCliente(Folio)
 {
+	var data;
 	$('.tablaAbonos tbody').remove();
-	$(".tablaAbonos").dataTable(
+	var tableAbonosPorCLiente = $(".tablaAbonos").dataTable(
 	{
 		"destroy":true,
 		"deferRender": true,
@@ -179,6 +191,7 @@ function cargarTablaAbonoPorCliente(Folio)
 			type: "POST",
 			data: {Folio:Folio}
 	    },
+
 		"language": {
 
 			"sProcessing":     "Procesando...",
@@ -207,4 +220,18 @@ function cargarTablaAbonoPorCliente(Folio)
 		}
 	});
 }
+
+$('#imprimir-abonos-cliente').click(function() {
+	if (globalFolio != null) {
+		var tipoAbonos = "Reporte de abonos";
+		window.open("extenciones/mpdf/reporte/reporte-abonos-por-cliente.php?tipo="+tipoAbonos+"&folio="+gobalFolio,"_blank");
+	} else {
+		swal.fire({
+			title: "No hay datos para imprimir",
+			text: "La tabla esta vacia",
+			type: "warning",
+			confirmButtonText: "¡Cerrar!"
+		})
+	}
+});
 

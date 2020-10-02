@@ -22,6 +22,7 @@
                   
                   <option value="abonos">Abonos</option>
                   <option value="contado">Ventas Contado</option>
+                  <option value="credito">Ventas Credito</option>
                   <option value="atrasos">Abonos atrasados</option>
                   <option value="compras">Compras</option>
 

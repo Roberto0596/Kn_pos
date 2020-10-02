@@ -23,7 +23,14 @@
         </div>
 
     </div> -->
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button class="btn btn-success" id="imprimir-abonos-retrasos">Imprimir</button>
+            </div>
+        </div>
+    </div>
+    <br>
     <table class="table table-bordered table-hover tableRetrasos">
         <thead>
             <tr>
