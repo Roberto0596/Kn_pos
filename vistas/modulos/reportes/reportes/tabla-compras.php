@@ -68,6 +68,11 @@
 
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                             <div class="pull-left">
+                                <button class="btn btn-success" id="imprimir-compras-generales">Imprimir</button>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -213,6 +218,12 @@
 
                         <div class="col-md-2" style="display: flex">
                             <strong>Monto: </strong><br><p style="margin-left: 15px;" id="monto"></p>
+                        </div>
+
+                        <div class="col-md-4">
+                             <div class="pull-left">
+                                <button class="btn btn-success" id="imprimir-compras-proveedor">Imprimir</button>
+                            </div>
                         </div>
 
                     </div>

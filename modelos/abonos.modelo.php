@@ -133,4 +133,42 @@ class ModeloAbonos
 		$stmt = null;
 	}
 
+	public function getAbonosAgrupados($fechaInicial, $fechaFinal)
+	{
+		if($fechaInicial == null)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT folio_venta FROM abonos where fecha_pago = '$fechaFinal' GROUP BY folio_venta");
+			$stmt -> execute();
+			return $stmt -> fetchAll();	
+		}
+		else if($fechaInicial == $fechaFinal)
+		{
+			$stmt = conexion::conectar()->prepare("SELECT folio_venta FROM abonos WHERE fecha_pago like '%$fechaFinal%' GROUP BY folio_venta");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		else
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT folio_venta FROM abonos WHERE fecha_pago BETWEEN '$fechaInicial' AND '$fechaFinal' GROUP BY folio_venta");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		}
+		$stmt -> close();
+		$stmt = null;
+	}
+
+	public function getAbonosAgrupadosIndividial($fecha)
+	{
+		$stmt=conexion::conectar()->prepare("SELECT folio_venta from abonos where fecha_pago = '$fecha' GROUP BY folio_venta");
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
+	public function getUltimoAbonoPorfolio($folio)
+	{
+		$stmt=conexion::conectar()->prepare("SELECT * from abonos where folio_venta = '$folio' order by id_abono desc  limit 1");
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
 }

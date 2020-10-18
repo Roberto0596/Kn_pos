@@ -28,8 +28,9 @@ class printReport
 	public function mostrarTabla()
 	{
 		$ventas = ControladorVentas::ctrMostrarVentasCredito(null,null,0);
-		$res = [];
+		$res = ["res" => [], "totals" => []];
 		$count;
+		$total = 0;
 		foreach ($ventas as $key1 => $value)
 		{
 			try {
@@ -48,20 +49,23 @@ class printReport
 				date_default_timezone_set('America/Hermosillo');
 				$fecha = date('Y-m-d');
 				if ($fecha > $proximoAbono) {
-					array_push($res, [
-						"#" => ($key+1),
-						"Nombre" => $cliente["nombre"],
+					$total = $total + $anotherDate["Abono"];
+					array_push($res["res"], [
 						"Folio" => $value["Folio"],
-						"Abono" => $anotherDate["Abono"],
-						"Prox. abono" => $proximoAbono,
-						"Fecha" => $fecha,
-						"Prox. fecha" => $calendario[$key+1]["Fecha"],
+						"# Cliente" => $cliente["id_cliente"],
+						"Nombre" => $cliente["nombre"],
+						"Direccion" => $cliente["direccion"],
+						"Numero" => $cliente["telefono_celular"],
+						"Credito" => "$".number_format($abono["saldo"],2),	
+						"F. Vencimiento" => $proximoAbono,
+						"Total" => "$".number_format($anotherDate["Abono"],2)
 					]);
 				}
 			} catch(Exception $e) {
-				array_push($res, []);
+				array_push($res["res"], []);
 			}									
 		}
+		array_push($res["totals"], ["Total Abonos" => $total]);
 		return $res;
 	}
 

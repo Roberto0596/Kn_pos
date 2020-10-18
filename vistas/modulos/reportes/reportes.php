@@ -32,16 +32,6 @@
 
           </div>
 
-          <div class="col-md-2">
-
-            <div class="btn-group">
-
-              <button class="btn btn-info" id="generar">Imprimir</button>
-
-            </div>
-
-          </div>
-
         </div>
 
       </div>

@@ -234,3 +234,35 @@ $("#fechaComprasFinal").change(function() {
 	}
 });
 
+
+$('#imprimir-compras-generales').click(function() {
+	var fechaInicial = $("#fechaComprasInicial").val();
+	var fechaFinal = $(this).val();
+	if(fechaInicial.length > 0) {
+		var tipoAbonos = "Reporte de compras generales";
+		window.open("extenciones/mpdf/reporte/reporte-compras-generales.php?tipo="+tipoAbonos+"&init="+fechaFinal+"&final="+fechaFinal,"_blank");
+	} else {
+		swal.fire({
+			title: "Tiene que elegir una fecha inicial",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+		$("#fechaComprasFinal").val("");
+	}
+});
+
+$('#imprimir-compras-proveedor').click(function() {
+	var folio = $("#compras-realizadas").val();
+	if (folio.length > 0) {
+		var tipoAbonos = "Reporte de compras por proveedor";
+		window.open("extenciones/mpdf/reporte/reporte-compras.php?tipo="+tipoAbonos+"&folio="+folio,"_blank");
+	} else {
+		swal.fire({
+			title: "Tiene que seleccionar un folio",
+			type: "info",
+			confirmButtonText: "¡Cerrar!"
+		});
+	}
+	
+});
+

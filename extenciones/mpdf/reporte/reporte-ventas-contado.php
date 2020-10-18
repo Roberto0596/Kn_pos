@@ -24,6 +24,7 @@ class printReport
 
 	public function mostrarTabla()
 	{
+		$res = ["res"=>[], "totals" => []];
 		if ($this->rango == "null")
 		{
 			$respuesta = ModeloVentas::mdlMostrarVentasContado();		
@@ -35,24 +36,24 @@ class printReport
 			$valor2=$fechas[1];
 			$respuesta = ModeloVentas::mdlMostrarVentasContadoPorFecha($valor1,$valor2);
 		}
-
-		$res = [];
-
+		$total = 0;
 		foreach($respuesta as $key => $value)
-		{		
+		{	
+			$total = $total + $value["TotalVenta"];
 			$cliente = ControladorClientes::ctrMostrarClientes("id_cliente",$value["Id_cliente"],0);
 
 
-			array_push($res, [
-				"#" => ($key+1),
+			array_push($res["res"], [
 				"Folio" => $value["Folio"],
+				"# Cliente" => $cliente["id_cliente"],
 				"Nombre" => $cliente["nombre"],
 				"Direccion" => $cliente["direccion"]!=null?$cliente["direccion"]:"N/A",
-				"Telfono" => $cliente["telefono_casa"]!=null?$cliente["telefono_casa"]:"N/A",
-				"Fecha" => $value["Fecha"].$value["Hora"],
+				"Telefono" => $cliente["telefono_casa"]!=null?$cliente["telefono_casa"]:"N/A",
+				"Fecha" => $value["Fecha"],
 				"Total" => "$".number_format($value["TotalVenta"],2),
 			]);
-		}	
+		}
+		array_push($res["totals"], ["Total" => $total]);	
 		return $res;
 	}
 

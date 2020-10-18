@@ -25,6 +25,7 @@ class printReport
 
 	public function mostrarTabla()
 	{
+		$res = ["res"=>[], "totals" => []];
 		if ($this->init == "null") {
 			$respuesta = ControladorVentas::ctrMostrarVentas(null,null);
 		} else {
@@ -32,24 +33,28 @@ class printReport
 			$valor2 = $this->init;
 			$respuesta = ControladorVentas::ctrMostrarVentasPorFecha($valor1,$valor2);
 		}
-		
-		$res = [];
+
 		if ($respuesta != false)
 		{
+			$enganche = 0;
 			foreach($respuesta as $key => $value)
 			{
 				$cliente = ControladorClientes::ctrMostrarClientes("id_cliente",$value["Id_cliente"],0);
-
-				array_push($res, [
-					"#" => ($key+1),
+				if ($value["TotalPago"] != "") {
+					$enganche = $enganche + intval($value["TotalPago"]);
+				}	var_dump($cliente["telefono_celular"]);
+				
+				array_push($res["res"], [
 					"Folio" => $value["Folio"],
+					"CR" => $value["FolioFact"] != null ? $value["FolioFact"] : "N/A",
 					"Nombre" => $cliente["nombre"],
 					"Direccion" => $cliente["direccion"],
-					"Telefono" => $cliente["telefono_celular"],
-					"Fecha" => $value["Fecha"],
+					"Telefono" => $cliente["telefono_celular"] != "" ?  $cliente["telefono_celular"] : "N/A",
+					"Enganche" => $value["TotalPago"] != "" ? $value["TotalPago"] : "N/A",
 					"Total" => "$".number_format($value["TotalVenta"],2)
 				]);
 			}
+			array_push($res["totals"], ["Total Enganche" => $enganche]);
 		}
 		return $res;
 	}
